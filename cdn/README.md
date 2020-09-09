@@ -14,17 +14,31 @@ CDN example using Universal Module Definition (UMD) files in static html file, t
 
 ### Update config
 
-Update to using latest bundle js version in the `html` static file, replace `xx.xx.xx` with version found in [airwallex-payment-elements](https://www.npmjs.com/package/airwallex-payment-elements)
+Setp #1: Update to using latest bundle js version in the `html` static file, replace `xx.xx.xx` with version found in [airwallex-payment-elements](https://www.npmjs.com/package/airwallex-payment-elements)
 
 ```html
 <!-- Step #1: Load Checkout Universal Module Definition (UMD) bundle js-->
 <script src="https://checkout.airwallex.com/assets/bundle.xx.xx.xx.min.js"></script>
 ```
 
-Select the target airwallex env you want to test with by update the `env` field
+Step #2: Select the target airwallex env you want to test with by update the `env` field
 
 ```js
 env: 'staging', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+```
+
+Step #3: Get your intent id and client secret create by your backend client api integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+
+To power up those pages, replace them with below fields in `html`
+
+```js
+const id = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
+```
+
+```js
+id: 'replace-with-your-intent-id',
+client_secret: 'replace-with-your-client-secret'
 ```
 
 ### Start demo
