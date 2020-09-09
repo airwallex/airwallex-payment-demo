@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head lang='en'>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Airwallex Checkout Playground</title>
+    <!-- Step #1: Load Checkout Universal Module Definition (UMD) bundle js-->
+    <script src="https://checkout-staging.airwallex.com/assets/bundle.xx.xx.xx.min.js"></script>
+  </head>
+  <body>
+    <h1>DropIn integration</h1>
+    <div id='dropIn'></div>
+    <script>
+      // Step #2: Initialize the Airwallex global context for event communication
+      Airwallex.init({
+        env: 'staging', // Setup which env('staging' | 'demo' | 'prod') you would like to integrate with
+        origin: window.location.origin, // Setup your event target to receive the browser events message
+      });
+      // Step #3: Create 'dropIn' element
+      const dropIn = Airwallex.createElement('dropIn', {
+        intent: { // Required, dropIn use intent Id and client_secret to prepare checkout
+          id: 'replace-with-your-intent-id',
+          client_secret: 'replace-with-your-client-secret'
+        }
+      });
+      // Step #4: Mount 'dropIn' element
+      dropIn.mount('dropIn');
+      window.addEventListener('onSuccess', (event) => {
+        /*
+          ... Handle event
+        */
+        alert(JSON.stringify(event.detail));
+      })
+    </script>
+  </body>
+</html>
