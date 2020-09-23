@@ -3,31 +3,31 @@
     <h1>{{msg}}</h1>
     <!-- HPP -->
     <h2>{{desc}}</h2>
-    <div id='card'></div>
+    <div id='fullFeaturedCard'></div>
   </div>
 </template>
 
 <script>
 import {createElement, loadAirwallex} from 'airwallex-payment-elements';
 
-const client_secret = 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTk0NzIwMDEsImV4cCI6MTU5OTQ3NTYwMSwiYWNjb3VudF9pZCI6IjM0OWZhYWQ5LTYzZGEtNDg3MS05YTVhLWIyYTIxNjViNTNiNiIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IlVLIiwiaW50ZW50X2lkIjoiaW50XzRGa3NsVWUwenJ4VkdtNDBDeklZd3g4TW9zaCJ9.cpM2hbhcFTubk4gqsXFUYB_FerIvjXjMcZGWDVbic98';
-const intentid = 'int_4FkslUe0zrxVGm40CzIYwx8Mosh';
+const client_secret = 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NDEzNDAsImV4cCI6MTYwMDg0NDk0MCwiYWNjb3VudF9pZCI6IjM0OWZhYWQ5LTYzZGEtNDg3MS05YTVhLWIyYTIxNjViNTNiNiIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IlVLIiwiaW50ZW50X2lkIjoiaW50X2hBS2Jzcll6cXlMaHBlZm56Mm5WSllxR0hBIn0.QsRF3rWi8tTQzlF0AIg1t3gLzBFrLfT1cwAh6tTsA9k';
+const intentid = 'int_hAKbsrYzqyLhpefnz2nVJYqGHA';
 
 console.log(loadAirwallex);
 loadAirwallex({
   env: 'staging', // 'staging' | 'demo' | 'prod'
   origin: window.location.origin
 }).then(() => {
-  const card = createElement('card', {
+  const card = createElement('fullFeaturedCard', {
     intent: {
       id: intentid,
       client_secret: client_secret
     },
     component: 'default',
-    autoCapture: true,
+    autoCapture: false,
     withBilling: true
   });
-  card.mount('card');
+  card.mount('fullFeaturedCard');
 
   // window.addEventListener('onSuccess', (event) => {
   //   console.log(JSON.stringify(event));

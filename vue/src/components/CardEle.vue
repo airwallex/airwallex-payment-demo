@@ -22,8 +22,8 @@
 <script>
 import { createElement, confirmPaymentIntent, loadAirwallex } from 'airwallex-payment-elements';
 
-const client_secret = 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTk0ODU5NTcsImV4cCI6MTU5OTQ4OTU1NywiYWNjb3VudF9pZCI6IjM0OWZhYWQ5LTYzZGEtNDg3MS05YTVhLWIyYTIxNjViNTNiNiIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IlVLIiwiaW50ZW50X2lkIjoiaW50X21UY0hROXRuemd0c3llRDVWemptVk12RlgzQyJ9.BY2ZUasLMCsP7ZzOGSU0y6-D-D8ZL_QQ-QwgQ426Iew';
-const intentid = 'int_mTcHQ9tnzgtsyeD5VzjmVMvFX3C';
+const client_secret = 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4NDA1NzcsImV4cCI6MTYwMDg0NDE3NywiYWNjb3VudF9pZCI6IjM0OWZhYWQ5LTYzZGEtNDg3MS05YTVhLWIyYTIxNjViNTNiNiIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IlVLIiwiaW50ZW50X2lkIjoiaW50X21OT25FM3Y3ejRBeDM1VWNTekQ2eTRrQkU3ZSJ9.L3u_MDUGMlPZBsf37xowSve_lCJaFhI5-h1ee5iDAP8';
+const intentid = 'int_mNOnE3v7z4Ax35UcSzD6y4kBE7e';
 let cardNo;
 let cardCvc;
 let cardExpiry;
@@ -43,7 +43,7 @@ loadAirwallex({
 
 const triggerConfirm = async () => {
   try {
-    await confirmPaymentIntent({
+    const confirmResult = await confirmPaymentIntent({
       element: cardNo,
       id: intentid,
       client_secret: client_secret,
@@ -53,7 +53,7 @@ const triggerConfirm = async () => {
         }
       }
     });
-    const {confirmResult} = res || {};
+    console.log(confirmResult);
     const {id, status} = confirmResult || {};
     console.log('confirm success, id' + id + ', status:' + status);
   } catch (err) {
