@@ -1,8 +1,6 @@
-# node demo
-
 # Airwallex Payment Demo - Node Server
 
-Node server example of payment  implementation.
+Node server example of payment implementation.
 
 ## Pre-installation
 
