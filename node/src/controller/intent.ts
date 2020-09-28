@@ -51,7 +51,7 @@ intentRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
   const createIntentUrl = `${config.airwallex.paTokenInterceptor}/api/v1/pa/payment_intents/${id}`;
   try {
-    // Step 1: Before create intent, should get authorized token first.
+    // Step 1: Before retrieve a intent, should get authorized token first.
     const token = await getToken(res);
 
     // Step 2: Retrieve a paymentIntent by the intentId
