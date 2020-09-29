@@ -10,12 +10,12 @@
 <script>
 import { redirectToCheckout,loadAirwallex } from 'airwallex-payment-elements';
 
-const client_secret = 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDA4MzIyMDksImV4cCI6MTYwMDgzNTgwOSwiYWNjb3VudF9pZCI6IjM0OWZhYWQ5LTYzZGEtNDg3MS05YTVhLWIyYTIxNjViNTNiNiIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IlVLIiwiaW50ZW50X2lkIjoiaW50X3U2T2hsVjZoejd2aUZObE1zejdFYmo0OTN1QSJ9.x6FiVe-KAb6wgUucMcZIp-ksQ1M7qcylu5920zwUb3w';
-const intentid = 'int_u6OhlV6hz7viFNlMsz7Ebj493uA';
+const client_secret = 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTk0NjUwMjQsImV4cCI6MTU5OTQ2ODYyNCwiYWNjb3VudF9pZCI6IjM0OWZhYWQ5LTYzZGEtNDg3MS05YTVhLWIyYTIxNjViNTNiNiIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IlVLIiwiaW50ZW50X2lkIjoiaW50X2RuanNLUmJRemtxOTgxUUQ3ejc0QUdZNXRpSSJ9.wIjljTBGpbt1TRsQOKtOjwJlhKcLNE_NscPaQ1Ws5fk';
+const intentid = 'int_dnjsKRbQzkq981QD7z74AGY5tiI';
 
 console.log(loadAirwallex);
 loadAirwallex({
-  env: 'dev', // 'staging' | 'demo' | 'prod'
+  env: 'staging', // 'staging' | 'demo' | 'prod'
 });
 
 const redirectHpp = async () => {
