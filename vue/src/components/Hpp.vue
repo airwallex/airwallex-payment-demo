@@ -20,7 +20,7 @@ loadAirwallex({
 
 const redirectHpp = async () => {
   await redirectToCheckout({
-    env: 'dev',
+    env: 'staging',
     id: intentid,
     client_secret: client_secret,
     component: 'default',
