@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head lang='en'>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Airwallex Checkout Playground</title>
+  <!-- Step #1: Load Checkout Universal Module Definition (UMD) bundle js-->
+  <script src="https://checkout.airwallex.com/assets/bundle.xx.xx.xx.min.js"></script>
+</head>
+
+<body>
+  <h1>Card integration</h1>
+  <label>
+    Card Information
+    <div id='card'></div>
+  </label>
+  <br>
+  <button id='submit'>Submit</button>
+  <script>
+    // Step #2: Initialize the Airwallex global context for event communication
+    Airwallex.init({
+      env: 'staging', // Setup which env('staging' | 'demo' | 'prod') you would like to integrate with
+      origin: window.location.origin, // Setup your event target to receive the browser events message
+    });
+    // Step #3: Create 'card' element
+    const card = Airwallex.createElement('card');
+    // Step #4: Mount card element
+    card.mount('card');
+    document.getElementById('submit').addEventListener('click', () => {
+      // Step #5: Confirm payment intent with id and client_secret
+      Airwallex.confirmPaymentIntent({
+        element: card,
+        id: 'replace-with-your-intent-id',
+        client_secret: 'replace-with-your-client-secret'
+      }).then((response) => {
+        /* handle confirm response in your business flow */
+        alert(JSON.stringify(response));
+      });
+    });
+    window.addEventListener('onReady', (event) => {
+      /*
+        ... Handle event
+      */
+      alert(event.detail)
+    })
+  </script>
+</body>
+
+</html>
