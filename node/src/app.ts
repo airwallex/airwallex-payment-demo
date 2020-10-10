@@ -15,7 +15,7 @@ const port = 3002;
 const entryRouter = express.Router();
 
 // Define routes.
-app.use("/apis/v1", entryRouter);
+app.use("/api/v1", entryRouter);
 // create or retrieve a paymentIntent 
 entryRouter.use("/intent", intentRouter);
 

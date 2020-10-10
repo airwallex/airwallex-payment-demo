@@ -22,8 +22,8 @@ you can change your application keys in .env file
 
     $ yarn start
 
-### Go to browser and open [Localhost](http://localhost:3002/apis/v1/intent/create)
-- [create a payment intent](http://localhost:3002/apis/v1/intent/create)
-- [retrieve a payment intent](http://localhost:3002/apis/v1/intent/:id),remember to change id to a live intentId in the url
+### Go to browser and open [Localhost](http://localhost:3002/api/v1/intent/create)
+- [create a payment intent](http://localhost:3002/api/v1/intent/create)
+- [retrieve a payment intent](http://localhost:3002/api/v1/intent/:id),remember to change id to a live intentId in the url
 
 Those static node show example of integration apis, for more details you can check on  [AIRWALLEX API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post)

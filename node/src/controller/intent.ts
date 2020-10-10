@@ -12,6 +12,7 @@ import config from "../config";
 const intentRouter = express.Router();
 
 // Create the PaymentIntent on the backend.
+// Since this is a demo, to simplify the flow you can using a get call to create an intent, when doing integration you can change to post along with payload your shopper provided
 intentRouter.get("/create", async (req, res) => {
   const createIntentUrl = `${config.airwallex.paTokenInterceptor}/api/v1/pa/payment_intents/create`;
   try {
