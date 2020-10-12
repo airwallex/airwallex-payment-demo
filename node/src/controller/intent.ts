@@ -14,7 +14,7 @@ const intentRouter = express.Router();
 // Create the PaymentIntent on the backend.
 // Since this is a demo, to simplify the flow you can using a get call to create an intent, when doing integration you can change to post along with payload your shopper provided
 intentRouter.get("/create", async (req, res) => {
-  const createIntentUrl = `${config.airwallex.paTokenInterceptor}/api/v1/pa/payment_intents/create`;
+  const createIntentUrl = `${config.airwallex.clientPciApiHost}/api/v1/pa/payment_intents/create`;
   try {
     // Step 1: Before create intent, should get authorized token first.
     const token = await getToken(res);
@@ -50,7 +50,7 @@ intentRouter.get("/create", async (req, res) => {
 // Retrieve a PaymentIntent.
 intentRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const createIntentUrl = `${config.airwallex.paTokenInterceptor}/api/v1/pa/payment_intents/${id}`;
+  const createIntentUrl = `${config.airwallex.clientPciApiHost}/api/v1/pa/payment_intents/${id}`;
   try {
     // Step 1: Before retrieve a intent, should get authorized token first.
     const token = await getToken(res);
@@ -80,7 +80,7 @@ const getToken = async (res: Response) => {
   if (cachedToken) {
     return cachedToken;
   }
-  const loginUrl = `${config.airwallex.host}/api/v1/authentication/login?api_key=${config.airwallex.apiKey}&client_id=${config.airwallex.clientId}`;
+  const loginUrl = `${config.airwallex.clientApiHost}/api/v1/authentication/login?api_key=${config.airwallex.apiKey}&client_id=${config.airwallex.clientId}`;
   try {
     const loginHeader = {
       "x-client-id": config.airwallex.clientId,
