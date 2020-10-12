@@ -12,8 +12,8 @@ const config = {
     apiKey: process.env.AIRWALLEX_API_KEY,
     clientId: process.env.AIRWALLEX_CLIENT_ID,
     // Use airwallex test host for development and production host in your production.
-    host: process.env.AIRWALLEX_API,
-    paTokenInterceptor: process.env.AIRWALLEX_PCI_API
+    clientApiHost: process.env.AIRWALLEX_API,
+    clientPciApiHost: process.env.AIRWALLEX_PCI_API
   },
 };
 export default config;
