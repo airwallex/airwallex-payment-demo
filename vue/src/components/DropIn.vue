@@ -26,9 +26,9 @@ loadAirwallex({
 
 window.addEventListener('onSuccess', (event) => {
   /*
-      ... Handle event
-    */
-  console.log(JSON.stringify(event.detail));
+    ... Handle event
+  */
+  console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
 });
 
 export default {

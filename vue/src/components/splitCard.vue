@@ -41,14 +41,13 @@ loadAirwallex({
   cvcEle.mount('cvc');
   const expiryEle = createElement('expiry');
   expiryEle.mount('expiry');
-  console.log(mount);
 });
 
 window.addEventListener('onReady', (event) => {
   /*
-      ... Handle event
-    */
-  console.log(JSON.stringify(event.detail));
+    ... Handle event
+  */
+  console.log(`Elements ready with ${JSON.stringify(event.detail)}`);
 });
 
 const triggerConfirm = async () => {

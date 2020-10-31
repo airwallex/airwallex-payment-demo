@@ -27,7 +27,7 @@ loadAirwallex({
     /*
       ... Handle event
     */
-    console.log(JSON.stringify(event.detail));
+    console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
   });
 });
 
