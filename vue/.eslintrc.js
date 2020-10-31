@@ -3,6 +3,10 @@ module.exports = {
     // '@airwallex/javascript',
     'google',
     'prettier',
+    'plugin:vue/recommended',
+    'plugin:vue/base',
+    'plugin:vue/essential',
+    'plugin:vue/strongly-recommended',
   ],
   parserOptions: {
     ecmaVersion: 2019,

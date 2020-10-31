@@ -1,25 +1,25 @@
 <template>
   <div>
     <h2>Option #5: Wechat element integration</h2>
-    <div id='wechat'></div>
+    <div id="wechat" />
   </div>
 </template>
 
 <script>
-import {createElement, loadAirwallex} from 'airwallex-payment-elements';
+import { createElement, loadAirwallex } from 'airwallex-payment-elements';
 
-const client_secret = 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDQxMzM0MTUsImV4cCI6MTYwNDEzNzAxNSwiYWNjb3VudF9pZCI6IjM0OWZhYWQ5LTYzZGEtNDg3MS05YTVhLWIyYTIxNjViNTNiNiIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IlVLIiwiaW50ZW50X2lkIjoiaW50X2hIVmdKSWpLemlEdHhmdmpoelBlTVdsR0p2dyJ9.EZLyAefUtbSOhlIjwANUZ8_HgJPZQ_mGxwaVc5i3pNc';
-const intentid = 'int_hHVgJIjKziDtxfvjhzPeMWlGJvw';
+const intentid = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
 
 loadAirwallex({
   env: 'staging',
-  origin: window.location.origin
+  origin: window.location.origin,
 }).then(() => {
   const wechat = createElement('wechat', {
     intent: {
       id: intentid,
       client_secret,
-    }
+    },
   });
   wechat.mount('wechat');
 
@@ -28,10 +28,10 @@ loadAirwallex({
       ... Handle event
     */
     console.log(JSON.stringify(event.detail));
-  })
-})
+  });
+});
 
 export default {
   name: 'Wechat',
-}
+};
 </script>
