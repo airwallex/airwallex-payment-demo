@@ -2,3 +2,4 @@
 # build artefacts
 node_modules
 .idea
+.history
