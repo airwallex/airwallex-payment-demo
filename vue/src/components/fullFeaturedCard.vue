@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>Option #2: DropIn integration</h2>
-    <div id='dropIn'></div>
+    <h2>Option #3: Full Featured Card integration</h2>
+    <div id='fullFeaturedCard'></div>
   </div>
 </template>
 
@@ -14,31 +14,30 @@ const intentid = 'int_hHVgJIjKziDtxfvjhzPeMWlGJvw';
   loadAirwallex({
     env: 'staging',
     origin: window.location.origin
-  }).then(() =>{
-      const dropIn = createElement('dropIn', {
-        intent: {
-          id: intentid,
-          client_secret,
-        },
-      });
-      dropIn.mount('dropIn');
-    }
-  )
-
-  window.addEventListener('onSuccess', (event) => {
-    /*
-      ... Handle event
-    */
-    console.log(JSON.stringify(event.detail));
+  }).then(() => {
+    const card = createElement('fullFeaturedCard', {
+      intent: {
+        id: intentid,
+        client_secret,
+      },
+    });
+    card.mount('fullFeaturedCard');
   })
 
+  window.addEventListener('onSuccess', (event) => {
+        /*
+          ... Handle event
+        */
+        console.log(JSON.stringify(event.detail));
+      })
+
   export default {
-    name: 'DropIn',
+    name: 'FullFeaturedCard',
   }
 </script>
 
 <style>
-  #dropIn {
+  #fullFeaturedCard {
     width: 540px;
     margin: 48px auto;
   }

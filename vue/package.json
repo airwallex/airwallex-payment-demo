@@ -1,21 +1,21 @@
 {
-  "name": "demointegration",
+  "name": "vue",
   "version": "1.0.0",
-  "description": "checkout demo integration by merchant",
+  "description": "Airwallex payment demo - VUE",
   "author": "jessica",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --hot --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "lint": "eslint \"**/*.{js,ts,tsx}\" "
   },
   "dependencies": {
-    "airwallex-payment-elements": "^0.0.96",
+    "airwallex-payment-elements": "^0.1.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^7.1.1",
@@ -27,6 +27,10 @@
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
+    "eslint": "^7.12.1",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
@@ -54,6 +58,12 @@
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "arrowParens": "always",
+    "trailingComma": "all"
   },
   "browserslist": [
     "> 1%",

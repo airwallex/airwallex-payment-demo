@@ -1,45 +1,39 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Hpp from '@/components/Hpp'
-import DropIn from '@/components/DropIn'
-import Card from "../components/Card";
-import CardEle from "../components/CardEle";
-import WechatEle from "../components/WechatEle";
+import Vue from 'vue';
+import Router from 'vue-router';
+import Hpp from '@/components/hpp';
+import DropIn from '@/components/dropIn';
+import FullFeaturedCard from '@/components/fullFeaturedCard';
+import SplitCard from '@/components/splitCard';
+import Wechat from '@/components/wechat';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path: '/hpp',
-      name: 'Hpp',
-      component: Hpp
-    },
-    {
       path: '/dropin',
       name: 'DropIn',
-      component: DropIn
+      component: DropIn,
     },
     {
-      path: '/card',
-      name: 'Card',
-      component: Card
+      path: '/full-featured-card',
+      name: 'FullFeaturedCard',
+      component: FullFeaturedCard,
     },
     {
-      path: '/cardele',
-      name: 'CardEle',
-      component: CardEle
+      path: '/split-card',
+      name: 'SplitCard',
+      component: SplitCard,
     },
     {
-      path: '/wechatele',
-      name: 'WechatEle',
-      component: WechatEle
-    }
-  ]
-})
+      path: '/wechat',
+      name: 'Wechat',
+      component: Wechat,
+    },
+    {
+      path: '/*',
+      name: 'Hpp',
+      component: Hpp,
+    },
+  ],
+});
