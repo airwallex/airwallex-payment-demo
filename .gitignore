@@ -1,6 +1,14 @@
 # /node_modules/* in the project root is ignored by default
-# build artefacts
-node_modules
+
+# misc
+.DS_Store
 .idea
 .history
-dist
+
+**/node_modules
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/package-lock.json
+**/dist
+
