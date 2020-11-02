@@ -14,11 +14,6 @@ module.exports = {
   },
   plugins: ['prettier'],
   rules: {
-    '@typescript-eslint/no-var-requires': 0,
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/camelcase': ['off', { allow: ['__webpack_public_path__'] }],
     camelcase: ['off', { properties: 'never' }],
     'max-len': [
       2,
@@ -28,7 +23,6 @@ module.exports = {
         ignoreStrings: true,
       },
     ],
-    'object-curly-spacing': 'off',
     semi: ['error', 'always'],
     quotes: ['error', 'single'],
     'prettier/prettier': ['error', { trailingComma: 'all' }],

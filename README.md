@@ -1,2 +1,2 @@
 # airwallex-payment-demo
-Airwallex payment integration demo - Vue
+Airwallex payment integration demo - Vue / Node.js / CDN
