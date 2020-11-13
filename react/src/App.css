@@ -1,0 +1,44 @@
+.App {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+nav {
+  display: flex;
+  flex-flow: row wrap;
+  width: 640px;
+  max-width: 100vw;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+}
+
+nav a {
+  margin: 10px;
+}
+
+#dropIn,
+#fullFeaturedCard,
+#wechat {
+  width: 540px;
+  margin: 48px auto;
+}
+
+.field-container {
+  margin: 0 auto 16px;
+  width: 300px;
+}
+.field-container div {
+  border: 1px solid;
+  padding: 4px 8px;
+  margin-top: 8px;
+  height: 28px;
+}
+div.field-label {
+  text-align: left;
+  border: 0;
+}
