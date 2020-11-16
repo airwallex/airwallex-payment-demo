@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { redirectToCheckout, loadAirwallex } from "airwallex-payment-elements";
 
 const intentid = "replace-with-your-intent-id";
-const client_secret =
-  "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDU1MTYyOTEsImV4cCI6MTYwNTUxOTg5MSwiYWNjb3VudF9pZCI6ImFjNjZjZmRmLWM2ZTgtNGYxYy05NzIzLTYyNzI1NDQyZmExNiIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IlVLIiwiaW50ZW50X2lkIjoiaW50XzRVUXN2YzRXemdRME5JTXU1emxvY0pCZVlJZyJ9.-n78OC6Rk5CRgTX-xOMQ7CHpLYstqBxrj_Cp48YETcE";
+const client_secret = 'replace-with-your-client-secret';
 
 @Component({
   selector: 'app-hpp',
