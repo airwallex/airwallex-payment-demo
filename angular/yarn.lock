@@ -1462,10 +1462,10 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-airwallex-payment-elements@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.npm.taobao.org/airwallex-payment-elements/download/airwallex-payment-elements-0.1.6.tgz#8f851c792eef43df6ee8dfda71d12830cf452351"
-  integrity sha1-j4UceS7vQ99u6N/acdEoMM9FI1E=
+airwallex-payment-elements@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.npm.taobao.org/airwallex-payment-elements/download/airwallex-payment-elements-0.1.7.tgz#c4518e0b4dd6e11c10c7767a717014fdb67024aa"
+  integrity sha1-xFGOC03W4RwQx3Z6cXAU/bZwJKo=
   dependencies:
     csstype "^3.0.2"
 
@@ -2916,7 +2916,7 @@ csso@^4.0.2:
 
 csstype@^3.0.2:
   version "3.0.5"
-  resolved "https://registry.npm.taobao.org/csstype/download/csstype-3.0.5.tgz#7fdec6a28a67ae18647c51668a9ff95bb2fa7bb8"
+  resolved "https://registry.npm.taobao.org/csstype/download/csstype-3.0.5.tgz?cache=0&sync_timestamp=1605258867356&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcsstype%2Fdownload%2Fcsstype-3.0.5.tgz#7fdec6a28a67ae18647c51668a9ff95bb2fa7bb8"
   integrity sha1-f97GoopnrhhkfFFmip/5W7L6e7g=
 
 custom-event@~1.0.0:

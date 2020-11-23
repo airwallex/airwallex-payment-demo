@@ -7,7 +7,6 @@ const client_secret = 'replace-with-your-client-secret';
 @Component({
   selector: 'app-we-chat',
   templateUrl: './we-chat.component.html',
-  styleUrls: ['./we-chat.component.less'],
 })
 export class WeChatComponent implements OnInit {
   constructor() {}
