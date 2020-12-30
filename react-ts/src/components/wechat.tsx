@@ -5,9 +5,8 @@ import {
   ElementType,
 } from 'airwallex-payment-elements';
 
-const intentId = 'int_7HUOnL6yztTB3H0LPzclsDYHrqW';
-const client_secret =
-  'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDkyMzY3NjIsImV4cCI6MTYwOTI0MDM2MiwiYWNjb3VudF9pZCI6IjZkMzljOGU3LWQyY2EtNGQ0Yy04N2I5LWIzY2Y3MzNkNTU2ZSIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IlVLIiwiaW50ZW50X2lkIjoiaW50XzdIVU9uTDZ5enRUQjNIMExQemNsc0RZSHJxVyJ9.MR7mK5vHgT_sckVAA0ejo2iZbHtlj1kUeDip4-nodAQ';
+const intentId = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
 const ELEMENT_TYPE: ElementType = 'wechat';
 
 const Index: React.FC = () => {
