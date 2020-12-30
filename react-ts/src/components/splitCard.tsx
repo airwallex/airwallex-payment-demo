@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   createElement,
   loadAirwallex,
@@ -12,7 +12,7 @@ const client_secret = 'replace-with-your-client-secret';
 const Index: React.FC = () => {
   useEffect(() => {
     loadAirwallex({
-      env: "staging",
+      env: 'staging',
       origin: window.location.origin,
     }).then(() => {
       createElement('cardNumber')?.mount('card-number');
@@ -34,10 +34,9 @@ const Index: React.FC = () => {
   });
   const containerStyle = {
     border: '1px solid',
-    padding: '4px 8px', 
-    marginBottom: '8px'
+    padding: '4px 8px',
+    marginBottom: '8px',
   };
-
 
   const triggerConfirm = async () => {
     try {
@@ -65,15 +64,15 @@ const Index: React.FC = () => {
       <h2>Option #4: Split Card element integration</h2>
       <div style={containerStyle}>
         <div>Card number</div>
-        <div id='card-number' />
+        <div id="card-number" />
       </div>
       <div style={containerStyle}>
         <div>Expiry</div>
-        <div id='expiry' />
+        <div id="expiry" />
       </div>
       <div style={containerStyle}>
         <div>Cvc</div>
-        <div id='cvc' />
+        <div id="cvc" />
       </div>
       <button onClick={triggerConfirm}>Confirm</button>
     </div>

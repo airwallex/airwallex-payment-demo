@@ -1,5 +1,9 @@
-import { useEffect } from 'react';
-import { createElement, loadAirwallex, ElementType } from 'airwallex-payment-elements';
+import React, { useEffect } from 'react';
+import {
+  createElement,
+  loadAirwallex,
+  ElementType,
+} from 'airwallex-payment-elements';
 
 const intentId = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
@@ -24,13 +28,12 @@ const Index: React.FC = () => {
       */
       console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
     };
-  
+
     window.addEventListener('onSuccess', onSuccess as EventListener);
     return () => {
       window.removeEventListener('onSuccess', onSuccess as EventListener);
     };
   }, []);
-
 
   return (
     <div>

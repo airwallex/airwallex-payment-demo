@@ -1,4 +1,5 @@
-import { redirectToCheckout, loadAirwallex } from "airwallex-payment-elements";
+import React from 'react';
+import { redirectToCheckout, loadAirwallex } from 'airwallex-payment-elements';
 
 const intentId = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';

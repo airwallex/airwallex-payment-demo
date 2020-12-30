@@ -7,6 +7,9 @@
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "airwallex-payment-elements": "^0.2.4",
+    "confusing-browser-globals": "^1.0.10",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^7.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -17,13 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "lint": "eslint \"**/*.{js,ts,tsx}\" "
   },
   "browserslist": {
     "production": [
@@ -38,6 +36,9 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.6"
+    "@types/react-router-dom": "^5.1.6",
+    "eslint": "^7.16.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "prettier": "^2.2.1"
   }
 }

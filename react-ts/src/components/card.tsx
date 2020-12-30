@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   createElement,
   loadAirwallex,
   getElement,
   confirmPaymentIntent,
-  ElementType
+  ElementType,
 } from 'airwallex-payment-elements';
 
 const intentId = 'replace-with-your-intent-id';
@@ -14,7 +14,7 @@ const ELEMENT_TYPE: ElementType = 'card';
 const Index: React.FC = () => {
   useEffect(() => {
     loadAirwallex({
-      env: "staging",
+      env: 'staging',
       origin: window.location.origin,
     }).then(() => {
       createElement(ELEMENT_TYPE)?.mount(ELEMENT_TYPE);
@@ -58,7 +58,9 @@ const Index: React.FC = () => {
     <div>
       <h2>Option #6: Card element integration</h2>
       <div id={ELEMENT_TYPE} />
-      <button onClick={triggerConfirm} style={{marginTop: '8px'}}>Confirm</button>
+      <button onClick={triggerConfirm} style={{ marginTop: '8px' }}>
+        Confirm
+      </button>
     </div>
   );
 };
