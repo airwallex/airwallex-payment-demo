@@ -33,6 +33,9 @@ const App: React.FC = () => (
         <Route path="/redirect">
           <Redirect />
         </Route>
+        <Route path="/test">
+          <Redirect />
+        </Route>
       </Switch>
     </Router>
   </div>
