@@ -12,7 +12,7 @@ const ELEMENT_TYPE: ElementType = 'wechat';
 export default function wechat() {
   useEffect(() => {
     loadAirwallex({
-      env: 'staging',
+      env: 'demo',
     }).then(() => {
       createElement(ELEMENT_TYPE, {
         intent: {

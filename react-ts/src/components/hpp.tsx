@@ -8,10 +8,10 @@ const Index: React.FC = () => {
   const redirectHpp = async () => {
     try {
       await loadAirwallex({
-        env: 'staging',
+        env: 'demo',
       });
       await redirectToCheckout({
-        env: 'staging',
+        env: 'demo',
         id: intentId,
         client_secret: client_secret,
       });

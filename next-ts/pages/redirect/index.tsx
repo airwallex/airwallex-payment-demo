@@ -14,7 +14,7 @@ const ELEMENT_TYPE: ElementType = 'redirect';
 export default function redirect() {
   useEffect(() => {
     loadAirwallex({
-      env: 'staging',
+      env: 'demo',
       origin: window.location.origin,
     }).then(() => {
       createElement(ELEMENT_TYPE, {

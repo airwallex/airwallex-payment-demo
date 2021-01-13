@@ -16,10 +16,10 @@ export class HppComponent implements OnInit {
   redirectHpp = async () => {
     try {
       await loadAirwallex({
-        env: "staging",
+        env: "demo",
       });
       await redirectToCheckout({
-        env: "staging",
+        env: "demo",
         id: intentid,
         client_secret: client_secret,
       });

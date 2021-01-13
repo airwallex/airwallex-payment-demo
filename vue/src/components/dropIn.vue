@@ -12,7 +12,7 @@ const intentid = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
 loadAirwallex({
-  env: 'staging',
+  env: 'demo',
   origin: window.location.origin,
 }).then(() => {
   const dropIn = createElement('dropIn', {

@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "airwallex-payment-elements": "^0.2.4",
+    "airwallex-payment-elements": "*",
     "next": "^10.0.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"

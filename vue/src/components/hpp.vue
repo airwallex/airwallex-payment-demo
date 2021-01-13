@@ -14,12 +14,12 @@ const intentid = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
 loadAirwallex({
-  env: 'staging',
+  env: 'demo',
 });
 
 const redirectHpp = async () => {
   await redirectToCheckout({
-    env: 'staging',
+    env: 'demo',
     id: intentid,
     client_secret: client_secret,
   });

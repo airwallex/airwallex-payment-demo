@@ -1,23 +1,23 @@
-import React from "react";
-import { loadAirwallex, createElement } from "airwallex-payment-elements";
+import React from 'react';
+import { loadAirwallex, createElement } from 'airwallex-payment-elements';
 
-const intentid = "replace-with-your-intent-id";
-const client_secret = "replace-with-your-client-secret";
+const intent_id = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
 
 const Wechat = () => {
   loadAirwallex({
-    env: "staging",
+    env: 'demo',
     origin: window.location.origin,
   }).then(() => {
-    const wechat = createElement("wechat", {
+    const wechat = createElement('wechat', {
       intent: {
-        id: intentid,
+        id: intent_id,
         client_secret,
       },
     });
-    wechat.mount("wechat");
+    wechat.mount('wechat');
 
-    window.addEventListener("onSuccess", (event) => {
+    window.addEventListener('onSuccess', (event) => {
       /*
         ... Handle event
       */

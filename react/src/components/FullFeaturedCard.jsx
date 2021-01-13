@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
-import { loadAirwallex, createElement } from "airwallex-payment-elements";
+import React, { useEffect } from 'react';
+import { loadAirwallex, createElement } from 'airwallex-payment-elements';
 
-const intentid = "replace-with-your-intent-id";
-const client_secret = "replace-with-your-client-secret";
+const intent_id = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
 
 const FullFeaturedCard = () => {
   useEffect(() => {
     loadAirwallex({
-      env: "staging",
+      env: 'demo',
       origin: window.location.origin,
     }).then(() => {
-      const fullFeaturedCard = createElement("fullFeaturedCard", {
+      const fullFeaturedCard = createElement('fullFeaturedCard', {
         intent: {
-          id: intentid,
+          id: intent_id,
           client_secret,
         },
       });
-      fullFeaturedCard.mount("fullFeaturedCard");
+      fullFeaturedCard.mount('fullFeaturedCard');
     });
 
     const onSuccess = (event) => {
@@ -26,9 +26,9 @@ const FullFeaturedCard = () => {
       console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
     };
 
-    window.addEventListener("onSuccess", onSuccess);
+    window.addEventListener('onSuccess', onSuccess);
     return () => {
-      window.removeEventListener("onSuccess", onSuccess);
+      window.removeEventListener('onSuccess', onSuccess);
     };
   }, []);
   return (

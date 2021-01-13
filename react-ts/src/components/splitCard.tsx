@@ -12,7 +12,7 @@ const client_secret = 'replace-with-your-client-secret';
 const Index: React.FC = () => {
   useEffect(() => {
     loadAirwallex({
-      env: 'staging',
+      env: 'demo',
       origin: window.location.origin,
     }).then(() => {
       createElement('cardNumber')?.mount('card-number');

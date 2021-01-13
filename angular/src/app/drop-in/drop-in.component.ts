@@ -17,7 +17,7 @@ export class DropInComponent implements OnInit {
 
   ngOnInit(): void {
     loadAirwallex({
-      env: "staging",
+      env: "demo",
       origin: window.location.origin,
     }).then(() => {
       const dropIn = createElement("dropIn", {

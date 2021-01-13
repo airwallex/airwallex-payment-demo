@@ -12,7 +12,7 @@ const ELEMENT_TYPE: ElementType = 'fullFeaturedCard';
 export default function fullFeaturedCard() {
   useEffect(() => {
     loadAirwallex({
-      env: 'staging',
+      env: 'demo',
       origin: window.location.origin
     }).then(()=>{
       console.log('loaded airwallex');

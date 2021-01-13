@@ -14,7 +14,7 @@ const ELEMENT_TYPE: ElementType = 'redirect';
 const Index: React.FC = () => {
   useEffect(() => {
     loadAirwallex({
-      env: 'staging',
+      env: 'demo',
       origin: window.location.origin,
     }).then(() => {
       createElement(ELEMENT_TYPE, {

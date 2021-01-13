@@ -1,18 +1,18 @@
-import React from "react";
-import { redirectToCheckout, loadAirwallex } from "airwallex-payment-elements";
+import React from 'react';
+import { redirectToCheckout, loadAirwallex } from 'airwallex-payment-elements';
 
-const intentid = "replace-with-your-intent-id";
-const client_secret = "replace-with-your-client-secret";
+const intent_id = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
 
 const Hpp = () => {
   const redirectHpp = async () => {
     try {
       await loadAirwallex({
-        env: "staging",
+        env: 'demo',
       });
       await redirectToCheckout({
-        env: "staging",
-        id: intentid,
+        env: 'demo',
+        id: intent_id,
         client_secret: client_secret,
       });
     } catch (error) {

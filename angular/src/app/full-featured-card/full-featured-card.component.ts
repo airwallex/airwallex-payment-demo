@@ -17,7 +17,7 @@ export class FullFeaturedCardComponent implements OnInit {
 
   ngOnInit(): void {
     loadAirwallex({
-      env: "staging",
+      env: "demo",
       origin: window.location.origin,
     }).then(() => {
       const fullFeaturedCard = createElement("fullFeaturedCard", {

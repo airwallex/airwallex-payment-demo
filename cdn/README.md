@@ -24,7 +24,7 @@ Setp #1: Update to using latest bundle js version in the `html` static file, rep
 Step #2: Select the target airwallex env you want to test with by update the `env` field
 
 ```js
-env: 'staging', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
 ```
 
 Step #3: Get your intent id and client secret create by your backend client api integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
