@@ -37,10 +37,15 @@ function App() {
         <h2 style={{ marginTop: 100 }}>All Demos</h2>
         <nav>
           <button onMouseDown={() => window.location.href = '/hpp'}>Hosted payment page (HPP)</button>
+          <br />
           <button onMouseDown={() => window.location.href = '/drop-in'}>DropIn</button>
+          <br />
           <button onMouseDown={() => window.location.href = '/full-featured-card'}>Full Featured Card</button>
+          <br />
           <button onMouseDown={() => window.location.href = '/split-card'}>Split Card element</button>
+          <br />
           <button onMouseDown={() => window.location.href = '/wechat'}>Wechat element</button>
+          <br />
         </nav>
       </Router>
     </div>

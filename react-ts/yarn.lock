@@ -2138,10 +2138,10 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-airwallex-payment-elements@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.4.tgz#9bd0eebb2e7ad80d51a565f8797605a4117727a5"
-  integrity sha512-JonxOjBeJxWhxLJGuYJzwvtV08n1q495N88ecNEOa1EZ7d6/N9fnxVhgmcibLBEBERIuFMekYqObVW14XD/kpg==
+airwallex-payment-elements@*:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.7.tgz#effefb91f58ff4fb83c31bc8bfd5c1c7059b7008"
+  integrity sha512-CDau16dRVwniD28GkKfzCSQEeSrcGVKzHNq8zj8nYz+NF/6SnyWoYzTuZPgcE3f0COHyov9T69usmQKFLGkCTQ==
   dependencies:
     csstype "^3.0.2"
 

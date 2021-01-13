@@ -46,6 +46,7 @@ const Index = () => {
     window.addEventListener('onChange', onChange); // Can also using onBlur
     return () => {
       window.removeEventListener('onReady', onReady);
+      window.removeEventListener('onChange', onChange);
     };
   }, []);
 
