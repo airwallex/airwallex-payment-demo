@@ -1982,10 +1982,10 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-airwallex-payment-elements@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.npm.taobao.org/airwallex-payment-elements/download/airwallex-payment-elements-0.1.6.tgz#8f851c792eef43df6ee8dfda71d12830cf452351"
-  integrity sha1-j4UceS7vQ99u6N/acdEoMM9FI1E=
+airwallex-payment-elements@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.5.tgz#aa2d14d600df3b76b4ddcb07cd49e8d3543635bc"
+  integrity sha512-6dPdSHB52LozdbVuH9WIXAw4/OyFh64M1S3M1Xp2PacKOpVWxUhRhGibfvKM2sJ4QTGfow5+W/UZgr0Xzi9N+Q==
   dependencies:
     csstype "^3.0.2"
 
