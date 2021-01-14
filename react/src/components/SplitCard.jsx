@@ -1,47 +1,61 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   createElement,
   loadAirwallex,
   getElement,
   confirmPaymentIntent,
-} from "airwallex-payment-elements";
+} from 'airwallex-payment-elements';
 
-const intentid = "replace-with-your-intent-id";
+const intent_id = "replace-with-your-intent-id";
 const client_secret = "replace-with-your-client-secret";
 
-const SplitCard = () => {
+const Index = () => {
+  const [cardNumberComplete, setCardNumberComplete] = useState(false);
+  const [cvcComplete, setCvcComplete] = useState(false);
+  const [expiryComplete, setExpiryComplete] = useState(false);
   useEffect(() => {
     loadAirwallex({
-      env: "staging",
+      env: 'demo',
       origin: window.location.origin,
     }).then(() => {
-      const cardNumEle = createElement("cardNumber");
-      cardNumEle.mount("cardNumber");
-      const cvcEle = createElement("cvc");
-      cvcEle.mount("cvc");
-      const expiryEle = createElement("expiry");
-      expiryEle.mount("expiry");
+      const cardNumEle = createElement('cardNumber');
+      cardNumEle.mount('cardNumber');
+      const cvcEle = createElement('cvc');
+      cvcEle.mount('cvc');
+      const expiryEle = createElement('expiry');
+      expiryEle.mount('expiry');
     });
 
     const onReady = (event) => {
-      /*
-      ... Handle event
-    */
       console.log(`Elements ready with ${JSON.stringify(event.detail)}`);
     };
-
-    window.addEventListener("onReady", onReady);
+    window.addEventListener('onReady', onReady);
+    const onChange = (event) => {
+      const { type, complete } = event.detail;
+      if (type === 'cardNumber') {
+        setCardNumberComplete(complete);
+      }
+      if (type === 'cvc') {
+        setCvcComplete(complete);
+      }
+      if (type === 'expiry') {
+        setExpiryComplete(complete);
+      }
+      console.log(`Elements changed with ${JSON.stringify(event.detail)}`);
+    }
+    window.addEventListener('onChange', onChange); // Can also using onBlur
     return () => {
-      window.removeEventListener("onReady", onReady);
+      window.removeEventListener('onReady', onReady);
+      window.removeEventListener('onChange', onChange);
     };
-  });
+  }, []);
 
-  const triggerConfirm = async () => {
+  const handleConfirm = async () => {
     try {
-      const cardNumEle = getElement("cardNumber");
+      const cardNumEle = getElement('cardNumber');
       const confirmResult = await confirmPaymentIntent({
         element: cardNumEle,
-        id: intentid,
+        id: intent_id,
         client_secret,
         payment_method_options: {
           card: {
@@ -58,21 +72,21 @@ const SplitCard = () => {
   return (
     <div>
       <h2>Option #4: Split Card element integration</h2>
-      <div class="field-container">
-        <div class="field-label">Card number</div>
+      <div className="field-container">
+        <div className="field-label">Card number</div>
         <div id="cardNumber" />
       </div>
-      <div class="field-container">
-        <div class="field-label">Expiry</div>
+      <div className="field-container">
+        <div className="field-label">Expiry</div>
         <div id="expiry" />
       </div>
-      <div class="field-container">
-        <div class="field-label">Cvc</div>
+      <div className="field-container">
+        <div className="field-label">Cvc</div>
         <div id="cvc" />
       </div>
-      <button onClick={triggerConfirm}>Confirm</button>
+      <button onClick={handleConfirm} disabled={!cardNumberComplete || !cvcComplete || !expiryComplete}>Confirm</button>
     </div>
   );
 };
 
-export default SplitCard;
+export default Index;

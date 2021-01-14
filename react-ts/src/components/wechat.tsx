@@ -12,7 +12,7 @@ const ELEMENT_TYPE: ElementType = 'wechat';
 const Index: React.FC = () => {
   useEffect(() => {
     loadAirwallex({
-      env: 'staging',
+      env: 'demo',
     }).then(() => {
       createElement(ELEMENT_TYPE, {
         intent: {

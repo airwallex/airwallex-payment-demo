@@ -15,7 +15,7 @@
     <script>
       // Step #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
-        env: 'staging', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+        env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       const wechat = Airwallex.createElement('wechat', {

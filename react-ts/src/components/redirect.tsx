@@ -3,7 +3,7 @@ import {
   createElement,
   loadAirwallex,
   ElementType,
-  RedirectMethodOptions,
+  PaymentMethodWithRedirect,
 } from 'airwallex-payment-elements';
 
 const intentId = 'replace-with-your-intent-id';
@@ -14,7 +14,7 @@ const ELEMENT_TYPE: ElementType = 'redirect';
 const Index: React.FC = () => {
   useEffect(() => {
     loadAirwallex({
-      env: 'staging',
+      env: 'demo',
       origin: window.location.origin,
     }).then(() => {
       createElement(ELEMENT_TYPE, {
@@ -22,7 +22,7 @@ const Index: React.FC = () => {
           id: intentId,
           client_secret,
         },
-        method: redirectMethod as RedirectMethodOptions,
+        method: redirectMethod as PaymentMethodWithRedirect,
       })?.mount(ELEMENT_TYPE);
     });
     const onSuccess = (event: CustomEvent) => {

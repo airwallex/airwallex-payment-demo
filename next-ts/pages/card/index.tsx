@@ -14,7 +14,7 @@ const ELEMENT_TYPE: ElementType = 'card';
 export default function card() {
   useEffect(() => {
     loadAirwallex({
-      env: 'staging',
+      env: 'demo',
       origin: window.location.origin,
     }).then(() => {
       createElement(ELEMENT_TYPE)?.mount(ELEMENT_TYPE);

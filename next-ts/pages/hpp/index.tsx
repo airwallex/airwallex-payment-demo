@@ -6,11 +6,11 @@ const client_secret = 'replace-with-your-client-secret';
 async function redirectHpp(){
   try {
     await loadAirwallex({
-      env: 'staging',
+      env: 'demo',
       origin: window.location.origin
     });
     await redirectToCheckout({
-      env: 'staging',
+      env: 'demo',
       id: intent_id,
       client_secret: client_secret,
     })

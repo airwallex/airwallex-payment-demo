@@ -12,7 +12,7 @@ const ELEMENT_TYPE: ElementType = 'dropIn';
 export default function dropin() {
   useEffect(() => {
     loadAirwallex({
-      env: 'staging',
+      env: 'demo',
       origin: window.location.origin
     }).then(()=>{
       console.log('loaded airwallex');
