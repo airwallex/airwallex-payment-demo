@@ -1,2 +1,26 @@
-# airwallex-payment-demo
-[Airwallex payment element](https://www.npmjs.com/package/airwallex-payment-elements) integration demo - React / React-ts / Vue / Node.js / CDN / Next.js
+# Airwallex Payment Demo
+
+The purpose of this project is to demonstrate how [Airwallex payment element](https://www.npmjs.com/package/airwallex-payment-elements) can be integrated with different web frameworks. Demos in each framework demonstrate each of the 6 payment methods merchants can use.
+
+Before getting start, check out what the Airwallex Checkout elements look like here: [https://demo-pacheckoutdemo.airwallex.com/](https://demo-pacheckoutdemo.airwallex.com/).
+
+## Navigating this project
+
+So far, integrations are done with the following frameworks. You can find the installation and development instructions within its subfolder.
+
+API integration:
+
+- [Node](/node)
+
+Frontend integration:
+
+- [React](/react)
+- [React Typescript](/react-ts)
+- [Angular](/angular)
+- [CDN](/cdn)
+- [Next.js Typescript](/next-ts)
+- [Vue](/vue)
+
+## Questions, comments, or suggestions?
+
+Our goal is to provide you with a seamless experience integrating our platform with yours. [Let us know](https://www.airwallex.com/contact-sales) if you run into any problems, or have any comments and suggestions for us. We value your input!

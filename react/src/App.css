@@ -1,5 +1,4 @@
 .App {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -7,18 +6,53 @@
   margin-top: 60px;
 }
 
-nav {
-  display: flex;
-  flex-flow: row wrap;
-  width: 640px;
-  max-width: 100vw;
-  align-items: center;
-  justify-content: space-between;
-  margin: auto;
+h1 {
+  width: 100%;
+  border-bottom: 1px solid lightgrey;
+  margin: 0;
+  padding: 25px 0;
 }
 
-nav a {
+div.container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 90vh;
+}
+
+div.payment-frame {
+  width: 85vw;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  width: 15vw;
+  align-items: center;
+  justify-content: flex-start;
+  border-right: 1px solid lightgrey;
+  height: 100%;
+}
+
+button {
   margin: 10px;
+  padding: 5px 10px;
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #612fff;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+button:hover {
+  /* background-color: # */
 }
 
 #dropIn,

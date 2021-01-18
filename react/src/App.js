@@ -1,52 +1,60 @@
 import './App.css';
-import DropIn from './components/DropIn';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
-import FullFeaturedCard from './components/FullFeaturedCard';
-import Hpp from './components/Hpp';
-import SplitCard from './components/SplitCard';
-import Wechat from './components/Wechat';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <h1>Airwallex payment demo - React</h1>
-      <Router>
-        <div className="loading-container">
-          <Switch>
-            <Route path="/hpp">
-              <Hpp />
-            </Route>
-            <Route path="/drop-in">
-              <DropIn />
-            </Route>
-            <Route path="/full-featured-card">
-              <FullFeaturedCard />
-            </Route>
-            <Route path="/split-card">
-              <SplitCard />
-            </Route>
-            <Route path="/wechat">
-              <Wechat />
-            </Route>
-          </Switch>
+      <h1>Airwallex Payment Demo - React</h1>
+      <Router className="router-container">
+        <div className="container">
+          <nav>
+            <h2>All Demos</h2>
+            <Link to="/hpp">
+              <button>Hosted payment page (HPP)</button>
+            </Link>
+            <Link to="/drop-in">
+              <button>DropIn</button>
+            </Link>
+            <Link to="/full-featured-card">
+              <button>Full Featured Card</button>
+            </Link>
+            <Link to="/split-card">
+              <button>Split Card element</button>
+            </Link>
+            <Link to="/wechat">
+              <button>Wechat element</button>
+            </Link>
+          </nav>
+          <div className="payment-frame">
+            <Suspense fallback={<div />}>
+              <Switch>
+                <Route
+                  path="/hpp"
+                  component={lazy(() => import('./components/Hpp'))}
+                />
+                <Route
+                  path="/drop-in"
+                  component={lazy(() => import('./components/DropIn'))}
+                />
+                <Route
+                  path="/full-featured-card"
+                  component={lazy(() =>
+                    import('./components/FullFeaturedCard'),
+                  )}
+                />
+                <Route
+                  path="/split-card"
+                  component={lazy(() => import('./components/SplitCard'))}
+                />
+                <Route
+                  path="/wechat"
+                  component={lazy(() => import('./components/Wechat'))}
+                />
+              </Switch>
+            </Suspense>
+          </div>
         </div>
-        <h2 style={{ marginTop: 100 }}>All Demos</h2>
-        <nav>
-          <button onMouseDown={() => window.location.href = '/hpp'}>Hosted payment page (HPP)</button>
-          <br />
-          <button onMouseDown={() => window.location.href = '/drop-in'}>DropIn</button>
-          <br />
-          <button onMouseDown={() => window.location.href = '/full-featured-card'}>Full Featured Card</button>
-          <br />
-          <button onMouseDown={() => window.location.href = '/split-card'}>Split Card element</button>
-          <br />
-          <button onMouseDown={() => window.location.href = '/wechat'}>Wechat element</button>
-          <br />
-        </nav>
       </Router>
     </div>
   );

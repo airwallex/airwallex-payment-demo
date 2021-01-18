@@ -1,13 +1,18 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'AxLLCircular';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Bold.woff');
+  font-family: 'AxLLCircular';
+  weight: 'bold';
+}
+
+@font-face {
+  src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2');
+  font-family: 'AxLLCircular';
+  weight: '400';
 }

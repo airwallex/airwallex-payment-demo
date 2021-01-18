@@ -7,22 +7,41 @@ const client_secret = 'replace-with-your-client-secret';
 const Hpp = () => {
   const redirectHpp = async () => {
     try {
+      // STEP 2: Initialize Airwallex on click with appropriate production environment and other configurations
       await loadAirwallex({
-        env: 'demo',
+        env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
+        locale: 'zh', // doesn't work yet
       });
+      // STEP 3: Redirect the customer to Airwallex checkout
       await redirectToCheckout({
         env: 'demo',
         id: intent_id,
         client_secret: client_secret,
+        theme: {
+          fonts: [
+            // Customizes the font for the payment elements
+            {
+              src:
+                'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+              family: 'AxLLCircular',
+              weight: 400,
+            },
+          ],
+        },
+        locale: 'zh',
       });
     } catch (error) {
-      // handle errors here
+      /*
+      ... Handle event on error
+       */
+      window.alert('There was an error with HPP redirection', error);
     }
   };
 
   return (
     <div>
       <h2>Option #1: Hosted payment page (HPP) integration</h2>
+      {/* STEP 1: Create a button to redirect customer to Airwallex for payment processing */}
       <button onClick={redirectHpp}>Redirect to HPP</button>
     </div>
   );
