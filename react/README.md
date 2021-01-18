@@ -1,6 +1,6 @@
 # Airwallex Payment Elements with React Js
 
-This directory contains the React implementation of [Airwallex payment element](https://www.npmjs.com/package/airwallex-payment-elements).
+This directory contains the React implementation of [Airwallex Payment Element](https://www.npmjs.com/package/airwallex-payment-elements).
 
 ## Requirements
 
@@ -9,9 +9,15 @@ This directory contains the React implementation of [Airwallex payment element](
 
 ## Installation and Development
 
-To get started, install the package with `yarn` or `npm install` in this directory ([/react](/react)).
+1. Clone the root [airwallex-payment-demo](https://github.com/airwallex/airwallex-payment-demo) project to your local machine
 
-Run the project in development mode with `yarn start`. See the project at [localhost:3000](http://localhost:3000).
+`git clone https://github.com/airwallex/airwallex-payment-demo`
+
+2. Navigate into the react directory with `cd react`
+
+3. Install the package with `yarn` or `npm install`
+
+4. Run the project in development mode with `yarn start`. See the project at [localhost:3000](http://localhost:3000)
 
 ## Usage
 
