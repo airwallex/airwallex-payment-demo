@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "airwallex-payment-elements": "0.2.7",
+    "airwallex-payment-elements": "*",
     "babel-eslint": "^10.1.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^7.1.0",

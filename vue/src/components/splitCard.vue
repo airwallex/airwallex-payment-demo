@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Option #4: Split Card element integration</h2>
+    <!-- STEP 1a: Add empty containers for the card elements to be placed into -->
     <div class="field-container">
       <div class="field-label">
         Card number
@@ -19,6 +20,7 @@
       </div>
       <div id="cvc" />
     </div>
+    <!-- STEP 1b: Add an button that will trigger a payment confirmation -->
     <button @click="triggerConfirm()">
       Confirm
     </button>
@@ -28,13 +30,23 @@
 <script>
 import { createElement, confirmPaymentIntent, loadAirwallex, getElement } from 'airwallex-payment-elements';
 
-const intentid = 'replace-with-your-intent-id';
+const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
+// STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
 loadAirwallex({
   env: 'demo',
   origin: window.location.origin,
+  fonts: [
+    // Customizes the font for the payment elements
+    {
+      src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+      family: 'AxLLCircular',
+      weight: 400,
+    },
+  ],
 }).then(() => {
+  // STEP 3: Create and mount the individual card elements
   const cardNumEle = createElement('cardNumber');
   cardNumEle.mount('cardNumber');
   const cvcEle = createElement('cvc');
@@ -45,17 +57,18 @@ loadAirwallex({
 
 window.addEventListener('onReady', (event) => {
   /*
-    ... Handle event
+    ... Handle event when elements are ready
   */
   console.log(`Elements ready with ${JSON.stringify(event.detail)}`);
 });
 
+// STEP 4: Confirm payment intent with id and client_secret
 const triggerConfirm = async () => {
   try {
     const cardNumEle = getElement('cardNumber');
     const confirmResult = await confirmPaymentIntent({
       element: cardNumEle,
-      id: intentid,
+      id: intent_id,
       client_secret,
       payment_method_options: {
         card: {
@@ -63,9 +76,15 @@ const triggerConfirm = async () => {
         },
       },
     });
-    console.log(`confirm success with ${JSON.stringify(confirmResult)}`);
+    /*
+      ... Handle event on success
+    */
+    window.alert(`Confirm success with ${JSON.stringify(confirmResult)}`);
   } catch (err) {
-    console.log(`confirm fail with ${JSON.stringify(err)}`);
+    /*
+      ... Handle event on error
+    */
+    window.alert(`Confirm fail with ${JSON.stringify(err)}`);
   }
 };
 

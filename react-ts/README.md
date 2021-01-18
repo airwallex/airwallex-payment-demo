@@ -21,7 +21,7 @@ This directory contains the React and Typescript implementation of [Airwallex Pa
 
 ## Usage
 
-Each of the payment methods are demo-ed as a separate component found in the [/src/components](/src/components) folder.
+Each of the payment methods are demo-ed as a separate component found in the [/src/components](/react-ts/src/components) folder.
 
 To test each of the payment methods, be sure to replace the `intent_id` and `client_secret` variables at the top of each file with your own unique keys. These values can be created with the backend API integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
 
