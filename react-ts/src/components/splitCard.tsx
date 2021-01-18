@@ -7,7 +7,7 @@ import {
   EventDetail,
 } from 'airwallex-payment-elements';
 
-const intentId = 'replace-with-your-intent-id';
+const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
 const Index: React.FC = () => {
@@ -19,22 +19,25 @@ const Index: React.FC = () => {
     false,
   );
   useEffect(() => {
+    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo',
       origin: window.location.origin,
     }).then(() => {
+      // STEP 3: Create and mount the individual card elements
       createElement('cardNumber')?.mount('card-number');
       createElement('cvc')?.mount('cvc');
       createElement('expiry')?.mount('expiry');
     });
 
+    // An event handler for when an element is mounted
     const onReady = (event: Event) => {
       console.log(
         `Elements ready with ${JSON.stringify((event as CustomEvent)?.detail)}`,
       );
     };
 
-    window.addEventListener('onReady', onReady);
+    // Handler to detect input change for each element
     const onChange = (event: Event) => {
       const { type, complete } = (event as CustomEvent)?.detail as EventDetail;
       if (type === 'cardNumber') {
@@ -52,26 +55,23 @@ const Index: React.FC = () => {
         )}`,
       );
     };
+
+    window.addEventListener('onReady', onReady);
     window.addEventListener('onChange', onChange); // Can also using onBlur
     return () => {
       window.removeEventListener('onReady', onReady);
       window.removeEventListener('onChange', onChange);
     };
   }, []);
-  const containerStyle = {
-    border: '1px solid',
-    padding: '4px 8px',
-    marginBottom: '8px',
-    width: '200px',
-  };
 
+  // STEP 4: Confirm payment intent with id and client_secret
   const handleConfirm = async () => {
     try {
       const cardNumberElement = getElement('cardNumber');
       if (cardNumberElement) {
         const confirmResult = await confirmPaymentIntent({
           element: cardNumberElement,
-          id: intentId,
+          id: intent_id,
           client_secret,
           payment_method_options: {
             card: {
@@ -79,26 +79,33 @@ const Index: React.FC = () => {
             },
           },
         });
-        console.log(`confirm success with ${JSON.stringify(confirmResult)}`);
+        /*
+        ... Handle event on success
+        */
+        window.alert(`confirm success with ${JSON.stringify(confirmResult)}`);
       }
     } catch (err) {
-      console.log(`confirm fail with ${JSON.stringify(err)}`);
+      /*
+      ... Handle event on error
+       */
+      window.alert(`confirm fail with ${JSON.stringify(err)}`);
     }
   };
 
   return (
     <div>
       <h2>Option #4: Split Card element integration</h2>
-      <div style={containerStyle}>
-        <div>Card number</div>
+      {/* STEP 1: Add empty containers for the card elements to be placed into */}
+      <div className="field-container">
+        <div className="label">Card number</div>
         <div id="card-number" />
       </div>
-      <div style={containerStyle}>
-        <div>Expiry</div>
+      <div className="field-container">
+        <div className="label">Expiry</div>
         <div id="expiry" />
       </div>
-      <div style={containerStyle}>
-        <div>Cvc</div>
+      <div className="field-container">
+        <div className="label">Cvc</div>
         <div id="cvc" />
       </div>
       <button

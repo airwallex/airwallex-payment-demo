@@ -38,18 +38,10 @@ const DropIn = () => {
       */
       console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
     };
-    const onError = (event) => {
-      /*
-        ... Handle events on error
-      */
-      console.log(`Payment error with ${JSON.stringify(event.detail)}`);
-    };
 
     window.addEventListener('onSuccess', onSuccess);
-    window.addEventListener('onError', onError);
     return () => {
       window.removeEventListener('onSuccess', onSuccess);
-      window.removeEventListener('onError', onError);
     };
   }, []);
   return (

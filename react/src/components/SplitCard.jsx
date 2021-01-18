@@ -94,7 +94,7 @@ const Index = () => {
   return (
     <div>
       <h2>Option #4: Split Card element integration</h2>
-      {/* STEP 1: Add empty containers for the card elements to be placed into */}
+      {/* STEP 1a: Add empty containers for the card elements to be placed into */}
       <div className="field-container">
         <div className="field-label">Card number</div>
         <div id="cardNumber" />
@@ -107,6 +107,7 @@ const Index = () => {
         <div className="field-label">Cvc</div>
         <div id="cvc" />
       </div>
+      {/* STEP 1b: Add an button that will trigger a payment confirmation */}
       <button
         onClick={handleConfirm}
         disabled={!cardNumberComplete || !cvcComplete || !expiryComplete}

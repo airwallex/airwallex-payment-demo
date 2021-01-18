@@ -7,23 +7,25 @@ import {
   ElementType,
 } from 'airwallex-payment-elements';
 
-const intentId = 'replace-with-your-intent-id';
+const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 const ELEMENT_TYPE: ElementType = 'card';
 
 const Index: React.FC = () => {
   useEffect(() => {
+    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo',
       origin: window.location.origin,
     }).then(() => {
+      // STEP 3: Create and mount the individual card elements
       createElement(ELEMENT_TYPE)?.mount(ELEMENT_TYPE);
     });
 
     const onReady = (event: CustomEvent) => {
       /*
       ... Handle event
-    */
+      */
       console.log(`Elements ready with ${JSON.stringify(event.detail)}`);
     };
 
@@ -33,13 +35,14 @@ const Index: React.FC = () => {
     };
   });
 
+  // STEP 4: Confirm payment intent with id and client_secret
   const triggerConfirm = async () => {
     try {
       const cardNumberElement = getElement('card');
       if (cardNumberElement) {
         const confirmResult = await confirmPaymentIntent({
           element: cardNumberElement,
-          id: intentId,
+          id: intent_id,
           client_secret,
           payment_method_options: {
             card: {
@@ -47,20 +50,26 @@ const Index: React.FC = () => {
             },
           },
         });
-        console.log(`confirm success with ${JSON.stringify(confirmResult)}`);
+        /*
+        ... Handle event on success
+        */
+        console.log(`Confirm success with ${JSON.stringify(confirmResult)}`);
       }
     } catch (err) {
-      console.log(`confirm fail with ${JSON.stringify(err)}`);
+      /*
+      ... Handle event on error
+       */
+      console.log(`Confirm fail with ${JSON.stringify(err)}`);
     }
   };
 
   return (
     <div>
       <h2>Option #6: Card element integration</h2>
-      <div id={ELEMENT_TYPE} />
-      <button onClick={triggerConfirm} style={{ marginTop: '8px' }}>
-        Confirm
-      </button>
+      {/* STEP 1a: Add an empty for the card element to be placed into */}
+      <div className="field-container" id={ELEMENT_TYPE} />
+      {/* STEP 1b: Add an button that will trigger a payment confirmation */}
+      <button onClick={triggerConfirm}>Confirm</button>
     </div>
   );
 };

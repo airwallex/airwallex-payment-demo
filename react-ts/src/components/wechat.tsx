@@ -5,18 +5,20 @@ import {
   ElementType,
 } from 'airwallex-payment-elements';
 
-const intentId = 'replace-with-your-intent-id';
+const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 const ELEMENT_TYPE: ElementType = 'wechat';
 
 const Index: React.FC = () => {
   useEffect(() => {
+    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
-      env: 'demo',
+      env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
+      origin: window.location.origin, // Setup your event target to receive the browser events message
     }).then(() => {
       createElement(ELEMENT_TYPE, {
         intent: {
-          id: intentId,
+          id: intent_id,
           client_secret,
         },
         origin: window.location.origin,
@@ -24,9 +26,9 @@ const Index: React.FC = () => {
     });
     const onSuccess = (event: CustomEvent) => {
       /*
-        ... Handle event
+        ... Handle event on success
       */
-      console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
+      window.alert(`Confirm success with ${JSON.stringify(event.detail)}`);
     };
 
     window.addEventListener('onSuccess', onSuccess as EventListener);
@@ -38,6 +40,7 @@ const Index: React.FC = () => {
   return (
     <div>
       <h2>Option #5: Wechat element integration</h2>
+      {/* STEP 1: Add an empty container for the wechat element to be placed into */}
       <div id={ELEMENT_TYPE}></div>
     </div>
   );
