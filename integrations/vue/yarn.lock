@@ -92,10 +92,10 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-airwallex-payment-elements@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.1.2.tgz#a3cddf5d36db75e1c24d886d58f052041c45a6af"
-  integrity sha512-yhvRv0Ep0aw+4jv2PHmBOAzqn9e/riuc6aSH7Q++3dPo7Uo2v2dC6MM+kMpqAgQYz+LwQY+qmV0HsfVup4Jbiw==
+airwallex-payment-elements@*:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.7.tgz#effefb91f58ff4fb83c31bc8bfd5c1c7059b7008"
+  integrity sha512-CDau16dRVwniD28GkKfzCSQEeSrcGVKzHNq8zj8nYz+NF/6SnyWoYzTuZPgcE3f0COHyov9T69usmQKFLGkCTQ==
   dependencies:
     csstype "^3.0.2"
 
