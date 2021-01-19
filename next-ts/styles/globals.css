@@ -29,13 +29,20 @@ a {
   justify-content: center;
 }
 
-.links button {
-  background: lightgrey;
-  border: 1px solid black;
+button {
+  margin: 10px;
+  padding: 5px 10px;
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #612fff;
+  color: #fff;
+  outline: none;
+  border: none;
   border-radius: 5px;
-  margin: 5px;
+  min-width: 40px;
+  min-height: 40px;
   font-size: 20px;
-  padding: 5px 10px 5px 10px;
 }
 
 .element {

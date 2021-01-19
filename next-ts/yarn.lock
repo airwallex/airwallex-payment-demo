@@ -358,10 +358,10 @@ agent-base@6:
   dependencies:
     debug "4"
 
-airwallex-payment-elements@^0.2.4:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.5.tgz#aa2d14d600df3b76b4ddcb07cd49e8d3543635bc"
-  integrity sha512-6dPdSHB52LozdbVuH9WIXAw4/OyFh64M1S3M1Xp2PacKOpVWxUhRhGibfvKM2sJ4QTGfow5+W/UZgr0Xzi9N+Q==
+airwallex-payment-elements@*:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.7.tgz#effefb91f58ff4fb83c31bc8bfd5c1c7059b7008"
+  integrity sha512-CDau16dRVwniD28GkKfzCSQEeSrcGVKzHNq8zj8nYz+NF/6SnyWoYzTuZPgcE3f0COHyov9T69usmQKFLGkCTQ==
   dependencies:
     csstype "^3.0.2"
 

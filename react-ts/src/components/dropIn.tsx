@@ -25,7 +25,7 @@ const Index: React.FC = () => {
         },
       ],
     }).then(() => {
-      // STEP 3: Create the drop-in element
+      // STEP 3a: Create the drop-in element
       const element = createElement(ELEMENT_TYPE, {
         intent: {
           // Must provide intent details to prepare DropIn element
@@ -33,7 +33,7 @@ const Index: React.FC = () => {
           client_secret,
         },
       });
-      // STEP 3: Mount the drop-in element to the empty container created previously
+      // STEP 3b: Mount the drop-in element to the empty container created previously
       element?.mount(ELEMENT_TYPE);
     });
     const onSuccess = (event: CustomEvent) => {

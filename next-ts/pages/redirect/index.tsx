@@ -3,7 +3,7 @@ import {
   createElement,
   loadAirwallex,
   ElementType,
-  RedirectMethodOptions,
+  PaymentMethodWithRedirect,
 } from 'airwallex-payment-elements';
 
 const intent_id = 'replace-with-your-intent-id';
@@ -13,21 +13,23 @@ const ELEMENT_TYPE: ElementType = 'redirect';
 
 export default function redirect() {
   useEffect(() => {
+    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
-      env: 'demo',
-      origin: window.location.origin,
+      env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
+      origin: window.location.origin, // Setup your event target to receive the browser events message
     }).then(() => {
+      // STEP 3: Create and mount the redirect element
       createElement(ELEMENT_TYPE, {
         intent: {
           id: intent_id,
           client_secret,
         },
-        method: redirectMethod as RedirectMethodOptions,
+        method: redirectMethod as PaymentMethodWithRedirect,
       })?.mount(ELEMENT_TYPE);
     });
     const onSuccess = (event: CustomEvent) => {
       /*
-        ... Handle event
+        ... Handle event on success
       */
       console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
     };
@@ -41,6 +43,7 @@ export default function redirect() {
   return (
     <div>
       <h2>Redirect integration</h2>
+      {/* STEP 1: Add an empty container for the redirect element to be placed into */}
       <div className="element" id={ELEMENT_TYPE}></div>
     </div>
   );

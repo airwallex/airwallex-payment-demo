@@ -24,7 +24,7 @@ const Index: React.FC = () => {
 
     const onReady = (event: CustomEvent) => {
       /*
-      ... Handle event
+      ... Handle event when elements are mounted
       */
       console.log(`Elements ready with ${JSON.stringify(event.detail)}`);
     };

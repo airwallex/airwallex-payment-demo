@@ -18,7 +18,7 @@ const Index: React.FC = () => {
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
     }).then(() => {
-      // STEP 3: Create and mount the wechat card element
+      // STEP 3: Create and mount the redirect element
       createElement(ELEMENT_TYPE, {
         intent: {
           id: intent_id,

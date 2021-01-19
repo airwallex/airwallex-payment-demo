@@ -6,7 +6,7 @@ export default function Home() {
       <h1>Airwallex Payment Demo - Next.js with TS</h1>
       <div className="links">
         <Link href="/hpp">
-          <button>hpp</button>
+          <button>Hpp</button>
         </Link>
         <Link href="/dropin">
           <button>DropIn</button>
@@ -28,5 +28,5 @@ export default function Home() {
         </Link>
       </div>
     </div>
-  )
+  );
 }

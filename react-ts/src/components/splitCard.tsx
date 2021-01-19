@@ -95,7 +95,7 @@ const Index: React.FC = () => {
   return (
     <div>
       <h2>Option #4: Split Card element integration</h2>
-      {/* STEP 1: Add empty containers for the card elements to be placed into */}
+      {/* STEP 1a: Add empty containers for the card elements to be placed into */}
       <div className="field-container">
         <div className="label">Card number</div>
         <div id="card-number" />
@@ -108,6 +108,7 @@ const Index: React.FC = () => {
         <div className="label">Cvc</div>
         <div id="cvc" />
       </div>
+      {/* STEP 1b: Add a button to trigger payment confirmation */}
       <button
         onClick={handleConfirm}
         disabled={!cardNumberComplete || !cvcComplete || !expiryComplete}
