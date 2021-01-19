@@ -4,13 +4,11 @@ See `node_modules/airwallex-payment-elements/types` for a more detailed overview
 
 Functions:
 
+Initialization
+
 - [loadAirwallex](#loadAirwallex)
-- [redirectToCheckout](#redirectToCheckout)
-- [confirmPaymentIntent](#confirmPaymentIntent)
-- [confirmPaymentIntentWithSavedCard](#confirmPaymentIntentWithSavedCard)
-- [createPaymentMethod](#createPaymentMethod)
-- [getPaymentIntent](#getPaymentIntent)
-- [createPaymentContract](#createPaymentContract)
+
+Interacting with Elements
 
 - [Element](#Element)
 - [createElement](#createElement)
@@ -18,7 +16,21 @@ Functions:
 - [getElement](#getElement)
 - [setElement](#setElement)
 
-## loadAirwallex
+Payment Processing
+
+- [redirectToCheckout](#redirectToCheckout)
+- [confirmPaymentIntent](#confirmPaymentIntent)
+- [confirmPaymentIntentWithSavedCard](#confirmPaymentIntentWithSavedCard)
+
+Querying the API
+
+- [createPaymentMethod](#createPaymentMethod)
+- [getPaymentIntent](#getPaymentIntent)
+- createPaymentContract
+
+## Initialization
+
+### loadAirwallex
 
 The following will inject a script with the Airwallex bundle into your site's HTML head.
 
@@ -39,88 +51,9 @@ An equivalent step is:
 | `locale` | `'en`    | i18n localization config, 'en' or 'zh'                                                         |
 | `fonts`  | []       | Fonts options used to customize the payment elements                                           |
 
-## redirectToCheckout
+## Interacting with Elements
 
-Used for the Hosted Payment Page (HPP) method that redirects the customer to an Airwallex checkout page.
-
-```ts
-Airwallex.redirectToCheckout(props);
-```
-
-| Props           | Required? | Default  | Description                                                                                                                          |
-| --------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `id`            | true      |          | The intent id you shopper want to checkout                                                                                           |
-| `client_secret` | true      |          | The client_secret when you create payment intent, contain in the response                                                            |
-| `env`           | false     | `'prod'` | Indicate which airwallex integration env your merchant site would like to connect with                                               |
-| `theme`         | false     |          | Option with limited support for HPP page style customization                                                                         |
-| `customer_id`   | false     |          | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
-| `components`    | false     |          | The payment method component your website would like to integrate with                                                               |
-| `successUrl`    | false     |          | The success return url after shopper succeeded the payment (must be https)                                                           |
-| `failUrl`       | false     |          | The failed return url when shopper can not fulfill the payment intent (must be https)                                                |
-| `cancelUrl`     | false     |          | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
-| `logoUrl`       | false     |          | The logo url of your website you want to show in the HPP head                                                                        |
-| `locale`        | false     |          | i18n localization config, 'en' or 'zh'                                                                                               |
-
-## confirmPaymentIntent
-
-The following function confirms payment intent with element and the rest of the payment method info. Only required for the card payment method.
-
-Takes in either a PaymentMethod with a guest checkout without a previously created contract, or a PaymentMethod with a pre-existing user/contract.
-
-```ts
-const confirmResult = await Airwallex.confirmPaymentIntent(paymentMethod);
-```
-
-PaymentMethod (without being attached to be an existing customer)
-
-| Props                    | Required? | Type                | Description                                                                                                                                                  |
-| ------------------------ | --------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `element`                | true      | Element             | Element create by call createElement interface with 'cardNumber' element type                                                                                |  |
-| `client_secret`          | true      | string              | The client_secret when you create payment intent, contain in the response                                                                                    |
-| `id`                     | true      | string              | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-| `paymentMethod`          | false     | PaymentMethodDetail | The payment method detail return by call createPaymentMethod                                                                                                 |
-| `payment_method_options` | false     | {}                  | Only apply for card payment, use this option to provide additional config to confirm payment intent                                                          |
-| `methodId`               | false     | string              | The payment method id if you have, can be create by call createPaymentMethod                                                                                 |
-| `customer_id`            | false     | string              | The payment method component your website would like to integrate with                                                                                       |
-| `save_payment_method`    | false     | boolean             | Indicate whether to save this payment method for future payment                                                                                              |
-| `error`                  | false     | {}                  | Response error when failed to call createPaymentMethod                                                                                                       |
-
-PaymentMethodWithContract (with an existing customer)
-
-| Props           | Required? | Type    | Description                                                                                                                                                  |
-| --------------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `element`       | true      | Element | Element create by call createElement interface with 'cardNumber' element type                                                                                |
-| `client_secret` | true      | string  | The client_secret when you create payment intent, contain in the response                                                                                    |
-| `id`            | true      | string  | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-| `contract_id`   | true      | string  | The id of the contract which used to confirm intent                                                                                                          |
-
-## confirmPaymentIntentWithSavedCard
-
-The following function confirms a payment intent and the rest of the payment method details with a saved card. Only required for the cvc element.
-
-Takes in the PaymentMethod prop from above.
-
-```ts
-const confirmResult = await Airwallex.confirmPaymentIntentWithSavedCard(paymentMethod);
-```
-
-## createPaymentMethod
-
-This function is used to create a payment method for checkout, the created payment method can be saved in your system. Takes in a client secret and PaymentMethod. Returns a PaymentMethod if successful.
-
-```ts
-const paymentMethod = await createPaymentMethod(clientSecret, PaymentMethod); // only need element and customer_id for PaymentMethod
-```
-
-## getPaymentIntent
-
-This function gets intent `id` and `client secret` from browser side to directly query Airwallex API. Returns a PaymentIntent if successful.
-
-```ts
-const intent = await Airwallex.getPaymentIntent(id, client_secret);
-```
-
-## Element
+### Element
 
 Functions and field components that can be used during checkout integration.
 
@@ -137,7 +70,7 @@ Can be called via `createElement()` or `getElement()`. Can be destroyed by `dest
 | `unmount()`  | () => void                  | Use this function to unmount the element, opposite to mount function      |
 | `update()`   | (options?) => void          | Use this function to update the element option after creating the element |
 
-## createElement
+### createElement
 
 Creates a payment element for checkout. Returns an [Element](#Element).
 
@@ -195,7 +128,7 @@ All the following options are optional with the exception of `'intent'`.
 |                      | `style`                 | InputStyle                  | Style for cardNumber element                                                                                                                                 |
 |                      | `authFormContainer`     | string                      | Container for authentication form                                                                                                                            |
 
-## getElement
+### getElement
 
 This function queries the created element by type. There can only be one type of element per page.
 
@@ -207,7 +140,7 @@ const element = Airwallex.getElement(type);
 | ------ | --------- | ------------------------------------------------------------------------------------------------------------------ | ----------- |
 | `type` | true      | 'cardNumber', 'expiry', 'cvc', 'paymentRequestButton', 'card', 'wechat', 'redirect', 'dropIn', 'fullFeaturedCard', |
 
-## destroyElement
+### destroyElement
 
 This function destroys the created element. The element can no longer be accessed after this call. Returns a boolean.
 
@@ -218,3 +151,90 @@ Airwallex.destroyElement(type);
 | Props  | Required? | Enum                                                                                                               | Description |
 | ------ | --------- | ------------------------------------------------------------------------------------------------------------------ | ----------- |
 | `type` | true      | 'cardNumber', 'expiry', 'cvc', 'paymentRequestButton', 'card', 'wechat', 'redirect', 'dropIn', 'fullFeaturedCard', |
+
+## Payment Processing
+
+### redirectToCheckout
+
+Used for the Hosted Payment Page (HPP) method that redirects the customer to an Airwallex checkout page.
+
+```ts
+Airwallex.redirectToCheckout(props);
+```
+
+| Props           | Required? | Default  | Description                                                                                                                          |
+| --------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`            | true      |          | The intent id you shopper want to checkout                                                                                           |
+| `client_secret` | true      |          | The client_secret when you create payment intent, contain in the response                                                            |
+| `env`           | false     | `'prod'` | Indicate which airwallex integration env your merchant site would like to connect with                                               |
+| `theme`         | false     |          | Option with limited support for HPP page style customization                                                                         |
+| `customer_id`   | false     |          | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
+| `components`    | false     |          | The payment method component your website would like to integrate with                                                               |
+| `successUrl`    | false     |          | The success return url after shopper succeeded the payment (must be https)                                                           |
+| `failUrl`       | false     |          | The failed return url when shopper can not fulfill the payment intent (must be https)                                                |
+| `cancelUrl`     | false     |          | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
+| `logoUrl`       | false     |          | The logo url of your website you want to show in the HPP head                                                                        |
+| `locale`        | false     |          | i18n localization config, 'en' or 'zh'                                                                                               |
+
+### confirmPaymentIntent
+
+The following function confirms payment intent with element and the rest of the payment method info. Only required for the card payment method.
+
+Takes in either a PaymentMethod with a guest checkout without a previously created contract, or a PaymentMethod with a pre-existing user/contract.
+
+```ts
+const confirmResult = await Airwallex.confirmPaymentIntent(paymentMethod);
+```
+
+PaymentMethod (without being attached to be an existing customer)
+
+| Props                    | Required? | Type                | Description                                                                                                                                                  |
+| ------------------------ | --------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| `element`                | true      | Element             | Element create by call createElement interface with 'cardNumber' element type                                                                                |     |
+| `client_secret`          | true      | string              | The client_secret when you create payment intent, contain in the response                                                                                    |
+| `id`                     | true      | string              | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
+| `paymentMethod`          | false     | PaymentMethodDetail | The payment method detail return by call createPaymentMethod                                                                                                 |
+| `payment_method_options` | false     | {}                  | Only apply for card payment, use this option to provide additional config to confirm payment intent                                                          |
+| `methodId`               | false     | string              | The payment method id if you have, can be create by call createPaymentMethod                                                                                 |
+| `customer_id`            | false     | string              | The payment method component your website would like to integrate with                                                                                       |
+| `save_payment_method`    | false     | boolean             | Indicate whether to save this payment method for future payment                                                                                              |
+| `error`                  | false     | {}                  | Response error when failed to call createPaymentMethod                                                                                                       |
+
+PaymentMethodWithContract (with an existing customer)
+
+| Props           | Required? | Type    | Description                                                                                                                                                  |
+| --------------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `element`       | true      | Element | Element create by call createElement interface with 'cardNumber' element type                                                                                |
+| `client_secret` | true      | string  | The client_secret when you create payment intent, contain in the response                                                                                    |
+| `id`            | true      | string  | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
+| `contract_id`   | true      | string  | The id of the contract which used to confirm intent                                                                                                          |
+
+### confirmPaymentIntentWithSavedCard
+
+The following function confirms a payment intent and the rest of the payment method details with a saved card. Only required for the cvc element.
+
+Takes in the PaymentMethod prop from above.
+
+```ts
+const confirmResult = await Airwallex.confirmPaymentIntentWithSavedCard(
+  paymentMethod,
+);
+```
+
+## Querying the API
+
+### createPaymentMethod
+
+This function is used to create a payment method for checkout, the created payment method can be saved in your system. Takes in a client secret and PaymentMethod. Returns a PaymentMethod if successful.
+
+```ts
+const paymentMethod = await createPaymentMethod(clientSecret, PaymentMethod); // only need element and customer_id for PaymentMethod
+```
+
+### getPaymentIntent
+
+This function gets intent `id` and `client secret` from browser side to directly query Airwallex API. Returns a PaymentIntent if successful.
+
+```ts
+const intent = await Airwallex.getPaymentIntent(id, client_secret);
+```
