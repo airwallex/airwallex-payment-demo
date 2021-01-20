@@ -12,16 +12,16 @@ So far, integrations are done with the following frameworks. You can find the in
 
 API integration:
 
-- [Node](/node)
+- [Node](/integrations/node)
 
 Frontend integration:
 
-- [React](/react)
-- [React Typescript](/react-ts)
-- [Angular](/angular)
-- [CDN](/cdn)
-- [Next.js Typescript](/next-ts)
-- [Vue](/vue)
+- [React](/integrations/react)
+- [React Typescript](/integrations/react-ts)
+- [Angular](/integrations/angular)
+- [CDN](/integrations/cdn)
+- [Next.js Typescript](/integrations/next-ts)
+- [Vue](/integrations/vue)
 
 ## Questions, comments, or suggestions?
 
