@@ -1,6 +1,12 @@
 import './App.css';
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom';
 
 function App() {
   return (
@@ -10,6 +16,9 @@ function App() {
         <div className="container">
           <nav>
             <h2>All Demos</h2>
+            <Link to="/card">
+              <button>Card</button>
+            </Link>
             <Link to="/hpp">
               <button>Hosted payment page (HPP)</button>
             </Link>
@@ -29,6 +38,10 @@ function App() {
           <div className="payment-frame">
             <Suspense fallback={<div />}>
               <Switch>
+                <Route
+                  path="/card"
+                  component={lazy(() => import('./components/Card'))}
+                />
                 <Route
                   path="/hpp"
                   component={lazy(() => import('./components/Hpp'))}
@@ -55,6 +68,7 @@ function App() {
             </Suspense>
           </div>
         </div>
+        <Redirect exact from="/" to="/card" />
       </Router>
     </div>
   );
