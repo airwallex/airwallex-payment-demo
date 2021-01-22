@@ -26,6 +26,7 @@ const client_secret = 'replace-with-your-client-secret';
 const Card = () => {
   const [elementShow, setElementShow] = useState(false); // Example: show element state
   const [isSubmitting, setIsSubmitting] = useState(false); // Example: show submission processing state
+
   useEffect(() => {
     // STEP 2: Initialize Airwallex with the appropriate Airwallex environment and other configurations
     loadAirwallex({
@@ -40,7 +41,7 @@ const Card = () => {
           weight: 400,
         },
       ],
-      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/feature/APAF-1316/docs#loadAirwallex
+      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
     }).then(() => {
       // STEP 4: Create the card element
       const card = createElement('card');
@@ -114,6 +115,15 @@ const Card = () => {
       });
   };
 
+  const inputStyle = {
+    // Custom styling for the inputs, can be placed in css
+    border: '1px solid',
+    borderRadius: '5px',
+    padding: '5px 10px',
+    marginTop: '8px',
+    height: '28px',
+  };
+
   return (
     <div>
       <h2>Card integration</h2>
@@ -128,7 +138,10 @@ const Card = () => {
          * - Ensure this is the only element in your document with this id,
          *   otherwise the element may fail to mount.
          */}
-        <div id="card"></div>
+        <div
+          id="card"
+          style={inputStyle} // Example: input styling can be moved to css
+        />
         {/* STEP #3b: Add a submit button to trigger the payment request */}
         <button
           onClick={onTriggerConfirm}

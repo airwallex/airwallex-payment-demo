@@ -83,16 +83,29 @@ const DropIn = () => {
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
+  const containerStyle = {
+    // Custom styling for the wechat container, can be placed in css
+    width: '540px',
+    margin: '48px auto',
+  };
+
   return (
     <div>
       <h2>Drop-In integration</h2>
+      {/* Styling example below: show loading state */}
+      <p style={{ display: !elementShow ? 'block' : 'none' }}>Loading...</p>
       {/**
        * STEP 3a: Add an empty container for the dropin element to be placed into
        * - Ensure this is the only element in your document with this id,
        *   otherwise the element may fail to mount.
        */}
-      <div id="dropIn" style={{ display: elementShow ? 'block' : 'none' }} />
-      {/* Styling example above: only show when element is ready */}
+      <div
+        id="dropIn"
+        style={{
+          ...containerStyle, // Example: container styling can be moved to css
+          display: elementShow ? 'block' : 'none', // Example: only show element when mounted
+        }}
+      />
     </div>
   );
 };

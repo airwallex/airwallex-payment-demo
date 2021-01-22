@@ -30,7 +30,7 @@ const Hpp = () => {
       await redirectToCheckout({
         env: 'demo',
         id: intent_id, // Required, must provide intent details
-        client_secret: client_secret,
+        client_secret: client_secret, // Required
         theme: {
           // Must provide theme to display the checkout page properly
           fonts: [
@@ -49,8 +49,8 @@ const Hpp = () => {
       });
     } catch (error) {
       // STEP 4: Catch error events
-      /*
-      ... Handle event on error
+      /**
+       * ... Handle event on error
        */
       window.alert('There was an error with HPP redirection', error);
     }

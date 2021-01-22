@@ -1,3 +1,7 @@
+/**
+ * Coming soon ~
+ */
+
 import React, { useEffect } from 'react';
 import {
   createElement,

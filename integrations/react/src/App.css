@@ -51,28 +51,11 @@ button {
   min-height: 40px;
 }
 
-button:hover {
-  /* background-color: # */
-}
-
-#dropIn,
-#fullFeaturedCard,
-#wechat {
-  width: 540px;
-  margin: 48px auto;
-}
-
 .field-container {
   margin: 0 auto 16px;
   width: 300px;
 }
-.field-container div {
-  border: 1px solid;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin-top: 8px;
-  height: 28px;
-}
+
 div.field-label {
   text-align: left;
   border: 0;

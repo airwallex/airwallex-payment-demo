@@ -40,6 +40,7 @@ const FullFeaturedCard = () => {
       // STEP #4: Create the full featured card element
       const fullFeaturedCard = createElement('fullFeaturedCard', {
         intent: {
+          // Required, must provide intent details to prepare fullFeaturedCard element
           id: intent_id,
           client_secret,
         },
@@ -83,9 +84,17 @@ const FullFeaturedCard = () => {
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
+  const containerStyle = {
+    // Custom styling for the wechat container, can be placed in css
+    width: '540px',
+    margin: '48px auto',
+  };
+
   return (
     <div>
       <h2>Full Featured Card integration</h2>
+      {/* Styling example below: show loading state when element is not ready */}
+      <p style={{ display: !elementShow ? 'block' : 'none' }}>Loading...</p>
       {/**
        * STEP #3: Add an empty container for the fullFeaturedCard element to be placed into
        * - Ensure this is the only element in your document with this id,
@@ -93,8 +102,11 @@ const FullFeaturedCard = () => {
        */}
       <div
         id="fullFeaturedCard"
-        style={{ display: elementShow ? 'block' : 'none' }} // Example: only show when element is ready
-      ></div>
+        style={{
+          ...containerStyle, // Example: container styling can be moved to css
+          display: elementShow ? 'block' : 'none', // Example: only show element when mounted
+        }}
+      />
     </div>
   );
 };

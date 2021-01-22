@@ -104,9 +104,10 @@ const Index = () => {
     setIsSubmitting(true);
     const cardNumElement = getElement('cardNumber');
     confirmPaymentIntent({
-      element: cardNumElement,
+      element: cardNumElement, // Only need to submit CardNumber element
       id: intent_id,
       client_secret,
+      // Add other payment confirmation details, see docs here: https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
       payment_method_options: {
         card: {
           auto_capture: true,
@@ -135,6 +136,15 @@ const Index = () => {
   const allElementsComplete =
     cardNumberComplete && cvcComplete && expiryComplete;
 
+  const inputStyle = {
+    // Custom styling for the inputs, can be placed in css
+    border: '1px solid',
+    borderRadius: '5px',
+    padding: '5px 10px',
+    marginTop: '8px',
+    height: '28px',
+  };
+
   return (
     <div>
       <h2>Split Card element integration</h2>
@@ -143,15 +153,24 @@ const Index = () => {
         {/* STEP 3a: Add empty containers for the card elements to be placed into */}
         <div className="field-container">
           <div className="field-label">Card number</div>
-          <div id="cardNumber" />
+          <div
+            id="cardNumber"
+            style={inputStyle} // Example: input styling can be moved to css
+          />
         </div>
         <div className="field-container">
           <div className="field-label">Expiry</div>
-          <div id="expiry" />
+          <div
+            id="expiry"
+            style={inputStyle} // Example: input styling can be moved to css
+          />
         </div>
         <div className="field-container">
           <div className="field-label">Cvc</div>
-          <div id="cvc" />
+          <div
+            id="cvc"
+            style={inputStyle} // Example: input styling can be moved to css
+          />
         </div>
         {/* STEP 3b: Add a submit button to trigger the payment request */}
         <button

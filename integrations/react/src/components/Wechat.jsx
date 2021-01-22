@@ -74,6 +74,12 @@ const Wechat = () => {
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
+  const containerStyle = {
+    // Custom styling for the wechat container, can be placed in css
+    width: '540px',
+    margin: '48px auto',
+  };
+
   return (
     <div>
       <h2>Wechat element integration</h2>
@@ -84,7 +90,10 @@ const Wechat = () => {
        */}
       <div
         id="wechat"
-        style={{ display: elementShow ? 'block' : 'none' }} // Example: only show element when mounted
+        style={{
+          ...containerStyle, // Example: container styling can be moved to css
+          display: elementShow ? 'block' : 'none', // Example: only show element when mounted
+        }}
       ></div>
       {
         !elementShow ? 'Loading...' : null // Example: show loading state when element is not ready

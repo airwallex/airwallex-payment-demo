@@ -1,3 +1,10 @@
+/**
+ * App.tsx
+ * Airwallex Payment Demo - React Typescript.  Created by Olivia Wei and Josie Ku.
+ *
+ * This file defines all the endpoints for the demos in this app.
+ */
+
 import React, { lazy, Suspense } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
@@ -9,6 +16,9 @@ const App: React.FC = () => (
       <div className="container">
         <nav>
           <h2>All Demos</h2>
+          <Link to="/card">
+            <button>Card element</button>
+          </Link>
           <Link to="/hpp">
             <button>Hosted payment page (HPP)</button>
           </Link>
@@ -23,12 +33,6 @@ const App: React.FC = () => (
           </Link>
           <Link to="/wechat">
             <button>Wechat element</button>
-          </Link>
-          <Link to="/card">
-            <button>Card element</button>
-          </Link>
-          <Link to="/redirect">
-            <button>Redirect element checkout (i.e Alipay)</button>
           </Link>
         </nav>
         <div className="payment-frame">
@@ -61,6 +65,11 @@ const App: React.FC = () => (
               <Route
                 path="/redirect"
                 component={lazy(() => import('./components/redirect'))}
+              />
+              <Route
+                exact
+                path="/"
+                component={lazy(() => import('./components/card'))}
               />
             </Switch>
           </Suspense>
