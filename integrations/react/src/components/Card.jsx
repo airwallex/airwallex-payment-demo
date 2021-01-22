@@ -1,10 +1,12 @@
 /**
  * Card.jsx
- * Airwallex Payment Demo - React.  Created by Josie Ku
+ * Airwallex Payment Demo - React.  Created by Josie Ku.
  *
  * airwallex-payment-elements Card element integration in React.js
  * Comments with "Example" demonstrate how states can be integrated
  * with the element, they can be removed.
+ *
+ * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/card.md
  */
 
 import React, { useEffect, useState } from 'react';
@@ -56,6 +58,7 @@ const Card = () => {
       console.log(`The Card element is ready, ${JSON.stringify(event.detail)}`);
     };
 
+    // STEP #8: Add an event listener to respond to errors
     const onError = (event) => {
       /**
        * ... Handle events on error
@@ -88,7 +91,7 @@ const Card = () => {
       // STEP #6b: Listen to the request success response
       .then((response) => {
         /**
-         * ...Handle confirm response in your business flow
+         * ...Handle confirm response
          */
         setIsSubmitting(false); // Example: sets loading state
         window.alert(
@@ -100,7 +103,7 @@ const Card = () => {
       // STEP #6c: Listen to the request failure response
       .catch((error) => {
         /**
-         * ... Handle error response in your business flow
+         * ... Handle error response
          */
         setIsSubmitting(false); // Example: sets loading state
         window.alert(

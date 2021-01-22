@@ -5,7 +5,7 @@ import {
   Switch,
   Route,
   Link,
-  Redirect,
+  // Redirect,
 } from 'react-router-dom';
 
 function App() {
@@ -68,7 +68,7 @@ function App() {
             </Suspense>
           </div>
         </div>
-        <Redirect exact from="/" to="/card" />
+        {/* <Redirect exact from="/" to="/card" /> */}
       </Router>
     </div>
   );
