@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { loadAirwallex, createElement } from "airwallex-payment-elements";
+import { Component, OnInit } from '@angular/core';
+import { loadAirwallex, createElement } from 'airwallex-payment-elements';
 
-const intentid = "replace-with-your-intent-id";
-const client_secret = "replace-with-your-client-secret";
+const intentid = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
 
 @Component({
-  selector: "app-full-featured-card",
-  templateUrl: "./full-featured-card.component.html",
+  selector: 'app-full-featured-card',
+  templateUrl: './full-featured-card.component.html',
 })
 export class FullFeaturedCardComponent implements OnInit {
   constructor() {}
@@ -17,21 +17,21 @@ export class FullFeaturedCardComponent implements OnInit {
 
   ngOnInit(): void {
     loadAirwallex({
-      env: "demo",
+      env: 'demo',
       origin: window.location.origin,
     }).then(() => {
-      const fullFeaturedCard = createElement("fullFeaturedCard", {
+      const fullFeaturedCard = createElement('fullFeaturedCard', {
         intent: {
           id: intentid,
           client_secret,
         },
       });
-      fullFeaturedCard?.mount("fullFeaturedCard");
+      fullFeaturedCard?.mount('fullFeaturedCard');
     });
-    window.addEventListener("onSuccess", this.onSuccess);
+    window.addEventListener('onSuccess', this.onSuccess);
   }
 
-  ngOnDestroy(): void {
-    window.removeEventListener("onSuccess", this.onSuccess);
+  OnDestroy(): void {
+    window.removeEventListener('onSuccess', this.onSuccess);
   }
 }

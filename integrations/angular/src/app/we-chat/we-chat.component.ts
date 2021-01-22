@@ -31,7 +31,7 @@ export class WeChatComponent implements OnInit {
     console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
   }
 
-  ngOnDestroy(): void {
+  OnDestroy(): void {
     window.removeEventListener('onSuccess', this.onSuccess);
   }
 }
