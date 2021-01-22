@@ -1,61 +1,119 @@
+<!-- 
+  split-card.html
+  Airwallex Payment Demo - Static HTML.  Created by Charlie Lang and Josie Ku.
+
+  airwallex-payment-elements Split Card element integration in Static HTML
+  Comments with "Example" demonstrate how states can be integrated
+  with the element, they can be removed.
+
+  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/splitcard.md
+ -->
 <!doctype html>
 <html>
   <head lang='en'>
     <meta charset='utf-8'>
+    <link rel="stylesheet" href="style.css">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Airwallex Checkout Playground</title>
-    <!-- Step #1: Load Checkout Universal Module Definition (UMD) bundle js-->
-    <script src="https://checkout.airwallex.com/assets/bundle.xx.xx.xx.min.js"></script>
+    <!-- 
+      Step #1: Import airwallex-payment-elements bundle 
+                - You MUST replace the bundle version to the latest NPM version
+                  in order to import the package properly!
+    -->
+    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
   </head>
   <body>
-    <h1>Card elements integration</h1>
-    <label>
-      Card number
-      <div id='cardNumber'></div>
-    </label>
-    <label>
-      Expiry
-      <div id='expiry'></div>
-    </label>
-    <label>
-      CVC
-      <div id='cvc'></div>
-    </label>
-    <br>
-    <button id='submit'>Submit</button>
+    <h1>Split Card integration</h1>
+    <div id="element">
+      Card Information
+      <!-- Step #3a: Add empty containers for each card input element to be injected into -->
+      <div>
+        <div>Card number</div>
+        <div id="cardNumber"></div>
+      </div>
+      <div>
+        <div>Expiry</div>
+        <div id="expiry"></div>
+      </div>
+      <div>
+        <div>Cvc</div>
+        <div id="cvc"></div>
+    </div>
+    <br />
+    <!-- Step #3b: Add a submit button to trigger the payment request -->
+    <button id="submit">Submit</button>
+
     <script>
       // Step #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
-        env: 'demo', // Setup which env('staging' | 'demo' | 'prod') you would like to integrate with
+        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
+        fonts: [
+          // Customizes the font for the payment elements
+          {
+            src:
+              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+            family: 'AxLLCircular',
+            weight: 400,
+          },
+        ],
       });
-      // Step #3.1: Create 'cardNumber' element
+
+      // Step #4: Create split card elements
       const cardNumber = Airwallex.createElement('cardNumber');
-      // Step #3.2: Create 'expiry' element
       const expiry = Airwallex.createElement('expiry');
-      // Step #3.3: Create 'cvc' element
       const cvc = Airwallex.createElement('cvc');
-      // Step #4: Mount card elements
-      cardNumber.mount('cardNumber');
-      expiry.mount('expiry');
-      cvc.mount('cvc');
+
+      // Step #5: Mount split card elements
+      cardNumber.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
+      expiry.mount('expiry'); // Same as above
+      cvc.mount('cvc'); // Same as above
+
+      // Step #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
-        // Step #5: Confirm payment intent with id and client_secret
         Airwallex.confirmPaymentIntent({
-          element: cardNumber,
+          element: cardNumber, // Only need to submit CardNumber element
           id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret'
-        }).then((response) => {
-          /* handle confirm response in your business flow */
-          alert(JSON.stringify(response));
+          client_secret: 'replace-with-your-client-secret',
+        })
+        .then((response) => {
+          // Step #6b: Listen to the request response
+          /* handle confirm response */
+          window.alert(JSON.stringify(response));
+        })
+        .catch((response) => {
+          // Step #6c: Listen to the error response
+          /* handle error response */
+          window.alert(JSON.stringify(response));
         });
       });
+
+      // Step #7: Add an event listener to ensure the element is mounted
       window.addEventListener('onReady', (event) => {
         /*
-          ... Handle event
-        */
-        alert(event.detail)
-      })
+        ... Handle event
+         */
+        console.log('Element is ready', event.detail);
+      });
+
+      // Step #8: Add an event listener to listen to the changes in each of the input fields
+      window.addEventListener('onChange', (event) => {
+        /*
+        ... Handle event
+         */
+        console.log('Element is changing', event.detail);
+      });
     </script>
   </body>
+  <style>
+    #cardNumber, #expiry, #cvc { 
+      width: 400px;
+      height: 28px;
+      border: 1px solid black; 
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-top: 8px;
+      margin-bottom: 10px;
+    }
+  </style>
 </html>

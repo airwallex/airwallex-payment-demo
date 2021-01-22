@@ -1,50 +1,104 @@
+<!-- 
+  card.html
+  Airwallex Payment Demo - Static HTML.  Created by Shirley Chen and Josie Ku.
+
+  airwallex-payment-elements Card element integration in Static HTML
+  Comments with "Example" demonstrate how states can be integrated
+  with the element, they can be removed.
+
+  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/card.md
+ -->
+
 <!doctype html>
 <html>
 
 <head lang='en'>
   <meta charset='utf-8'>
+  <link rel="stylesheet" href="style.css">
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <title>Airwallex Checkout Playground</title>
-  <!-- Step #1: Load Checkout Universal Module Definition (UMD) bundle js-->
-  <script src="https://checkout.airwallex.com/assets/bundle.xx.xx.xx.min.js"></script>
+  <!-- 
+    Step #1: Import airwallex-payment-elements bundle 
+              - You MUST replace the bundle version to the latest NPM version
+                in order to import the package properly!
+  -->
+  <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
 </head>
 
 <body>
   <h1>Card integration</h1>
   <label>
     Card Information
-    <div id='card'></div>
+    <!-- Step #3a: Add an empty container for the card element to be injected into -->
+    <div 
+      id="card" 
+      style="display:none;"></div> <!-- Example: styling added to hide the container before element is loaded-->
   </label>
-  <br>
-  <button id='submit'>Submit</button>
+  <!-- Step #3b: Add a submit button to trigger the payment request -->
+  <button 
+    id="submit" 
+    style="display:none;"> <!-- Example: styling added to hide the container before element is loaded-->
+    Submit
+  </button> 
+
   <script>
     // Step #2: Initialize the Airwallex global context for event communication
     Airwallex.init({
-      env: 'demo', // Setup which env('staging' | 'demo' | 'prod') you would like to integrate with
+      env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
       origin: window.location.origin, // Setup your event target to receive the browser events message
+      fonts: [
+        // Customizes the font for the payment elements
+        {
+          src:
+            'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+          family: 'AxLLCircular',
+          weight: 400,
+        },
+      ],
     });
-    // Step #3: Create 'card' element
+    // Step #4: Create 'card' element
     const card = Airwallex.createElement('card');
-    // Step #4: Mount card element
+
+    // Step #5: Mount card element
     card.mount('card');
+
+    // Step #6a: Add a button handler to trigger the payment request
     document.getElementById('submit').addEventListener('click', () => {
-      // Step #5: Confirm payment intent with id and client_secret
       Airwallex.confirmPaymentIntent({
         element: card,
         id: 'replace-with-your-intent-id',
-        client_secret: 'replace-with-your-client-secret'
-      }).then((response) => {
-        /* handle confirm response in your business flow */
-        alert(JSON.stringify(response));
-      });
+        client_secret: 'replace-with-your-client-secret',
+      })
+      .then((response) => {
+        // Step #6b: Listen to the request response
+        /* Handle confirm response */
+        window.alert(JSON.stringify(response));
+      })
+      .catch((response) => {
+        // Step #6c: Listen to the error response
+        /* Handle error response */
+        console.log('There is an error', response);
+      })
     });
+
+    // Step #7: Add an event listener to ensure the element is mounted
     window.addEventListener('onReady', (event) => {
       /*
-        ... Handle event
-      */
-      alert(event.detail)
-    })
+      ... Handle event
+       */
+      document.getElementById('card').style.display = 'block'; // Example: show element when it is mounted
+      document.getElementById('submit').style.display = 'block'; // Example: show element when it is mounted
+      console.log('Element is ready', event.detail);
+    });
   </script>
 </body>
+<style>
+  #card {
+    width: 400px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+  }
+</style>
 
 </html>

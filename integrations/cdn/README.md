@@ -1,50 +1,38 @@
-# airwallex-payment-demo cdn
+# Airwallex Payment Elements - CDN Demo
 
-CDN example using Universal Module Definition (UMD) files in static html file, the demo using [Serve](https://www.npmjs.com/package/serve) to serve those static html
+This directory contains an implementation of [Airwallex Payment Element](https://www.npmjs.com/package/airwallex-payment-elements) using static html files. The HTML files are served using [Serve](https://www.npmjs.com/package/serve).
 
-# Pre-installation
+## Requirements
 
-### Install node.js
+- [node.js](https://nodejs.org/en/)
+- `npm` or `yarn` package manager
 
-[Download node.js](https://nodejs.org/en/)
+## Installation and Development
 
-### Install
+1. Clone the root [airwallex-payment-demo](https://github.com/airwallex/airwallex-payment-demo) project to your local machine
 
-    npm install
+`git clone https://github.com/airwallex/airwallex-payment-demo`
 
-### Update config
+2. Navigate into the react directory with `cd integrations/cdn`
 
-Setp #1: Update to using latest bundle js version in the `html` static file, replace `xx.xx.xx` with version found in [airwallex-payment-elements](https://www.npmjs.com/package/airwallex-payment-elements)
+3. Install the package with `yarn` or `npm install`
+
+4. Run the project in development mode with `npm start` or `yarn start`. See the project at [localhost:5000](http://localhost:5000)
+
+## Usage
+
+Each of the payment methods are written as a separate html file found in [/integrations/cdn](/) folder.
+
+First, when running each html file, be sure to replace `x.x.x` with the latest [airwallex-payment-elements](https://www.npmjs.com/package/airwallex-payment-elements) bundle version.
 
 ```html
-<!-- Step #1: Load Checkout Universal Module Definition (UMD) bundle js-->
-<script src="https://checkout.airwallex.com/assets/bundle.xx.xx.xx.min.js"></script>
+<!-- Step #1: Import airwallex-payment-elements bundle -->
+<script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
 ```
 
-Step #2: Select the target airwallex env you want to test with by update the `env` field
+Also, to test each of the payment methods, be sure to replace the `intent_id` and `client_secret` variables in the file with your own unique keys. These values can be created with the backend API integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
 
-```js
-env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
-```
-
-Step #3: Get your intent id and client secret create by your backend client api integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
-
-To power up those pages, replace them with below fields in `html`
-
-```js
-const id = 'replace-with-your-intent-id';
+```jsx
+const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 ```
-
-```js
-id: 'replace-with-your-intent-id',
-client_secret: 'replace-with-your-client-secret'
-```
-
-### Start demo
-
-    npm start
-
-# Go to browser and open [Localhost](http://localhost:5000)
-
-Those static html show example of integration ways, for more details you can check on [airwallex-payment-elements](https://www.npmjs.com/package/airwallex-payment-elements)
