@@ -1,3 +1,10 @@
+/**
+ * App.js
+ * Airwallex Payment Demo - React.  Created by Roy Yang and Josie Ku.
+ *
+ * This file defines all the endpoints for the examples in this app.
+ */
+
 import './App.css';
 import React, { lazy, Suspense } from 'react';
 import {
@@ -64,11 +71,15 @@ function App() {
                   path="/wechat"
                   component={lazy(() => import('./components/Wechat'))}
                 />
+                <Route
+                  exact
+                  path="/"
+                  component={lazy(() => import('./components/Card'))}
+                />
               </Switch>
             </Suspense>
           </div>
         </div>
-        {/* <Redirect exact from="/" to="/card" /> */}
       </Router>
     </div>
   );

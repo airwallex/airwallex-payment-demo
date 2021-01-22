@@ -8,6 +8,7 @@
  *
  * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/hpp.md
  */
+
 import React from 'react';
 // STEP 1: At the start of your file, import airwallex-payment-elements package
 import { redirectToCheckout, loadAirwallex } from 'airwallex-payment-elements';

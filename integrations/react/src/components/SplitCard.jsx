@@ -8,6 +8,7 @@
  *
  * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/splitcard.md
  */
+
 import React, { useEffect, useState } from 'react';
 // STEP 1: At the start of your file, import airwallex-payment-elements package
 import {

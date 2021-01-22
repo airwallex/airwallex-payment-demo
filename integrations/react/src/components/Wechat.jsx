@@ -8,6 +8,7 @@
  *
  * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/wechat.md
  */
+
 import React, { useEffect, useState } from 'react';
 // STEP 1: At the start of your file, import airwallex-payment-elements package
 import { loadAirwallex, createElement } from 'airwallex-payment-elements';
@@ -71,7 +72,7 @@ const Wechat = () => {
       window.removeEventListener('onSuccess', onSuccess);
       window.removeEventListener('onError', onError);
     };
-  }, []);
+  }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
   return (
     <div>
