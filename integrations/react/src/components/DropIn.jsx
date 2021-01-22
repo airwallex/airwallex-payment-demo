@@ -45,7 +45,7 @@ const DropIn = () => {
         },
       });
       // STEP 5: Mount the drop-in element to the empty container created previously
-      dropIn.mount('dropIn'); // This 'dropIn' MUST MATCH the id on your empty container created in Step 3
+      dropIn.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 3
     });
 
     // STEP #6: Add an event listener to handle events when the element is mounted

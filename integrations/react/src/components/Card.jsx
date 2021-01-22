@@ -45,7 +45,7 @@ const Card = () => {
       // STEP 4: Create the card element
       const card = createElement('card');
       // STEP 5: Mount the card element to the empty container created previously
-      card.mount('card'); // This 'card' MUST MATCH the id on your empty container created in Step 3
+      card.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
     });
 
     // STEP #7: Add an event listener to ensure the element is mounted

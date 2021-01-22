@@ -57,9 +57,9 @@ const Index = () => {
       const expiryEle = createElement('expiry');
 
       // STEP 5: Mount split card elements
-      cardNumEle.mount('cardNumber');
-      cvcEle.mount('cvc');
-      expiryEle.mount('expiry');
+      cardNumEle.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
+      cvcEle.mount('cvc'); // Same as above
+      expiryEle.mount('expiry'); // Same as above
     });
 
     // STEP 7: Add an event handler to ensure the element is mounted
@@ -138,6 +138,7 @@ const Index = () => {
   return (
     <div>
       <h2>Split Card element integration</h2>
+      {/* Styling example above: only displays block when all elements are ready */}
       <div style={{ display: allElementsReady ? 'block' : 'none' }}>
         {/* STEP 3a: Add empty containers for the card elements to be placed into */}
         <div className="field-container">
