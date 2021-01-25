@@ -28,8 +28,16 @@ Frontend integration:
 - [React Typescript](/integrations/react-ts)
 - [Angular](/integrations/angular)
 - [CDN](/integrations/cdn)
-- [Next.js Typescript](/integrations/next-ts)
 - [Vue](/integrations/vue)
+
+## Other Integrations
+
+For those using [Next.js](https://nextjs.org/) as their web framework, feel free to see the [React](/integrations/react)/[React Typescript](/integrations/react-ts) examples.
+
+Other integrations coming soon:
+
+- React Native
+- PHP
 
 ## Questions, comments, or suggestions?
 

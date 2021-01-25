@@ -36,3 +36,7 @@ Also, to test each of the payment methods, be sure to replace the `intent_id` an
 const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 ```
+
+## Authors
+
+Charlie Lang, Josie Ku, and Shirley Chen

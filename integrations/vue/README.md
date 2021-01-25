@@ -1,4 +1,4 @@
-# Airwallex Payment Elements with React Js
+# Airwallex Payment Elements with Vue.js
 
 This directory contains the Vue.js implementation of [Airwallex Payment Element](https://www.npmjs.com/package/airwallex-payment-elements).
 
@@ -33,3 +33,7 @@ const client_secret = 'replace-with-your-client-secret';
 ## More docs on Vue.js
 
 For a detailed explanation on how Vue.js works, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Authors
+
+Chao Ding, Josie Ku, and Jessica Zhou

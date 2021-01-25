@@ -19,7 +19,7 @@ git clone https://github.com/airwallex/airwallex-payment-demo
 
 3. Install the package with `yarn install` or `npm install`
 
-4. Copy the contents of `.env_copy` into a `.env` file, run `cp .env_copy .env`
+4. Copy the contents of `.env_copy` into a `.env` file by running `cp .env_copy .env`
 
 5. Run the project in development mode with `npm start` or `yarn start`. See the project at [localhost:3000](http://localhost:3000)
 
@@ -38,3 +38,7 @@ For demo purposes, both routes below can be accessed with a GET request. Be sure
   - remember to change id to a live intentId in the url
 
 Find more details about the Airwallex API [here](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post)!
+
+## Author
+
+Shirley Chen

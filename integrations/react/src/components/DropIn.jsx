@@ -1,6 +1,6 @@
 /**
  * Dropin.jsx
- * Airwallex Payment Demo - React.  Created by Roy Yang.
+ * Airwallex Payment Demo - React.  Created by Roy Yang and Josie Ku.
  *
  * airwallex-payment-elements Dropin element integration in React.js
  * Comments with "Example" demonstrate how states can be integrated

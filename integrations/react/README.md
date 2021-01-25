@@ -29,3 +29,7 @@ To test each of the payment methods, be sure to replace the `intent_id` and `cli
 const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 ```
+
+## Authors
+
+Roy Yang and Josie Ku

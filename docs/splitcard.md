@@ -10,6 +10,8 @@ The Split Card element enables merchants to process a card checkout on their web
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
+Want more details? See the integration in [React](/integrations/react/src/components/SplitCard.jsx).
+
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
 ```js
@@ -141,7 +143,7 @@ See the full documentation for `airwallex-payment-elements` [here](/docs/main.md
 
 ## Integration Examples
 
-Check out [airwallex-payment-demo](https://github.com/airwallex/airwallex-payment-demo) for integration examples with different web frameworks!
+Check out [airwallex-payment-demo](/) for integration examples with different web frameworks!
 
 ## Full Code Example
 
@@ -163,7 +165,7 @@ Check out [airwallex-payment-demo](https://github.com/airwallex/airwallex-paymen
       <!-- Step #3a: Add empty containers for each card input element to be injected into -->
       <div style={containerStyle}>
         <div>Card number</div>
-        <div id="card-number"></div>
+        <div id="cardNumber"></div>
       </div>
       <div style={containerStyle}>
         <div>Expiry</div>
