@@ -5,12 +5,18 @@ import { DropInComponent } from './drop-in/drop-in.component';
 import { FullFeaturedCardComponent } from './full-featured-card/full-featured-card.component';
 import { SplitCardComponent } from './split-card/split-card.component';
 import { WeChatComponent } from './we-chat/we-chat.component';
+import { CardComponent } from './card/card.component';
 
 interface RouteConfig extends Route {
   linkTitle: string;
 }
 
 export const routes: RouteConfig[] = [
+  {
+    path: 'card',
+    component: CardComponent,
+    linkTitle: 'Card',
+  },
   {
     path: 'hpp',
     component: HppComponent,

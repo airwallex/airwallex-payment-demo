@@ -38,6 +38,8 @@ module.exports = {
             format: ["snake_case", "camelCase"],
           },
         ],
+        "max-len": "off",
+        "@typescript-eslint/max-len": "off",
       },
     },
     {

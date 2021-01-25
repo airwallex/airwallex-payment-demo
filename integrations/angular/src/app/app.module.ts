@@ -8,7 +8,7 @@ import { DropInComponent } from './drop-in/drop-in.component';
 import { FullFeaturedCardComponent } from './full-featured-card/full-featured-card.component';
 import { SplitCardComponent } from './split-card/split-card.component';
 import { WeChatComponent } from './we-chat/we-chat.component';
-
+import { CardComponent } from './card/card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,13 +16,11 @@ import { WeChatComponent } from './we-chat/we-chat.component';
     DropInComponent,
     FullFeaturedCardComponent,
     SplitCardComponent,
-    WeChatComponent
+    WeChatComponent,
+    CardComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,27 +1,36 @@
-# Angular
+# Airwallex Payment Elements with Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+This directory contains the Angular implementation of [Airwallex Payment Element](https://www.npmjs.com/package/airwallex-payment-elements). This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 
-## Development server
+## Requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- [node.js](https://nodejs.org/en/)
+- `npm` or `yarn` package manager
+- [Angular CLI](https://github.com/angular/angular-cli)
 
-## Code scaffolding
+## Installation and Development
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone the root [airwallex-payment-demo](https://github.com/airwallex/airwallex-payment-demo) project to your local machine
 
-## Build
+`git clone https://github.com/airwallex/airwallex-payment-demo`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+2. Navigate into the react directory with `cd integrations/angular`
 
-## Running unit tests
+3. Install the package with `yarn` or `npm install`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. Run the project in development mode with `npm start` or `yarn start` or `ng serve`. See the project at [localhost:4200](http://localhost:4200)
 
-## Running end-to-end tests
+## Usage
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Each of the payment methods are written as a separate component found in the [/src/components](/integrations/angular/src/components) folder.
 
-## Further help
+To test each of the payment methods, be sure to replace the `intent_id` and `client_secret` variables at the top of each `x.component.ts` file with your own unique keys. These values can be created with the backend API integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
+
+```jsx
+const intent_id = "replace-with-your-intent-id";
+const client_secret = "replace-with-your-client-secret";
+```
+
+## Documentation on Angular
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
