@@ -6,16 +6,13 @@ Our goal is to make it easy for you (Merchants) to use our platform, as easy as 
 
 Before getting start, check out what the Airwallex Checkout elements look like here: [https://demo-pacheckoutdemo.airwallex.com/](https://demo-pacheckoutdemo.airwallex.com/).
 
+<div align="center">
+<img src="docs/assets/payment-demo.png" width="650px">
+</div>
+
 ## Creating a Payment Intent
 
-Throughout this demo, you will be asked to replace your intent secrets to properly enact a payment checkout:
-
-```ts
-const intent_id = 'replace-with-your-intent-id';
-const client_secret = 'replace-with-your-client-secret';
-```
-
-To get these keys, create a PaymentIntent using the [Airwallex API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
+Throughout this demo, you will be asked to insert your intent secrets to properly enact a payment checkout, more details can be found in the [Airwallex API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
 
 ## Navigating this project
 

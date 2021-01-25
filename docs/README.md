@@ -60,6 +60,8 @@ An equivalent step is:
 <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
 ```
 
+Running `loadAirwallex` and embedding the above script in your document head will initialize a global variable in your document called `window.Airwallex`. This variable consists of all the functions to process payments.
+
 | Option   | Default  | Description                                                                                    |
 | -------- | -------- | ---------------------------------------------------------------------------------------------- |
 | `env`    | `'prod'` | Indicate which airwallex integration env your merchant site would like to connect with         |
@@ -73,9 +75,9 @@ An equivalent step is:
 
 ### Element
 
-Functions and field components that can be used during checkout integration.
+Functions and field components that can be used during checkout integration. Elements are rendered as iframes.
 
-Can be called via `createElement()` or `getElement()`. Can be destroyed by `destroyElement()`
+Elements can be called via `createElement()` or `getElement()`. Can be destroyed by `destroyElement()`
 
 | Props        | Type                        | Description                                                               |
 | ------------ | --------------------------- | ------------------------------------------------------------------------- |
@@ -87,6 +89,25 @@ Can be called via `createElement()` or `getElement()`. Can be destroyed by `dest
 | `focus()`    | () => void                  | Use this function to focus the input html element                         |
 | `unmount()`  | () => void                  | Use this function to unmount the element, opposite to mount function      |
 | `update()`   | (options?) => void          | Use this function to update the element option after creating the element |
+
+<br>
+
+Elements can post events its parent container (your website) when a shopper interacts with the checkout element. Here are the events it can post:
+
+| Event Code                  | Purpose                                                                                                                                                                                  |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onReady                     | The event fires when a given element resource has loaded.                                                                                                                                |
+| onSubmit                    | The event is raised when confirm the intent. It fires after the click Pay button or calling confirmPaymentIntent function.                                                               |
+| onSuccess                   | The event fires when a intent is confirm with Airwallex                                                                                                                                  |
+| onError                     | Error events are fired at various targets for different kinds of errors with shopper interaction. See error codes [here](https://www.airwallex.com/docs/api?v=2019-09-09#/Errors).       |
+| onCancel                    | The event fires when shopper click cancel button when interact with the payment form.                                                                                                    |
+| onFocus                     | The event is raised when the shopper sets focus on an input by click or tab switch interaction.                                                                                          |
+| onBlur                      | The event is raised when an input in element loses focus.                                                                                                                                |
+| onChange                    | The events fire when the user commits a value change to a input. This may be done, for example, by clicking outside of the input or by using the Tab key to switch to a different input. |
+| onClick                     | The event is raised when the user clicks on an input element.                                                                                                                            |
+| onDynamicCurrencyConversion | The events fire when merchant enable Dynamic Currency Conversion (DCC) feature and shopper is confirm payment with an intent which match DCC scenario                                    |
+
+<br>
 
 ### createElement
 
@@ -146,6 +167,8 @@ All the following options are optional with the exception of `'intent'`.
 |                      | `style`                 | InputStyle                  | Style for cardNumber element                                                                                                                                 |
 |                      | `authFormContainer`     | string                      | Container for authentication form                                                                                                                            |
 
+<br>
+
 ### getElement
 
 An element function. This function queries the created element by type. There can only be one type of element per page.
@@ -174,6 +197,8 @@ Airwallex.destroyElement(type);
 
 ## Payment Processing
 
+<br>
+
 ### redirectToCheckout
 
 Used for the Hosted Payment Page (HPP) method that redirects the customer to an Airwallex checkout page.
@@ -195,6 +220,8 @@ Airwallex.redirectToCheckout(props);
 | `cancelUrl`     | false     |          | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
 | `logoUrl`       | false     |          | The logo url of your website you want to show in the HPP head                                                                        |
 | `locale`        | false     |          | i18n localization config, 'en' or 'zh'                                                                                               |
+
+<br>
 
 ### confirmPaymentIntent
 
@@ -229,6 +256,8 @@ PaymentMethodWithContract (with an existing customer)
 | `id`            | true      | string  | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
 | `contract_id`   | true      | string  | The id of the contract which used to confirm intent                                                                                                          |
 
+<br>
+
 ### confirmPaymentIntentWithSavedCard
 
 The following function confirms a payment intent and the rest of the payment method details with a saved card. Only required for the cvc element.
@@ -252,6 +281,8 @@ This function is used to create a payment method for checkout, the created payme
 ```ts
 const paymentMethod = await createPaymentMethod(clientSecret, PaymentMethod); // only need element and customer_id for PaymentMethod
 ```
+
+<br>
 
 ### getPaymentIntent
 

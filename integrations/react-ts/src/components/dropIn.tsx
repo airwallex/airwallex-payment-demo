@@ -89,7 +89,7 @@ const Index: React.FC = () => {
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
   const containerStyle = {
-    // Custom styling for the wechat container, can be placed in css
+    // Custom styling for the dropIn container, can be placed in css
     width: '540px',
     margin: '48px auto',
   };

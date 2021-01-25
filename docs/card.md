@@ -154,11 +154,17 @@ Check out [airwallex-payment-demo](https://github.com/airwallex/airwallex-paymen
           element: card,
           id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
-        }).then((response) => {
-          // Step #6b: Listen to the request response
-          /* handle confirm response in your business flow */
-          window.alert(JSON.stringify(response));
-        });
+        })
+          .then((response) => {
+            // Step #6b: Listen to the request response
+            /* handle confirm response*/
+            window.alert(JSON.stringify(response));
+          })
+          .catch((response) => {
+            // Step #6c: Listen to the error response
+            /* handle error response*/
+            console.log('There was an error', response);
+          });
       });
 
       // Step #7: Add an event listener to ensure the element is mounted

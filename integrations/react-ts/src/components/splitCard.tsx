@@ -150,7 +150,7 @@ const Index: React.FC = () => {
   return (
     <div>
       <h2>Split Card element integration</h2>
-      {/* Styling example above: only displays block when all elements are ready */}
+      {/* Styling example below: only displays block when all elements are ready */}
       <div style={{ display: allElementsReady ? 'block' : 'none' }}>
         {/* STEP 3a: Add empty containers for the card elements to be placed into */}
         <div className="field-container">
