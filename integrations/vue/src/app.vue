@@ -4,6 +4,9 @@
     <div id="container">
       <div id="nav">
         <h2>Payment Methods</h2>
+        <router-link to="/card" tag="button">
+          Card
+        </router-link>
         <router-link to="/hpp" tag="button">
           Hpp
         </router-link>
@@ -48,6 +51,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 20vw;
+  align-items: center;
 }
 #router {
   width: 80vw;
@@ -63,9 +67,15 @@ button {
   outline: none;
   border: none;
   border-radius: 5px;
-  min-width: 40px;
+  min-width: 150px;
   min-height: 40px;
+  max-width: 150px;
 }
+
+button:disabled {
+  opacity: 0.75;
+}
+
 body {
   margin-bottom: 100px;
 }

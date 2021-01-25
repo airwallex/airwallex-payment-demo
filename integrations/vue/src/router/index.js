@@ -5,11 +5,17 @@ import DropIn from '@/components/dropIn';
 import FullFeaturedCard from '@/components/fullFeaturedCard';
 import SplitCard from '@/components/splitCard';
 import Wechat from '@/components/wechat';
+import Card from '@/components/card';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
+    {
+      path: '/card',
+      name: 'Card',
+      component: Card,
+    },
     {
       path: '/dropin',
       name: 'DropIn',

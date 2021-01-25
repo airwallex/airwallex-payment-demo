@@ -1,53 +1,113 @@
+<!--
+  fullFeaturedCard.vue
+  Airwallex Payment Demo - Vue.  Created by Chao Ding and Josie Ku.
+
+  airwallex-payment-elements fullFeaturedCard element integration in Vue.
+  Comments with "Example" demonstrate how states can be integrated
+  with the element, they can be removed.
+
+  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/fullfeaturedcard.md
+-->
 <template>
   <div>
-    <h2>Option #3: Full Featured Card integration</h2>
-    <!-- STEP 1: Add an empty container for the full featured card element to be placed into -->
-    <div id="fullFeaturedCard" />
+    <h2>Full Featured Card integration</h2>
+    <!-- Styling example below: show loading state when element is not ready -->
+    <p id="loading">
+      Loading...
+    </p>
+    <!-- 
+      Step #3: Add an empty container for the fullFeaturedCard element to be injected into 
+      - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
+    -->
+    <div id="fullFeaturedCard" :style="{ display: 'none' }" />
   </div>
 </template>
 
 <script>
+// STEP #1: Import airwallex-payment-elements package
 import { createElement, loadAirwallex } from 'airwallex-payment-elements';
 
-const intent_id = 'replace-with-your-intent-id';
-const client_secret = 'replace-with-your-client-secret';
+// Enter your Payment Intent secret keys here
+// More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
+// const intent_id = 'replace-with-your-intent-id';
+// const client_secret = 'replace-with-your-client-secret';
+const intent_id = 'int_kIIBe3QwzuOtYnHBcztkeLoVXUP';
+const client_secret =
+  'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTE1NTgxMTYsImV4cCI6MTYxMTU2MTcxNiwiYWNjb3VudF9pZCI6ImZmMjI1YzEzLWQ5ODEtNDU2Yy1iZjk3LWYzODIxYzg1YTEyMiIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IkhLIiwiaW50ZW50X2lkIjoiaW50X2tJSUJlM1F3enVPdFluSEJjenRrZUxvVlhVUCJ9.U1JQeFACbhYO8sOa703N8sDhLJ7gjrls1KBT1kEhYk4';
 
-// STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
-loadAirwallex({
-  env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
-  origin: window.location.origin, // Setup your event target to receive the browser events message
-}).then(() => {
-  // STEP 3: Create the full featured card element
-  const card = createElement('fullFeaturedCard', {
-    intent: {
-      id: intent_id,
-      client_secret,
-    },
+const init = () => {
+  // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+  loadAirwallex({
+    env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
+    origin: window.location.origin, // Setup your event target to receive the browser events message
+    fonts: [
+      // Can customize the font for the payment elements
+      {
+        src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+        family: 'AxLLCircular',
+        weight: 400,
+      },
+    ],
+    // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
+  }).then(() => {
+    // STEP #4: Create the full featured card element
+    const fullFeaturedCard = createElement('fullFeaturedCard', {
+      intent: {
+        // Required, must provide intent details to prepare fullFeaturedCard element
+        id: intent_id,
+        client_secret,
+      },
+    });
+    // STEP #5: Mount the element to the empty container created previously
+    fullFeaturedCard.mount('fullFeaturedCard'); // This 'fullFeaturedCard' id MUST MATCH the id on your empty container created in Step 3
   });
-  // STEP 4: Mount the element to the empty container created previously
-  card.mount('fullFeaturedCard');
-});
+};
 
-window.addEventListener('onSuccess', (event) => {
-  /*
-    ... Handle event on success
-  */
+// STEP #6: Add an event listener to handle events when the element is mounted
+const onReady = (event) => {
+  /**
+   * ... Handle event on element mount
+   */
+  document.getElementById('loading').style.display = 'none'; // Example: hide loading state when element is mounted
+  document.getElementById('fullFeaturedCard').style.display = 'block'; // Example: show element when mounted
+  console.log(`Element is ready ${JSON.stringify(event.detail)}`);
+};
+
+// STEP #7: Add an event listener to handle events when the payment is successful
+const onSuccess = (event) => {
+  /**
+   * ... Handle event on success
+   */
   console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
-});
+};
 
-window.addEventListener('onError', (event) => {
-  /*
-    ... Handle event on error
-  */
-  console.log(`Confirm error with ${JSON.stringify(event.detail)}`);
-});
+// STEP #8: Add an event listener to handle events when the payment has failed
+const onError = (event) => {
+  /**
+   * ... Handle event on error
+   */
+  console.log(`Error with ${JSON.stringify(event.detail)}`);
+};
 
 export default {
   name: 'FullFeaturedCard',
+  mounted() {
+    init();
+    window.addEventListener('onReady', onReady);
+    window.addEventListener('onSuccess', onSuccess);
+    window.addEventListener('onError', onError);
+  },
+  beforeDestroy() {
+    // Be sure to clean up event listeners when component unmounts
+    window.removeEventListener('onReady', onReady);
+    window.removeEventListener('onSuccess', onSuccess);
+    window.removeEventListener('onError', onError);
+  },
 };
 </script>
 
 <style>
+/* Custom styling for the element */
 #fullFeaturedCard {
   width: 540px;
   margin: 48px auto;
