@@ -42,6 +42,10 @@ Querying the API
 - [getPaymentIntent](#getPaymentIntent)
 - createPaymentContract
 
+Common Errors
+
+- [Errors](#common-errors)
+
 <br>
 
 ## Initialization
@@ -291,3 +295,26 @@ This function gets intent `id` and `client secret` from browser side to directly
 ```ts
 const intent = await Airwallex.getPaymentIntent(id, client_secret);
 ```
+
+## Common Errors
+
+`Airwallex is not defined`
+
+- Have you loaded Airwallex before using Airwallex functions?
+- If you're using CDN, have you changed the bundle version from `x.x.x` to the latest version?
+- eg. `https://checkout.airwallex.com/assets/bundle.x.x.x.min.js` is invalid
+
+`Access denied, authentication failed`
+
+- Have you replaced your intent id and client secret?
+
+```js
+// Enter your Payment Intent secret keys here
+const intent_id = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
+```
+
+`The resource with ID int_xxxxxxxxx cannot be found.`
+
+- Does the environment you initialized Airwallex in (eg. demo, staging, or prod) match the environment you retrieved your intent keys in?
+- If you ran `loadAirwallex` in demo environment, did you also create your intent in the demo environment?
