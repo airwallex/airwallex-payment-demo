@@ -29,11 +29,8 @@ import { createElement, loadAirwallex } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
-// const intent_id = 'replace-with-your-intent-id';
-// const client_secret = 'replace-with-your-client-secret';
-const intent_id = 'int_kIIBe3QwzuOtYnHBcztkeLoVXUP';
-const client_secret =
-  'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MTE1NTgxMTYsImV4cCI6MTYxMTU2MTcxNiwiYWNjb3VudF9pZCI6ImZmMjI1YzEzLWQ5ODEtNDU2Yy1iZjk3LWYzODIxYzg1YTEyMiIsImRhdGFfY2VudGVyX3JlZ2lvbiI6IkhLIiwiaW50ZW50X2lkIjoiaW50X2tJSUJlM1F3enVPdFluSEJjenRrZUxvVlhVUCJ9.U1JQeFACbhYO8sOa703N8sDhLJ7gjrls1KBT1kEhYk4';
+const intent_id = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
 
 const init = () => {
   // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
