@@ -25,11 +25,14 @@
   </head>
   <body>
     <h1>Hosted payment page (HPP) integration</h1>
+    <p>
+      The following button redirects the customer to an Airwallex payment page.
+    </p>
     <!-- Step #3: Add a checkout button -->
-    <button id="hpp">Redirect to HPP</button>
+    <button id="hpp">Pay Now</button>
     <script>
       // Step #2: Initialize the Airwallex package with the appropriate environment
-      Airwallex.loadAirwallex({
+      Airwallex.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });

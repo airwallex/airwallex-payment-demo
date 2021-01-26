@@ -9,11 +9,12 @@ with the element, they can be removed.
 Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/wechat.md
 -->
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head lang='en'>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
     <!-- 
       Step #1: Import airwallex-payment-elements bundle 
@@ -29,6 +30,9 @@ Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob
       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
     -->
     <div id="wechat"></div>
+    <!-- Example: Response message containers -->
+    <p id="error"></p>
+    <p id="success">Payment Successful!</p>
     <script>
       // Step #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
@@ -69,6 +73,7 @@ Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob
         /*
           ... Handle event on success
         */
+        document.getElementById('success').style.display = 'block'; // Example: show success block
         window.alert(event.detail);
       });
 
@@ -77,8 +82,16 @@ Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob
         /*
           ... Handle event on error
         */
-        console.log('There is an error', event.detail);
+        const { error } = event.detail;
+        document.getElementById('error').style.display = 'block'; // Example: show error block
+        document.getElementById('error').innerHTML = error.message; // Example: set error message
+        console.log('There was an error', event.detail.error);
       });
     </script>
   </body>
+  <style>
+    #wechat {
+      width: 540px;
+    }
+  </style>
 </html>
