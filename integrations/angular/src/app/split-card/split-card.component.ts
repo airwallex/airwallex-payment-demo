@@ -10,7 +10,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-// STEP 1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import airwallex-payment-elements package
 import {
   getElement,
   confirmPaymentIntent,
@@ -53,7 +53,7 @@ export class SplitCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -68,7 +68,7 @@ export class SplitCardComponent implements OnInit {
       ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
     }).then(() => {
-      // STEP 4, 5: Create and mount the individual card elements
+      // STEP #4, 5: Create and mount the individual card elements
       createElement('cardNumber')?.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
       createElement('cvc')?.mount('cvc'); // Same as above
       createElement('expiry')?.mount('expiry'); // Same as above
@@ -77,7 +77,7 @@ export class SplitCardComponent implements OnInit {
     window.addEventListener('onChange', this.onChange);
   }
 
-  // STEP 7: Add an event handler to ensure the element is mounted
+  // STEP #7: Add an event handler to ensure the element is mounted
   onReady = (event: any): void => {
     const { type } = event.detail as EventDetail;
     if (type === 'cardNumber') {
@@ -91,7 +91,7 @@ export class SplitCardComponent implements OnInit {
     }
   };
 
-  // STEP 8: Add an event listener to listen to the changes in each of the input fields
+  // STEP #8: Add an event listener to listen to the changes in each of the input fields
   onChange = (event: any) => {
     const { type, complete } = event.detail as EventDetail;
     if (type === 'cardNumber') {
@@ -106,7 +106,7 @@ export class SplitCardComponent implements OnInit {
     console.log(`Elements changed with ${JSON.stringify(event.detail)}`);
   };
 
-  // STEP 6a: Add a button handler to trigger the payment request
+  // STEP #6a: Add a button handler to trigger the payment request
   triggerConfirm = async () => {
     this.isSubmitting = true;
     const cardNumber = getElement('cardNumber');
@@ -122,7 +122,7 @@ export class SplitCardComponent implements OnInit {
           },
         },
       })
-        // STEP 6b: Listen to the request response
+        // STEP #6b: Listen to the request response
         .then((response) => {
           /**
            * ... Handle event on success
@@ -130,7 +130,7 @@ export class SplitCardComponent implements OnInit {
           this.isSubmitting = false;
           window.alert(`Confirm success with ${JSON.stringify(response)}`);
         })
-        // STEP 6c: Listen to errors
+        // STEP #6c: Listen to errors
         .catch((response) => {
           /**
            * ... Handle event on error

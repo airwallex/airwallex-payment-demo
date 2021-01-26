@@ -1,3 +1,10 @@
+/**
+ * style.css
+ * Airwallex Payment Demo - Static HTML.  Created by Josie Ku.
+ *
+ * This file provides styling to the demo site.  This is not required for the integration.
+ */
+
 body {
   font-family: 'AxLLCircular';
   padding: 15px 25px;

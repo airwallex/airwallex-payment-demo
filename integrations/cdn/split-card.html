@@ -16,7 +16,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Airwallex Checkout Playground</title>
     <!-- 
-      Step #1: Import airwallex-payment-elements bundle 
+      STEP #1: Import airwallex-payment-elements bundle 
                 - You MUST replace the bundle version to the latest NPM version
                   in order to import the package properly!
     -->
@@ -45,13 +45,13 @@
         <div>Cvc</div>
         <div id="cvc"></div>
     </div>
-    <!-- Step #3b: Add a submit button to trigger the payment request -->
+    <!-- STEP #3b: Add a submit button to trigger the payment request -->
     <button id="submit">Submit</button>
     <!-- Example: Response message containers -->
     <p id="error"></p>
     <p id="success">Payment Successful!</p>
     <script>
-      // Step #2: Initialize the Airwallex global context for event communication
+      // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -66,17 +66,17 @@
         ],
       });
 
-      // Step #4: Create split card elements
+      // STEP #4: Create split card elements
       const cardNumber = Airwallex.createElement('cardNumber');
       const expiry = Airwallex.createElement('expiry');
       const cvc = Airwallex.createElement('cvc');
 
-      // Step #5: Mount split card elements
+      // STEP #5: Mount split card elements
       cardNumber.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
       expiry.mount('expiry'); // Same as above
       cvc.mount('cvc'); // Same as above
 
-      // Step #6a: Add a button handler to trigger the payment request
+      // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
         Airwallex.confirmPaymentIntent({
           element: cardNumber, // Only need to submit CardNumber element
@@ -84,13 +84,13 @@
           client_secret: 'replace-with-your-client-secret',
         })
         .then((response) => {
-          // Step #6b: Listen to the request response
+          // STEP #6b: Listen to the request response
           /* handle confirm response */
           document.getElementById('success').style.display = 'block'; // Example: show success block
           window.alert(JSON.stringify(response));
         })
         .catch((response) => {
-          // Step #6c: Listen to the error response
+          // STEP #6c: Listen to the error response
           /* handle error response */
           document.getElementById('error').style.display = 'block'; // Example: show error block
           document.getElementById('error').innerHTML = response.message; // Example: set error message
@@ -105,7 +105,7 @@
         cvc: false,
       };
 
-      // Step #7: Add an event listener to ensure the element is mounted
+      // STEP #7: Add an event listener to ensure the element is mounted
       window.addEventListener('onReady', (event) => {
         /*
         ... Handle event
@@ -128,7 +128,7 @@
         cvc: false,
       };
 
-      // Step #8: Add an event listener to listen to the changes in each of the input fields
+      // STEP #8: Add an event listener to listen to the changes in each of the input fields
       window.addEventListener('onChange', (event) => {
         /*
         ... Handle event
@@ -143,7 +143,7 @@
         document.getElementById('submit').disabled = !allElementsCompleted;
       });
 
-      // Step #9: Add an event listener to handle events when there is an error
+      // STEP #9: Add an event listener to handle events when there is an error
       window.addEventListener('onError', (event) => {
         /*
           ... Handle event on error

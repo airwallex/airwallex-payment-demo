@@ -10,7 +10,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-// STEP 1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import airwallex-payment-elements package
 import {
   createElement,
   loadAirwallex,
@@ -28,7 +28,7 @@ const Index: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false); // Example: show submission processing state
 
   useEffect(() => {
-    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -43,11 +43,11 @@ const Index: React.FC = () => {
       ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
     }).then(() => {
-      // STEP 4, 5: Create and mount the card element
+      // STEP #4, 5: Create and mount the card element
       createElement('card')?.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
     });
 
-    // STEP #7: Add an event listener to ensure the element is mounted
+    // STEP ##7: Add an event listener to ensure the element is mounted
     const onReady = (event: CustomEvent): void => {
       /**
        * ... Handle event when elements are mounted
@@ -56,7 +56,7 @@ const Index: React.FC = () => {
       console.log(`Elements ready with ${JSON.stringify(event.detail)}`);
     };
 
-    // STEP #8: Add an event listener to respond to errors
+    // STEP ##8: Add an event listener to respond to errors
     const onError = (event: CustomEvent): void => {
       /**
        * ... Handle events on error
@@ -76,7 +76,7 @@ const Index: React.FC = () => {
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
-  // STEP #6a: Add a button handler to trigger the payment request
+  // STEP ##6a: Add a button handler to trigger the payment request
   const triggerConfirm = (): void => {
     setIsSubmitting(true);
     const card = getElement('card');
@@ -92,7 +92,7 @@ const Index: React.FC = () => {
           },
         },
       })
-        // STEP #6b: Listen to the request success response
+        // STEP ##6b: Listen to the request success response
         .then((response) => {
           /**
            * ...Handle confirm response
@@ -104,7 +104,7 @@ const Index: React.FC = () => {
             )}`,
           );
         })
-        // STEP #6c: Listen to the request failure response
+        // STEP ##6c: Listen to the request failure response
         .catch((error) => {
           /**
            * ... Handle error response
@@ -138,7 +138,7 @@ const Index: React.FC = () => {
         style={{ display: elementShow ? 'block' : 'none' }} // Example: Custom styling to only show card when it is mounted
       >
         {/**
-         * STEP 3a: Add an empty container for the card element to be placed into
+         * STEP #3a: Add an empty container for the card element to be placed into
          * - Ensure this is the only element in your document with this id,
          *   otherwise the element may fail to mount.
          */}
@@ -146,7 +146,7 @@ const Index: React.FC = () => {
           id="card"
           style={inputStyle} // Example: input styling can be moved to css
         />
-        {/* STEP #3b: Add a submit button to trigger the payment request */}
+        {/* STEP ##3b: Add a submit button to trigger the payment request */}
         <button
           onClick={triggerConfirm}
           disabled={isSubmitting} // Example: disables button when submitting to prevent resubmission

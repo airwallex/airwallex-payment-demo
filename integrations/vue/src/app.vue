@@ -1,3 +1,10 @@
+<!--
+  app.vue
+  Airwallex Payment Demo - Vue.  Created by Jessica Zhou and Josie Ku.
+
+  This file creates the site navigation for the demo.  
+-->
+
 <template>
   <div id="app">
     <h1>Airwallex Payment Demo - Vue.js</h1>

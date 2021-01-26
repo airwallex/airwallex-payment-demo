@@ -10,7 +10,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-// STEP 1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import airwallex-payment-elements package
 import {
   createElement,
   loadAirwallex,
@@ -28,7 +28,7 @@ const Card = () => {
   const [isSubmitting, setIsSubmitting] = useState(false); // Example: show submission processing state
 
   useEffect(() => {
-    // STEP 2: Initialize Airwallex with the appropriate Airwallex environment and other configurations
+    // STEP #2: Initialize Airwallex with the appropriate Airwallex environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -43,9 +43,9 @@ const Card = () => {
       ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
     }).then(() => {
-      // STEP 4: Create the card element
+      // STEP #4: Create the card element
       const card = createElement('card');
-      // STEP 5: Mount the card element to the empty container created previously
+      // STEP #5: Mount the card element to the empty container created previously
       card.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
     });
 
@@ -134,7 +134,7 @@ const Card = () => {
         style={{ display: elementShow ? 'block' : 'none' }} // Example: Custom styling to only show card when it is mounted
       >
         {/**
-         * STEP 3a: Add an empty container for the card element to be placed into
+         * STEP #3a: Add an empty container for the card element to be placed into
          * - Ensure this is the only element in your document with this id,
          *   otherwise the element may fail to mount.
          */}

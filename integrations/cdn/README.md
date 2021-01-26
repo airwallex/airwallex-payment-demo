@@ -26,7 +26,7 @@ Each of the payment methods are written as a separate html file found in [/integ
 First, when running each html file, be sure to replace `x.x.x` with the latest [airwallex-payment-elements](https://www.npmjs.com/package/airwallex-payment-elements) bundle version.
 
 ```html
-<!-- Step #1: Import airwallex-payment-elements bundle -->
+<!-- STEP #1: Import airwallex-payment-elements bundle -->
 <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
 ```
 
@@ -39,4 +39,4 @@ const client_secret = 'replace-with-your-client-secret';
 
 ## Authors
 
-Charlie Lang, Josie Ku, and Shirley Chen
+Charlie Lang, Josie Ku, and Shirly Chen

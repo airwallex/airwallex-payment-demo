@@ -10,7 +10,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-// STEP 1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import airwallex-payment-elements package
 import {
   createElement,
   loadAirwallex,
@@ -37,7 +37,7 @@ export class DropInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -52,7 +52,7 @@ export class DropInComponent implements OnInit {
       ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
     }).then(() => {
-      // STEP 4: Create the drop-in element
+      // STEP #4: Create the drop-in element
       const element = createElement('dropIn' as ElementType, {
         intent: {
           // Required, must provide intent details to prepare DropIn element for checkout
@@ -60,7 +60,7 @@ export class DropInComponent implements OnInit {
           client_secret,
         },
       });
-      // STEP 5: Mount the drop-in element to the empty container created previously
+      // STEP #5: Mount the drop-in element to the empty container created previously
       element?.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 3
     });
 

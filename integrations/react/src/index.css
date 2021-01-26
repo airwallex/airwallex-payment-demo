@@ -1,3 +1,10 @@
+/**
+ * index.css
+ * Airwallex Payment Demo - React.  Created by Josie Ku.
+ *
+ * This file provides styling to the demo site.  This is not required for the integration.
+ */
+
 body {
   margin: 0;
   font-family: 'AxLLCircular';

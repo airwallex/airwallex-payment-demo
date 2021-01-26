@@ -10,7 +10,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-// STEP 1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import airwallex-payment-elements package
 import {
   createElement,
   loadAirwallex,
@@ -44,7 +44,7 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -59,7 +59,7 @@ export class CardComponent implements OnInit {
       ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
     }).then(() => {
-      // STEP 4, 5: Create and mount the card element
+      // STEP #4, #5: Create and mount the card element
       createElement('card' as ElementType)?.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
     });
 

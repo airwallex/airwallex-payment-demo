@@ -26,7 +26,7 @@ const Index: React.FC = () => {
   const [elementShow, setElementShow] = useState(false); // Example: set element show state
 
   useEffect(() => {
-    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -41,7 +41,7 @@ const Index: React.FC = () => {
       ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
     }).then(() => {
-      // STEP 4: Create the full featured card element
+      // STEP #4: Create the full featured card element
       const element = createElement('fullFeaturedCard' as ElementType, {
         intent: {
           // Required, must provide intent details to prepare fullFeaturedCard element
@@ -49,7 +49,7 @@ const Index: React.FC = () => {
           client_secret,
         },
       });
-      // STEP 5: Mount the element to the empty container created previously
+      // STEP #5: Mount the element to the empty container created previously
       element?.mount('fullFeaturedCard'); // This 'fullFeaturedCard' id MUST MATCH the id on your empty container created in Step 3
     });
 
@@ -88,8 +88,8 @@ const Index: React.FC = () => {
     };
   }, []);
 
+  // Example: Custom styling for the wechat container, can be placed in css
   const containerStyle = {
-    // Custom styling for the wechat container, can be placed in css
     width: '540px',
     margin: '48px auto',
   };

@@ -17,7 +17,7 @@
     </p>
     <div id="card-container" :style="{ display: 'none' }">
       <!-- 
-        Step #3a: Add empty containers for the split elements to be injected into 
+        STEP #3a: Add empty containers for the split elements to be injected into 
         - Ensure these are the only elements in your document with these id, otherwise the elements may fail to mount.
       -->
       <div class="field-container">
@@ -38,7 +38,7 @@
         </div>
         <div id="cvc" />
       </div>
-      <!-- STEP 3b: Add a submit button to trigger the payment request -->
+      <!-- STEP #3b: Add a submit button to trigger the payment request -->
       <button id="confirm" :disabled="true" @click="triggerConfirm()">
         Confirm
       </button>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-// STEP 1: Import airwallex-payment-elements package
+// STEP #1: Import airwallex-payment-elements package
 import { createElement, confirmPaymentIntent, loadAirwallex, getElement } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
@@ -56,7 +56,7 @@ const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
 const init = () => {
-  // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+  // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
   loadAirwallex({
     env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
     origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -70,12 +70,12 @@ const init = () => {
     ],
     // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
   }).then(() => {
-    // STEP 4: Create and mount the individual card elements
+    // STEP #4: Create and mount the individual card elements
     const cardNumEle = createElement('cardNumber');
     const cvcEle = createElement('cvc');
     const expiryEle = createElement('expiry');
 
-    // STEP 5: Mount split card elements
+    // STEP #5: Mount split card elements
     cardNumEle.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
     cvcEle.mount('cvc'); // Same as above
     expiryEle.mount('expiry'); // Same as above
@@ -89,7 +89,7 @@ const elementsReady = {
   cvc: false,
 };
 
-// STEP 7: Add an event handler to ensure the element is mounted
+// STEP #7: Add an event handler to ensure the element is mounted
 const onReady = (event) => {
   const { type } = event.detail;
   if (elementsReady.hasOwnProperty(type)) {
@@ -109,7 +109,7 @@ const elementsCompleted = {
   cvc: false,
 };
 
-// STEP 8: Add an event listener to listen to the changes in each of the input fields
+// STEP #8: Add an event listener to listen to the changes in each of the input fields
 const onChange = (event) => {
   const { type, complete } = event.detail;
   if (elementsCompleted.hasOwnProperty(type)) {
@@ -121,7 +121,7 @@ const onChange = (event) => {
   document.getElementById('confirm').disabled = !allElementsCompleted;
 };
 
-// STEP 6a: Add a button handler to trigger the payment request
+// STEP #6a: Add a button handler to trigger the payment request
 const triggerConfirm = async () => {
   const cardNumElement = getElement('cardNumber');
   confirmPaymentIntent({
@@ -135,14 +135,14 @@ const triggerConfirm = async () => {
       },
     },
   })
-    // STEP 6b: Listen to the request response
+    // STEP #6b: Listen to the request response
     .then((response) => {
       /**
        * ... Handle event on success
        */
       window.alert(`Confirm success with ${JSON.stringify(response)}`);
     })
-    // STEP 6c: Listen to errors
+    // STEP #6c: Listen to errors
     .catch((response) => {
       /**
        * ... Handle event on error

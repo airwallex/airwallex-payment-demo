@@ -73,14 +73,14 @@ The **element should only be mounted once** in a single payment flow.
 This handler is called when a customer is ready to make a payment according to the details documented in the Payment Intent, thereby confirming the Payment Intent.
 
 ```js
-// Step 6a: Add a button handler
+// STEP #6a: Add a button handler
 document.getElementById('submit').addEventListener('click', () => {
   Airwallex.confirmPaymentIntent({
     element: card, // Provide Card element
     id: 'replace-with-your-intent-id', // Payment Intent ID
     client_secret: 'replace-with-your-client-secret', // Client Secret
   }).then((response) => {
-    // Step 6b: Listen to the request response
+    // STEP #6b: Listen to the request response
     /* Handle response */
     window.alert(JSON.stringify(response));
   });
@@ -123,7 +123,7 @@ Check out [airwallex-payment-demo](/) for integration examples with different we
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- Step #1: Import airwallex-payment-elements bundle -->
+    <!-- STEP #1: Import airwallex-payment-elements bundle -->
     <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
   </head>
 
@@ -131,26 +131,26 @@ Check out [airwallex-payment-demo](/) for integration examples with different we
     <h1>Card integration</h1>
     <label>
       Card Information
-      <!-- Step #3a: Add an empty container for the card element to be injected into -->
+      <!-- STEP #3a: Add an empty container for the card element to be injected into -->
       <div id="card"></div>
     </label>
     <br />
-    <!-- Step #3b: Add a submit button to trigger the payment request -->
+    <!-- STEP #3b: Add a submit button to trigger the payment request -->
     <button id="submit">Submit</button>
 
     <script>
-      // Step #2: Initialize the Airwallex global context for event communication
+      // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
-      // Step #4: Create 'card' element
+      // STEP #4: Create 'card' element
       const card = Airwallex.createElement('card');
 
-      // Step #5: Mount card element
+      // STEP #5: Mount card element
       card.mount('card');
 
-      // Step #6a: Add a button handler to trigger the payment request
+      // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
         Airwallex.confirmPaymentIntent({
           element: card,
@@ -158,18 +158,18 @@ Check out [airwallex-payment-demo](/) for integration examples with different we
           client_secret: 'replace-with-your-client-secret',
         })
           .then((response) => {
-            // Step #6b: Listen to the request response
+            // STEP #6b: Listen to the request response
             /* handle confirm response*/
             window.alert(JSON.stringify(response));
           })
           .catch((response) => {
-            // Step #6c: Listen to the error response
+            // STEP #6c: Listen to the error response
             /* handle error response*/
             console.log('There was an error', response);
           });
       });
 
-      // Step #7: Add an event listener to ensure the element is mounted
+      // STEP #7: Add an event listener to ensure the element is mounted
       window.addEventListener('onReady', (event) => {
         /*
         ... Handle event

@@ -16,7 +16,7 @@
       Loading...
     </p>
     <!-- 
-      Step #3: Add an empty container for the dropIn element to be injected into 
+      STEP #3: Add an empty container for the dropIn element to be injected into 
       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
     -->
     <div id="dropIn" :style="{ display: 'none' }" />
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-// STEP 1: Import airwallex-payment-elements package
+// STEP #1: Import airwallex-payment-elements package
 import { createElement, loadAirwallex } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
@@ -33,7 +33,7 @@ const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
 const init = () => {
-  // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+  // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
   loadAirwallex({
     env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
     origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -47,7 +47,7 @@ const init = () => {
     ],
     // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
   }).then(() => {
-    // STEP 4: Create the drop-in element
+    // STEP #4: Create the drop-in element
     const element = createElement('dropIn', {
       intent: {
         // Required, must provide intent details to prepare DropIn element for checkout
@@ -55,7 +55,7 @@ const init = () => {
         client_secret,
       },
     });
-    // STEP 5: Mount the drop-in element to the empty container created previously
+    // STEP #5: Mount the drop-in element to the empty container created previously
     element.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 3
   });
 };

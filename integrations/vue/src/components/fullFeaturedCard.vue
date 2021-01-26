@@ -16,7 +16,7 @@
       Loading...
     </p>
     <!-- 
-      Step #3: Add an empty container for the fullFeaturedCard element to be injected into 
+      STEP #3: Add an empty container for the fullFeaturedCard element to be injected into 
       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
     -->
     <div id="fullFeaturedCard" :style="{ display: 'none' }" />

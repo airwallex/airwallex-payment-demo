@@ -16,7 +16,7 @@
       Loading...
     </p>
     <!-- 
-      Step #3: Add an empty container for the card element to be injected into 
+      STEP #3: Add an empty container for the card element to be injected into 
       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
     -->
     <div id="field-container" :style="{ display: 'none' }">
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-// STEP 1: Import airwallex-payment-elements package
+// STEP #1: Import airwallex-payment-elements package
 import { createElement, loadAirwallex, getElement, confirmPaymentIntent } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
@@ -38,7 +38,7 @@ const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
 const init = () => {
-  // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+  // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
   loadAirwallex({
     env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
     origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -52,14 +52,14 @@ const init = () => {
     ],
     // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
   }).then(() => {
-    // STEP 4: Create the card element
+    // STEP #4: Create the card element
     const card = createElement('card');
-    // STEP 5: Mount the card element to the empty container created previously
+    // STEP #5: Mount the card element to the empty container created previously
     card.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
   });
 };
 
-// STEP 7: Add an event listener to handle events when the element is mounted
+// STEP #7: Add an event listener to handle events when the element is mounted
 const onReady = (event) => {
   /**
    * ... Handle event on element mount
@@ -69,7 +69,7 @@ const onReady = (event) => {
   console.log(`Element ready, ${JSON.stringify(event.detail)}`);
 };
 
-// STEP 8: Add an event listener to handle events when the payment procedure has failed
+// STEP #8: Add an event listener to handle events when the payment procedure has failed
 const onError = (event) => {
   /**
    * ... Handle event on error
@@ -77,7 +77,7 @@ const onError = (event) => {
   console.log(`Confirm error with ${JSON.stringify(event.detail)}`);
 };
 
-// STEP 9: Add an event listener to listen to the changes in the input element
+// STEP #9: Add an event listener to listen to the changes in the input element
 const onChange = (event) => {
   const { complete } = event.detail;
   document.getElementById('submit').disabled = !complete; // Example: disable the button when the element is incomplete

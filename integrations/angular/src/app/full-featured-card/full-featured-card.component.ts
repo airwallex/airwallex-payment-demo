@@ -47,7 +47,7 @@ export class FullFeaturedCardComponent implements OnInit {
       ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
     }).then(() => {
-      // STEP 4: Create the full featured card element
+      // STEP #4: Create the full featured card element
       const fullFeaturedCard = createElement('fullFeaturedCard', {
         intent: {
           // Required, must provide intent details to prepare fullFeaturedCard element
@@ -55,7 +55,7 @@ export class FullFeaturedCardComponent implements OnInit {
           client_secret,
         },
       });
-      // STEP 5: Mount the element to the empty container created previously
+      // STEP #5: Mount the element to the empty container created previously
       fullFeaturedCard?.mount('fullFeaturedCard');
     });
 

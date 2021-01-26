@@ -84,8 +84,8 @@ const FullFeaturedCard = () => {
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
+  // Example: Custom styling for the wechat container, can be placed in css
   const containerStyle = {
-    // Custom styling for the wechat container, can be placed in css
     width: '540px',
     margin: '48px auto',
   };

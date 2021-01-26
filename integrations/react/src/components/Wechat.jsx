@@ -10,7 +10,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-// STEP 1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import airwallex-payment-elements package
 import { loadAirwallex, createElement } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
@@ -22,12 +22,12 @@ const Wechat = () => {
   const [elementShow, setElementShow] = useState(false); // Example: set loading state for element
 
   useEffect(() => {
-    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
     }).then(() => {
-      // STEP 4: Create the wechat card element
+      // STEP #4: Create the wechat card element
       const wechat = createElement('wechat', {
         intent: {
           // Required, must provide intent details to prepare wechat element for checkout
@@ -35,11 +35,11 @@ const Wechat = () => {
           client_secret,
         },
       });
-      // STEP 5: Mount the element to the empty container created previously
+      // STEP #5: Mount the element to the empty container created previously
       wechat.mount('wechat'); // This 'wechat' id MUST MATCH the id on your empty container created in Step 3
     });
 
-    // STEP 6: Add an event listener to handle events when the element is mounted
+    // STEP #6: Add an event listener to handle events when the element is mounted
     const onReady = (event) => {
       /**
        * ... Handle event on element mount
@@ -48,7 +48,7 @@ const Wechat = () => {
       console.log(`Element ready, ${JSON.stringify(event.detail)}`);
     };
 
-    // STEP 7: Add an event listener to handle events when the payment is successful
+    // STEP #7: Add an event listener to handle events when the payment is successful
     const onSuccess = (event) => {
       /**
        * ... Handle event on success
@@ -56,7 +56,7 @@ const Wechat = () => {
       console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
     };
 
-    // STEP 8: Add an event listener to handle events when the payment procedure has failed
+    // STEP #8: Add an event listener to handle events when the payment procedure has failed
     const onError = (event) => {
       /**
        * ... Handle event on error
@@ -74,8 +74,8 @@ const Wechat = () => {
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
+  // Example: Custom styling for the wechat container, can be placed in css
   const containerStyle = {
-    // Custom styling for the wechat container, can be placed in css
     width: '540px',
     margin: '48px auto',
   };
@@ -84,7 +84,7 @@ const Wechat = () => {
     <div>
       <h2>Wechat element integration</h2>
       {/**
-       * STEP 3: Add an empty container for the wechat element to be placed into
+       * STEP #3: Add an empty container for the wechat element to be placed into
        * - Ensure this is the only element in your document with this id,
        *   otherwise the element may fail to mount.
        */}

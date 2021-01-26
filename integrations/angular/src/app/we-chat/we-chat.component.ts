@@ -10,7 +10,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-// STEP 1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import airwallex-payment-elements package
 import {
   createElement,
   loadAirwallex,
@@ -37,12 +37,12 @@ export class WeChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
     }).then(() => {
-      // STEP 4, 5: Create and mount the wechat element
+      // STEP #4, 5: Create and mount the wechat element
       createElement('wechat' as ElementType, {
         intent: {
           // Required, must provide intent details to prepare wechat element for checkout
@@ -58,7 +58,7 @@ export class WeChatComponent implements OnInit {
     window.addEventListener('onError', this.onError);
   }
 
-  // STEP 6: Add an event listener to handle events when the element is mounted
+  // STEP #6: Add an event listener to handle events when the element is mounted
   onReady = (event: any): void => {
     /**
      * ... Handle event on element mount
@@ -67,7 +67,7 @@ export class WeChatComponent implements OnInit {
     console.log(`Element ready, ${JSON.stringify(event.detail)}`);
   };
 
-  // STEP 7: Add an event listener to handle events when the payment is successful
+  // STEP #7: Add an event listener to handle events when the payment is successful
   onSuccess = (event: any): void => {
     /**
      * ... Handle event on success
@@ -75,7 +75,7 @@ export class WeChatComponent implements OnInit {
     window.alert(`Confirm success with ${JSON.stringify(event.detail)}`);
   };
 
-  // STEP 8: Add an event listener to handle events when the payment procedure has failed
+  // STEP #8: Add an event listener to handle events when the payment procedure has failed
   onError = (event: any): void => {
     /**
      * ... Handle event on error

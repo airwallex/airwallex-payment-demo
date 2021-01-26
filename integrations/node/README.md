@@ -41,4 +41,4 @@ Find more details about the Airwallex API [here](https://www.airwallex.com/docs/
 
 ## Author
 
-Shirley Chen
+Shirly Chen

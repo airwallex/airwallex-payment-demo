@@ -78,21 +78,21 @@ Check out [airwallex-payment-demo](/) for integration examples with different we
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- Step #1: Import airwallex-payment-elements bundle -->
+    <!-- STEP #1: Import airwallex-payment-elements bundle -->
     <script src="https://checkout.airwallex.com/assets/bundle.0.0.xx.min.js"></script>
   </head>
   <body>
     <h1>Hosted payment page (HPP) integration</h1>
-    <!-- Step #3: Add a checkout button -->
+    <!-- STEP #3: Add a checkout button -->
     <button id="hpp">Redirect to HPP</button>
     <script>
-      // Step #2: Initialize the Airwallex package with the appropriate environment
+      // STEP #2: Initialize the Airwallex package with the appropriate environment
       Airwallex.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       document.getElementById('hpp').addEventListener('click', () => {
-        // Step #4: Add a button handler to trigger the redirect to HPP
+        // STEP #4: Add a button handler to trigger the redirect to HPP
         Airwallex.redirectToCheckout({
           env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
           id: 'replace-with-your-intent-id',

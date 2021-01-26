@@ -1,3 +1,10 @@
+/**
+ * app.vue
+ * Airwallex Payment Demo - Vue.  Created by Jessica Zhou.
+ *
+ * This file defines all the endpoints for the demos.
+ */
+
 import Vue from 'vue';
 import Router from 'vue-router';
 import Hpp from '@/components/hpp';

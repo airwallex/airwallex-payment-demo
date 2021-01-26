@@ -9,15 +9,15 @@
   Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/hpp.md
  -->
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head lang="en">
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
     <!-- 
-      Step #1: Import airwallex-payment-elements bundle 
+      STEP #1: Import airwallex-payment-elements bundle 
                - You MUST replace the bundle version to the latest NPM version
                  in order to import the package properly!
     -->
@@ -28,16 +28,16 @@
     <p>
       The following button redirects the customer to an Airwallex payment page.
     </p>
-    <!-- Step #3: Add a checkout button -->
+    <!-- STEP #3: Add a checkout button -->
     <button id="hpp">Pay Now</button>
     <script>
-      // Step #2: Initialize the Airwallex package with the appropriate environment
+      // STEP #2: Initialize the Airwallex package with the appropriate environment
       Airwallex.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       document.getElementById('hpp').addEventListener('click', () => {
-        // Step #4: Add a button handler to trigger the redirect to HPP
+        // STEP #4: Add a button handler to trigger the redirect to HPP
         Airwallex.redirectToCheckout({
           env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
           id: 'replace-with-your-intent-id',

@@ -17,12 +17,12 @@ const ELEMENT_TYPE: ElementType = 'redirect';
 
 const Index: React.FC = () => {
   useEffect(() => {
-    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
     }).then(() => {
-      // STEP 3: Create and mount the redirect element
+      // STEP #3: Create and mount the redirect element
       createElement(ELEMENT_TYPE, {
         intent: {
           id: intent_id,
@@ -48,7 +48,7 @@ const Index: React.FC = () => {
   return (
     <div>
       <h2>Option #7: Redirect integration</h2>
-      {/* STEP 1: Add an empty container for the redirect element to be placed into */}
+      {/* STEP #1: Add an empty container for the redirect element to be placed into */}
       <div className="field-container" id={ELEMENT_TYPE}></div>
     </div>
   );

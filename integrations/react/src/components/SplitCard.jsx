@@ -10,7 +10,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-// STEP 1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import airwallex-payment-elements package
 import {
   createElement,
   loadAirwallex,
@@ -36,7 +36,7 @@ const Index = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    // STEP 2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -51,18 +51,18 @@ const Index = () => {
       ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
     }).then(() => {
-      // STEP 4: Create and mount the individual card elements
+      // STEP #4: Create and mount the individual card elements
       const cardNumEle = createElement('cardNumber');
       const cvcEle = createElement('cvc');
       const expiryEle = createElement('expiry');
 
-      // STEP 5: Mount split card elements
+      // STEP #5: Mount split card elements
       cardNumEle.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
       cvcEle.mount('cvc'); // Same as above
       expiryEle.mount('expiry'); // Same as above
     });
 
-    // STEP 7: Add an event handler to ensure the element is mounted
+    // STEP #7: Add an event handler to ensure the element is mounted
     const onReady = (event) => {
       const { type } = event.detail;
       if (type === 'cardNumber') {
@@ -76,7 +76,7 @@ const Index = () => {
       }
     };
 
-    // STEP 8: Add an event listener to listen to the changes in each of the input fields
+    // STEP #8: Add an event listener to listen to the changes in each of the input fields
     const onChange = (event) => {
       const { type, complete } = event.detail;
       if (type === 'cardNumber') {
@@ -99,7 +99,7 @@ const Index = () => {
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
-  // STEP 6a: Add a button handler to trigger the payment request
+  // STEP #6a: Add a button handler to trigger the payment request
   const handleConfirm = async () => {
     setIsSubmitting(true);
     const cardNumElement = getElement('cardNumber');
@@ -114,7 +114,7 @@ const Index = () => {
         },
       },
     })
-      // STEP 6b: Listen to the request response
+      // STEP #6b: Listen to the request response
       .then((response) => {
         /**
          * ... Handle event on success
@@ -122,7 +122,7 @@ const Index = () => {
         setIsSubmitting(false);
         window.alert(`Confirm success with ${JSON.stringify(response)}`);
       })
-      // STEP 6c: Listen to errors
+      // STEP #6c: Listen to errors
       .catch((response) => {
         /**
          * ... Handle event on error
@@ -150,7 +150,7 @@ const Index = () => {
       <h2>Split Card element integration</h2>
       {/* Styling example above: only displays block when all elements are ready */}
       <div style={{ display: allElementsReady ? 'block' : 'none' }}>
-        {/* STEP 3a: Add empty containers for the card elements to be placed into */}
+        {/* STEP #3a: Add empty containers for the card elements to be placed into */}
         <div className="field-container">
           <div className="field-label">Card number</div>
           <div
@@ -172,7 +172,7 @@ const Index = () => {
             style={inputStyle} // Example: input styling can be moved to css
           />
         </div>
-        {/* STEP 3b: Add a submit button to trigger the payment request */}
+        {/* STEP #3b: Add a submit button to trigger the payment request */}
         <button
           onClick={handleConfirm}
           disabled={!allElementsComplete || isSubmitting} // Prevents invalid submissions

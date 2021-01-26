@@ -10,7 +10,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-// STEP 1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import airwallex-payment-elements package
 import { redirectToCheckout, loadAirwallex } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
@@ -27,14 +27,14 @@ export class HppComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // STEP 3: Add a button handler to trigger the redirect to HPP
+  // STEP #3: Add a button handler to trigger the redirect to HPP
   redirectHpp = async () => {
     try {
-      // STEP 3a: Initialize Airwallex on click with appropriate production environment and other configurations
+      // STEP #3a: Initialize Airwallex on click with appropriate production environment and other configurations
       await loadAirwallex({
         env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       });
-      // STEP 3b: Redirect the customer to Airwallex checkout
+      // STEP #3b: Redirect the customer to Airwallex checkout
       await redirectToCheckout({
         env: 'demo',
         id: intent_id, // Required, must provide intent details
@@ -56,7 +56,7 @@ export class HppComponent implements OnInit {
         // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
       });
     } catch (error) {
-      // STEP 4: Catch error events
+      // STEP #4: Catch error events
       /**
        * ... Handle event on error
        */

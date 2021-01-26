@@ -10,7 +10,7 @@
  */
 
 import React from 'react';
-// STEP 1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import airwallex-payment-elements package
 import { redirectToCheckout, loadAirwallex } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
@@ -19,14 +19,14 @@ const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
 const Index: React.FC = () => {
-  // STEP 3: Add a button handler to trigger the redirect to HPP
+  // STEP #3: Add a button handler to trigger the redirect to HPP
   const redirectHpp = async (): Promise<void> => {
     try {
-      // STEP 3a: Initialize Airwallex on click with appropriate production environment and other configurations
+      // STEP #3a: Initialize Airwallex on click with appropriate production environment and other configurations
       await loadAirwallex({
         env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       });
-      // STEP 3b: Redirect the customer to Airwallex checkout
+      // STEP #3b: Redirect the customer to Airwallex checkout
       await redirectToCheckout({
         env: 'demo',
         id: intent_id, // Required, must provide intent details
@@ -48,7 +48,7 @@ const Index: React.FC = () => {
         // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
       });
     } catch (error) {
-      // STEP 4: Catch error events
+      // STEP #4: Catch error events
       /**
        * ... Handle event on error
        */
@@ -61,7 +61,7 @@ const Index: React.FC = () => {
   return (
     <div>
       <h2>Hosted payment page (HPP) integration</h2>
-      {/* STEP 2: Add a checkout button */}
+      {/* STEP #2: Add a checkout button */}
       <button onClick={redirectHpp}>Redirect to HPP</button>
     </div>
   );
