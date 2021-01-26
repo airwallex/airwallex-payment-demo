@@ -20,6 +20,8 @@ const client_secret = 'replace-with-your-client-secret';
 
 const DropIn = () => {
   const [elementShow, setElementShow] = useState(false); // Example, set element show state
+  const [errorMessage, setErrorMessage] = useState(false); // Example: set error state
+
   useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
@@ -70,7 +72,9 @@ const DropIn = () => {
       /**
        * ... Handle event on error
        */
-      console.log('There was an error', event.detail.error);
+      const { error } = event.detail;
+      setErrorMessage(error.message);
+      console.error('There was an error', error);
     };
 
     window.addEventListener('onReady', onReady);
@@ -92,8 +96,10 @@ const DropIn = () => {
   return (
     <div>
       <h2>Drop-In integration</h2>
-      {/* Styling example below: show loading state */}
-      <p style={{ display: !elementShow ? 'block' : 'none' }}>Loading...</p>
+      {/* Example below: show loading state */}
+      {!elementShow && <p>Loading...</p>}
+      {/* Example below: display response message block */}
+      {errorMessage.length > 0 && <p id="error">{errorMessage}</p>}
       {/**
        * STEP #3a: Add an empty container for the dropin element to be placed into
        * - Ensure this is the only element in your document with this id,

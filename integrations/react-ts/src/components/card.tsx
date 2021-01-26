@@ -26,6 +26,7 @@ const client_secret = 'replace-with-your-client-secret';
 const Index: React.FC = () => {
   const [elementShow, setElementShow] = useState(false); // Example: show element state
   const [isSubmitting, setIsSubmitting] = useState(false); // Example: show submission processing state
+  const [errorMessage, setErrorMessage] = useState(''); // Example: set error state
 
   useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
@@ -61,11 +62,10 @@ const Index: React.FC = () => {
       /**
        * ... Handle events on error
        */
-      window.alert(
-        `There was an error confirming payment intent: ${JSON.stringify(
-          event.detail,
-        )}`,
-      );
+      const { error } = event.detail;
+      setIsSubmitting(false); // Example: set loading state
+      setErrorMessage(error.message ?? JSON.stringify(error)); // Example: set error message
+      console.error('There is an error', error);
     };
 
     window.addEventListener('onReady', onReady as EventListener);
@@ -78,7 +78,8 @@ const Index: React.FC = () => {
 
   // STEP ##6a: Add a button handler to trigger the payment request
   const triggerConfirm = (): void => {
-    setIsSubmitting(true);
+    setIsSubmitting(true); // Example: set loading state
+    setErrorMessage(''); // Example: reset error message
     const card = getElement('card');
     if (card) {
       confirmPaymentIntent({
@@ -110,17 +111,14 @@ const Index: React.FC = () => {
            * ... Handle error response
            */
           setIsSubmitting(false); // Example: sets loading state
-          window.alert(
-            `There was an error confirming payment intent: ${JSON.stringify(
-              error,
-            )}`,
-          );
+          setErrorMessage(error.message ?? JSON.stringify(error)); // Example: set error message
+          console.error('There is an error', error);
         });
     }
   };
 
+  // Example: Custom styling for the inputs, can be placed in css
   const inputStyle = {
-    // Custom styling for the inputs, can be placed in css
     border: '1px solid',
     borderRadius: '5px',
     padding: '5px 10px',
@@ -131,8 +129,10 @@ const Index: React.FC = () => {
   return (
     <div>
       <h2>Card integration</h2>
-      {/* Example below: Custom styling to show loading style */}
-      <p style={{ display: elementShow ? 'none' : 'block' }}>Loading...</p>
+      {/* Example below: show loading state */}
+      {!elementShow && <p>Loading...</p>}
+      {/* Example below: display response message block */}
+      {errorMessage.length > 0 && <p id="error">{errorMessage}</p>}
       <div
         className="field-container"
         style={{ display: elementShow ? 'block' : 'none' }} // Example: Custom styling to only show card when it is mounted

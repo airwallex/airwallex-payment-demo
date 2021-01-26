@@ -18,6 +18,7 @@ h1 {
   border-bottom: 1px solid lightgrey;
   margin: 0;
   padding: 25px 0;
+  color: #2c3e50 !important;
 }
 
 div.container {
@@ -41,6 +42,7 @@ nav {
   justify-content: flex-start;
   border-right: 1px solid lightgrey;
   height: 100%;
+  min-width: 175px;
 }
 
 button {
@@ -71,6 +73,30 @@ nav button {
 div.field-label {
   text-align: left;
   border: 0;
+}
+
+p#error {
+  background: #ffebee;
+  border-radius: 5px;
+  padding: 5px 10px;
+  max-width: 400px;
+  margin: auto;
+}
+
+div.instruction-container {
+  padding: 10px 50px;
+  text-align: left;
+}
+
+span#code {
+  font-family: monospace;
+  background-color: lightgrey;
+  font-size: 16px;
+  margin: 0px 5px;
+}
+
+p#bullet {
+  font-weight: bold;
 }
 
 body {

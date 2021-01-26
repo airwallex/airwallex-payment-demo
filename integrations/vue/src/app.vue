@@ -7,7 +7,7 @@
 
 <template>
   <div id="app">
-    <h1>Airwallex Payment Demo - Vue.js</h1>
+    <a href="/" :style="{ textDecoration: 'none' }"><h1>Airwallex Payment Demo - Vue.js</h1></a>
     <div id="container">
       <div id="nav">
         <h2>Payment Methods</h2>
@@ -42,6 +42,7 @@ export default {
 </script>
 
 <style>
+/* These styles are NOT REQUIRED for the integration */
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -49,6 +50,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+h1 {
+  padding-bottom: 25px;
+  border-bottom: 1px solid lightgrey;
+  color: #2c3e50 !important;
 }
 #container {
   display: flex;
@@ -59,6 +65,7 @@ export default {
   flex-direction: column;
   width: 20vw;
   align-items: center;
+  border-right: 1px solid lightgrey;
 }
 #router {
   width: 80vw;
@@ -78,12 +85,17 @@ button {
   min-height: 40px;
   max-width: 150px;
 }
-
 button:disabled {
   opacity: 0.75;
 }
-
 body {
   margin-bottom: 100px;
+}
+p#error {
+  background: #ffebee;
+  border-radius: 5px;
+  padding: 5px 10px;
+  max-width: 400px;
+  margin: auto;
 }
 </style>

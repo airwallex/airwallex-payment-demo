@@ -11,8 +11,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const App: React.FC = () => (
   <div className="App">
-    <h1>Airwallex Payment Demo - React Typescript</h1>
     <Router>
+      <Link to="/" style={{ textDecoration: 'none' }}>
+        <h1>Airwallex Payment Demo - React Typescript</h1>
+      </Link>
       <div className="container">
         <nav>
           <h2>All Demos</h2>
@@ -69,7 +71,7 @@ const App: React.FC = () => (
               <Route
                 exact
                 path="/"
-                component={lazy(() => import('./components/card'))}
+                component={lazy(() => import('./components/instructions'))}
               />
             </Switch>
           </Suspense>

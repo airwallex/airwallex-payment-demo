@@ -12,8 +12,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <h1>Airwallex Payment Demo - React</h1>
       <Router className="router-container">
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <h1>Airwallex Payment Demo - React</h1>
+        </Link>
         <div className="container">
           <nav>
             <h2>All Demos</h2>
@@ -68,7 +70,7 @@ function App() {
                 <Route
                   exact
                   path="/"
-                  component={lazy(() => import('./components/Card'))}
+                  component={lazy(() => import('./components/Instructions'))}
                 />
               </Switch>
             </Suspense>
