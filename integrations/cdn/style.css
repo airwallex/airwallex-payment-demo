@@ -1,0 +1,76 @@
+/**
+ * style.css
+ * Airwallex Payment Demo - Static HTML.  Created by Josie Ku.
+ *
+ * This file provides styling to the demo site.  This is not required for the integration.
+ */
+
+body {
+  font-family: 'AxLLCircular';
+  padding: 15px 25px;
+}
+
+span#code {
+  font-family: monospace;
+  background-color: lightgrey;
+  font-size: 16px;
+}
+
+div#links {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin-top: 15px;
+  font-family: 'AxLLCircular';
+  padding: 5px 10px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #612fff;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+button:disabled {
+  opacity: 0.75;
+}
+
+p#error {
+  background: #ffebee;
+  border-radius: 5px;
+  padding: 5px 10px;
+  max-width: 400px;
+  display: none;
+}
+p#success {
+  background: lightgreen;
+  border-radius: 5px;
+  padding: 5px 10px;
+  max-width: 400px;
+  display: none;
+}
+
+p#author {
+  position: absolute;
+  bottom: 0;
+}
+
+.field-container {
+  margin: 15px 0px;
+}
+
+@font-face {
+  src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Bold.woff');
+  font-family: 'AxLLCircular';
+  weight: 'bold';
+}
+@font-face {
+  src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2');
+  font-family: 'AxLLCircular';
+  weight: '400';
+}

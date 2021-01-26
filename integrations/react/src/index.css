@@ -1,0 +1,25 @@
+/**
+ * index.css
+ * Airwallex Payment Demo - React.  Created by Josie Ku.
+ *
+ * This file provides styling to the demo site.  This is not required for the integration.
+ */
+
+body {
+  margin: 0;
+  font-family: 'AxLLCircular';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Bold.woff');
+  font-family: 'AxLLCircular';
+  weight: 'bold';
+}
+
+@font-face {
+  src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2');
+  font-family: 'AxLLCircular';
+  weight: '400';
+}
