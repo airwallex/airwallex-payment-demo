@@ -15,6 +15,8 @@
     <p id="loading">
       Loading...
     </p>
+    <!-- Example: response message container -->
+    <p id="error" style="display:none" />
     <div id="card-container" :style="{ display: 'none' }">
       <!-- 
         STEP #3a: Add empty containers for the split elements to be injected into 
@@ -121,6 +123,17 @@ const onChange = (event) => {
   document.getElementById('confirm').disabled = !allElementsCompleted;
 };
 
+// STEP #9: Add an event listener to handle events when there is an error
+const onError = (event) => {
+  /*
+    ... Handle event on error
+  */
+  const { error } = event.detail;
+  document.getElementById('error').style.display = 'block'; // Example: show error block
+  document.getElementById('error').innerHTML = error.message; // Example: set error message
+  console.log('There was an error', event.detail.error);
+};
+
 // STEP #6a: Add a button handler to trigger the payment request
 const triggerConfirm = async () => {
   const cardNumElement = getElement('cardNumber');
@@ -143,11 +156,13 @@ const triggerConfirm = async () => {
       window.alert(`Confirm success with ${JSON.stringify(response)}`);
     })
     // STEP #6c: Listen to errors
-    .catch((response) => {
+    .catch((error) => {
       /**
        * ... Handle event on error
        */
-      window.alert(`Confirm fail with ${JSON.stringify(response)}`);
+      document.getElementById('error').style.display = 'block'; // Example: show error block
+      document.getElementById('error').innerHTML = error.message; // Example: set error message
+      console.error('There was an error', error);
     });
 };
 
@@ -162,11 +177,13 @@ export default {
     init();
     window.addEventListener('onReady', onReady);
     window.addEventListener('onChange', onChange);
+    window.addEventListener('onError', onError);
   },
   beforeDestroy() {
     // Be sure to clean up event listeners when component unmounts
     window.removeEventListener('onReady', onReady);
     window.removeEventListener('onChange', onChange);
+    window.removeEventListener('onError', onError);
   },
 };
 </script>

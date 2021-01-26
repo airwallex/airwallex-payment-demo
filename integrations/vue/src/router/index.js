@@ -13,6 +13,7 @@ import FullFeaturedCard from '@/components/fullFeaturedCard';
 import SplitCard from '@/components/splitCard';
 import Wechat from '@/components/wechat';
 import Card from '@/components/card';
+import Instructions from '@/components/instructions';
 
 Vue.use(Router);
 
@@ -44,9 +45,14 @@ export default new Router({
       component: Wechat,
     },
     {
-      path: '/*',
+      path: '/hpp',
       name: 'Hpp',
       component: Hpp,
+    },
+    {
+      path: '/*',
+      name: 'Instructions',
+      component: Instructions,
     },
   ],
 });

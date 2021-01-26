@@ -20,6 +20,7 @@ const client_secret = 'replace-with-your-client-secret';
 
 const Wechat = () => {
   const [elementShow, setElementShow] = useState(false); // Example: set loading state for element
+  const [errorMessage, setErrorMessage] = useState(false); // Example: set error state
 
   useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
@@ -61,7 +62,9 @@ const Wechat = () => {
       /**
        * ... Handle event on error
        */
-      console.log(`Confirm error with ${JSON.stringify(event.detail)}`);
+      const { error } = event.detail;
+      setErrorMessage(error.message);
+      console.error('There was an error', error);
     };
 
     window.addEventListener('onReady', onReady);
@@ -83,6 +86,10 @@ const Wechat = () => {
   return (
     <div>
       <h2>Wechat element integration</h2>
+      {/* Example below: show loading state */}
+      {!elementShow && <p>Loading...</p>}
+      {/* Example below: display response message block */}
+      {errorMessage.length > 0 && <p id="error">{errorMessage}</p>}
       {/**
        * STEP #3: Add an empty container for the wechat element to be placed into
        * - Ensure this is the only element in your document with this id,
@@ -95,9 +102,6 @@ const Wechat = () => {
           display: elementShow ? 'block' : 'none', // Example: only show element when mounted
         }}
       ></div>
-      {
-        !elementShow ? 'Loading...' : null // Example: show loading state when element is not ready
-      }
     </div>
   );
 };

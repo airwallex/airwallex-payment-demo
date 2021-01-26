@@ -34,6 +34,8 @@ const Index = () => {
   const [expiryComplete, setExpiryComplete] = useState(false);
   // Example: controls submission state
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // Example: set error state
+  const [errorMessage, setErrorMessage] = useState(false);
 
   useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
@@ -101,7 +103,8 @@ const Index = () => {
 
   // STEP #6a: Add a button handler to trigger the payment request
   const handleConfirm = async () => {
-    setIsSubmitting(true);
+    setIsSubmitting(true); // Example: set loading state
+    setErrorMessage(''); // Example: reset error message
     const cardNumElement = getElement('cardNumber');
     confirmPaymentIntent({
       element: cardNumElement, // Only need to submit CardNumber element
@@ -119,25 +122,28 @@ const Index = () => {
         /**
          * ... Handle event on success
          */
-        setIsSubmitting(false);
+        setIsSubmitting(false); // Example: reset loading state
         window.alert(`Confirm success with ${JSON.stringify(response)}`);
       })
       // STEP #6c: Listen to errors
-      .catch((response) => {
+      .catch((error) => {
         /**
          * ... Handle event on error
          */
-        setIsSubmitting(false);
-        window.alert(`Confirm fail with ${JSON.stringify(response)}`);
+        setIsSubmitting(false); // Example: reset loading state
+        setErrorMessage(error.message ?? JSON.stringify(error)); // Example: set error message
+        console.error('There was an error', error);
       });
   };
 
+  // Example: combine all element ready states
   const allElementsReady = cardNumberReady && cvcReady && expiryReady;
+  // Example: combine all element complete states
   const allElementsComplete =
     cardNumberComplete && cvcComplete && expiryComplete;
 
+  // Example: Custom styling for the inputs, can be placed in css
   const inputStyle = {
-    // Custom styling for the inputs, can be placed in css
     border: '1px solid',
     borderRadius: '5px',
     padding: '5px 10px',
@@ -148,6 +154,10 @@ const Index = () => {
   return (
     <div>
       <h2>Split Card element integration</h2>
+      {/* Example: set loading state before elements are ready */}
+      {!allElementsReady && <p>Loading...</p>}
+      {/* Example below: display response message block */}
+      {errorMessage.length > 0 && <p id="error">{errorMessage}</p>}
       {/* Styling example above: only displays block when all elements are ready */}
       <div style={{ display: allElementsReady ? 'block' : 'none' }}>
         {/* STEP #3a: Add empty containers for the card elements to be placed into */}
@@ -180,9 +190,6 @@ const Index = () => {
           {isSubmitting ? 'Loading' : 'Confirm'}
         </button>
       </div>
-      {
-        !allElementsReady ? 'Loading...' : null // Example: set loading state before elements are ready
-      }
     </div>
   );
 };

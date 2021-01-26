@@ -23,7 +23,8 @@ const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
 const Index: React.FC = () => {
-  const [elementShow, setElementShow] = useState(false); // Example, set element show state
+  const [elementShow, setElementShow] = useState(false); // Example: set element show state
+  const [errorMessage, setErrorMessage] = useState(''); // Example: set error state
 
   useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
@@ -75,7 +76,9 @@ const Index: React.FC = () => {
       /**
        * ... Handle events on error
        */
-      console.log(`Confirm error with ${JSON.stringify(event.detail)}`);
+      const { error } = event.detail;
+      setErrorMessage(error.message ?? JSON.stringify(error)); // Example: set error message
+      console.error('There is an error', error);
     };
 
     window.addEventListener('onReady', onReady as EventListener);
@@ -97,8 +100,10 @@ const Index: React.FC = () => {
   return (
     <div>
       <h2>DropIn integration</h2>
-      {/* Styling example below: show loading state */}
-      <p style={{ display: !elementShow ? 'block' : 'none' }}>Loading...</p>
+      {/* Example below: show loading state */}
+      {!elementShow && <p>Loading...</p>}
+      {/* Example below: display response message block */}
+      {errorMessage.length > 0 && <p id="error">{errorMessage}</p>}
       {/**
        * STEP #3a: Add an empty container for the dropin element to be placed into
        * - Ensure this is the only element in your document with this id,

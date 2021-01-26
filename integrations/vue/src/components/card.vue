@@ -11,10 +11,12 @@
 <template>
   <div>
     <h2>Card Element Integration</h2>
-    <!-- Styling example below: show loading state when element is not ready -->
+    <!-- Example below: show loading state when element is not ready -->
     <p id="loading">
       Loading...
     </p>
+    <!-- Example: response message container -->
+    <p id="error" style="display:none" />
     <!-- 
       STEP #3: Add an empty container for the card element to be injected into 
       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
@@ -74,7 +76,10 @@ const onError = (event) => {
   /**
    * ... Handle event on error
    */
-  console.log(`Confirm error with ${JSON.stringify(event.detail)}`);
+  const { error } = event.detail;
+  document.getElementById('error').style.display = 'block'; // Example: show error
+  document.getElementById('error').innerHTML = error.message; // Example: set error message
+  console.error('There was an error', error);
 };
 
 // STEP #9: Add an event listener to listen to the changes in the input element
@@ -108,9 +113,11 @@ const triggerConfirm = () => {
       /**
        * ... Handle error response
        */
-      document.getElementById('submit').disabled = false; // Example: sets loading state
-      document.getElementById('submit').innerHTML = 'Confirm'; // Example: reset button text
-      window.alert(`There was an error confirming payment intent: ${JSON.stringify(error)}`);
+      document.getElementById('error').style.display = 'block'; // Example: show error message
+      document.getElementById('error').innerHTML = response.message; // Example: fill in error message
+      document.getElementById('submit').innerHTML = 'Confirm'; // Example: reset button state
+      document.getElementById('submit').disabled = false; // Example: reset button state
+      console.error(`There was an error, ${JSON.stringify(response)}`);
     });
 };
 

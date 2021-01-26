@@ -11,10 +11,12 @@
 <template>
   <div>
     <h2>Full Featured Card integration</h2>
-    <!-- Styling example below: show loading state when element is not ready -->
+    <!-- Example below: show loading state when element is not ready -->
     <p id="loading">
       Loading...
     </p>
+    <!-- Example: response message container -->
+    <p id="error" style="display:none" />
     <!-- 
       STEP #3: Add an empty container for the fullFeaturedCard element to be injected into 
       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
@@ -83,7 +85,10 @@ const onError = (event) => {
   /**
    * ... Handle event on error
    */
-  console.log(`Error with ${JSON.stringify(event.detail)}`);
+  const { error } = event.detail;
+  document.getElementById('error').style.display = 'block'; // Example: show error block
+  document.getElementById('error').innerHTML = error.message; // Example: set error message
+  console.error('There was an error', event.detail.error);
 };
 
 export default {

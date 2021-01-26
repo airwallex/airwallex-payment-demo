@@ -15,6 +15,8 @@
     <p id="loading">
       Loading...
     </p>
+    <!-- Example: response message container -->
+    <p id="error" style="display:none" />
     <!-- 
       STEP #3: Add an empty container for the dropIn element to be injected into 
       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
@@ -83,7 +85,10 @@ const onError = (event) => {
   /**
    * ... Handle event on error
    */
-  console.log('There was an error', event.detail.error);
+  const { error } = event.detail;
+  document.getElementById('error').style.display = 'block'; // Example: show error block
+  document.getElementById('error').innerHTML = error.message; // Example: set error message
+  console.error('There was an error', error);
 };
 
 export default {
