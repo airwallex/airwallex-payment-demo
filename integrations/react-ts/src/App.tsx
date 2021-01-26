@@ -1,74 +1,80 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Hpp from './components/hpp';
-import DropIn from './components/dropIn';
-import FullFeatureCard from './components/fullFeatureCard';
-import SplitCard from './components/splitCard';
-import Wechat from './components/wechat';
-import Card from './components/card';
-import Redirect from './components/redirect';
+/**
+ * App.tsx
+ * Airwallex Payment Demo - React Typescript.  Created by Olivia Wei and Josie Ku.
+ *
+ * This file defines all the endpoints for the demos in this app.
+ */
+
+import React, { lazy, Suspense } from 'react';
+import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const App: React.FC = () => (
   <div className="App">
-    <h1>Airwallex payment demo - React Typescript</h1>
+    <h1>Airwallex Payment Demo - React Typescript</h1>
     <Router>
-      <div className="loading-container">
-        <Switch>
-          <Route path="/hpp">
-            <Hpp />
-          </Route>
-          <Route path="/drop-in">
-            <DropIn />
-          </Route>
-          <Route path="/full-featured-card">
-            <FullFeatureCard />
-          </Route>
-          <Route path="/split-card">
-            <SplitCard />
-          </Route>
-          <Route path="/wechat">
-            <Wechat />
-          </Route>
-          <Route path="/card">
-            <Card />
-          </Route>
-          <Route path="/redirect">
-            <Redirect />
-          </Route>
-        </Switch>
+      <div className="container">
+        <nav>
+          <h2>All Demos</h2>
+          <Link to="/card">
+            <button>Card element</button>
+          </Link>
+          <Link to="/hpp">
+            <button>Hosted payment page (HPP)</button>
+          </Link>
+          <Link to="/drop-in">
+            <button>DropIn</button>
+          </Link>
+          <Link to="/full-featured-card">
+            <button>Full Featured Card</button>
+          </Link>
+          <Link to="/split-card">
+            <button>Split Card element</button>
+          </Link>
+          <Link to="/wechat">
+            <button>Wechat element</button>
+          </Link>
+        </nav>
+        <div className="payment-frame">
+          <Suspense fallback={<div />}>
+            <Switch>
+              <Route
+                path="/hpp"
+                component={lazy(() => import('./components/hpp'))}
+              />
+              <Route
+                path="/drop-in"
+                component={lazy(() => import('./components/dropIn'))}
+              />
+              <Route
+                path="/full-featured-card"
+                component={lazy(() => import('./components/fullFeatureCard'))}
+              />
+              <Route
+                path="/split-card"
+                component={lazy(() => import('./components/splitCard'))}
+              />
+              <Route
+                path="/wechat"
+                component={lazy(() => import('./components/wechat'))}
+              />
+              <Route
+                path="/card"
+                component={lazy(() => import('./components/card'))}
+              />
+              <Route
+                path="/redirect"
+                component={lazy(() => import('./components/redirect'))}
+              />
+              <Route
+                exact
+                path="/"
+                component={lazy(() => import('./components/card'))}
+              />
+            </Switch>
+          </Suspense>
+        </div>
       </div>
-      <h2 style={{ marginTop: 100 }}>All Demos</h2>
-      <nav>
-        <button onMouseDown={() => (window.location.href = '/hpp')}>
-          Hosted payment page (HPP)
-        </button>
-        <br />
-        <button onMouseDown={() => (window.location.href = '/drop-in')}>
-          DropIn
-        </button>
-        <br />
-        <button
-          onMouseDown={() => (window.location.href = '/full-featured-card')}
-        >
-          Full Featured Card
-        </button>
-        <br />
-        <button onMouseDown={() => (window.location.href = '/split-card')}>
-          Split Card element
-        </button>
-        <br />
-        <button onMouseDown={() => (window.location.href = '/wechat')}>
-          Wechat element
-        </button>
-        <br />
-        <button onMouseDown={() => (window.location.href = '/card')}>
-          Card input element
-        </button>
-        <br />
-        <button onMouseDown={() => (window.location.href = '/redirect')}>
-          Redirect element checkout (i.e Alipay)
-        </button>
-      </nav>
     </Router>
   </div>
 );

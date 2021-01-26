@@ -1,24 +1,64 @@
-<!doctype html>
+<!-- 
+  hpp.html
+  Airwallex Payment Demo - Static HTML.  Created by Charlie Lang and Josie Ku.
+
+  airwallex-payment-elements Hosted Payment Page integration in Static HTML
+  Comments with "Example" demonstrate how states can be integrated
+  with the element, they can be removed.
+
+  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/hpp.md
+ -->
+
+<!DOCTYPE html>
 <html>
-  <head lang='en'>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- Step #1: Load Checkout Universal Module Definition (UMD) bundle js-->
-    <script src="https://checkout.airwallex.com/assets/bundle.xx.xx.xx.min.js"></script>
+    <!-- 
+      STEP #1: Import airwallex-payment-elements bundle 
+               - You MUST replace the bundle version to the latest NPM version
+                 in order to import the package properly!
+    -->
+    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
   </head>
   <body>
     <h1>Hosted payment page (HPP) integration</h1>
-    <button id='hpp'>Redirect to HPP</button>
+    <p>
+      The following button redirects the customer to an Airwallex payment page.
+    </p>
+    <!-- STEP #3: Add a checkout button -->
+    <button id="hpp">Pay Now</button>
     <script>
+      // STEP #2: Initialize the Airwallex package with the appropriate environment
+      Airwallex.init({
+        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        origin: window.location.origin, // Setup your event target to receive the browser events message
+      });
       document.getElementById('hpp').addEventListener('click', () => {
-        // Step #2: Call the HPP function to checkout 
+        // STEP #4: Add a button handler to trigger the redirect to HPP
         Airwallex.redirectToCheckout({
           env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
           id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret'
+          client_secret: 'replace-with-your-client-secret',
+          theme: {
+            // Must provide theme to display the checkout page properly
+            fonts: [
+              // Customizes the font for the payment elements
+              {
+                src:
+                  'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+                family: 'AxLLCircular',
+                weight: 400,
+              },
+            ],
+          },
+          successUrl: 'https://www.google.com', // Must be HTTPS sites
+          failUrl: 'https://www.google.com', // Must be HTTPS sites
+          // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
         });
-      })
+      });
     </script>
   </body>
 </html>

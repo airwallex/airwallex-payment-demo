@@ -1,8 +1,22 @@
-# airwallex-payment-elements Documentation
+# Airwallex Payment Elements - Documentation
 
 See `node_modules/airwallex-payment-elements/types` for a more detailed overview of the props available for each function.
 
-Functions:
+<br>
+
+## Payment Integrations
+
+- [**Card**](/docs/card.md)
+- [**HPP (Hosted Payment Page)**](/docs/hpp.md)
+- [**Drop in**](/docs/dropin.md)
+- [**Full Featured Card**](/docs/fullfeaturedcard.md)
+- [**Split Card**](/docs/splitcard.md)
+- [**Wechat**](/docs/wechat.md)
+- **Redirect** (coming soon...)
+
+<br>
+
+## Functions
 
 Initialization
 
@@ -11,10 +25,10 @@ Initialization
 Interacting with Elements
 
 - [Element](#Element)
-- [createElement](#createElement)
-- [destroyElement](#destroyElement)
-- [getElement](#getElement)
-- [setElement](#setElement)
+- [createElement()](#createElement)
+- [getElement()](#getElement)
+- [destroyElement()](#destroyElement)
+- [setElement()](#setElement)
 
 Payment Processing
 
@@ -27,6 +41,12 @@ Querying the API
 - [createPaymentMethod](#createPaymentMethod)
 - [getPaymentIntent](#getPaymentIntent)
 - createPaymentContract
+
+Common Errors
+
+- [Errors](#common-errors)
+
+<br>
 
 ## Initialization
 
@@ -44,6 +64,8 @@ An equivalent step is:
 <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
 ```
 
+Running `loadAirwallex` and embedding the above script in your document head will initialize a global variable in your document called `window.Airwallex`. This variable consists of all the functions to process payments.
+
 | Option   | Default  | Description                                                                                    |
 | -------- | -------- | ---------------------------------------------------------------------------------------------- |
 | `env`    | `'prod'` | Indicate which airwallex integration env your merchant site would like to connect with         |
@@ -51,13 +73,15 @@ An equivalent step is:
 | `locale` | `'en`    | i18n localization config, 'en' or 'zh'                                                         |
 | `fonts`  | []       | Fonts options used to customize the payment elements                                           |
 
+<br>
+
 ## Interacting with Elements
 
 ### Element
 
-Functions and field components that can be used during checkout integration.
+Functions and field components that can be used during checkout integration. Elements are rendered as iframes.
 
-Can be called via `createElement()` or `getElement()`. Can be destroyed by `destroyElement()`
+Elements can be called via `createElement()` or `getElement()`. Can be destroyed by `destroyElement()`
 
 | Props        | Type                        | Description                                                               |
 | ------------ | --------------------------- | ------------------------------------------------------------------------- |
@@ -70,9 +94,28 @@ Can be called via `createElement()` or `getElement()`. Can be destroyed by `dest
 | `unmount()`  | () => void                  | Use this function to unmount the element, opposite to mount function      |
 | `update()`   | (options?) => void          | Use this function to update the element option after creating the element |
 
+<br>
+
+Elements can post events its parent container (your website) when a shopper interacts with the checkout element. Here are the events it can post:
+
+| Event Code                  | Purpose                                                                                                                                                                                  |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onReady                     | The event fires when a given element resource has loaded.                                                                                                                                |
+| onSubmit                    | The event is raised when confirm the intent. It fires after the click Pay button or calling confirmPaymentIntent function.                                                               |
+| onSuccess                   | The event fires when a intent is confirm with Airwallex                                                                                                                                  |
+| onError                     | Error events are fired at various targets for different kinds of errors with shopper interaction. See error codes [here](https://www.airwallex.com/docs/api?v=2019-09-09#/Errors).       |
+| onCancel                    | The event fires when shopper click cancel button when interact with the payment form.                                                                                                    |
+| onFocus                     | The event is raised when the shopper sets focus on an input by click or tab switch interaction.                                                                                          |
+| onBlur                      | The event is raised when an input in element loses focus.                                                                                                                                |
+| onChange                    | The events fire when the user commits a value change to a input. This may be done, for example, by clicking outside of the input or by using the Tab key to switch to a different input. |
+| onClick                     | The event is raised when the user clicks on an input element.                                                                                                                            |
+| onDynamicCurrencyConversion | The events fire when merchant enable Dynamic Currency Conversion (DCC) feature and shopper is confirm payment with an intent which match DCC scenario                                    |
+
+<br>
+
 ### createElement
 
-Creates a payment element for checkout. Returns an [Element](#Element).
+An element function. Creates a payment element for checkout. Returns an [Element](#Element).
 
 ```ts
 const element = Airwallex.createElement(type, options);
@@ -128,9 +171,11 @@ All the following options are optional with the exception of `'intent'`.
 |                      | `style`                 | InputStyle                  | Style for cardNumber element                                                                                                                                 |
 |                      | `authFormContainer`     | string                      | Container for authentication form                                                                                                                            |
 
+<br>
+
 ### getElement
 
-This function queries the created element by type. There can only be one type of element per page.
+An element function. This function queries the created element by type. There can only be one type of element per page.
 
 ```ts
 const element = Airwallex.getElement(type);
@@ -142,7 +187,7 @@ const element = Airwallex.getElement(type);
 
 ### destroyElement
 
-This function destroys the created element. The element can no longer be accessed after this call. Returns a boolean.
+An element function. This function destroys the created element. The element can no longer be accessed after this call. Returns a boolean.
 
 ```ts
 Airwallex.destroyElement(type);
@@ -152,7 +197,11 @@ Airwallex.destroyElement(type);
 | ------ | --------- | ------------------------------------------------------------------------------------------------------------------ | ----------- |
 | `type` | true      | 'cardNumber', 'expiry', 'cvc', 'paymentRequestButton', 'card', 'wechat', 'redirect', 'dropIn', 'fullFeaturedCard', |
 
+<br>
+
 ## Payment Processing
+
+<br>
 
 ### redirectToCheckout
 
@@ -176,6 +225,8 @@ Airwallex.redirectToCheckout(props);
 | `logoUrl`       | false     |          | The logo url of your website you want to show in the HPP head                                                                        |
 | `locale`        | false     |          | i18n localization config, 'en' or 'zh'                                                                                               |
 
+<br>
+
 ### confirmPaymentIntent
 
 The following function confirms payment intent with element and the rest of the payment method info. Only required for the card payment method.
@@ -189,8 +240,8 @@ const confirmResult = await Airwallex.confirmPaymentIntent(paymentMethod);
 PaymentMethod (without being attached to be an existing customer)
 
 | Props                    | Required? | Type                | Description                                                                                                                                                  |
-| ------------------------ | --------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
-| `element`                | true      | Element             | Element create by call createElement interface with 'cardNumber' element type                                                                                |     |
+| ------------------------ | --------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `element`                | true      | Element             | Element create by call createElement interface with 'cardNumber' element type                                                                                |
 | `client_secret`          | true      | string              | The client_secret when you create payment intent, contain in the response                                                                                    |
 | `id`                     | true      | string              | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
 | `paymentMethod`          | false     | PaymentMethodDetail | The payment method detail return by call createPaymentMethod                                                                                                 |
@@ -209,6 +260,8 @@ PaymentMethodWithContract (with an existing customer)
 | `id`            | true      | string  | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
 | `contract_id`   | true      | string  | The id of the contract which used to confirm intent                                                                                                          |
 
+<br>
+
 ### confirmPaymentIntentWithSavedCard
 
 The following function confirms a payment intent and the rest of the payment method details with a saved card. Only required for the cvc element.
@@ -221,6 +274,8 @@ const confirmResult = await Airwallex.confirmPaymentIntentWithSavedCard(
 );
 ```
 
+<br>
+
 ## Querying the API
 
 ### createPaymentMethod
@@ -231,6 +286,8 @@ This function is used to create a payment method for checkout, the created payme
 const paymentMethod = await createPaymentMethod(clientSecret, PaymentMethod); // only need element and customer_id for PaymentMethod
 ```
 
+<br>
+
 ### getPaymentIntent
 
 This function gets intent `id` and `client secret` from browser side to directly query Airwallex API. Returns a PaymentIntent if successful.
@@ -238,3 +295,26 @@ This function gets intent `id` and `client secret` from browser side to directly
 ```ts
 const intent = await Airwallex.getPaymentIntent(id, client_secret);
 ```
+
+## Common Errors
+
+1. `Airwallex is not defined`
+
+- Have you loaded Airwallex before using Airwallex functions?
+- If you're using CDN, have you changed the bundle version from `x.x.x` to the latest version?
+- eg. `https://checkout.airwallex.com/assets/bundle.x.x.x.min.js` is invalid
+
+2. `Access denied, authentication failed`
+
+- Have you replaced your intent id and client secret?
+
+```js
+// Enter your Payment Intent secret keys here
+const intent_id = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
+```
+
+3. `The resource with ID int_xxxxxxxxx cannot be found.`
+
+- Does the environment you initialized Airwallex in (eg. demo, staging, or prod) match the environment you retrieved your intent keys in?
+- If you ran `loadAirwallex` in demo environment, did you also create your intent in the demo environment?

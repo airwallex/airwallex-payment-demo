@@ -1,50 +1,128 @@
-<!doctype html>
+<!-- 
+  card.html
+  Airwallex Payment Demo - Static HTML.  Created by Shirly Chen and Josie Ku.
+
+  airwallex-payment-elements Card element integration in Static HTML
+  Comments with "Example" demonstrate how states can be integrated
+  with the element, they can be removed.
+
+  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/card.md
+ -->
+
+<!DOCTYPE html>
 <html>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Airwallex Checkout Playground</title>
+    <!-- 
+    STEP #1: Import airwallex-payment-elements bundle 
+              - You MUST replace the bundle version to the latest NPM version
+                in order to import the package properly!
+  -->
+    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+  </head>
 
-<head lang='en'>
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <title>Airwallex Checkout Playground</title>
-  <!-- Step #1: Load Checkout Universal Module Definition (UMD) bundle js-->
-  <script src="https://checkout.airwallex.com/assets/bundle.xx.xx.xx.min.js"></script>
-</head>
-
-<body>
-  <h1>Card integration</h1>
-  <label>
-    Card Information
-    <div id='card'></div>
-  </label>
-  <br>
-  <button id='submit'>Submit</button>
-  <script>
-    // Step #2: Initialize the Airwallex global context for event communication
-    Airwallex.init({
-      env: 'demo', // Setup which env('staging' | 'demo' | 'prod') you would like to integrate with
-      origin: window.location.origin, // Setup your event target to receive the browser events message
-    });
-    // Step #3: Create 'card' element
-    const card = Airwallex.createElement('card');
-    // Step #4: Mount card element
-    card.mount('card');
-    document.getElementById('submit').addEventListener('click', () => {
-      // Step #5: Confirm payment intent with id and client_secret
-      Airwallex.confirmPaymentIntent({
-        element: card,
-        id: 'replace-with-your-intent-id',
-        client_secret: 'replace-with-your-client-secret'
-      }).then((response) => {
-        /* handle confirm response in your business flow */
-        alert(JSON.stringify(response));
+  <body>
+    <h1>Card integration</h1>
+    <!-- Styling example below: Setting container to display nothing when element is not mounted -->
+    <div id="card-container" style="display: none">
+      <!-- STEP #3a: Add an empty container for the card element to be injected into -->
+      <div id="card"></div>
+      <!-- STEP #3b: Add a submit button to trigger the payment request -->
+      <button id="submit" disabled="true">Submit</button>
+    </div>
+    <!-- Example response message containers -->
+    <p id="error"></p>
+    <p id="success">Payment successful!</p>
+    <script>
+      // STEP #2: Initialize the Airwallex global context for event communication
+      Airwallex.init({
+        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        origin: window.location.origin, // Setup your event target to receive the browser events message
+        fonts: [
+          // Customizes the font for the payment elements
+          {
+            src:
+              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+            family: 'AxLLCircular',
+            weight: 400,
+          },
+        ],
       });
-    });
-    window.addEventListener('onReady', (event) => {
-      /*
-        ... Handle event
-      */
-      alert(event.detail)
-    })
-  </script>
-</body>
+      // STEP #4: Create 'card' element
+      const card = Airwallex.createElement('card');
 
+      // STEP #5: Mount card element
+      card.mount('card');
+
+      // STEP #6a: Add a button handler to trigger the payment request
+      document.getElementById('submit').addEventListener('click', () => {
+        document.getElementById('error').style.display = 'none'; // Example: hide error
+        document.getElementById('submit').innerHTML = 'Processing...'; // Example: set submitting state
+        document.getElementById('submit').disabled = true; // Example: disable button to prevent double submission
+
+        Airwallex.confirmPaymentIntent({
+          element: card,
+          id: 'replace-with-your-intent-id',
+          client_secret: 'replace-with-your-client-secret',
+        })
+          .then((response) => {
+            // STEP #6b: Listen to the request response
+            /* Handle confirm response */
+            document.getElementById('success').style.display = 'block'; // Example: show success message
+            document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
+            document.getElementById('submit').disabled = false; // Example: reset button state
+            window.alert(JSON.stringify(response));
+          })
+          .catch((response) => {
+            // STEP #6c: Listen to the error response
+            /* Handle error response */
+            document.getElementById('error').style.display = 'block'; // Example: show error message
+            document.getElementById('error').innerHTML = response.message; // Example: fill in error message
+            document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
+            document.getElementById('submit').disabled = false; // Example: reset button state
+            console.error(`There was an error, ${JSON.stringify(response)}`);
+          });
+      });
+
+      // STEP #7: Add an event listener to ensure the element is mounted
+      window.addEventListener('onReady', (event) => {
+        /*
+      ... Handle event
+       */
+        document.getElementById('card-container').style.display = 'block'; // Example: show element when it is mounted
+        document.getElementById('submit').style.display = 'block'; // Example: show element when it is mounted
+        console.log('Element is ready', event.detail);
+      });
+
+      // STEP #8: Add an event listener to validate element input
+      window.addEventListener('onChange', (event) => {
+        const { complete } = event.detail;
+        document.getElementById('submit').disabled = !complete; // Example: only enable button when element input is completed
+      });
+
+      // STEP #9: Add an event listener to handle errors
+      window.addEventListener('onError', (event) => {
+        const { error } = event.detail;
+        document.getElementById('error').style.display = 'block'; // Example: show error
+        document.getElementById('error').innerHTML = error.message; // Example: set error message
+        console.log('There was an error', error);
+      });
+    </script>
+  </body>
+  <style>
+    #card {
+      border: 1px solid #612fff;
+      border-radius: 5px;
+      padding: 5px 10px;
+      width: 400px;
+      box-shadow: #612fff 0px 0px 0px 1px;
+      min-height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </html>

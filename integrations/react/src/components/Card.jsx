@@ -1,8 +1,8 @@
 /**
- * card.tsx
- * Airwallex Payment Demo - React Typescript.  Created by Olivia Wei and Josie Ku.
+ * Card.jsx
+ * Airwallex Payment Demo - React.  Created by Josie Ku.
  *
- * airwallex-payment-elements Card element integration in React Typescript
+ * airwallex-payment-elements Card element integration in React.js
  * Comments with "Example" demonstrate how states can be integrated
  * with the element, they can be removed.
  *
@@ -14,8 +14,8 @@ import React, { useEffect, useState } from 'react';
 import {
   createElement,
   loadAirwallex,
-  getElement,
   confirmPaymentIntent,
+  getElement,
 } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
@@ -23,12 +23,12 @@ import {
 const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
-const Index: React.FC = () => {
+const Card = () => {
   const [elementShow, setElementShow] = useState(false); // Example: show element state
   const [isSubmitting, setIsSubmitting] = useState(false); // Example: show submission processing state
 
   useEffect(() => {
-    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+    // STEP #2: Initialize Airwallex with the appropriate Airwallex environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
@@ -43,24 +43,28 @@ const Index: React.FC = () => {
       ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
     }).then(() => {
-      // STEP #4, 5: Create and mount the card element
-      createElement('card')?.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
+      // STEP #4: Create the card element
+      const card = createElement('card');
+      // STEP #5: Mount the card element to the empty container created previously
+      card.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
     });
 
-    // STEP ##7: Add an event listener to ensure the element is mounted
-    const onReady = (event: CustomEvent): void => {
+    // STEP #7: Add an event listener to ensure the element is mounted
+    const onReady = (event) => {
       /**
-       * ... Handle event when elements are mounted
+       * ...Handle events on element ready
        */
-      setElementShow(true);
-      console.log(`Elements ready with ${JSON.stringify(event.detail)}`);
+      setElementShow(true); // Example: sets show once mounted
+      getElement('card').focus(); // Example: focuses on input field
+      console.log(`The Card element is ready, ${JSON.stringify(event.detail)}`);
     };
 
-    // STEP ##8: Add an event listener to respond to errors
-    const onError = (event: CustomEvent): void => {
+    // STEP #8: Add an event listener to respond to errors
+    const onError = (event) => {
       /**
        * ... Handle events on error
        */
+      setIsSubmitting(false);
       window.alert(
         `There was an error confirming payment intent: ${JSON.stringify(
           event.detail,
@@ -68,55 +72,47 @@ const Index: React.FC = () => {
       );
     };
 
-    window.addEventListener('onReady', onReady as EventListener);
-    window.addEventListener('onError', onError as EventListener);
+    window.addEventListener('onReady', onReady);
+    window.addEventListener('onError', onError);
     return () => {
-      window.removeEventListener('onReady', onReady as EventListener);
-      window.removeEventListener('onError', onError as EventListener);
+      window.removeEventListener('onReady', onReady);
+      window.removeEventListener('onError', onError);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
-  // STEP ##6a: Add a button handler to trigger the payment request
-  const triggerConfirm = (): void => {
-    setIsSubmitting(true);
+  // STEP #6a: Add a button handler to trigger the payment request
+  const onTriggerConfirm = () => {
+    setIsSubmitting(true); // Example: sets loading state
     const card = getElement('card');
-    if (card) {
-      confirmPaymentIntent({
-        element: card,
-        id: intent_id,
-        client_secret,
-        // Add other payment confirmation details, see docs here: https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
-        payment_method_options: {
-          card: {
-            auto_capture: true,
-          },
-        },
+    confirmPaymentIntent({
+      element: card,
+      id: intent_id,
+      client_secret,
+    })
+      // STEP #6b: Listen to the request success response
+      .then((response) => {
+        /**
+         * ...Handle confirm response
+         */
+        setIsSubmitting(false); // Example: sets loading state
+        window.alert(
+          `Payment Intent confirmation was successful: ${JSON.stringify(
+            response,
+          )}`,
+        );
       })
-        // STEP ##6b: Listen to the request success response
-        .then((response) => {
-          /**
-           * ...Handle confirm response
-           */
-          setIsSubmitting(false); // Example: sets loading state
-          window.alert(
-            `Payment Intent confirmation was successful: ${JSON.stringify(
-              response,
-            )}`,
-          );
-        })
-        // STEP ##6c: Listen to the request failure response
-        .catch((error) => {
-          /**
-           * ... Handle error response
-           */
-          setIsSubmitting(false); // Example: sets loading state
-          window.alert(
-            `There was an error confirming payment intent: ${JSON.stringify(
-              error,
-            )}`,
-          );
-        });
-    }
+      // STEP #6c: Listen to the request failure response
+      .catch((error) => {
+        /**
+         * ... Handle error response
+         */
+        setIsSubmitting(false); // Example: sets loading state
+        window.alert(
+          `There was an error confirming payment intent: ${JSON.stringify(
+            error,
+          )}`,
+        );
+      });
   };
 
   const inputStyle = {
@@ -146,9 +142,9 @@ const Index: React.FC = () => {
           id="card"
           style={inputStyle} // Example: input styling can be moved to css
         />
-        {/* STEP ##3b: Add a submit button to trigger the payment request */}
+        {/* STEP #3b: Add a submit button to trigger the payment request */}
         <button
-          onClick={triggerConfirm}
+          onClick={onTriggerConfirm}
           disabled={isSubmitting} // Example: disables button when submitting to prevent resubmission
         >
           Submit
@@ -158,4 +154,4 @@ const Index: React.FC = () => {
   );
 };
 
-export default Index;
+export default Card;

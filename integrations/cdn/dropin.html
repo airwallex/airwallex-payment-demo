@@ -1,36 +1,102 @@
-<!doctype html>
+<!-- 
+  dropin.html
+  Airwallex Payment Demo - Static HTML.  Created by Charlie Lang and Josie Ku.
+
+  airwallex-payment-elements Dropin element integration in Static HTML
+  Comments with "Example" demonstrate how states can be integrated
+  with the element, they can be removed.
+
+  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/dropin.md
+ -->
+
+<!DOCTYPE html>
 <html>
-  <head lang='en'>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- Step #1: Load Checkout Universal Module Definition (UMD) bundle js-->
-    <script src="https://checkout.airwallex.com/assets/bundle.xx.xx.xx.min.js"></script>
+    <!-- 
+      STEP #1: Import airwallex-payment-elements bundle 
+              - You MUST replace the bundle version to the latest NPM version
+                in order to import the package properly!
+    -->
+    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
   </head>
   <body>
     <h1>DropIn integration</h1>
-    <div id='dropIn'></div>
+    <!-- Example below: loading state when element is not yet mounted -->
+    <p id="loading">Loading...</p>
+    <!-- 
+       STEP #3: Add an empty container for the dropIn element to be injected into 
+       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
+     -->
+    <div id="dropIn"></div>
+    <!-- Example: Response message containers -->
+    <p id="error"></p>
+    <p id="success">Payment Successful!</p>
     <script>
-      // Step #2: Initialize the Airwallex global context for event communication
+      // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
-        env: 'demo', // Setup which env('staging' | 'demo' | 'prod') you would like to integrate with
+        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
+        fonts: [
+          // Customizes the font for the payment elements
+          {
+            src:
+              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+            family: 'AxLLCircular',
+            weight: 400,
+          },
+        ],
       });
-      // Step #3: Create 'dropIn' element
+      // STEP #4: Create 'dropIn' element
       const dropIn = Airwallex.createElement('dropIn', {
-        intent: { // Required, dropIn use intent Id and client_secret to prepare checkout
+        intent: {
+          // Required, dropIn use intent Id and client_secret to prepare checkout
           id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret'
-        }
+          client_secret: 'replace-with-your-client-secret',
+        },
       });
-      // Step #4: Mount 'dropIn' element
-      dropIn.mount('dropIn');
-      window.addEventListener('onSuccess', (event) => {
+      // STEP #5: Mount 'dropIn' element
+      dropIn.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 3
+
+      // STEP #6: Add an event listener to handle events when the element is mounted
+      window.addEventListener('onReady', (event) => {
         /*
           ... Handle event
         */
-        alert(JSON.stringify(event.detail));
-      })
+        document.getElementById('dropIn').style.display = 'block'; // Example: show element when mounted
+        document.getElementById('loading').style.display = 'none'; // Example: hide loading tag when element is mounted
+        console.log('Element is ready', event.detail);
+      });
+
+      // STEP #7: Add an event listener to handle events when the payment is successful.
+      window.addEventListener('onSuccess', (event) => {
+        /*
+          ... Handle event on success
+        */
+        document.getElementById('success').style.display = 'block'; // Example: show success block
+        window.alert(JSON.stringify(event.detail));
+      });
+
+      // STEP #8: Add an event listener to handle events when the payment has failed.
+      window.addEventListener('onError', (event) => {
+        /*
+          ... Handle event on error
+        */
+        const { error } = event.detail;
+        document.getElementById('error').style.display = 'block'; // Example: show error block
+        document.getElementById('error').innerHTML = error.message; // Example: set error message
+        console.error('There was an error', error);
+      });
     </script>
   </body>
+  <style>
+    #dropIn {
+      width: 540px;
+      /* Example: to hide element before it is loaded */
+      display: none;
+    }
+  </style>
 </html>

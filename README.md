@@ -6,6 +6,14 @@ Our goal is to make it easy for you (Merchants) to use our platform, as easy as 
 
 Before getting start, check out what the Airwallex Checkout elements look like here: [https://demo-pacheckoutdemo.airwallex.com/](https://demo-pacheckoutdemo.airwallex.com/).
 
+<div align="center">
+<img src="docs/assets/payment-demo.png" width="650px">
+</div>
+
+## Creating a Payment Intent
+
+Throughout this demo, you will be asked to insert your intent secrets to properly enact a payment checkout, more details can be found in the [Airwallex API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
+
 ## Navigating this project
 
 So far, integrations are done with the following frameworks. You can find the installation and development instructions within its subfolder.
@@ -20,8 +28,16 @@ Frontend integration:
 - [React Typescript](/integrations/react-ts)
 - [Angular](/integrations/angular)
 - [CDN](/integrations/cdn)
-- [Next.js Typescript](/integrations/next-ts)
 - [Vue](/integrations/vue)
+
+## Other Integrations
+
+For those using [Next.js](https://nextjs.org/) as their web framework, feel free to see the [React](/integrations/react)/[React Typescript](/integrations/react-ts) examples.
+
+Other integrations coming soon:
+
+- React Native
+- PHP
 
 ## Questions, comments, or suggestions?
 

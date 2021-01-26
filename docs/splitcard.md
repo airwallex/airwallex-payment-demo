@@ -10,6 +10,8 @@ The Split Card element enables merchants to process a card checkout on their web
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
+Want more details? See the integration in [React](/integrations/react/src/components/SplitCard.jsx).
+
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
 ```js
@@ -89,14 +91,14 @@ Each **element should only be mounted once** in a single payment flow.
 This handler is called when a customer is ready to make a payment according to the details documented in the Payment Intent, thereby confirming the Payment Intent.
 
 ```js
-// Step 6a: Add a button handler
+// STEP #6a: Add a button handler
 document.getElementById('submit').addEventListener('click', () => {
   Airwallex.confirmPaymentIntent({
     element: cardNumber, // Provide the cardNumber element
     id: 'replace-with-your-intent-id', // Payment Intent ID
     client_secret: 'replace-with-your-client-secret', // Client Secret
   }).then((response) => {
-    // Step 6b: Listen to the request response
+    // STEP #6b: Listen to the request response
     /* Handle response */
     window.alert(JSON.stringify(response));
   });
@@ -141,7 +143,7 @@ See the full documentation for `airwallex-payment-elements` [here](/docs/main.md
 
 ## Integration Examples
 
-Check out [airwallex-payment-demo](https://github.com/airwallex/airwallex-payment-demo) for integration examples with different web frameworks!
+Check out [airwallex-payment-demo](/) for integration examples with different web frameworks!
 
 ## Full Code Example
 
@@ -152,7 +154,7 @@ Check out [airwallex-payment-demo](https://github.com/airwallex/airwallex-paymen
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- Step #1: Import airwallex-payment-elements bundle -->
+    <!-- STEP #1: Import airwallex-payment-elements bundle -->
     <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
   </head>
 
@@ -160,10 +162,10 @@ Check out [airwallex-payment-demo](https://github.com/airwallex/airwallex-paymen
     <h1>Split Card integration</h1>
     <div id="element">
       Card Information
-      <!-- Step #3a: Add empty containers for each card input element to be injected into -->
+      <!-- STEP #3a: Add empty containers for each card input element to be injected into -->
       <div style={containerStyle}>
         <div>Card number</div>
-        <div id="card-number"></div>
+        <div id="cardNumber"></div>
       </div>
       <div style={containerStyle}>
         <div>Expiry</div>
@@ -174,39 +176,39 @@ Check out [airwallex-payment-demo](https://github.com/airwallex/airwallex-paymen
         <div id="cvc"></div>
     </div>
     <br />
-    <!-- Step #3b: Add a submit button to trigger the payment request -->
+    <!-- STEP #3b: Add a submit button to trigger the payment request -->
     <button id="submit">Submit</button>
 
     <script>
-      // Step #2: Initialize the Airwallex global context for event communication
+      // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
-      // Step #4: Create split card elements
+      // STEP #4: Create split card elements
       const cardNumber = Airwallex.createElement('cardNumber');
       const expiry = Airwallex.createElement('expiry');
       const cvc = Airwallex.createElement('cvc');
 
-      // Step #5: Mount split card elements
+      // STEP #5: Mount split card elements
       cardNumber.mount('cardNumber');
       expiry.mount('expiry');
       cvc.mount('cvc');
 
-      // Step #6a: Add a button handler to trigger the payment request
+      // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
         Airwallex.confirmPaymentIntent({
           element: cardNumber,
           id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
         }).then((response) => {
-          // Step #6b: Listen to the request response
+          // STEP #6b: Listen to the request response
           /* handle confirm response in your business flow */
           window.alert(JSON.stringify(response));
         });
       });
 
-      // Step #7: Add an event listener to ensure the element is mounted
+      // STEP #7: Add an event listener to ensure the element is mounted
       window.addEventListener('onReady', (event) => {
         /*
         ... Handle event
@@ -214,7 +216,7 @@ Check out [airwallex-payment-demo](https://github.com/airwallex/airwallex-paymen
         window.alert(event.detail);
       });
 
-      // Step #8: Add an event listener to listen to the changes in each of the input fields
+      // STEP #8: Add an event listener to listen to the changes in each of the input fields
       window.addEventListener('onChange', (event) => {
         /*
         ... Handle event
