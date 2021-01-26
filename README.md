@@ -39,6 +39,16 @@ Other integrations coming soon:
 - React Native
 - PHP
 
+## Sandboxes
+
+You also can play around with the different web integrations with the sandboxes below:
+
+- [Static HTML](https://codesandbox.io/s/airwallex-payment-demo-static-html-c2z63)
+- [React](https://codesandbox.io/s/airwallex-payment-demo-react-2m63j)
+- [React-Typescript](https://codesandbox.io/s/airwallex-payment-demo-react-typescript-buuhk)
+- [Vue](https://codesandbox.io/s/airwallex-payment-demo-vue-ffhrw)
+- [Angular](https://codesandbox.io/s/airwallex-payment-demo-angular-zgx32)
+
 ## Questions, comments, or suggestions?
 
 We want to provide you with a seamless experience integrating with our platform. [Let us know](https://www.airwallex.com/contact-sales) if you run into any problems, or have any comments and suggestions for us. We value your input!
