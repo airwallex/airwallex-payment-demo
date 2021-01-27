@@ -10,6 +10,7 @@ import { SplitCardComponent } from './split-card/split-card.component';
 import { WeChatComponent } from './we-chat/we-chat.component';
 import { CardComponent } from './card/card.component';
 import { InstructionsComponent } from './instructions/instructions.component';
+import { RedirectComponent } from './redirect/redirect.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { InstructionsComponent } from './instructions/instructions.component';
     SplitCardComponent,
     WeChatComponent,
     CardComponent,
+    RedirectComponent,
     InstructionsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],

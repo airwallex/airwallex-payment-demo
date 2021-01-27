@@ -36,6 +36,9 @@ const App: React.FC = () => (
           <Link to="/wechat">
             <button>Wechat element</button>
           </Link>
+          <Link to="/redirect">
+            <button>Redirect element</button>
+          </Link>
         </nav>
         <div className="payment-frame">
           <Suspense fallback={<div />}>

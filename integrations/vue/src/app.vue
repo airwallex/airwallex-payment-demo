@@ -29,6 +29,9 @@
         <router-link to="/wechat" tag="button">
           Wechat
         </router-link>
+        <router-link to="/redirect" tag="button">
+          Redirect
+        </router-link>
       </div>
       <router-view id="router" />
     </div>
