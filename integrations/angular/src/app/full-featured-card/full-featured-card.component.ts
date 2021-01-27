@@ -20,12 +20,14 @@ const client_secret = 'replace-with-your-client-secret';
 @Component({
   selector: 'app-full-featured-card',
   templateUrl: './full-featured-card.component.html',
-  styles: ['#fullFeaturedCard { width: 540px; margin: 48px auto; }'], // Custom styling for fullFeaturedCard container
+  styles: ['#fullFeaturedCard { width: 540px; margin: 48px auto; }'], // Example: Custom styling for fullFeaturedCard container
 })
 export class FullFeaturedCardComponent implements OnInit {
   loading: boolean;
+  errorMessage: string;
   constructor() {
     this.loading = true;
+    this.errorMessage = '';
     this.onReady = this.onReady.bind(this);
     this.onSuccess = this.onSuccess.bind(this);
     this.onError = this.onError.bind(this);
@@ -86,7 +88,9 @@ export class FullFeaturedCardComponent implements OnInit {
     /**
      * ... Handle event on error
      */
-    console.log(`Confirm error with ${JSON.stringify(event.detail)}`);
+    const { error } = event.detail;
+    this.errorMessage = error.message ?? JSON.stringify(error); // Example: set error message
+    console.error('There was an error', error);
   };
 
   OnDestroy(): void {

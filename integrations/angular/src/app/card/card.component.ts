@@ -28,16 +28,18 @@ const client_secret = 'replace-with-your-client-secret';
   selector: 'app-card',
   templateUrl: './card.component.html',
   styles: [
-    // Custom styling for card container
+    // Example: Custom styling for card container
     '#card { border: 1px solid; border-radius: 5px; padding: 5px 10px; margin-top: 8px; height: 28px; width: 300px; }',
   ],
 })
 export class CardComponent implements OnInit {
   loading: boolean;
   isSubmitting: boolean;
+  errorMessage: string;
   constructor() {
     this.loading = true;
     this.isSubmitting = false;
+    this.errorMessage = '';
     this.onReady = this.onReady.bind(this);
     this.onError = this.onError.bind(this);
     this.triggerConfirm = this.triggerConfirm.bind(this);
@@ -72,7 +74,7 @@ export class CardComponent implements OnInit {
     /**
      * ... Handle event when elements are mounted
      */
-    this.loading = false;
+    this.loading = false; // Example: set loading state
     console.log(`Elements ready with ${JSON.stringify(event.detail)}`);
   };
 
@@ -81,11 +83,9 @@ export class CardComponent implements OnInit {
     /**
      * ... Handle events on error
      */
-    window.alert(
-      `There was an error confirming payment intent: ${JSON.stringify(
-        event.detail
-      )}`
-    );
+    const { error } = event.detail;
+    this.errorMessage = error.message ?? JSON.stringify(error); // Example: set error message
+    console.error('There was an error', error);
   };
 
   // STEP #6a: Add a button handler to trigger the payment request
@@ -122,11 +122,8 @@ export class CardComponent implements OnInit {
            * ... Handle error response
            */
           this.isSubmitting = false; // Example: sets loading state
-          window.alert(
-            `There was an error confirming payment intent: ${JSON.stringify(
-              error
-            )}`
-          );
+          this.errorMessage = error.message ?? JSON.stringify(error); // Example: set error message
+          console.error('There was an error', error);
         });
     }
   };

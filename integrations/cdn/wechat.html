@@ -34,31 +34,37 @@ Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob
     <p id="error"></p>
     <p id="success">Payment Successful!</p>
     <script>
-      // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
-        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-        origin: window.location.origin, // Setup your event target to receive the browser events message
-        fonts: [
-          // Customizes the font for the payment elements
-          {
-            src:
-              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-            family: 'AxLLCircular',
-            weight: 400,
+      try {
+        // STEP #2: Initialize the Airwallex global context for event communication
+        Airwallex.init({
+          env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+          origin: window.location.origin, // Setup your event target to receive the browser events message
+          fonts: [
+            // Customizes the font for the payment elements
+            {
+              src:
+                'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+              family: 'AxLLCircular',
+              weight: 400,
+            },
+          ],
+        });
+        // STEP #4: Create 'wechat' element
+        const element = Airwallex.createElement('wechat', {
+          intent: {
+            // Required, wechat element uses intent Id and client_secret to prepare checkout
+            id: 'replace-with-your-intent-id',
+            client_secret: 'replace-with-your-client-secret',
           },
-        ],
-      });
-      // STEP #4: Create 'wechat' element
-      const element = Airwallex.createElement('wechat', {
-        intent: {
-          // Required, wechat element uses intent Id and client_secret to prepare checkout
-          id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret',
-        },
-      });
+        });
 
-      // STEP #5: Mount 'wechat' element
-      element.mount('wechat'); // This 'wechat' id MUST MATCH the id on your empty container created in Step 3
+        // STEP #5: Mount 'wechat' element
+        element.mount('wechat'); // This 'wechat' id MUST MATCH the id on your empty container created in Step 3
+      } catch (error) {
+        document.getElementById('error').style.display = 'block'; // Example: show error
+        document.getElementById('error').innerHTML = error.message; // Example: set error message
+        console.error('There was an error', error);
+      }
 
       // STEP #6: Add an event listener to handle events when the element is mounted
       window.addEventListener('onReady', (event) => {
@@ -85,7 +91,7 @@ Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob
         const { error } = event.detail;
         document.getElementById('error').style.display = 'block'; // Example: show error block
         document.getElementById('error').innerHTML = error.message; // Example: set error message
-        console.log('There was an error', event.detail.error);
+        console.error('There was an error', event.detail.error);
       });
     </script>
   </body>

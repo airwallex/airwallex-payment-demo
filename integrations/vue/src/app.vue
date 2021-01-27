@@ -66,6 +66,7 @@ h1 {
   width: 20vw;
   align-items: center;
   border-right: 1px solid lightgrey;
+  min-width: 175px;
 }
 #router {
   width: 80vw;

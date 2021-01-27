@@ -28,9 +28,11 @@ const client_secret = 'replace-with-your-client-secret';
   styles: ['#wechat { width: 540px; margin: 48px auto; }'], // Custom styling for the wechat container
 })
 export class WeChatComponent implements OnInit {
-  loading: boolean;
+  loading: boolean; // Example: set loading state
+  errorMessage: string; // Example: set error state
   constructor() {
     this.loading = true;
+    this.errorMessage = '';
     this.onReady = this.onReady.bind(this);
     this.onSuccess = this.onSuccess.bind(this);
     this.onError = this.onError.bind(this);
@@ -80,7 +82,9 @@ export class WeChatComponent implements OnInit {
     /**
      * ... Handle event on error
      */
-    console.log(`Confirm error with ${JSON.stringify(event.detail)}`);
+    const { error } = event.detail;
+    this.errorMessage = error.message ?? JSON.stringify(error); // Example: set error message
+    console.error('There was an error', error);
   };
 
   OnDestroy(): void {

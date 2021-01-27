@@ -28,7 +28,7 @@ const client_secret = 'replace-with-your-client-secret';
   selector: 'app-split-card',
   templateUrl: './split-card.component.html',
   styles: [
-    // Custom styling for the inputs
+    // Example: Custom styling for the inputs
     '#cardNumber,#cvc,#expiry { border: 1px solid; border-radius: 5px; padding: 5px 10px; margin-top: 8px; height: 28px }',
   ],
 })
@@ -41,12 +41,17 @@ export class SplitCardComponent implements OnInit {
   cardNumberComplete: boolean;
   cvcComplete: boolean;
   expiryComplete: boolean;
+  fieldsCompleted: boolean;
   // Example: controls submission state
   isSubmitting: boolean;
+  // Example: set error state
+  errorMessage: string;
   constructor() {
     this.cardNumberReady = this.cvcReady = this.expiryReady = false;
     this.cardNumberComplete = this.cvcComplete = this.expiryComplete = false;
     this.isSubmitting = false;
+    this.fieldsCompleted = false;
+    this.errorMessage = '';
     this.onReady = this.onReady.bind(this);
     this.onChange = this.onChange.bind(this);
     this.triggerConfirm = this.triggerConfirm.bind(this);
@@ -103,12 +108,14 @@ export class SplitCardComponent implements OnInit {
     if (type === 'expiry') {
       this.expiryComplete = complete ?? false;
     }
-    console.log(`Elements changed with ${JSON.stringify(event.detail)}`);
+
+    this.fieldsCompleted =
+      this.cardNumberComplete && this.cvcComplete && this.expiryComplete; // Example: set button disabled state
   };
 
   // STEP #6a: Add a button handler to trigger the payment request
   triggerConfirm = async () => {
-    this.isSubmitting = true;
+    this.isSubmitting = true; // Example: set button disabled state to prevent resubmission
     const cardNumber = getElement('cardNumber');
     if (cardNumber) {
       confirmPaymentIntent({
@@ -131,12 +138,13 @@ export class SplitCardComponent implements OnInit {
           window.alert(`Confirm success with ${JSON.stringify(response)}`);
         })
         // STEP #6c: Listen to errors
-        .catch((response) => {
+        .catch((error) => {
           /**
            * ... Handle event on error
            */
           this.isSubmitting = false;
-          window.alert(`Confirm fail with ${JSON.stringify(response)}`);
+          this.errorMessage = error.message ?? JSON.stringify(error); // Example: set error message
+          console.error('There was an error', error);
         });
     }
   };

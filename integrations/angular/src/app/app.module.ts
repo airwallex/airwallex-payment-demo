@@ -9,6 +9,7 @@ import { FullFeaturedCardComponent } from './full-featured-card/full-featured-ca
 import { SplitCardComponent } from './split-card/split-card.component';
 import { WeChatComponent } from './we-chat/we-chat.component';
 import { CardComponent } from './card/card.component';
+import { InstructionsComponent } from './instructions/instructions.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { CardComponent } from './card/card.component';
     SplitCardComponent,
     WeChatComponent,
     CardComponent,
+    InstructionsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

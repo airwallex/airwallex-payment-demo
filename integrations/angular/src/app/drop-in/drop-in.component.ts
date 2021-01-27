@@ -25,12 +25,14 @@ const client_secret = 'replace-with-your-client-secret';
 @Component({
   selector: 'app-drop-in',
   templateUrl: './drop-in.component.html',
-  styles: ['#dropIn { width: 540px; margin: 48px auto; }'], // Custom styling for dropin container
+  styles: ['#dropIn { width: 540px; margin: 48px auto; }'], // Example: Custom styling for dropin container
 })
 export class DropInComponent implements OnInit {
   loading: boolean;
+  errorMessage: string;
   constructor() {
     this.loading = true;
+    this.errorMessage = '';
     this.onReady = this.onReady.bind(this);
     this.onSuccess = this.onSuccess.bind(this);
     this.onError = this.onError.bind(this);
@@ -91,7 +93,9 @@ export class DropInComponent implements OnInit {
     /**
      * ... Handle events on error
      */
-    console.log(`Confirm error with ${JSON.stringify(event.detail)}`);
+    const { error } = event.detail;
+    this.errorMessage = error.message ?? JSON.stringify(error); // Example: set error message
+    console.error('There was an error', error);
   }
 
   OnDestroy(): void {

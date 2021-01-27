@@ -16,6 +16,13 @@
   >
     Loading...
   </p>
+  <!-- Styling example below: show error message -->
+  <p
+    id="error"
+    [style.display]="this.errorMessage.length > 0 ? 'block' : 'none'"
+  >
+    {{ errorMessage }}
+  </p>
   <!-- Styling example below: only displays block when all elements are ready  -->
   <div
     [style.display]="
@@ -42,7 +49,10 @@
       <div id="cvc"></div>
     </div>
     <!-- STEP #3b: Add a submit button to trigger the payment request -->
-    <button on-click="triggerConfirm()" [disabled]="isSubmitting">
+    <button
+      on-click="triggerConfirm()"
+      [disabled]="!fieldsCompleted || isSubmitting"
+    >
       <!-- [disabled] prevents incomplete submissions-->
       <span *ngIf="!isSubmitting">Confirm</span>
       <span *ngIf="isSubmitting">Submitting...</span>
