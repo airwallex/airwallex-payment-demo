@@ -79,7 +79,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
     <!-- STEP #1: Import airwallex-payment-elements bundle -->
-    <script src="https://checkout.airwallex.com/assets/bundle.0.0.xx.min.js"></script>
+    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
   </head>
   <body>
     <h1>Hosted payment page (HPP) integration</h1>
