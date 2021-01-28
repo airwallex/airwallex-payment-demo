@@ -11,7 +11,7 @@
     "lint": "eslint \"**/*.{js,vue}\" "
   },
   "dependencies": {
-    "airwallex-payment-elements": "*",
+    "airwallex-payment-elements": "0.2.11",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
