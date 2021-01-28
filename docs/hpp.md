@@ -35,7 +35,7 @@ Airwallex.loadAirwallex({
 });
 ```
 
-`loadAirwallex` takes in options to set up the payment environment. See docs for further customizations [here](/docs/main.md#loadAirwallex).
+`loadAirwallex` takes in options to set up the payment environment. See docs for further customizations [here](/docs#loadAirwallex).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -59,15 +59,15 @@ Airwallex.redirectToCheckout({
 
 `redirectToCheckout` will redirect customers to an Airwallex checkout page that matches the payment intent details (provided by Payment Intent `id` prop). Customers will do their payment transaction there.
 
-Merchants can add more features to the checkout including the success or failure url to redirect customers back to the merchant site. More details about the `redirectToCheckout` function can be found [here](/docs/main.md#redirectToCheckout).
+Merchants can add more features to the checkout including the success or failure url to redirect customers back to the merchant site. More details about the `redirectToCheckout` function can be found [here](/docs#redirectToCheckout).
 
 ## Documentation
 
-See the full documentation for `airwallex-payment-elements` [here](/docs/main.md).
+See the full documentation for `airwallex-payment-elements` [here](/docs).
 
 ## Integration Examples
 
-Check out [airwallex-payment-demo](/) for integration examples with different web frameworks!
+Check out [airwallex-payment-demo](/../../tree/master) for integration examples with different web frameworks!
 
 ## Full Code Example
 

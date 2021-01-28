@@ -35,7 +35,7 @@ Airwallex.loadAirwallex({
 });
 ```
 
-`loadAirwallex` takes in options to set up the payment environment. See docs for further customizations [here](/docs/main.md#loadAirwallex).
+`loadAirwallex` takes in options to set up the payment environment. See docs for further customizations [here](/docs#loadAirwallex).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -49,7 +49,7 @@ We will mount the redirect element into the empty div in Step 5.
 
 ### 4. Create the redirect element
 
-This creates the specified [Element](/docs/main.md#Element) object. We specify the type as **`redirect`**.
+This creates the specified [Element](/docs#Element) object. We specify the type as **`redirect`**.
 
 ```js
 const element = Airwallex.createElement('redirect', {
@@ -66,7 +66,7 @@ You **must provide intent details and payment method** to create the redirect el
 
 More importantly, the payment method must be one that the Merchant has enabled to accept. For example, if the Merchant hasn't enabled Dana as a payment method, a redirect element with the 'dana' redirect method will not work.
 
-There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs/main.md#createElement) for more details.
+There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
 
 ### 5. Mount the redirect element
 
@@ -119,11 +119,11 @@ window.addEventListener('onError', (event) => {
 
 ## Documentation
 
-See the full documentation for `airwallex-payment-elements` [here](/docs/main.md).
+See the full documentation for `airwallex-payment-elements` [here](/docs).
 
 ## Integration Examples
 
-Check out [airwallex-payment-demo](/) for integration examples with different web frameworks!
+Check out [airwallex-payment-demo](/../../tree/master) for integration examples with different web frameworks!
 
 ## Full Code Example
 
