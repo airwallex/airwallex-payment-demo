@@ -92,7 +92,7 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-airwallex-payment-elements@0.2.11:
+airwallex-payment-elements@*:
   version "0.2.11"
   resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.11.tgz#5171f6b0eac524d3841a654146dd9f7ae30d072b"
   integrity sha512-FXdL65m0LB6bo8jVggNyKlAXZ61OdUkmZjKrMZKAHBDNVye7veUue1DsT5V9ZmLgG0tLiZhXqsfj80cpoS21HA==
