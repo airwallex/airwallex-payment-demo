@@ -19,7 +19,7 @@ const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
 // Enter your Payment Method here, this is used to redirect the customer to the appropriate payment method
-// Methods: 'alipaycn', 'alipayhk' , 'gcash' , 'dana', 'kakaopay' , 'tng'
+// Methods: 'alipaycn', 'alipayhk'
 const redirect_method = 'replace-with-your-redirect-method';
 
 const Redirect = () => {
@@ -54,15 +54,7 @@ const Redirect = () => {
       console.log(`Element ready, ${JSON.stringify(event.detail)}`);
     };
 
-    // STEP #7: Add an event listener to handle events when the payment is successful
-    const onSuccess = (event) => {
-      /**
-       * ... Handle event on success
-       */
-      console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
-    };
-
-    // STEP #8: Add an event listener to handle events when the payment procedure has failed
+    // STEP #7: Add an event listener to handle events when the payment procedure has failed
     const onError = (event) => {
       /**
        * ... Handle event on error
@@ -73,11 +65,9 @@ const Redirect = () => {
     };
 
     window.addEventListener('onReady', onReady);
-    window.addEventListener('onSuccess', onSuccess);
     window.addEventListener('onError', onError);
     return () => {
       window.removeEventListener('onReady', onReady);
-      window.removeEventListener('onSuccess', onSuccess);
       window.removeEventListener('onError', onError);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements

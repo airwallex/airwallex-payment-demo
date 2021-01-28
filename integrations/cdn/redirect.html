@@ -32,7 +32,6 @@ Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob
     <div id="redirect"></div>
     <!-- Example: Response message containers -->
     <p id="error"></p>
-    <p id="success">Payment Successful!</p>
     <script>
       try {
         // STEP #2: Initialize the Airwallex global context for event communication
@@ -75,16 +74,7 @@ Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob
         console.log('Element is ready', event.detail);
       });
 
-      // STEP #7: Add an event listener to handle events when the payment is successful.
-      window.addEventListener('onSuccess', (event) => {
-        /*
-          ... Handle event on success
-        */
-        document.getElementById('success').style.display = 'block'; // Example: show success block
-        window.alert(event.detail);
-      });
-
-      // STEP #8: Add an event listener to handle events when the payment has failed.
+      // STEP #7: Add an event listener to handle events when the payment has failed.
       window.addEventListener('onError', (event) => {
         /*
           ... Handle event on error

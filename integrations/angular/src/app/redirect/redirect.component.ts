@@ -24,7 +24,7 @@ const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 
 // Enter your Payment Method here, this is used to redirect the customer to the appropriate payment method
-// Methods: 'alipaycn', 'alipayhk' , 'gcash' , 'dana', 'kakaopay' , 'tng'
+// Methods: 'alipaycn', 'alipayhk'
 const redirect_method = 'replace-with-your-redirect-method' as PaymentMethodWithRedirect;
 
 @Component({
@@ -39,7 +39,6 @@ export class RedirectComponent implements OnInit {
     this.loading = true;
     this.errorMessage = '';
     this.onReady = this.onReady.bind(this);
-    this.onSuccess = this.onSuccess.bind(this);
     this.onError = this.onError.bind(this);
   }
 
@@ -61,7 +60,6 @@ export class RedirectComponent implements OnInit {
     });
 
     window.addEventListener('onReady', this.onReady);
-    window.addEventListener('onSuccess', this.onSuccess);
     window.addEventListener('onError', this.onError);
   }
 
@@ -74,15 +72,7 @@ export class RedirectComponent implements OnInit {
     console.log(`Element ready, ${JSON.stringify(event.detail)}`);
   };
 
-  // STEP #7: Add an event listener to handle events when the payment is successful
-  onSuccess = (event: any): void => {
-    /**
-     * ... Handle event on success
-     */
-    window.alert(`Confirm success with ${JSON.stringify(event.detail)}`);
-  };
-
-  // STEP #8: Add an event listener to handle events when the payment procedure has failed
+  // STEP #7: Add an event listener to handle events when the payment procedure has failed
   onError = (event: any): void => {
     /**
      * ... Handle event on error
@@ -94,7 +84,6 @@ export class RedirectComponent implements OnInit {
 
   OnDestroy(): void {
     window.removeEventListener('onReady', this.onReady);
-    window.removeEventListener('onSuccess', this.onSuccess);
     window.removeEventListener('onError', this.onError);
   }
 }

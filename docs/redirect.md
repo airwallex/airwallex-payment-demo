@@ -6,6 +6,16 @@ The Redirect element allows merchants to redirect to an alternative payment meth
 
 \* _An example of a Redirect element._
 
+## How it works
+
+_Note: Redirect element currently only works with Alipay HK and Alipay China._
+
+For the redirect element to work properly, the merchant must enable the payment methods they wish to redirect their customers to. For example, if the merchant accepts Alipay HK as a payment method, then the checkout button will redirect customers to an Alipay HK checkout page. After the payment, whether successful or not, customers will be redirected back to the merchant site.
+
+## Returning to Merchant Site
+
+In order for the redirect element to return to the merchant site following external payment processing, merchants **MUST** provide a `return_url` when creating the [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
+
 ## Guide
 
 The following Steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
@@ -58,13 +68,13 @@ const element = Airwallex.createElement('redirect', {
     id: 'replace-with-your-intent-id',
     client_secret: 'replace-with-your-client-secret',
   },
-  method: 'replace-with-your-redirect-method', // Required, 'alipaycn', 'alipayhk' , 'gcash' , 'dana', 'kakaopay' , 'tng'
+  method: 'replace-with-your-redirect-method', // Required, 'alipaycn', 'alipayhk'
 });
 ```
 
 You **must provide intent details and payment method** to create the redirect element.
 
-More importantly, the payment method must be one that the Merchant has enabled to accept. For example, if the Merchant hasn't enabled Dana as a payment method, a redirect element with the 'dana' redirect method will not work.
+More importantly, the payment method must be one that the Merchant has enabled to accept. For example, if the Merchant hasn't enabled Alipay HK as a payment method, a redirect element with the 'alipayhk' redirect method will not work.
 
 There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
 
@@ -93,18 +103,7 @@ window.addEventListener('onReady', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 7. Add an `onSuccess` event listener to handle events when the payment is successful.
-
-```js
-window.addEventListener('onSuccess', (event) => {
-  /*
-    ... Handle event on success
-  */
-  window.alert(event.detail);
-});
-```
-
-### 8. Add an `onError` event listener to handle events when the payment has failed.
+### 7. Add an `onError` event listener to handle events when the payment has failed.
 
 ```js
 window.addEventListener('onError', (event) => {
@@ -115,7 +114,7 @@ window.addEventListener('onError', (event) => {
 });
 ```
 
-### 9. Beautify and deploy!
+### 8. Beautify and deploy!
 
 ## Documentation
 
@@ -167,15 +166,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         window.alert(event.detail);
       });
 
-      // STEP #7: Add an event listener to handle events when the payment is successful.
-      window.addEventListener('onSuccess', (event) => {
-        /*
-          ... Handle event on success
-        */
-        window.alert(event.detail);
-      });
-
-      // STEP #8: Add an event listener to handle events when the payment has failed.
+      // STEP #7: Add an event listener to handle events when the payment has failed.
       window.addEventListener('onError', (event) => {
         /*
           ... Handle event on error
