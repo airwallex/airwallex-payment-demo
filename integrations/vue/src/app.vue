@@ -29,6 +29,9 @@
         <router-link to="/wechat" tag="button">
           Wechat
         </router-link>
+        <router-link to="/redirect" tag="button">
+          Redirect
+        </router-link>
       </div>
       <router-view id="router" />
     </div>
@@ -66,6 +69,7 @@ h1 {
   width: 20vw;
   align-items: center;
   border-right: 1px solid lightgrey;
+  min-width: 175px;
 }
 #router {
   width: 80vw;

@@ -51,4 +51,6 @@ You also can play around with the different web integrations with the sandboxes 
 
 ## Questions, comments, or suggestions?
 
-We want to provide you with a seamless experience integrating with our platform. [Let us know](https://www.airwallex.com/contact-sales) if you run into any problems, or have any comments and suggestions for us. We value your input!
+Running into issues? Check out some of the common errors and our troubleshooting tips [here](/docs#common-errors).
+
+We want to provide you with a seamless experience integrating with our platform. [Let us know](https://www.airwallex.com/contact-sales) if you run into problems, or have any comments and suggestions for us. We value your input!

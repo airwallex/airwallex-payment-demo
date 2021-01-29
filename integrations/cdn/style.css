@@ -64,6 +64,22 @@ p#author {
   margin: 15px 0px;
 }
 
+div.instruction-container {
+  padding: 10px 50px;
+  text-align: left;
+}
+
+span#code {
+  font-family: monospace;
+  background-color: lightgrey;
+  font-size: 16px;
+  margin: 0px 5px;
+}
+
+p#bullet {
+  font-weight: bold;
+}
+
 @font-face {
   src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Bold.woff');
   font-family: 'AxLLCircular';

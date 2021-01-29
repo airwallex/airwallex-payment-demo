@@ -6,12 +6,19 @@ import { FullFeaturedCardComponent } from './full-featured-card/full-featured-ca
 import { SplitCardComponent } from './split-card/split-card.component';
 import { WeChatComponent } from './we-chat/we-chat.component';
 import { CardComponent } from './card/card.component';
+import { InstructionsComponent } from './instructions/instructions.component';
+import { RedirectComponent } from './redirect/redirect.component';
 
 interface RouteConfig extends Route {
   linkTitle: string;
 }
 
 export const routes: RouteConfig[] = [
+  {
+    path: '',
+    component: InstructionsComponent,
+    linkTitle: 'Instructions',
+  },
   {
     path: 'card',
     component: CardComponent,
@@ -41,6 +48,11 @@ export const routes: RouteConfig[] = [
     path: 'wechat',
     component: WeChatComponent,
     linkTitle: 'Wechat element',
+  },
+  {
+    path: 'redirect',
+    component: RedirectComponent,
+    linkTitle: 'Redirect element',
   },
 ];
 

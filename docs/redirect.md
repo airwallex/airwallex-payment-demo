@@ -1,16 +1,26 @@
-# Airwallex Payment Elements - Wechat Element Integration
+# Airwallex Payment Elements - Redirect Element Integration
 
-The Wechat element allows merchants to embed a wechat qr code checkout option on their website. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex. It contains a QR code matched to the specified PaymentIntent and a refresh button to regenerate the QR code.
+The Redirect element allows merchants to redirect to an alternative payment method such as Alipay, Dana, Kaokaopay, etc. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex. The element is a checkout button that will redirect users to another payment page. The button style is currently not customizable.
 
-![](assets/wechat.gif)
+![](assets/redirect.png)
 
-\* _An example of a Wechat element._
+\* _An example of a Redirect element._
+
+## How it works
+
+_Note: Redirect element currently only works with Alipay HK and Alipay China._
+
+For the redirect element to work properly, the merchant must enable the payment methods they wish to redirect their customers to. For example, if the merchant accepts Alipay HK as a payment method, then the checkout button will redirect customers to an Alipay HK checkout page. After the payment, whether successful or not, customers will be redirected back to the merchant site.
+
+## Returning to Merchant Site
+
+In order for the redirect element to return to the merchant site following external payment processing, merchants **MUST** provide a `return_url` when creating the [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
 
 ## Guide
 
 The following Steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/react/src/components/Wechat.jsx).
+Want more details? See the integration in [React](/integrations/react/src/components/Redirect.jsx).
 
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
@@ -39,41 +49,44 @@ Airwallex.loadAirwallex({
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
-### 3. Add an empty container for the wechat element to be injected into
+### 3. Add an empty container for the redirect element to be injected into
 
 ```html
-<div id="wechat"></div>
+<div id="redirect"></div>
 ```
 
-We will mount the wechat element into the empty div in Step 5.
+We will mount the redirect element into the empty div in Step 5.
 
-### 4. Create the wechat element
+### 4. Create the redirect element
 
-This creates the specified [Element](/docs#Element) object. We specify the type as **`wechat`**.
+This creates the specified [Element](/docs#Element) object. We specify the type as **`redirect`**.
 
 ```js
-const element = Airwallex.createElement('wechat', {
+const element = Airwallex.createElement('redirect', {
   intent: {
-    // Required, the wechat element uses intent_id and client_secret to prepare checkout
+    // Required, the redirect element uses intent_id and client_secret to prepare checkout
     id: 'replace-with-your-intent-id',
     client_secret: 'replace-with-your-client-secret',
   },
+  method: 'replace-with-your-redirect-method', // Required, 'alipaycn', 'alipayhk'
 });
 ```
 
-You **must provide intent details** to create the wechat element.
+You **must provide intent details and payment method** to create the redirect element.
+
+More importantly, the payment method must be one that the Merchant has enabled to accept. For example, if the Merchant hasn't enabled Alipay HK as a payment method, a redirect element with the 'alipayhk' redirect method will not work.
 
 There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
 
-### 5. Mount the wechat element
+### 5. Mount the redirect element
 
-Next, we need to mount the wechat element to the DOM.
+Next, we need to mount the redirect element to the DOM.
 
 ```js
-element.mount('wechat');
+element.mount('redirect');
 ```
 
-This function will append the wechat element to your div with an id `wechat` as created in Step 3. **Ensure that there are no other elements in the document with the same id**.
+This function will append the redirect element to your div with an id `redirect` as created in Step 3. **Ensure that there are no other elements in the document with the same id**.
 
 The **element should only be mounted once** in a single payment flow.
 
@@ -90,18 +103,7 @@ window.addEventListener('onReady', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 7. Add an `onSuccess` event listener to handle events when the payment is successful.
-
-```js
-window.addEventListener('onSuccess', (event) => {
-  /*
-    ... Handle event on success
-  */
-  window.alert(event.detail);
-});
-```
-
-### 8. Add an `onError` event listener to handle events when the payment has failed.
+### 7. Add an `onError` event listener to handle events when the payment has failed.
 
 ```js
 window.addEventListener('onError', (event) => {
@@ -112,7 +114,7 @@ window.addEventListener('onError', (event) => {
 });
 ```
 
-### 9. Beautify and deploy!
+### 8. Beautify and deploy!
 
 ## Documentation
 
@@ -135,25 +137,26 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
   </head>
   <body>
-    <h1>Wechat integration</h1>
-    <!-- STEP #3: Add an empty container for the wechat element to be injected into -->
-    <div id="wechat"></div>
+    <h1>Redirect element integration</h1>
+    <!-- STEP #3: Add an empty container for the redirect element to be injected into -->
+    <div id="redirect"></div>
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
-      // STEP #4: Create 'wechat' element
-      const element = Airwallex.createElement('wechat', {
+      // STEP #4: Create 'redirect' element
+      const element = Airwallex.createElement('redirect', {
         intent: {
           // Required
           id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
         },
+        method: 'replace-with-your-redirect-method', // Required
       });
-      // STEP #5: Mount 'wechat' element
-      element.mount('wechat');
+      // STEP #5: Mount the 'redirect' element
+      element.mount('redirect');
 
       // STEP #6: Add an event listener to handle events when the element is mounted
       window.addEventListener('onReady', (event) => {
@@ -163,15 +166,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         window.alert(event.detail);
       });
 
-      // STEP #7: Add an event listener to handle events when the payment is successful.
-      window.addEventListener('onSuccess', (event) => {
-        /*
-          ... Handle event on success
-        */
-        window.alert(event.detail);
-      });
-
-      // STEP #8: Add an event listener to handle events when the payment has failed.
+      // STEP #7: Add an event listener to handle events when the payment has failed.
       window.addEventListener('onError', (event) => {
         /*
           ... Handle event on error

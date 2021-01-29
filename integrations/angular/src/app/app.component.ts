@@ -7,7 +7,7 @@ import { routes } from './app-routing.module';
 })
 export class AppComponent {
   title = 'angular';
-  routes = routes;
+  routes = routes.slice(1);
   redirectTo(path: string = '') {
     window.location.href = path;
   }

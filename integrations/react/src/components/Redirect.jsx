@@ -1,21 +1,17 @@
 /**
- * redirect.tsx
- * Airwallex Payment Demo - React Typescript.  Created by Olivia Wei and Josie Ku.
+ * Redirect.jsx
+ * Airwallex Payment Demo - React.  Created by Josie Ku.
  *
- * airwallex-payment-elements Redirect element integration in React Typescript
- * Comments with "Example" demonstrate how states can be integrated with the
- * element, they can be removed.
+ * airwallex-payment-elements Redirect element integration in React.js
+ * Comments with "Example" demonstrate how states can be integrated
+ * with the element, they can be removed.
  *
  * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/redirect.md
  */
 
 import React, { useEffect, useState } from 'react';
-import {
-  createElement,
-  loadAirwallex,
-  ElementType,
-  PaymentMethodWithRedirect,
-} from 'airwallex-payment-elements';
+// STEP #1: At the start of your file, import airwallex-payment-elements package
+import { loadAirwallex, createElement } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
@@ -24,63 +20,55 @@ const client_secret = 'replace-with-your-client-secret';
 
 // Enter your Payment Method here, this is used to redirect the customer to the appropriate payment method
 // Methods: 'alipaycn', 'alipayhk'
-const redirect_method = 'replace-with-your-redirect-method' as PaymentMethodWithRedirect;
+const redirect_method = 'replace-with-your-redirect-method';
 
-const Index: React.FC = () => {
+const Redirect = () => {
   const [elementShow, setElementShow] = useState(false); // Example: set loading state for element
-  const [errorMessage, setErrorMessage] = useState(''); // Example: set error state
+  const [errorMessage, setErrorMessage] = useState(false); // Example: set error state
 
   useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
-      fonts: [
-        // Can customize the font for the payment elements
-        {
-          src:
-            'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-          family: 'AxLLCircular',
-          weight: 400,
-        },
-      ],
     }).then(() => {
-      // STEP #4, 5: Create and mount the redirect element
-      createElement('redirect' as ElementType, {
+      // STEP #4: Create the redirect card element
+      const redirect = createElement('redirect', {
         intent: {
           // Required, must provide intent details to prepare redirect element for checkout
           id: intent_id,
           client_secret,
         },
         method: redirect_method, // Required, must provide payment method type
-      })?.mount('redirect'); // This 'redirect' id MUST MATCH the id on your empty container created in Step 3
+      });
+      // STEP #5: Mount the element to the empty container created previously
+      redirect.mount('redirect'); // This 'redirect' id MUST MATCH the id on your empty container created in Step 3
     });
 
     // STEP #6: Add an event listener to handle events when the element is mounted
-    const onReady = (event: CustomEvent): void => {
+    const onReady = (event) => {
       /**
        * ... Handle event on element mount
        */
-      setElementShow(true); // Example: show element when it is mounted
+      setElementShow(true); // Example: show element when mounted
       console.log(`Element ready, ${JSON.stringify(event.detail)}`);
     };
 
     // STEP #7: Add an event listener to handle events when the payment procedure has failed
-    const onError = (event: CustomEvent): void => {
+    const onError = (event) => {
       /**
        * ... Handle event on error
        */
       const { error } = event.detail;
-      setErrorMessage(error.message ?? JSON.stringify(error)); // Example: set error message
-      console.error('There is an error', error);
+      setErrorMessage(error.message);
+      console.error('There was an error', error);
     };
 
-    window.addEventListener('onReady', onReady as EventListener);
-    window.addEventListener('onError', onError as EventListener);
-
+    window.addEventListener('onReady', onReady);
+    window.addEventListener('onError', onError);
     return () => {
-      window.removeEventListener('onReady', onReady as EventListener);
-      window.removeEventListener('onError', onError as EventListener);
+      window.removeEventListener('onReady', onReady);
+      window.removeEventListener('onError', onError);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
@@ -113,4 +101,4 @@ const Index: React.FC = () => {
   );
 };
 
-export default Index;
+export default Redirect;

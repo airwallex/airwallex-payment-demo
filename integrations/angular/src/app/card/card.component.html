@@ -8,6 +8,13 @@
   <h2>Card integration</h2>
   <!-- Styling example below: show loading state -->
   <p [style.display]="this.loading ? 'block' : 'none'">Loading...</p>
+  <!-- Styling example below: show error message -->
+  <p
+    id="error"
+    [style.display]="this.errorMessage.length > 0 ? 'block' : 'none'"
+  >
+    {{ errorMessage }}
+  </p>
   <!-- Styling example below: only show field if element is ready -->
   <div
     class="field-container"

@@ -12,7 +12,7 @@ See `node_modules/airwallex-payment-elements/types` for a more detailed overview
 - [**Full Featured Card**](/docs/fullfeaturedcard.md)
 - [**Split Card**](/docs/splitcard.md)
 - [**Wechat**](/docs/wechat.md)
-- **Redirect** (coming soon...)
+- [**Redirect**](/docs/redirect.md)
 
 <br>
 

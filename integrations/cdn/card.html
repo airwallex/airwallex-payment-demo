@@ -17,10 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
     <!-- 
-    STEP #1: Import airwallex-payment-elements bundle 
-              - You MUST replace the bundle version to the latest NPM version
-                in order to import the package properly!
-  -->
+     STEP #1: Import airwallex-payment-elements bundle 
+               - You MUST replace the bundle version to the latest NPM version
+                 in order to import the package properly!
+   -->
     <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
   </head>
 
@@ -37,25 +37,32 @@
     <p id="error"></p>
     <p id="success">Payment successful!</p>
     <script>
-      // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
-        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-        origin: window.location.origin, // Setup your event target to receive the browser events message
-        fonts: [
-          // Customizes the font for the payment elements
-          {
-            src:
-              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-            family: 'AxLLCircular',
-            weight: 400,
-          },
-        ],
-      });
-      // STEP #4: Create 'card' element
-      const card = Airwallex.createElement('card');
+      try {
+        // STEP #2: Initialize the Airwallex global context for event communication
+        Airwallex.init({
+          env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+          origin: window.location.origin, // Setup your event target to receive the browser events message
+          fonts: [
+            // Customizes the font for the payment elements
+            {
+              src:
+                'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+              family: 'AxLLCircular',
+              weight: 400,
+            },
+          ],
+        });
 
-      // STEP #5: Mount card element
-      card.mount('card');
+        // STEP #4: Create 'card' element
+        const card = Airwallex.createElement('card');
+
+        // STEP #5: Mount card element
+        card.mount('card');
+      } catch (error) {
+        document.getElementById('error').style.display = 'block'; // Example: show error
+        document.getElementById('error').innerHTML = error.message; // Example: set error message
+        console.error('There was an error', error);
+      }
 
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
@@ -90,8 +97,8 @@
       // STEP #7: Add an event listener to ensure the element is mounted
       window.addEventListener('onReady', (event) => {
         /*
-      ... Handle event
-       */
+       ... Handle event
+        */
         document.getElementById('card-container').style.display = 'block'; // Example: show element when it is mounted
         document.getElementById('submit').style.display = 'block'; // Example: show element when it is mounted
         console.log('Element is ready', event.detail);
@@ -108,7 +115,7 @@
         const { error } = event.detail;
         document.getElementById('error').style.display = 'block'; // Example: show error
         document.getElementById('error').innerHTML = error.message; // Example: set error message
-        console.log('There was an error', error);
+        console.error('There was an error', error);
       });
     </script>
   </body>
