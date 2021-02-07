@@ -250,15 +250,8 @@ PaymentMethod (without being attached to be an existing customer)
 | `customer_id`            | false     | string              | The payment method component your website would like to integrate with                                                                                       |
 | `save_payment_method`    | false     | boolean             | Indicate whether to save this payment method for future payment                                                                                              |
 | `error`                  | false     | {}                  | Response error when failed to call createPaymentMethod                                                                                                       |
+| `payment_consent_id`     | false     | string              | The payment consent id if you have, can be create by createPaymentConsent                                                                                                       |
 
-PaymentMethodWithContract (with an existing customer)
-
-| Props           | Required? | Type    | Description                                                                                                                                                  |
-| --------------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `element`       | true      | Element | Element create by call createElement interface with 'cardNumber' element type                                                                                |
-| `client_secret` | true      | string  | The client_secret when you create payment intent, contain in the response                                                                                    |
-| `id`            | true      | string  | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-| `contract_id`   | true      | string  | The id of the contract which used to confirm intent                                                                                                          |
 
 <br>
 
