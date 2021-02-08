@@ -250,15 +250,30 @@ PaymentMethod (without being attached to be an existing customer)
 | `customer_id`            | false     | string              | The payment method component your website would like to integrate with                                                                                       |
 | `save_payment_method`    | false     | boolean             | Indicate whether to save this payment method for future payment                                                                                              |
 | `error`                  | false     | {}                  | Response error when failed to call createPaymentMethod                                                                                                       |
+| `payment_consent_id`     | false     | string              | The payment consent id if you have, can be create by createPaymentConsent                                                                                                       |
 
-PaymentMethodWithContract (with an existing customer)
 
-| Props           | Required? | Type    | Description                                                                                                                                                  |
-| --------------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `element`       | true      | Element | Element create by call createElement interface with 'cardNumber' element type                                                                                |
-| `client_secret` | true      | string  | The client_secret when you create payment intent, contain in the response                                                                                    |
-| `id`            | true      | string  | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-| `contract_id`   | true      | string  | The id of the contract which used to confirm intent                                                                                                          |
+<br>
+
+### createPaymentConsent
+
+Used to create a payment consent which could used to confirm an intent in the subsequent transactions
+
+```ts
+Airwallex.createPaymentConsent(props);
+```
+
+| Props           | Required? | Default  | Description                                                                                                                          |
+| --------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `intent_id`            | false      |          | The intent_id that would be confirmed with the new created payment consent                                                                                           |
+| `client_secret` | true      |          | If the intent provided, this should be the client_secret of the intent, If no intent provided, this should be the client_secret of the customer                                                            |
+| `currency`           | false     |      | The currency of the payment consent, Only applicable for card consent                                               |
+| `element`         | true     |          | The element you would like to use to create consent                                                                         |
+| `customer_id`   | true     |          | The customer_id of the consent |
+| `payment_method_id`    | false     |          | If customer already has a payment method, merchant could provide it instead of create a new one        |
+| `next_triggered_by`    | false     |    `merchant`      | The subsequent transactions are triggered by `merchant` or `customer`                                                           |
+| `merchant_trigger_reason`       | false     |   `unscheduled `       | The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`      |
+| `requires_cvc`     | false     |     `false `    | `requires_cvc` used for decide whether cvc is required for subsequent transactions. Only applicable when next_triggered_by is `customer`                                                       |
 
 <br>
 
