@@ -255,6 +255,28 @@ PaymentMethod (without being attached to be an existing customer)
 
 <br>
 
+### createPaymentConsent
+
+Used to create a payment consent which could used to confirm an intent in the subsequent transactions
+
+```ts
+Airwallex.createPaymentConsent(props);
+```
+
+| Props           | Required? | Default  | Description                                                                                                                          |
+| --------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `intent_id`            | false      |          | The intent_id that would be confirmed with the new created payment consent                                                                                           |
+| `client_secret` | true      |          | If the intent provided, this should be the client_secret of the intent, If no intent provided, this should be the client_secret of the customer                                                            |
+| `currency`           | false     |      | The currency of the payment consent, Only applicable for card consent                                               |
+| `element`         | true     |          | The element you would like to use to create consent                                                                         |
+| `customer_id`   | true     |          | The customer_id of the consent |
+| `payment_method_id`    | false     |          | If customer already has a payment method, merchant could provide it instead of create a new one        |
+| `next_triggered_by`    | false     |    `merchant`      | The subsequent transactions are triggered by `merchant` or `customer`                                                           |
+| `merchant_trigger_reason`       | false     |   `unscheduled `       | The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`      |
+| `requires_cvc`     | false     |     `false `    | `requires_cvc` used for decide whether cvc is required for subsequent transactions. Only applicable when next_triggered_by is `customer`                                                       |
+
+<br>
+
 ### confirmPaymentIntentWithSavedCard
 
 The following function confirms a payment intent and the rest of the payment method details with a saved card. Only required for the cvc element.
