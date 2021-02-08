@@ -66,7 +66,7 @@ More details about the `createPaymentConsent` function can be found [here](/docs
 For MIT consent, merchant could trigger the payment without shopper, so merchant could use the `confirmPaymentIntent` function to complete the transaction. [confirmPaymentIntent detail](https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#confirmpaymentintent)
 
 ## Guide for `Confirm payment using consent` with CIT flow
-For CIT consent, shopper will trigger a transaction and enter cvc number to finish the payment. So merchant need to integrate with cvc element.
+For CIT consent, when shoppers trigger a transaction, they will need to select their saved payment consent and enter the respective cvc number to finish the payment.  Merchants will only need to integrate the cvc element.
 
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
@@ -98,6 +98,7 @@ The Airwallex package only needs to be mounted once in an application (and every
 ### 3. Add empty containers for cvc element to be injected into and a submit button to trigger the payment request
 
 ```html
+<div>List of payment consents</div>
 <label>
   CVC
   <div id="cvc"></div>
@@ -141,7 +142,7 @@ document.getElementById('submit').addEventListener('click', () => {
     element: cvc, // Provide the cvc element
     id: 'replace-with-your-intent-id', // Payment Intent ID
     client_secret: 'replace-with-your-client-secret', // Client Secret
-    payment_consent_id: 'replace-with-your-consent-id' // Payment Consent id,
+    payment_consent_id: 'replace-with-your-consent-id' // Payment Consent id of the payment consent the customer had selected
   }).then((response) => {
     // STEP #6b: Listen to the request response
     /* Handle response */
@@ -181,3 +182,89 @@ window.addEventListener('onChange', (event) => {
 `event` will return an object with the field name and whether this field is completed (valid). This can help with validating the fields before users can trigger the submit button to prevent any validation errors.
 
 ### 9. Beautify and deploy!
+
+## Full Code Example
+
+```html
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Airwallex Checkout Playground</title>
+    <!-- STEP #1: Import airwallex-payment-elements bundle -->
+    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+  </head>
+
+  <body>
+    <h1>Split Card integration</h1>
+    <div id="element">
+      Card Information
+      <!-- STEP #3a: Add empty containers for each card input element to be injected into -->
+      <div style={containerStyle}>
+        <div>Card number</div>
+        <div id="cardNumber"></div>
+      </div>
+      <div style={containerStyle}>
+        <div>Expiry</div>
+        <div id="expiry"></div>
+      </div>
+      <div style={containerStyle}>
+        <div>Cvc</div>
+        <div id="cvc"></div>
+    </div>
+    <br />
+    <!-- STEP #3b: Add a submit button to trigger the payment request -->
+    <button id="submit">Submit</button>
+
+    <script>
+      // STEP #2: Initialize the Airwallex global context for event communication
+      Airwallex.init({
+        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        origin: window.location.origin, // Setup your event target to receive the browser events message
+      });
+      // STEP #4: Create split card elements
+      const cardNumber = Airwallex.createElement('cardNumber');
+      const expiry = Airwallex.createElement('expiry');
+      const cvc = Airwallex.createElement('cvc');
+
+      // STEP #5: Mount split card elements
+      cardNumber.mount('cardNumber');
+      expiry.mount('expiry');
+      cvc.mount('cvc');
+
+      // STEP #6a: Add a button handler to trigger the payment request
+      document.getElementById('submit').addEventListener('click', () => {
+        Airwallex.createPaymentConsent({
+          intent_id: 'replace-with-your-intent-id', // intent id(Optional)
+          customer_id: 'replace-with-your-customer-id', // customer id
+          client_secret: 'replace-with-your-client-secret', // client secret
+          currency: 'replace-with-your-currency', // currency
+          element: cardElement // either the card element or card number element depends on the element you integrate,
+          next_triggered_by: 'customer' // 'merchant' for MIT and 'customer' for CIT
+        }).then((response) => {
+          // STEP #6b: Listen to the request response
+          /* handle create consent response in your business flow */
+          window.alert(JSON.stringify(response));
+        });
+      });
+
+      // STEP #7: Add an event listener to ensure the element is mounted
+      window.addEventListener('onReady', (event) => {
+        /*
+        ... Handle event
+         */
+        window.alert(event.detail);
+      });
+
+      // STEP #8: Add an event listener to listen to the changes in each of the input fields
+      window.addEventListener('onChange', (event) => {
+        /*
+        ... Handle event
+         */
+        window.alert(event.detail);
+      });
+    </script>
+  </body>
+</html>
+```
