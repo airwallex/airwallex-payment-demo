@@ -87,7 +87,7 @@
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
         Airwallex.confirmPaymentIntent({
-          element: cardNumber, // Only need to submit CardNumber element
+          element: Airwallex.getElement('cardNumber'), // Only need to submit CardNumber element
           id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
         })
