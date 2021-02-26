@@ -2,6 +2,10 @@
 
 This directory contains the React Native implementation of [Airwallex Payment Element](https://www.npmjs.com/package/airwallex-payment-elements).
 
+## Special Note about this integration
+
+Airwallex has [IOS](https://www.airwallex.com/docs/payments__ios-airwallex-sdk)/[Android](https://www.airwallex.com/docs/payments__android-airwallex-sdk) SDKs for native solutions, so this integration is a simple extension of our web features using [ReactNativeWebView](https://github.com/react-native-webview/react-native-webview). ReactNativeWebview is used extensively throughout this integration, as we embed iframes containing the elements' HTML integration code into each React Native page. Therefore, this solution is a combination of the HTML/CDN solution with React Native. You'll notice that the demos use ReactNativeWebview as the element renderer, but all the events are handled in React Native.
+
 ## Requirements
 
 - [node.js](https://nodejs.org/en/)
@@ -27,7 +31,7 @@ Follow this [React Native Set Up Guide](https://reactnative.dev/docs/environment
 
 ## Usage
 
-Each of the payment methods are written as a separate component found in the [/src/components](/integrations/react-ts/src/components) folder.
+Each of the payment methods are written as a separate component found in the [/src](/integrations/ReactNative/src) folder.
 
 To test each of the payment methods, be sure to replace the `intent_id` and `client_secret` variables at the top of each file with your own unique keys. These values can be created with the backend API integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
 
