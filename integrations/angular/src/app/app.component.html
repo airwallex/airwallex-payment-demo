@@ -1,0 +1,26 @@
+<!-- 
+  app.component.html
+  Airwallex Payment Demo - Angular.  Created by Roy Yang.
+
+  This file is the html template for the main demo app.
+  Contains the menu of buttons to each demo.
+ -->
+<div class="App">
+  <a href="/" style="text-decoration: none">
+    <h1>Airwallex Payment Demo - Angular</h1>
+  </a>
+  <div class="container">
+    <nav>
+      <h2>All Demos</h2>
+      <button
+        *ngFor="let config of routes"
+        on-mousedown="redirectTo(config.path)"
+      >
+        {{ config.linkTitle }}
+      </button>
+    </nav>
+    <div class="payment-frame">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

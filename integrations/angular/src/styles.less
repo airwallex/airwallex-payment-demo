@@ -1,0 +1,123 @@
+/**
+ * styles.less
+ * Airwallex Payment Demo - Angular.  Created by Josie Ku.
+ *
+ * This file provides styling to the demo site.  This is not required for the integration.
+ */
+
+.App {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+h1 {
+  width: 100%;
+  border-bottom: 1px solid lightgrey;
+  margin: 0;
+  padding: 25px 0;
+  color: #2c3e50 !important;
+}
+
+div.container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 90vh;
+}
+
+div.payment-frame {
+  width: 85vw;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  width: 15vw;
+  align-items: center;
+  justify-content: flex-start;
+  border-right: 1px solid lightgrey;
+  height: 100%;
+  min-width: 175px;
+}
+
+button {
+  margin: 10px;
+  padding: 5px 10px;
+  font-family: "Helvetica Neue";
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #612fff;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+button:disabled {
+  opacity: 0.75;
+}
+
+nav button {
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.field-container {
+  margin: 0 auto 16px;
+  width: 300px;
+}
+
+div.field-label {
+  text-align: left;
+  border: 0;
+}
+
+body {
+  margin: 0;
+  font-family: "AxLLCircular";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p#error {
+  background: #ffebee;
+  border-radius: 5px;
+  padding: 5px 10px;
+  max-width: 400px;
+  margin: 15px auto;
+}
+
+div.instruction-container {
+  padding: 10px 50px;
+  text-align: left;
+}
+
+span#code {
+  font-family: monospace;
+  background-color: lightgrey;
+  font-size: 16px;
+  margin: 0px 5px;
+}
+
+p#bullet {
+  font-weight: bold;
+}
+
+@font-face {
+  src: url("https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Bold.woff");
+  font-family: "AxLLCircular";
+  weight: "bold";
+}
+
+@font-face {
+  src: url("https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2");
+  font-family: "AxLLCircular";
+  weight: "400";
+}
