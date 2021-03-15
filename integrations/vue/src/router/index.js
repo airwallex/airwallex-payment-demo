@@ -14,7 +14,7 @@ import SplitCard from '@/components/splitCard';
 import Wechat from '@/components/wechat';
 import Card from '@/components/card';
 import Instructions from '@/components/instructions';
-import Redirect from '@/components/Redirect';
+import Redirect from '@/components/redirect';
 
 Vue.use(Router);
 
