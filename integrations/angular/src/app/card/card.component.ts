@@ -97,6 +97,7 @@ export class CardComponent implements OnInit {
   // STEP #9: Add an event listener to get input focus status
   onFocus = (event: any): void => {
     // Customize your input focus style by listen onFocus event
+    this.inputErrorMessage = '';
   };
 
   // STEP #10: Add an event listener to show input error message when finish typing

@@ -119,7 +119,12 @@ export class SplitCardComponent implements OnInit {
 
   // STEP #9: Add an event listener to get input focus status
   onFocus = (event: any): void => {
+    const { type } = event.detail;
     // Customize your input focus style by listen onFocus event
+    const element = document.getElementById(`${type}-error`);
+    if (element) {
+      element.innerHTML = ''; // Example: clear input error message
+    }
   };
 
   // STEP #10: Add an event listener to show input error message when finish typing

@@ -40,17 +40,17 @@ export const generateHTML = ({
     <div class="field-container">
       <p>Card number</p>
       <div id="cardNumber"></div>
-      <p id="cardNumber-error"></p>
+      <p id="cardNumber-error"  style="color: red"></p>
     </div>
     <div class="field-container">
       <p>Expiry</p>
       <div id="expiry"></div>
-      <p id="expiry-error"></p>
+      <p id="expiry-error"  style="color: red"></p>
     </div>
     <div class="field-container">
       <p>Cvc</p>
       <div id="cvc"></div>
-      <p id="cvc-error"></p>
+      <p id="cvc-error"  style="color: red"></p>
     </div>
     <!-- STEP #3b: Add a submit button to trigger the payment request -->
     <button id="submit">Submit</button>
@@ -128,6 +128,11 @@ export const generateHTML = ({
       })
       // STEP #9: Add an event listener to get input focus status
       window.addEventListener('onFocus', (event) => {
+        const { type } = event.detail;
+        const element = document.getElementById(type + '-error');
+        if (element) {
+          element.innerHTML = ''; // Example: clear input error message
+        }
         // Customize your input focus style by listen onFocus event
       });
 

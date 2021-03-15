@@ -27,21 +27,21 @@
           Card number
         </div>
         <div id="cardNumber" />
-        <p id="cardNumber-error" />
+        <p id="cardNumber-error" :style="{ color: 'red' }" />
       </div>
       <div class="field-container">
         <div class="field-label">
           Expiry
         </div>
         <div id="expiry" />
-        <p id="expiry-error" />
+        <p id="expiry-error" :style="{ color: 'red' }" />
       </div>
       <div class="field-container">
         <div class="field-label">
           Cvc
         </div>
         <div id="cvc" />
-        <p id="cvc-error" />
+        <p id="cvc-error" :style="{ color: 'red' }" />
       </div>
       <!-- STEP #3b: Add a submit button to trigger the payment request -->
       <button id="confirm" :disabled="true" @click="triggerConfirm()">
@@ -139,6 +139,11 @@ const onError = (event) => {
 
 // STEP #10: Add an event listener to get input focus status
 const onFocus = (event) => {
+  const { type } = event.detail;
+  const element = document.getElementById(`${type}-error`);
+  if (element) {
+    element.innerHTML = ''; // Example: clear input error message
+  }
   // Customize your input focus style by listen onFocus event
 };
 

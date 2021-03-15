@@ -32,17 +32,17 @@
     <div class="field-container">
       <div class="field-label">Card number</div>
       <div id="cardNumber"></div>
-      <p id="cardNumber-error"></p>
+      <p id="cardNumber-error" [style.color]="red"></p>
     </div>
     <div class="field-container">
       <div class="field-label">Expiry</div>
       <div id="expiry"></div>
-      <p id="expiry-error"></p>
+      <p id="expiry-error" [style.color]="red"></p>
     </div>
     <div class="field-container">
       <div class="field-label">Cvc</div>
       <div id="cvc"></div>
-      <p id="cvc-error"></p>
+      <p id="cvc-error" [style.color]="red"></p>
     </div>
     <!-- STEP #3b: Add a submit button to trigger the payment request -->
     <button on-click="triggerConfirm()" [disabled]="!fieldsCompleted || isSubmitting">

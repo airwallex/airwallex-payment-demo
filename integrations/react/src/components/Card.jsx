@@ -73,7 +73,7 @@ const Card = () => {
 
     // STEP #9: Add an event listener to get input focus status
     onFocus = (event) => {
-      // Customize your input focus style by listen onFocus event
+      setInputErrorMessage(''); // Example: clear input error message
     };
 
     // STEP #10: Add an event listener to show input error message when finish typing
@@ -156,7 +156,7 @@ const Card = () => {
           id="card"
           style={inputStyle} // Example: input styling can be moved to css
         />
-        <p>{inputErrorMessage}</p>
+        <p style={{color: 'red'}}>{inputErrorMessage}</p>
         {/* STEP #3b: Add a submit button to trigger the payment request */}
         <button
           onClick={onTriggerConfirm}

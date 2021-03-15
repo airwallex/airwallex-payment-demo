@@ -98,6 +98,11 @@ const Index = () => {
     };
     // STEP #9: Add an event listener to get input focus status
     const onFocus = (event) => {
+      const { type } = event.detail;
+      setInputErrorMessage({
+        ...inputErrorMessage,
+        [type]: '', // Example: clear input error message
+      });
       // Customize your input focus style by listen onFocus event
     };
     // STEP #10: Add an event listener to show input error message when finish typing
@@ -188,7 +193,7 @@ const Index = () => {
             id="cardNumber"
             style={inputStyle} // Example: input styling can be moved to css
           />
-          <p>{inputErrorMessage.cardNumber}</p>
+          <p style={{color: 'red'}}>{inputErrorMessage.cardNumber}</p>
         </div>
         <div className="field-container">
           <div className="field-label">Expiry</div>
@@ -196,7 +201,7 @@ const Index = () => {
             id="expiry"
             style={inputStyle} // Example: input styling can be moved to css
           />
-          <p>{inputErrorMessage.expiry}</p>
+          <p style={{color: 'red'}}>{inputErrorMessage.expiry}</p>
         </div>
         <div className="field-container">
           <div className="field-label">Cvc</div>
@@ -204,7 +209,7 @@ const Index = () => {
             id="cvc"
             style={inputStyle} // Example: input styling can be moved to css
           />
-          <p>{inputErrorMessage.cvc}</p>
+          <p style={{color: 'red'}}>{inputErrorMessage.cvc}</p>
         </div>
         {/* STEP #3b: Add a submit button to trigger the payment request */}
         <button

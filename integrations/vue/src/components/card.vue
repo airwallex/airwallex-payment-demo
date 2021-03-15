@@ -23,7 +23,7 @@
     -->
     <div id="field-container" :style="{ display: 'none' }">
       <div id="card" />
-      <p id="card-error"></p>
+      <p id="card-error" :style="{ color: 'red' }" />
       <button id="submit" :disabled="true" @click="triggerConfirm()">
         Confirm
       </button>
@@ -91,6 +91,7 @@ const onChange = (event) => {
 
 // STEP #10: Add an event listener to get input focus status
 const onFocus = (event) => {
+  document.getElementById('card-error').innerHTML = ''; // Example: clear input error message
   // Customize your input focus style by listen onFocus event
 };
 

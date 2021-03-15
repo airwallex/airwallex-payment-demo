@@ -38,17 +38,17 @@
       <div class="field-container">
         <div>Card number</div>
         <div id="cardNumber"></div>
-        <p id="cardNumber-error"></p>
+        <p id="cardNumber-error" style="color: red"></p>
       </div>
       <div class="field-container">
         <div>Expiry</div>
         <div id="expiry"></div>
-        <p id="expiry-error"></p>
+        <p id="expiry-error" style="color: red"></p>
       </div>
       <div class="field-container">
         <div>Cvc</div>
         <div id="cvc"></div>
-        <p id="cvc-error"></p>
+        <p id="cvc-error" style="color: red"></p>
       </div>
       <!-- STEP #3b: Add a submit button to trigger the payment request -->
       <button id="submit">Submit</button>
@@ -160,6 +160,10 @@
       // STEP #9: Add an event listener to get input focus status
       window.addEventListener('onFocus', (event) => {
         // Customize your input focus style by listen onFocus event
+        const element = document.getElementById(type + '-error');
+        if (element) {
+          element.innerHTML = ''; // Example: clear input error message
+        }
       });
 
       // STEP #10: Add an event listener to show input error message when finish typing

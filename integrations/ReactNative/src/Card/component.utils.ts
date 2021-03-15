@@ -37,7 +37,7 @@ export const generateHTML = ({
     <div id="card-container">
       <!-- STEP #3a: Add an empty container for the card element to be injected into -->
       <div id='card'></div>
-      <p id="input-error"></p>
+      <p id="input-error"  style="color: red"></p>
       <!-- STEP #3b: Add a submit button to trigger the payment request -->
       <button id="submit" disabled="true">Submit</button>
     </div>
@@ -92,6 +92,10 @@ export const generateHTML = ({
       })
       // STEP #9: Add an event listener to get input focus status
       document.addEventListener('onFocus', (event) => {
+        const element = document.getElementById('input-error');
+        if (element) {
+          element.innerHTML = '' // Example: clear input error message
+        }
         // Customize your input focus style by listen onFocus event
       });
 
