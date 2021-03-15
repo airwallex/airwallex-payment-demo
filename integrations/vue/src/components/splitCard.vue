@@ -27,18 +27,21 @@
           Card number
         </div>
         <div id="cardNumber" />
+        <p id="cardNumber-error" />
       </div>
       <div class="field-container">
         <div class="field-label">
           Expiry
         </div>
         <div id="expiry" />
+        <p id="expiry-error" />
       </div>
       <div class="field-container">
         <div class="field-label">
           Cvc
         </div>
         <div id="cvc" />
+        <p id="cvc-error" />
       </div>
       <!-- STEP #3b: Add a submit button to trigger the payment request -->
       <button id="confirm" :disabled="true" @click="triggerConfirm()">
@@ -134,6 +137,20 @@ const onError = (event) => {
   console.log('There was an error', event.detail.error);
 };
 
+// STEP #10: Add an event listener to get input focus status
+const onFocus = (event) => {
+  // Customize your input focus style by listen onFocus event
+};
+
+// STEP #11: Add an event listener to show input error message when finish typing
+const onBlur = (event) => {
+  const { error, type } = event.detail;
+  const element = document.getElementById(`${type}-error`);
+  if (element) {
+    element.innerHTML = error.message || JSON.stringify(error); // Example: set input error message
+  }
+};
+
 // STEP #6a: Add a button handler to trigger the payment request
 const triggerConfirm = async () => {
   const cardNumElement = getElement('cardNumber');
@@ -178,12 +195,16 @@ export default {
     window.addEventListener('onReady', onReady);
     window.addEventListener('onChange', onChange);
     window.addEventListener('onError', onError);
+    window.addEventListener('onFocus', onFocus);
+    window.addEventListener('onBlur', onBlur);
   },
   beforeDestroy() {
     // Be sure to clean up event listeners when component unmounts
     window.removeEventListener('onReady', onReady);
     window.removeEventListener('onChange', onChange);
     window.removeEventListener('onError', onError);
+    window.removeEventListener('onFocus', onFocus);
+    window.removeEventListener('onBlur', onBlur);
   },
 };
 </script>
