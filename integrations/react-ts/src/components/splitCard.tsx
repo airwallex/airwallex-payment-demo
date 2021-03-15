@@ -111,7 +111,7 @@ const Index: React.FC = () => {
       const { type, error } = event.detail;
       setInputErrorMessage({
         ...inputErrorMessage,
-        [type]: error.message ?? JSON.stringify(error),
+        [type]: error?.message ?? JSON.stringify(error),
       });
     };
     window.addEventListener('onReady', onReady as EventListener);

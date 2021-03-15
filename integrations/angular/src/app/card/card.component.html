@@ -20,7 +20,7 @@
         the element may fail to mount. 
     -->
     <div id="card"></div>
-    <p [style.color]="red">{{ inputErrorMessage }}</p>
+    <p style="color: red">{{ inputErrorMessage }}</p>
     <!-- STEP #3b: Add a submit button to trigger the payment request -->
     <button on-click="triggerConfirm()" [disabled]="isSubmitting">
       <!-- [disabled] prevents incomplete submissions-->

@@ -151,7 +151,7 @@ const onFocus = (event) => {
 const onBlur = (event) => {
   const { error, type } = event.detail;
   const element = document.getElementById(`${type}-error`);
-  if (element) {
+  if (element && error) {
     element.innerHTML = error.message || JSON.stringify(error); // Example: set input error message
   }
 };

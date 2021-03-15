@@ -104,7 +104,7 @@ export const generateHTML = ({
         const { complete } = event.detail;
         const { error } = event.detail;
         const element = document.getElementById('input-error');
-        if (element) {
+        if (element && error) {
           element.innerHTML = error.message || JSON.stringify(error); // Example: set input error message
         }
       });

@@ -110,7 +110,7 @@ const Index = () => {
       const { type, error } = event.detail;
       setInputErrorMessage({
         ...inputErrorMessage,
-        [type]: error.message ?? JSON.stringify(error),
+        [type]: error?.message ?? JSON.stringify(error),
       });
     }
 

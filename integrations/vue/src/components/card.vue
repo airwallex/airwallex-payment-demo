@@ -98,7 +98,9 @@ const onFocus = (event) => {
 // STEP #11: Add an event listener to show input error message when finish typing
 const onBlur = (event) => {
   const { error } = event.detail;
-  document.getElementById('card-error').innerHTML = error.message || JSON.stringify(error); // Example: set input error message
+  if (error) {
+    document.getElementById('card-error').innerHTML = error.message || JSON.stringify(error);
+  } // Example: set input error message
 };
 // STEP #6a: Add a button handler to trigger the payment request
 const triggerConfirm = () => {

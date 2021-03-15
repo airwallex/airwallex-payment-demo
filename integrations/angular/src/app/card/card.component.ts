@@ -103,7 +103,7 @@ export class CardComponent implements OnInit {
   // STEP #10: Add an event listener to show input error message when finish typing
   onBlur = (event: any): void => {
     const { error } = event.detail;
-    this.inputErrorMessage = error.message ?? JSON.stringify(error); // Example: set input error message
+    this.inputErrorMessage = error?.message ?? JSON.stringify(error); // Example: set input error message
   };
 
   // STEP #6a: Add a button handler to trigger the payment request

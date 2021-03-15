@@ -77,7 +77,7 @@ const Index: React.FC = () => {
     // STEP #10: Add an event listener to show input error message when finish typing
     const onBlur = (event: CustomEvent): void => {
       const { error } = event.detail;
-      setInputErrorMessage(error.message ?? JSON.stringify(error)); // Example: set input error message
+      setInputErrorMessage(error?.message ?? JSON.stringify(error)); // Example: set input error message
     };
 
     window.addEventListener('onReady', onReady as EventListener);

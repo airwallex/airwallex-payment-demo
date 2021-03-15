@@ -132,7 +132,7 @@ export class SplitCardComponent implements OnInit {
     const { error, type } = event.detail;
     const element = document.getElementById(`${type}-error`);
     if (element) {
-      element.innerHTML = error.message ?? JSON.stringify(error); // Example: set input error message
+      element.innerHTML = error?.message ?? JSON.stringify(error); // Example: set input error message
     }
   };
 
