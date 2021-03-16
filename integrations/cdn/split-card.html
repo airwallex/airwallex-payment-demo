@@ -10,18 +10,20 @@
  -->
 <!DOCTYPE html>
 <html>
+
   <head lang="en">
     <meta charset="utf-8" />
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
     <!-- 
-       STEP #1: Import airwallex-payment-elements bundle 
-                 - You MUST replace the bundle version to the latest NPM version
-                   in order to import the package properly!
-     -->
+        STEP #1: Import airwallex-payment-elements bundle 
+                  - You MUST replace the bundle version to the latest NPM version
+                    in order to import the package properly!
+      -->
     <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
   </head>
+
   <body>
     <h1>Split Card integration</h1>
     <!-- Example: loading state when element is not yet mounted -->
@@ -29,21 +31,24 @@
     <!-- Example: Hide all elements before they are all mounted -->
     <div id="element" style="display: none">
       <!-- 
-         STEP 3a: Add empty containers for the split card elements to be placed into
-         - Ensure these are the only elements in your document with these id, otherwise 
-           the elements may fail to mount.  
-       -->
+          STEP 3a: Add empty containers for the split card elements to be placed into
+          - Ensure these are the only elements in your document with these id, otherwise 
+            the elements may fail to mount.  
+        -->
       <div class="field-container">
         <div>Card number</div>
         <div id="cardNumber"></div>
+        <p id="cardNumber-error" style="color: red"></p>
       </div>
       <div class="field-container">
         <div>Expiry</div>
         <div id="expiry"></div>
+        <p id="expiry-error" style="color: red"></p>
       </div>
       <div class="field-container">
         <div>Cvc</div>
         <div id="cvc"></div>
+        <p id="cvc-error" style="color: red"></p>
       </div>
       <!-- STEP #3b: Add a submit button to trigger the payment request -->
       <button id="submit">Submit</button>
@@ -116,7 +121,7 @@
       // STEP #7: Add an event listener to ensure the element is mounted
       window.addEventListener('onReady', (event) => {
         /*
-         ... Handle event
+        ... Handle event
           */
         const { type } = event.detail;
         if (elementsReady.hasOwnProperty(type)) {
@@ -139,7 +144,7 @@
       // STEP #8: Add an event listener to listen to the changes in each of the input fields
       window.addEventListener('onChange', (event) => {
         /*
-         ... Handle event
+        ... Handle event
           */
         const { type, complete } = event.detail;
         if (elementsCompleted.hasOwnProperty(type)) {
@@ -152,12 +157,28 @@
         );
         document.getElementById('submit').disabled = !allElementsCompleted;
       });
+      // STEP #9: Add an event listener to get input focus status
+      window.addEventListener('onFocus', (event) => {
+        // Customize your input focus style by listen onFocus event
+        const element = document.getElementById(type + '-error');
+        if (element) {
+          element.innerHTML = ''; // Example: clear input error message
+        }
+      });
 
+      // STEP #10: Add an event listener to show input error message when finish typing
+      window.addEventListener('onBlur', (event) => {
+        const { error, type } = event.detail;
+        const element = document.getElementById(type + '-error');
+        if (element && error) {
+          element.innerHTML = error.message || JSON.stringify(error); // Example: set input error message
+        }
+      });
       // STEP #9: Add an event listener to handle events when there is an error
       window.addEventListener('onError', (event) => {
         /*
-           ... Handle event on error
-         */
+          ... Handle event on error
+        */
         const { error } = event.detail;
         document.getElementById('error').style.display = 'block'; // Example: show error block
         document.getElementById('error').innerHTML = error.message; // Example: set error message
@@ -180,4 +201,5 @@
       margin-top: 5px;
     }
   </style>
+
 </html>

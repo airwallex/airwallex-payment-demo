@@ -27,7 +27,7 @@ const Card = () => {
   const [elementShow, setElementShow] = useState(false); // Example: show element state
   const [isSubmitting, setIsSubmitting] = useState(false); // Example: show submission processing state
   const [errorMessage, setErrorMessage] = useState(false); // Example: set error state
-
+  const [inputErrorMessage, setInputErrorMessage] = useState(false); //  Example: set input error state
   useEffect(() => {
     // STEP #2: Initialize Airwallex with the appropriate Airwallex environment and other configurations
     loadAirwallex({
@@ -71,11 +71,26 @@ const Card = () => {
       console.error('There was an error', error);
     };
 
+    // STEP #9: Add an event listener to get input focus status
+    onFocus = (event) => {
+      setInputErrorMessage(''); // Example: clear input error message
+    };
+
+    // STEP #10: Add an event listener to show input error message when finish typing
+    onBlur = (event) => {
+      const { error } = event.detail;
+      setInputErrorMessage(error?.message ?? JSON.stringify(error)); // Example: set input error message
+    };
+
     window.addEventListener('onReady', onReady);
     window.addEventListener('onError', onError);
+    window.addEventListener('onBlur', onBlur);
+    window.addEventListener('onFocus', onFocus);
     return () => {
       window.removeEventListener('onReady', onReady);
       window.removeEventListener('onError', onError);
+      window.removeEventListener('onFocus', onFocus);
+      window.removeEventListener('onBlur', onBlur);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
@@ -141,6 +156,7 @@ const Card = () => {
           id="card"
           style={inputStyle} // Example: input styling can be moved to css
         />
+        <p style={{color: 'red'}}>{inputErrorMessage}</p>
         {/* STEP #3b: Add a submit button to trigger the payment request */}
         <button
           onClick={onTriggerConfirm}

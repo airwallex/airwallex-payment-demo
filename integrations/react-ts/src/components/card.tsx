@@ -27,6 +27,7 @@ const Index: React.FC = () => {
   const [elementShow, setElementShow] = useState(false); // Example: show element state
   const [isSubmitting, setIsSubmitting] = useState(false); // Example: show submission processing state
   const [errorMessage, setErrorMessage] = useState(''); // Example: set error state
+  const [inputErrorMessage, setInputErrorMessage] = useState(''); //  Example: set input error state
 
   useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
@@ -67,12 +68,27 @@ const Index: React.FC = () => {
       setErrorMessage(error.message ?? JSON.stringify(error)); // Example: set error message
       console.error('There is an error', error);
     };
+    // STEP #9: Add an event listener to get input focus status
+    const onFocus = (): void => {
+      setInputErrorMessage(''); // Example: clear input error message
+      // Customize your input focus style by listen onFocus event
+    };
+
+    // STEP #10: Add an event listener to show input error message when finish typing
+    const onBlur = (event: CustomEvent): void => {
+      const { error } = event.detail;
+      setInputErrorMessage(error?.message ?? JSON.stringify(error)); // Example: set input error message
+    };
 
     window.addEventListener('onReady', onReady as EventListener);
     window.addEventListener('onError', onError as EventListener);
+    window.addEventListener('onFocus', onFocus as EventListener);
+    window.addEventListener('onBlur', onBlur as EventListener);
     return () => {
       window.removeEventListener('onReady', onReady as EventListener);
       window.removeEventListener('onError', onError as EventListener);
+      window.removeEventListener('onFocus', onFocus as EventListener);
+      window.removeEventListener('onBlur', onBlur as EventListener);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
@@ -146,6 +162,7 @@ const Index: React.FC = () => {
           id="card"
           style={inputStyle} // Example: input styling can be moved to css
         />
+        <p style={{ color: 'red' }}>{inputErrorMessage}</p>
         {/* STEP ##3b: Add a submit button to trigger the payment request */}
         <button
           onClick={triggerConfirm}

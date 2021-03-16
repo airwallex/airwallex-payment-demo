@@ -7,30 +7,23 @@
 <div>
   <h2>Split Card element integration</h2>
   <!-- Styling example below: show loading state -->
-  <p
-    [style.display]="
+  <p [style.display]="
       this.cardNumberReady && this.cvcReady && this.expiryReady
         ? 'none'
         : 'block'
-    "
-  >
+    ">
     Loading...
   </p>
   <!-- Styling example below: show error message -->
-  <p
-    id="error"
-    [style.display]="this.errorMessage.length > 0 ? 'block' : 'none'"
-  >
+  <p id="error" [style.display]="this.errorMessage.length > 0 ? 'block' : 'none'">
     {{ errorMessage }}
   </p>
   <!-- Styling example below: only displays block when all elements are ready  -->
-  <div
-    [style.display]="
+  <div [style.display]="
       this.cardNumberReady && this.cvcReady && this.expiryReady
         ? 'block'
         : 'none'
-    "
-  >
+    ">
     <!-- 
       STEP #3a: Add an empty container for the split card elements to be placed into
       - Ensure these are the only elements in your document with these id, otherwise 
@@ -39,20 +32,20 @@
     <div class="field-container">
       <div class="field-label">Card number</div>
       <div id="cardNumber"></div>
+      <p id="cardNumber-error" style="color: red"></p>
     </div>
     <div class="field-container">
       <div class="field-label">Expiry</div>
       <div id="expiry"></div>
+      <p id="expiry-error" style="color: red"></p>
     </div>
     <div class="field-container">
       <div class="field-label">Cvc</div>
       <div id="cvc"></div>
+      <p id="cvc-error" style="color: red"></p>
     </div>
     <!-- STEP #3b: Add a submit button to trigger the payment request -->
-    <button
-      on-click="triggerConfirm()"
-      [disabled]="!fieldsCompleted || isSubmitting"
-    >
+    <button on-click="triggerConfirm()" [disabled]="!fieldsCompleted || isSubmitting">
       <!-- [disabled] prevents incomplete submissions-->
       <span *ngIf="!isSubmitting">Confirm</span>
       <span *ngIf="isSubmitting">Submitting...</span>

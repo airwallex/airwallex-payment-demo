@@ -36,7 +36,6 @@ For those using [Next.js](https://nextjs.org/) as their web framework, feel free
 
 Other integrations coming soon:
 
-- React Native
 - PHP
 
 ## Sandboxes

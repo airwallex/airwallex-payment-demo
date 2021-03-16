@@ -40,14 +40,17 @@ export const generateHTML = ({
     <div class="field-container">
       <p>Card number</p>
       <div id="cardNumber"></div>
+      <p id="cardNumber-error"  style="color: red"></p>
     </div>
     <div class="field-container">
       <p>Expiry</p>
       <div id="expiry"></div>
+      <p id="expiry-error"  style="color: red"></p>
     </div>
     <div class="field-container">
       <p>Cvc</p>
       <div id="cvc"></div>
+      <p id="cvc-error"  style="color: red"></p>
     </div>
     <!-- STEP #3b: Add a submit button to trigger the payment request -->
     <button id="submit">Submit</button>
@@ -123,8 +126,25 @@ export const generateHTML = ({
 
         document.getElementById('submit').disabled = !allElementsCompleted; // Example: Enable button only when all fields are completed
       })
+      // STEP #9: Add an event listener to get input focus status
+      window.addEventListener('onFocus', (event) => {
+        const { type } = event.detail;
+        const element = document.getElementById(type + '-error');
+        if (element) {
+          element.innerHTML = ''; // Example: clear input error message
+        }
+        // Customize your input focus style by listen onFocus event
+      });
 
-      // STEP #9: Error events are handled in React Native
+      // STEP #10: Add an event listener to show input error message when finish typing
+      window.addEventListener('onBlur', (event) => {
+        const { error, type } = event.detail;
+        const element = document.getElementById(type + '-error');
+        if (element && error) {
+          element.innerHTML = error.message || JSON.stringify(error); // Example: set input error message
+        }
+      });
+      // STEP #11: Error events are handled in React Native
       //          See ReactNativeWebview's onMessage attribute in src/SplitCard/index.tsx  
     </script>
   </body>

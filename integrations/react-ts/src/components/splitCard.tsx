@@ -37,6 +37,11 @@ const Index: React.FC = () => {
   const [expiryComplete, setExpiryComplete] = useState<undefined | boolean>(
     false,
   );
+  const [inputErrorMessage, setInputErrorMessage] = useState({
+    cardNumber: '',
+    expiry: '',
+    cvc: '',
+  });
   // Example: controls submission state
   const [isSubmitting, setIsSubmitting] = useState(false);
   // Example: set error state
@@ -92,14 +97,35 @@ const Index: React.FC = () => {
       }
       console.log(`Elements changed with ${JSON.stringify(event.detail)}`);
     };
-
+    // STEP #9: Add an event listener to get input focus status
+    const onFocus = (event: CustomEvent) => {
+      const { type } = event.detail;
+      setInputErrorMessage({
+        ...inputErrorMessage,
+        [type]: '', // Example: clear input error message
+      });
+      // Customize your input focus style by listen onFocus event
+    };
+    // STEP #10: Add an event listener to show input error message when finish typing
+    const onBlur = (event: CustomEvent) => {
+      const { type, error } = event.detail;
+      setInputErrorMessage({
+        ...inputErrorMessage,
+        [type]: error?.message ?? JSON.stringify(error),
+      });
+    };
     window.addEventListener('onReady', onReady as EventListener);
     window.addEventListener('onChange', onChange as EventListener); // Can also using onBlur
+    window.addEventListener('onBlur', onBlur as EventListener);
+    window.addEventListener('onFocus', onFocus as EventListener);
     return () => {
       window.removeEventListener('onReady', onReady as EventListener);
       window.removeEventListener('onChange', onChange as EventListener);
+      window.removeEventListener('onBlur', onBlur as EventListener);
+      window.removeEventListener('onFocus', onFocus as EventListener);
     };
-  }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
+  }, [inputErrorMessage]);
+  // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
   // STEP #6a: Add a button handler to trigger the payment request
   const handleConfirm = (): void => {
@@ -169,6 +195,7 @@ const Index: React.FC = () => {
             id="cardNumber"
             style={inputStyle} // Example: input styling can be moved to css
           />
+          <p style={{ color: 'red' }}>{inputErrorMessage.cardNumber}</p>
         </div>
         <div className="field-container">
           <div className="field-label">Expiry</div>
@@ -176,6 +203,7 @@ const Index: React.FC = () => {
             id="expiry"
             style={inputStyle} // Example: input styling can be moved to css
           />
+          <p style={{ color: 'red' }}>{inputErrorMessage.expiry}</p>
         </div>
         <div className="field-container">
           <div className="field-label">Cvc</div>
@@ -183,6 +211,7 @@ const Index: React.FC = () => {
             id="cvc"
             style={inputStyle} // Example: input styling can be moved to css
           />
+          <p style={{ color: 'red' }}>{inputErrorMessage.cvc}</p>
         </div>
         {/* STEP #3b: Add a submit button to trigger the payment request */}
         <button

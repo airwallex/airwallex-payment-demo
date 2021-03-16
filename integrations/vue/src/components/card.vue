@@ -23,6 +23,7 @@
     -->
     <div id="field-container" :style="{ display: 'none' }">
       <div id="card" />
+      <p id="card-error" :style="{ color: 'red' }" />
       <button id="submit" :disabled="true" @click="triggerConfirm()">
         Confirm
       </button>
@@ -88,6 +89,19 @@ const onChange = (event) => {
   document.getElementById('submit').disabled = !complete; // Example: disable the button when the element is incomplete
 };
 
+// STEP #10: Add an event listener to get input focus status
+const onFocus = (event) => {
+  document.getElementById('card-error').innerHTML = ''; // Example: clear input error message
+  // Customize your input focus style by listen onFocus event
+};
+
+// STEP #11: Add an event listener to show input error message when finish typing
+const onBlur = (event) => {
+  const { error } = event.detail;
+  if (error) {
+    document.getElementById('card-error').innerHTML = error.message || JSON.stringify(error);
+  } // Example: set input error message
+};
 // STEP #6a: Add a button handler to trigger the payment request
 const triggerConfirm = () => {
   document.getElementById('submit').disabled = true; // Example: disable button while submitting
@@ -133,12 +147,16 @@ export default {
     window.addEventListener('onReady', onReady);
     window.addEventListener('onError', onError);
     window.addEventListener('onChange', onChange);
+    window.addEventListener('onFocus', onFocus);
+    window.addEventListener('onBlur', onBlur);
   },
   beforeDestroy() {
     // Be sure to clean up event listeners when component unmounts
     window.removeEventListener('onReady', onReady);
     window.removeEventListener('onError', onError);
     window.removeEventListener('onChange', onChange);
+    window.removeEventListener('onFocus', onFocus);
+    window.removeEventListener('onBlur', onBlur);
   },
 };
 </script>

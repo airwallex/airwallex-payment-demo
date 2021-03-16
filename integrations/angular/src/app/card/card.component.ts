@@ -36,12 +36,16 @@ export class CardComponent implements OnInit {
   loading: boolean;
   isSubmitting: boolean;
   errorMessage: string;
+  inputErrorMessage: string;
   constructor() {
     this.loading = true;
     this.isSubmitting = false;
     this.errorMessage = '';
+    this.inputErrorMessage = '';
     this.onReady = this.onReady.bind(this);
     this.onError = this.onError.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onFocus = this.onFocus.bind(this);
     this.triggerConfirm = this.triggerConfirm.bind(this);
   }
 
@@ -67,6 +71,8 @@ export class CardComponent implements OnInit {
 
     window.addEventListener('onReady', this.onReady);
     window.addEventListener('onError', this.onError);
+    window.addEventListener('onBlur', this.onBlur);
+    window.addEventListener('onFocus', this.onFocus);
   }
 
   // STEP #7: Add an event listener to ensure the element is mounted
@@ -86,6 +92,18 @@ export class CardComponent implements OnInit {
     const { error } = event.detail;
     this.errorMessage = error.message ?? JSON.stringify(error); // Example: set error message
     console.error('There was an error', error);
+  };
+
+  // STEP #9: Add an event listener to get input focus status
+  onFocus = (event: any): void => {
+    // Customize your input focus style by listen onFocus event
+    this.inputErrorMessage = '';
+  };
+
+  // STEP #10: Add an event listener to show input error message when finish typing
+  onBlur = (event: any): void => {
+    const { error } = event.detail;
+    this.inputErrorMessage = error?.message ?? JSON.stringify(error); // Example: set input error message
   };
 
   // STEP #6a: Add a button handler to trigger the payment request

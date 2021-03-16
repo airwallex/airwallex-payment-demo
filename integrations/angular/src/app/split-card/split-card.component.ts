@@ -54,6 +54,8 @@ export class SplitCardComponent implements OnInit {
     this.errorMessage = '';
     this.onReady = this.onReady.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onFocus = this.onFocus.bind(this);
     this.triggerConfirm = this.triggerConfirm.bind(this);
   }
 
@@ -80,6 +82,8 @@ export class SplitCardComponent implements OnInit {
     });
     window.addEventListener('onReady', this.onReady);
     window.addEventListener('onChange', this.onChange);
+    window.addEventListener('onBlur', this.onBlur);
+    window.addEventListener('onFocus', this.onFocus);
   }
 
   // STEP #7: Add an event handler to ensure the element is mounted
@@ -111,6 +115,25 @@ export class SplitCardComponent implements OnInit {
 
     this.fieldsCompleted =
       this.cardNumberComplete && this.cvcComplete && this.expiryComplete; // Example: set button disabled state
+  };
+
+  // STEP #9: Add an event listener to get input focus status
+  onFocus = (event: any): void => {
+    const { type } = event.detail;
+    // Customize your input focus style by listen onFocus event
+    const element = document.getElementById(`${type}-error`);
+    if (element) {
+      element.innerHTML = ''; // Example: clear input error message
+    }
+  };
+
+  // STEP #10: Add an event listener to show input error message when finish typing
+  onBlur = (event: any): void => {
+    const { error, type } = event.detail;
+    const element = document.getElementById(`${type}-error`);
+    if (element) {
+      element.innerHTML = error?.message ?? JSON.stringify(error); // Example: set input error message
+    }
   };
 
   // STEP #6a: Add a button handler to trigger the payment request
