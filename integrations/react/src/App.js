@@ -40,6 +40,9 @@ function App() {
             <Link to="/redirect">
               <button>Redirect element</button>
             </Link>
+            <Link to="/qrcode">
+              <button>Qrcode element</button>
+            </Link>
           </nav>
           <div className="payment-frame">
             <Suspense fallback={<div />}>
@@ -73,6 +76,10 @@ function App() {
                 <Route
                   path="/redirect"
                   component={lazy(() => import('./components/Redirect'))}
+                />
+                <Route
+                  path="/qrcode"
+                  component={lazy(() => import('./components/Qrcode'))}
                 />
                 <Route
                   exact
