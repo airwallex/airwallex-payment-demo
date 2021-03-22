@@ -85,7 +85,7 @@ window.addEventListener('onReady', (event) => {
   /*
     ... Handle event
   */
-  window.alert(event.detail);
+  console.log(event.detail);
 });
 ```
 
@@ -98,7 +98,7 @@ window.addEventListener('onSuccess', (event) => {
   /*
     ... Handle event on success
   */
-  window.alert(event.detail);
+  console.log(event.detail);
 });
 ```
 
@@ -162,7 +162,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         /*
           ... Handle event
         */
-        window.alert(event.detail);
+        console.log(event.detail);
       });
 
       // STEP #7: Add an event listener to handle events when the payment is successful.
@@ -170,7 +170,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         /*
           ... Handle event on success
         */
-        window.alert(event.detail);
+        console.log(event.detail);
       });
 
       // STEP #8: Add an event listener to handle events when the payment has failed.
