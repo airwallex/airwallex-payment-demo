@@ -213,9 +213,12 @@ Airwallex.redirectToCheckout(props);
 
 | Props           | Required? | Default  | Description                                                                                                                          |
 | --------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `id`            | true      |          | The intent id you shopper want to checkout                                                                                           |
+| `intent_id`     | false     |          | The intent id you shopper want to checkout                                                                                           |
 | `client_secret` | true      |          | The client_secret when you create payment intent, contain in the response                                                            |
+| `mode`          | false     | `payment`| Checkout mode, can be one of payment, recurring                                                                                      |
 | `env`           | false     | `'prod'` | Indicate which airwallex integration env your merchant site would like to connect with                                               |
+| `currency`      | true      |          | Currency of your payment intent or consent. Three-letter ISO currency code                                                           |
+| `autoCapture`   | false     | `true`   | Only support for card payment, indicate whether to capture immediate when authentication success                                     |
 | `theme`         | false     |          | Option with limited support for HPP page style customization                                                                         |
 | `customer_id`   | false     |          | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
 | `components`    | false     |          | The payment method component your website would like to integrate with                                                               |
