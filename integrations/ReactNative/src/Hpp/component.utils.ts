@@ -34,18 +34,18 @@ export const generateHTML = ({
       <!-- STEP #3: Add a checkout button -->
       <button id="hpp">Pay Now</button>
       <script>
-        // STEP #2: Initialize the Airwallex package with the appropriate environment
-        Airwallex.init({
-          env: 'staging', // Setup which env('staging' | 'demo' | 'prod') you would like to integrate with
-          origin: '*', // There is no origin in React Native WebView, so we set it as any
-        });
-        
-        // STEP #4: Add a button handler to trigger the redirect to HPP
-        document.getElementById('hpp').addEventListener('click', () => {
+        const intent_id = 'replace-with-your-intent-id';
+        const client_secret = 'replace-with-your-client-secret';
+        const currency = 'replace-with-your-currency';
+        const mode = 'payment'; // Should be one of ['payment', 'recurring']
+
+        const redirectHppForCheckout = () => {
           Airwallex.redirectToCheckout({
-            env: 'staging', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
-            id: '${intent_id}',
-            client_secret: '${client_secret}',
+            env: 'demo',
+            mode: 'payment',
+            currency,
+            intent_id, // Required, must provide intent details
+            client_secret, // Required
             theme: {
               // Must provide theme to display the checkout page properly
               fonts: [
@@ -62,6 +62,53 @@ export const generateHTML = ({
             failUrl: 'https://www.google.com', // Must be HTTPS sites
             // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
           });
+        }
+  
+        const redirectHppForRecurring = () => {
+          Airwallex.redirectToCheckout({
+            env: 'demo',
+            mode: 'recurring',
+            currency,
+            client_secret, // Required
+            recurringOptions: {
+              card: {
+                next_triggered_by: 'customer',
+                merchant_trigger_reason: 'scheduled',
+                requires_cvc: true,
+                currency,
+              },
+            },
+            theme: {
+              // Must provide theme to display the checkout page properly
+              fonts: [
+                // Customizes the font for the payment elements
+                {
+                  src:
+                    'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+                  family: 'AxLLCircular',
+                  weight: 400,
+                },
+              ],
+            },
+            successUrl: 'https://www.google.com', // Must be HTTPS sites
+            failUrl: 'https://www.google.com', // Must be HTTPS sites
+            // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
+          });
+        }
+        
+        // STEP #2: Initialize the Airwallex package with the appropriate environment
+        Airwallex.init({
+          env: 'staging', // Setup which env('staging' | 'demo' | 'prod') you would like to integrate with
+          origin: '*', // There is no origin in React Native WebView, so we set it as any
+        });
+        
+        // STEP #4: Add a button handler to trigger the redirect to HPP
+        document.getElementById('hpp').addEventListener('click', () => {
+          if (mode === 'payment') {
+            redirectHppForCheckout();
+          } else if (mode === 'recurring') {
+            redirectHppForRecurring();
+          }
         });
       </script>
     </body>
