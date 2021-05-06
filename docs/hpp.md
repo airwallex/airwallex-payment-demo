@@ -71,6 +71,8 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
 
 ## Full Code Example
 
+### Redirect to HPP for checkout
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -84,7 +86,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
   <body>
     <h1>Hosted payment page (HPP) integration</h1>
     <!-- STEP #3: Add a checkout button -->
-    <button id="hpp">Redirect to HPP</button>
+    <button id="hpp">Redirect to HPP for checkout</button>
     <script>
       // STEP #2: Initialize the Airwallex package with the appropriate environment
       Airwallex.init({
@@ -95,8 +97,66 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         // STEP #4: Add a button handler to trigger the redirect to HPP
         Airwallex.redirectToCheckout({
           env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
-          id: 'replace-with-your-intent-id',
+          mode: 'payment',
+          intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
+          currency: 'replace-with-your-currency',
+        });
+      });
+    </script>
+  </body>
+</html>
+```
+
+### Redirect to HPP for recurring
+
+```html
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Airwallex Checkout Playground</title>
+    <!-- STEP #1: Import airwallex-payment-elements bundle -->
+    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+  </head>
+  <body>
+    <h1>Hosted payment page (HPP) integration</h1>
+    <!-- STEP #3: Add a checkout button -->
+    <button id="hpp">Redirect to HPP for recurring</button>
+    <script>
+      // STEP #2: Initialize the Airwallex package with the appropriate environment
+      Airwallex.init({
+        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        origin: window.location.origin, // Setup your event target to receive the browser events message
+      });
+      document.getElementById('hpp').addEventListener('click', () => {
+        // STEP #4: Add a button handler to trigger the redirect to HPP
+        Airwallex.redirectToCheckout({
+          env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+          mode: 'recurring',
+          client_secret: 'replace-with-your-client-secret',
+          currency: 'replace-with-your-currency',
+          recurringOptions: {
+            card: {
+              /**
+               * The subsequent transactions are triggered by `merchant` or `customer`
+               */
+              next_triggered_by: 'merchant',
+              /**
+               * The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`
+               */
+              merchant_trigger_reason: 'scheduled',
+              /**
+               * Only applicable when next_triggered_by is customer. If true, the customer must provide cvc for the subsequent payment with this PaymentConsent
+               */
+              requires_cvc: true,
+              /**
+               * Currency of the initial PaymentIntent to verify the PaymentConsent. Three-letter ISO currency code
+               */
+              currency: 'replace-with-your-currency',
+            }
+          }
         });
       });
     </script>

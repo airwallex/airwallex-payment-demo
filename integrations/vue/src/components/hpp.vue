@@ -26,6 +26,65 @@ import { redirectToCheckout, loadAirwallex } from 'airwallex-payment-elements';
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
 const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
+const currency = 'replace-with-your-currency';
+const mode = 'payment'; // Should be one of ['payment', 'recurring']
+
+  const redirectHppForCheckout = () => {
+    redirectToCheckout({
+      env: 'demo',
+      mode: 'payment',
+      currency,
+      intent_id, // Required, must provide intent details
+      client_secret, // Required
+      theme: {
+        // Must provide theme to display the checkout page properly
+        fonts: [
+          // Customizes the font for the payment elements
+          {
+            src:
+              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+            family: 'AxLLCircular',
+            weight: 400,
+          },
+        ],
+      },
+      successUrl: 'https://www.google.com', // Must be HTTPS sites
+      failUrl: 'https://www.google.com', // Must be HTTPS sites
+      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
+    });
+  };
+
+  const redirectHppForRecurring = () => {
+    redirectToCheckout({
+      env: 'demo',
+      mode: 'recurring',
+      currency,
+      client_secret, // Required
+      recurringOptions: {
+        card: {
+          next_triggered_by: 'customer',
+          merchant_trigger_reason: 'scheduled',
+          requires_cvc: true,
+          currency,
+        },
+      },
+      theme: {
+        // Must provide theme to display the checkout page properly
+        fonts: [
+          // Customizes the font for the payment elements
+          {
+            src:
+              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+            family: 'AxLLCircular',
+            weight: 400,
+          },
+        ],
+      },
+      successUrl: 'https://www.google.com', // Must be HTTPS sites
+      failUrl: 'https://www.google.com', // Must be HTTPS sites
+      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
+    });
+  };
 
 // STEP #2: Initialize Airwallex on click with appropriate production environment and other configurations
 loadAirwallex({
@@ -40,25 +99,11 @@ const redirectHpp = async () => {
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
     });
     // STEP #3b: Redirect the customer to Airwallex checkout
-    await redirectToCheckout({
-      env: 'demo',
-      id: intent_id, // Required, must provide intent details
-      client_secret: client_secret, // Required
-      theme: {
-        // Must provide theme to display the checkout page properly
-        fonts: [
-          // Customizes the font for the payment elements
-          {
-            src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-            family: 'AxLLCircular',
-            weight: 400,
-          },
-        ],
-      },
-      successUrl: 'https://www.google.com', // Must be HTTPS sites
-      failUrl: 'https://www.google.com', // Must be HTTPS sites
-      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
-    });
+    if (mode === 'payment') {
+      redirectHppForCheckout();
+    } else if (mode === 'recurring') {
+      redirectHppForRecurring();
+    }
   } catch (error) {
     // STEP #4: Catch error events
     /**
