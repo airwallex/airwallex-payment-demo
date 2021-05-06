@@ -34,7 +34,7 @@ export class HppComponent implements OnInit {
       env: 'demo',
       mode: 'payment',
       currency,
-      intent_id, // Required, must provide intent details
+      intent_id, // Required, must provide intent_id to get intent details
       client_secret, // Required
       theme: {
         // Must provide theme to display the checkout page properly
