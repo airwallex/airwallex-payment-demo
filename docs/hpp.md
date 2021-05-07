@@ -52,8 +52,9 @@ We will add the button listener in the next step.
 ```js
 Airwallex.redirectToCheckout({
   env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
-  id: 'replace-with-your-intent-id',
+  intent_id: 'replace-with-your-intent-id',
   client_secret: 'replace-with-your-client-secret',
+  currency: 'replace-with-your-currency',
 });
 ```
 
