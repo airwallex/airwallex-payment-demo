@@ -57,8 +57,8 @@ We will mount the redirect element into the empty div in Step 5.
 
 ### 4. Create the redirect element
 
-This creates the specified [Element](/docs#Element) object. We specify the type as **`redirect`**.
-
+This creates the specified [Element](/docs#Element) object. We specify the type as **`redirect`**.  
+For requirements and values of **attributes** in creating an `Element`, refer to Table: [Redirect Element Attributes](#redirect-element-attributes)
 ```js
 const element = Airwallex.createElement('redirect', {
   intent: {
@@ -66,7 +66,16 @@ const element = Airwallex.createElement('redirect', {
     id: 'replace-with-your-intent-id',
     client_secret: 'replace-with-your-client-secret',
   },
-  method: 'replace-with-your-redirect-method', // Required, 'alipaycn', 'alipayhk'
+  mode: 'payment',  // Optional
+  /*
+    For following attributes, refer to Table: Redirect Element Attributes at the end of this page
+    to see if you need to include them for the payment method you are integrating
+  */
+  method: 'replace-with-your-redirect-method',
+  country_code: 'Alpha-2 country code'
+  shopper_name: 'name',
+  shopper_email: 'email address',
+  shopper_phone: 'phone number',
 });
 ```
 
@@ -175,3 +184,45 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
   </body>
 </html>
 ```
+
+## Redirect Element Attributes ##
+M - mandatory&nbsp;&nbsp;&nbsp;&nbsp;O - Optional
+|Payment Method|`method` (required)|`country_code`|`shopper_name`|`shopper_email`|`shopper_phone`|
+|--------------|--------|:------------:|:------------:|:-------------:|:-------------:|
+Alipay CN|alipaycn||O||
+Alipay HK|alipayhk||O||
+GCash|gcash||O||
+DANA|dana||O||
+KakaoPay|kakaopay||O||
+Touch 'n Go|tng||O||
+POLi|poli||O||
+GrabPay|grab_pay||O||
+Konbini|konbini||O||
+eps|eps||O||
+giropay|giropay||O||
+iDEAL|ideal||O||
+Multibanco|multibanco||O||
+Bancontact|bancontact||O||
+BLIK|blik||O||
+MyBank|mybank||O||
+Pay by Bank app|paybybankapp||O||
+FPX|fpx||O|O|O
+eNETS|enets||O|O|O
+Pay-easy|pay_easy||O|O|O
+Tesco Lotus|tesco_lotus||O|O|O
+dragonpay|dragonpay||O|O|O
+DOKU|bank_transfer|**M**|O|O|
+Paysafecash|paysafecash|**M**|O|O|
+Estonian Banks /Latvian Banks <br />/Lithuanian Banks /Thailand Banks|online_banking|**M**|O|O|O
+7-Eleven|seven_eleven|**M**|O|O|O
+PermataNet|permatanet||O|O|
+Alfamart|alfamart||O|O|
+Indomaret|indomaret||O|O|
+DOKU Wallet|doku_ewallet||O|O|
+Przelewy24|p24||O|O|
+Skrill|skrill|**M**|O|O|
+Sofort.|sofort|**M**|O||
+Trustly|trustly|**M**|O||
+Paysafecard|paysafecard|**M**|O||
+Satispay|satispay|**M**|O||
+Paysera|paysera|**M**|O||
