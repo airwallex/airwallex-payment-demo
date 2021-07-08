@@ -72,7 +72,7 @@ const element = Airwallex.createElement('redirect', {
     to see if you need to include them for the payment method you are integrating
   */
   method: 'replace-with-your-redirect-method',
-  country_code: 'Alpha-2 country code'
+  country_code: 'Alpha-2 country code',
   shopper_name: 'name',
   shopper_email: 'email address',
   shopper_phone: 'phone number',
