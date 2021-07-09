@@ -186,43 +186,45 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
 ```
 
 ## Redirect Element Attributes ##
-M - mandatory&nbsp;&nbsp;&nbsp;&nbsp;O - Optional
-|Payment Method|`method` (required)|`country_code`|`shopper_name`|`shopper_email`|`shopper_phone`|
+:eight_spoked_asterisk: : Required&nbsp;&nbsp;&nbsp;&nbsp;
+:large_orange_diamond: : Optional&nbsp;&nbsp;&nbsp;&nbsp;
+:heavy_minus_sign: : Not Applicable
+|Payment Method|:eight_spoked_asterisk:`method`|`country_code`|`shopper_name`|`shopper_email`|`shopper_phone`|
 |--------------|--------|:------------:|:------------:|:-------------:|:-------------:|
-Alipay CN|alipaycn||O||
-Alipay HK|alipayhk||O||
-GCash|gcash||O||
-DANA|dana||O||
-KakaoPay|kakaopay||O||
-Touch 'n Go|tng||O||
-POLi|poli||O||
-GrabPay|grab_pay||O||
-Konbini|konbini||O||
-eps|eps||O||
-giropay|giropay||O||
-iDEAL|ideal||O||
-Multibanco|multibanco||O||
-Bancontact|bancontact||O||
-BLIK|blik||O||
-MyBank|mybank||O||
-Pay by Bank app|paybybankapp||O||
-FPX|fpx||O|O|O
-eNETS|enets||O|O|O
-Pay-easy|pay_easy||O|O|O
-Tesco Lotus|tesco_lotus||O|O|O
-dragonpay|dragonpay||O|O|O
-DOKU|bank_transfer|**M**|O|O|
-Paysafecash|paysafecash|**M**|O|O|
-Estonian Banks /Latvian Banks <br />/Lithuanian Banks /Thailand Banks|online_banking|**M**|O|O|O
-7-Eleven|seven_eleven|**M**|O|O|O
-PermataNet|permatanet||O|O|
-Alfamart|alfamart||O|O|
-Indomaret|indomaret||O|O|
-DOKU Wallet|doku_ewallet||O|O|
-Przelewy24|p24||O|O|
-Skrill|skrill|**M**|O|O|
-Sofort.|sofort|**M**|O||
-Trustly|trustly|**M**|O||
-Paysafecard|paysafecard|**M**|O||
-Satispay|satispay|**M**|O||
-Paysera|paysera|**M**|O||
+Alipay CN|`'alipaycn'`|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+Alipay HK|`'alipayhk'`|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+GCash|`'gcash'`|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+DANA|`'dana'`|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+KakaoPay|`'kakaopay'`|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+Touch 'n Go|`'tng'`|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:|:heavy_minus_sign:
+POLi|`'poli'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+GrabPay|`'grab_pay'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+Konbini|`'konbini'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+eps|`'eps'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+giropay|`'giropay'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+iDEAL|`'ideal'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+Multibanco|`'multibanco'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+Bancontact|`'bancontact'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+BLIK|`'blik'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+MyBank|`'mybank'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+Pay by Bank app|`'paybybankapp'`|:heavy_minus_sign:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+FPX|`'fpx'`|:heavy_minus_sign:|:large_orange_diamond:|:large_orange_diamond:|:large_orange_diamond:
+eNETS|`'enets'`|:heavy_minus_sign:|:large_orange_diamond:|:large_orange_diamond:|:large_orange_diamond:
+Pay-easy|`'pay_easy'`|:heavy_minus_sign:|:large_orange_diamond:|:large_orange_diamond:|:large_orange_diamond:
+Tesco Lotus|`'tesco_lotus'`|:heavy_minus_sign:|:large_orange_diamond:|:large_orange_diamond:|:large_orange_diamond:
+dragonpay|`'dragonpay'`|:heavy_minus_sign:|:large_orange_diamond:|:large_orange_diamond:|:large_orange_diamond:
+DOKU|`'bank_transfer'`|:eight_spoked_asterisk:|:large_orange_diamond:|:large_orange_diamond:|:heavy_minus_sign:
+Paysafecash|`'paysafecash'`|:eight_spoked_asterisk:|:large_orange_diamond:|:large_orange_diamond:|:heavy_minus_sign:
+Estonian Banks /Latvian Banks <br />/Lithuanian Banks /Thailand Banks|`'online_banking'`|:eight_spoked_asterisk:|:large_orange_diamond:|:large_orange_diamond:|:large_orange_diamond:
+7-Eleven|`'seven_eleven'`|:eight_spoked_asterisk:|:large_orange_diamond:|:large_orange_diamond:|:large_orange_diamond:
+PermataNet|`'permatanet'`|:heavy_minus_sign:|:large_orange_diamond:|:large_orange_diamond:|:heavy_minus_sign:
+Alfamart|`'alfamart'`|:heavy_minus_sign:|:large_orange_diamond:|:large_orange_diamond:|:heavy_minus_sign:
+Indomaret|`'indomaret'`|:heavy_minus_sign:|:large_orange_diamond:|:large_orange_diamond:|:heavy_minus_sign:
+DOKU Wallet|`'doku_ewallet'`|:heavy_minus_sign:|:large_orange_diamond:|:large_orange_diamond:|:heavy_minus_sign:
+Przelewy24|`'p24'`|:heavy_minus_sign:|:large_orange_diamond:|:large_orange_diamond:|:heavy_minus_sign:
+Skrill|`'skrill'`|:eight_spoked_asterisk:|:large_orange_diamond:|:large_orange_diamond:|:heavy_minus_sign:
+Sofort.|`'sofort'`|:eight_spoked_asterisk:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+Trustly|`'trustly'`|:eight_spoked_asterisk:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+Paysafecard|`'paysafecard'`|:eight_spoked_asterisk:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+Satispay|`'satispay'`|:eight_spoked_asterisk:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
+Paysera|`'paysera'`|:eight_spoked_asterisk:|:large_orange_diamond:|:heavy_minus_sign:|:heavy_minus_sign:
