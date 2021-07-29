@@ -43,6 +43,15 @@ function App() {
             <Link to="/qrcode">
               <button>Qrcode element</button>
             </Link>
+            <Link to="/split-card-recurring">
+              <button>Split Card element - Recurring</button>
+            </Link>
+            <Link to="/recurring-cit">
+              <button>Recurring CIT</button>
+            </Link>
+            <Link to="/api-checkout">
+              <button>API Checkout</button>
+            </Link>
           </nav>
           <div className="payment-frame">
             <Suspense fallback={<div />}>
@@ -80,6 +89,20 @@ function App() {
                 <Route
                   path="/qrcode"
                   component={lazy(() => import('./components/Qrcode'))}
+                />
+                <Route
+                  path="/split-card-recurring"
+                  component={lazy(() =>
+                    import("./components/SplitCardRecurring")
+                  )}
+                />
+                <Route
+                  path="/recurring-cit"
+                  component={lazy(() => import("./components/RecurringCIT"))}
+                />
+                <Route
+                  path="/api-checkout"
+                  component={lazy(() => import("./components/APICheckout"))}
                 />
                 <Route
                   exact
