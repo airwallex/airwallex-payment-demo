@@ -53,11 +53,9 @@ This creates the specified [Element](/docs#Element) object. We specify the type 
 
 ```js
 const element = Airwallex.createElement('dropIn', {
-  intent: {
-    // Required, dropIn uses intent_id and client_secret to prepare checkout
-    id: 'replace-with-your-intent-id',
-    client_secret: 'replace-with-your-client-secret',
-  },
+  intent_id: 'replace-with-your-intent-id',
+  client_secret: 'replace-with-your-client-secret',
+  currency: 'replace-with-your-intent-currency'
 });
 ```
 
