@@ -54,11 +54,10 @@
 
         // STEP #4: Create 'dropIn' element
         const dropIn = Airwallex.createElement('dropIn', {
-          intent: {
-            // Required, dropIn use intent Id and client_secret to prepare checkout
-            id: 'replace-with-your-intent-id',
-            client_secret: 'replace-with-your-client-secret',
-          },
+          // Required, dropIn use intent Id, client_secret and currency to prepare checkout
+          intent_id: 'replace-with-your-intent-id',
+          client_secret: 'replace-with-your-client-secret',
+          currency: 'replace-with-your-intent-currency',
         });
         // STEP #5: Mount 'dropIn' element
         dropIn.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 3

@@ -21,6 +21,7 @@ import {
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
 const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
+const currency = 'replace-with-your-intent-currency';
 
 @Component({
   selector: 'app-drop-in',
@@ -56,11 +57,10 @@ export class DropInComponent implements OnInit {
     }).then(() => {
       // STEP #4: Create the drop-in element
       const element = createElement('dropIn' as ElementType, {
-        intent: {
-          // Required, must provide intent details to prepare DropIn element for checkout
-          id: intent_id,
-          client_secret,
-        },
+        // Required, dropIn use intent Id, client_secret and currency to prepare checkout
+        intent_id,
+        client_secret,
+        currency,
       });
       // STEP #5: Mount the drop-in element to the empty container created previously
       element?.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 3
