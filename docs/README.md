@@ -159,8 +159,12 @@ All the following options are optional with the exception of `'intent'`.
 | wechat               | `intent` (**required**) | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
 | redirect             | `intent` (**required**) | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
 |                      | `method`                | PaymentMethodWithRedirect[] | An array of the following available methods: `'alipaycn'`, `'alipayhk'` , `'gcash'` , `'dana'`, `'kakaopay'` , `'tng'`                                       |
-| dropIn               | `intent` (**required**) | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-|                      | `components`            | PaymentMethodType[]         | The payment method component your website would like to integrate with                                                                                       |
+| dropIn               | `client_secret` (**required**) | string               | The client_secret when you create payment intent, contain in the response |
+|                      | `currency`(**required**) | string                     | Currency of your payment intent or consent. Three-letter ISO currency code |
+|                      | `mode`                  | Mode                        | Checkout mode, should be one of `'payment'`, `'recurring'` |
+|                      | `intent_id`             | string                      | The intent id you shopper want to checkout |
+|                      | `customer_id`           | string                      | Checkout for know customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
+|                      | `components`            | PaymentMethodType[]         | The payment method component your website would like to integrate with |
 |                      | `autoCapture`           | boolean                     | Indicate whether to capture immediate when authentication success, apply when shopper using card payment method                                              |
 |                      | `withBilling`           | boolean                     | Indicate to improve 3DS experience, indicate if the payment form will collect billing info from shopper                                                      |
 |                      | `style`                 | InputStyle                  | Style for cardNumber element                                                                                                                                 |
