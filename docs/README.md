@@ -61,7 +61,7 @@ await Airwallex.loadAirwallex(options);
 An equivalent step is:
 
 ```html
-<script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
 Running `loadAirwallex` and embedding the above script in your document head will initialize a global variable in your document called `window.Airwallex`. This variable consists of all the functions to process payments.
@@ -320,7 +320,7 @@ const intent = await Airwallex.getPaymentIntent(id, client_secret);
 
 - Have you loaded Airwallex before using Airwallex functions?
 - If you're using CDN, have you changed the bundle version from `x.x.x` to the latest version?
-- eg. `https://checkout.airwallex.com/assets/bundle.x.x.x.min.js` is invalid
+- eg. `https://checkout.airwallex.com/assets/elements.bundle.min.js` is invalid
 
 2. `Access denied, authentication failed`
 

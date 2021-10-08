@@ -27,7 +27,7 @@ First, when running each html file, be sure to replace `x.x.x` with the latest [
 
 ```html
 <!-- STEP #1: Import airwallex-payment-elements bundle -->
-<script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
 Also, to test each of the payment methods, be sure to replace the `intent_id` and `client_secret` variables in the file with your own unique keys. These values can be created with the backend API integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
