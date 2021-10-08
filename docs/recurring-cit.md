@@ -20,7 +20,7 @@ import Airwallex from 'airwallex-payment-elements';
 or add the bundle as a script in your HTML head
 
 ```html
-<script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
 Be sure to replace the x.x.x with the `airwallex-payment-elements` package version you'd like to use.
@@ -136,7 +136,7 @@ window.addEventListener('onChange', (event) => {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
     <!-- STEP #1: Import airwallex-payment-elements bundle -->
-    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
 
   <body>

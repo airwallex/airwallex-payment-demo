@@ -67,7 +67,7 @@ More details about the `createPaymentConsent` function can be found [here](/docs
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
     <!-- STEP #1: Import airwallex-payment-elements bundle -->
-    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
 
   <body>

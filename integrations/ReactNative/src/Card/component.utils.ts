@@ -31,7 +31,7 @@ export const generateHTML = ({
                 in order to import the package properly!
               - React Native only works with package version 0.2.15 and above
     -->
-    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
   <body>
     <div id="card-container">
