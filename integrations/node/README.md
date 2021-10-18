@@ -21,7 +21,7 @@ git clone https://github.com/airwallex/airwallex-payment-demo
 
 4. Copy the contents of `.env_copy` into a `.env` file by running `cp .env_copy .env`
 
-5. Run the project in development mode with `npm start` or `yarn start`. See the project at [localhost:3000](http://localhost:3000)
+5. Run the project in development mode with `npm start` or `yarn start`. See the project at [localhost:3002](http://localhost:3002)
 
 ## Configuration
 
