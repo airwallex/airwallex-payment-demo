@@ -124,7 +124,8 @@ const Index = () => {
       window.removeEventListener('onBlur', onBlur);
       window.removeEventListener('onFocus', onFocus);
     };
-  }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
+    // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
+  }, [inputErrorMessage]);
 
   // STEP #6a: Add a button handler to trigger the payment request
   const handleConfirm = async () => {
