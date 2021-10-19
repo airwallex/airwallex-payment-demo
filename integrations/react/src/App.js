@@ -93,16 +93,16 @@ function App() {
                 <Route
                   path="/split-card-recurring"
                   component={lazy(() =>
-                    import("./components/SplitCardRecurring")
+                    import('./components/SplitCardRecurring'),
                   )}
                 />
                 <Route
                   path="/recurring-cit"
-                  component={lazy(() => import("./components/RecurringCIT"))}
+                  component={lazy(() => import('./components/RecurringCIT'))}
                 />
                 <Route
                   path="/api-checkout"
-                  component={lazy(() => import("./components/APICheckout"))}
+                  component={lazy(() => import('./components/APICheckout'))}
                 />
                 <Route
                   exact
