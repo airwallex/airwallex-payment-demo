@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "airwallex-payment-elements": "*",
+    "axios": "^0.23.0",
     "babel-eslint": "^10.1.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^7.1.0",
