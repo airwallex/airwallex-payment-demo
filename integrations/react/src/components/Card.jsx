@@ -71,12 +71,12 @@ const Card = () => {
     };
 
     // STEP #9: Add an event listener to get input focus status
-    onFocus = (event) => {
+    const onFocus = (_event) => {
       setInputErrorMessage(''); // Example: clear input error message
     };
 
     // STEP #10: Add an event listener to show input error message when finish typing
-    onBlur = (event) => {
+    const onBlur = (event) => {
       const { error } = event.detail;
       setInputErrorMessage(error?.message ?? JSON.stringify(error)); // Example: set input error message
     };
