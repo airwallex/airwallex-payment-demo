@@ -1605,11 +1605,11 @@ aggregate-error@^3.0.0:
     indent-string "^4.0.0"
 
 airwallex-payment-elements@*:
-  version "0.2.11"
-  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.11.tgz#5171f6b0eac524d3841a654146dd9f7ae30d072b"
-  integrity sha512-FXdL65m0LB6bo8jVggNyKlAXZ61OdUkmZjKrMZKAHBDNVye7veUue1DsT5V9ZmLgG0tLiZhXqsfj80cpoS21HA==
+  version "0.2.49"
+  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.49.tgz#ce9a3dc9dcfac6165554dd4db7f3e511bd7416e2"
+  integrity sha512-SdY8d1dMuxtNULS0GlHihwo+EPxc5S8Vd0yN3RlHf2DhDwE2gljv4xyN0zlZ/hwqpOhodLII7+PSsmKGMMMPGg==
   dependencies:
-    csstype "^3.0.2"
+    csstype "^3.0.6"
 
 ajv-errors@^1.0.0:
   version "1.0.1"
@@ -3085,10 +3085,10 @@ csso@^4.0.2:
   dependencies:
     css-tree "^1.0.0"
 
-csstype@^3.0.2:
-  version "3.0.5"
-  resolved "https://registry.npm.taobao.org/csstype/download/csstype-3.0.5.tgz?cache=0&sync_timestamp=1605258867356&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcsstype%2Fdownload%2Fcsstype-3.0.5.tgz#7fdec6a28a67ae18647c51668a9ff95bb2fa7bb8"
-  integrity sha1-f97GoopnrhhkfFFmip/5W7L6e7g=
+csstype@^3.0.6:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.9.tgz#6410af31b26bd0520933d02cbc64fce9ce3fbf0b"
+  integrity sha512-rpw6JPxK6Rfg1zLOYCSwle2GFOOsnjmDYDaBwEcwoOg4qlsIVCN789VkBZDJAGi4T07gI4YSutR43t9Zz4Lzuw==
 
 custom-event@~1.0.0:
   version "1.0.1"
