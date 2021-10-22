@@ -52,7 +52,7 @@ export class HppComponent implements OnInit {
       failUrl: 'https://www.google.com', // Must be HTTPS sites
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
     });
-  }
+  };
 
   redirectHppForRecurring = () => {
     redirectToCheckout({
@@ -84,7 +84,7 @@ export class HppComponent implements OnInit {
       failUrl: 'https://www.google.com', // Must be HTTPS sites
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
     });
-  }
+  };
 
   // STEP #3: Add a button handler to trigger the redirect to HPP
   redirectHpp = async () => {

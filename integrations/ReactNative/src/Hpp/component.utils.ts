@@ -34,8 +34,6 @@ export const generateHTML = ({
       <!-- STEP #3: Add a checkout button -->
       <button id="hpp">Pay Now</button>
       <script>
-        const intent_id = 'replace-with-your-intent-id';
-        const client_secret = 'replace-with-your-client-secret';
         const currency = 'replace-with-your-currency';
         const mode = 'payment'; // Should be one of ['payment', 'recurring']
 
@@ -44,8 +42,8 @@ export const generateHTML = ({
             env: 'demo',
             mode: 'payment',
             currency,
-            intent_id, // Required, must provide intent details
-            client_secret, // Required
+            intent_id: '${intent_id}', // Required, must provide intent details
+            client_secret: '${client_secret}}', // Required
             theme: {
               // Must provide theme to display the checkout page properly
               fonts: [
