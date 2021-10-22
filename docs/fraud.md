@@ -61,7 +61,7 @@ or add the bundle as a script in your HTML head
 
 ```html
 
-<script  src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+<script  src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 
 ```
 

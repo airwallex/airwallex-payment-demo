@@ -29,7 +29,7 @@ export const generateHTML = ({
                  - You MUST replace the bundle version to the latest NPM version
                    in order to import the package properly!
      -->
-    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
   <body>
     <!-- 

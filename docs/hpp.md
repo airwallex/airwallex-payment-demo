@@ -21,7 +21,7 @@ import Airwallex from 'airwallex-payment-elements';
 or add the bundle as a script in your HTML head
 
 ```html
-<script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
 Be sure to replace the x.x.x with the `airwallex-payment-elements` package version you'd like to use.
@@ -82,7 +82,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
     <!-- STEP #1: Import airwallex-payment-elements bundle -->
-    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
   <body>
     <h1>Hosted payment page (HPP) integration</h1>
@@ -119,7 +119,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
     <!-- STEP #1: Import airwallex-payment-elements bundle -->
-    <script src="https://checkout.airwallex.com/assets/bundle.x.x.x.min.js"></script>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
   <body>
     <h1>Hosted payment page (HPP) integration</h1>

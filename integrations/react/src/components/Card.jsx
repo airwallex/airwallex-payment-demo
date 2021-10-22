@@ -36,8 +36,7 @@ const Card = () => {
       fonts: [
         // Can customize the font for the payment elements
         {
-          src:
-            'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
           family: 'AxLLCircular',
           weight: 400,
         },
@@ -72,12 +71,12 @@ const Card = () => {
     };
 
     // STEP #9: Add an event listener to get input focus status
-    onFocus = (event) => {
+    const onFocus = (_event) => {
       setInputErrorMessage(''); // Example: clear input error message
     };
 
     // STEP #10: Add an event listener to show input error message when finish typing
-    onBlur = (event) => {
+    const onBlur = (event) => {
       const { error } = event.detail;
       setInputErrorMessage(error?.message ?? JSON.stringify(error)); // Example: set input error message
     };
@@ -156,7 +155,7 @@ const Card = () => {
           id="card"
           style={inputStyle} // Example: input styling can be moved to css
         />
-        <p style={{color: 'red'}}>{inputErrorMessage}</p>
+        <p style={{ color: 'red' }}>{inputErrorMessage}</p>
         {/* STEP #3b: Add a submit button to trigger the payment request */}
         <button
           onClick={onTriggerConfirm}

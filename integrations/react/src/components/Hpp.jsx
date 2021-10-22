@@ -33,8 +33,7 @@ const Hpp = () => {
         fonts: [
           // Customizes the font for the payment elements
           {
-            src:
-              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+            src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
             family: 'AxLLCircular',
             weight: 400,
           },
@@ -65,8 +64,7 @@ const Hpp = () => {
         fonts: [
           // Customizes the font for the payment elements
           {
-            src:
-              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+            src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
             family: 'AxLLCircular',
             weight: 400,
           },
