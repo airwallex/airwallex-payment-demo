@@ -6,7 +6,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
-    "airwallex-payment-elements": "^0.2.49",
+    "airwallex-payment-elements": "*",
     "confusing-browser-globals": "^1.0.10",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^7.1.0",
