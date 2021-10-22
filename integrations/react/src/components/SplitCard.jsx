@@ -40,8 +40,8 @@ const Index = () => {
   const [inputErrorMessage, setInputErrorMessage] = useState({
     cardNumber: '',
     expiry: '',
-    cvc: ''
-  })
+    cvc: '',
+  });
   useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
     loadAirwallex({
@@ -50,8 +50,7 @@ const Index = () => {
       fonts: [
         // Customizes the font for the payment elements
         {
-          src:
-            'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
           family: 'AxLLCircular',
           weight: 400,
         },
@@ -112,7 +111,7 @@ const Index = () => {
         ...inputErrorMessage,
         [type]: error?.message ?? JSON.stringify(error),
       });
-    }
+    };
 
     window.addEventListener('onReady', onReady);
     window.addEventListener('onChange', onChange); // Can also use onBlur
@@ -125,7 +124,8 @@ const Index = () => {
       window.removeEventListener('onBlur', onBlur);
       window.removeEventListener('onFocus', onFocus);
     };
-  }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
+    // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
+  }, [inputErrorMessage]);
 
   // STEP #6a: Add a button handler to trigger the payment request
   const handleConfirm = async () => {
@@ -193,7 +193,7 @@ const Index = () => {
             id="cardNumber"
             style={inputStyle} // Example: input styling can be moved to css
           />
-          <p style={{color: 'red'}}>{inputErrorMessage.cardNumber}</p>
+          <p style={{ color: 'red' }}>{inputErrorMessage.cardNumber}</p>
         </div>
         <div className="field-container">
           <div className="field-label">Expiry</div>
@@ -201,7 +201,7 @@ const Index = () => {
             id="expiry"
             style={inputStyle} // Example: input styling can be moved to css
           />
-          <p style={{color: 'red'}}>{inputErrorMessage.expiry}</p>
+          <p style={{ color: 'red' }}>{inputErrorMessage.expiry}</p>
         </div>
         <div className="field-container">
           <div className="field-label">Cvc</div>
@@ -209,7 +209,7 @@ const Index = () => {
             id="cvc"
             style={inputStyle} // Example: input styling can be moved to css
           />
-          <p style={{color: 'red'}}>{inputErrorMessage.cvc}</p>
+          <p style={{ color: 'red' }}>{inputErrorMessage.cvc}</p>
         </div>
         {/* STEP #3b: Add a submit button to trigger the payment request */}
         <button
