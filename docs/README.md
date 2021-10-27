@@ -285,9 +285,7 @@ The following function confirms a payment intent and the rest of the payment met
 Takes in the PaymentMethod prop from above.
 
 ```ts
-const confirmResult = await Airwallex.confirmPaymentIntentWithSavedCard(
-  paymentMethod
-);
+const confirmResult = await Airwallex.confirmPaymentIntentWithSavedCard(paymentMethod);
 ```
 
 <br>
@@ -326,8 +324,8 @@ const intent = await Airwallex.getPaymentIntent(id, client_secret);
 
 ```js
 // Enter your Payment Intent secret keys here
-const intent_id = "replace-with-your-intent-id";
-const client_secret = "replace-with-your-client-secret";
+const intent_id = 'replace-with-your-intent-id';
+const client_secret = 'replace-with-your-client-secret';
 ```
 
 3. `The resource with ID int_xxxxxxxxx cannot be found.`

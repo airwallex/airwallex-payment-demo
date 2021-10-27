@@ -13,7 +13,7 @@ Want more details? See the integration in [React](/integrations/react/src/compon
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
 ```js
-import Airwallex from "airwallex-payment-elements";
+import Airwallex from 'airwallex-payment-elements';
 ```
 
 or add the bundle as a script in your HTML head
@@ -28,7 +28,7 @@ Be sure to replace the x.x.x with the `airwallex-payment-elements` package versi
 
 ```js
 Airwallex.init({
-  env: "demo", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
   origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
@@ -51,7 +51,7 @@ We will mount the card element into the empty div in step 5 and create a handler
 This creates the specified [Element](/docs#Element) object. We specify the type as `card`.
 
 ```js
-const card = Airwallex.createElement("card");
+const card = Airwallex.createElement('card');
 ```
 
 You can also add additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
@@ -61,7 +61,7 @@ You can also add additional options as a second parameter to the `createElement`
 Next, we need to mount the card element to the DOM.
 
 ```js
-card.mount("card");
+card.mount('card');
 ```
 
 This function will append the card element to your div with an id `card` as created above in step 3. **Ensure that there are no other elements in the document with the same id**.
@@ -74,11 +74,11 @@ This handler is called when a customer is ready to make a payment according to t
 
 ```js
 // STEP #6a: Add a button handler
-document.getElementById("submit").addEventListener("click", () => {
+document.getElementById('submit').addEventListener('click', () => {
   Airwallex.confirmPaymentIntent({
     element: card, // Provide Card element
-    id: "replace-with-your-intent-id", // Payment Intent ID
-    client_secret: "replace-with-your-client-secret", // Client Secret
+    id: 'replace-with-your-intent-id', // Payment Intent ID
+    client_secret: 'replace-with-your-client-secret', // Client Secret
   }).then((response) => {
     // STEP #6b: Listen to the request response
     /* Handle response */
@@ -94,7 +94,7 @@ More details about the `confirmPaymentIntent` function can be found [here](/docs
 ### 7. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
-window.addEventListener("onReady", (event) => {
+window.addEventListener('onReady', (event) => {
   /*
     ... Handle event
   */
@@ -141,21 +141,21 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
-        env: "staging", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'card' element
-      const card = Airwallex.createElement("card");
+      const card = Airwallex.createElement('card');
 
       // STEP #5: Mount card element
-      card.mount("card");
+      card.mount('card');
 
       // STEP #6a: Add a button handler to trigger the payment request
-      document.getElementById("submit").addEventListener("click", () => {
+      document.getElementById('submit').addEventListener('click', () => {
         Airwallex.confirmPaymentIntent({
           element: card,
-          id: "replace-with-your-intent-id",
-          client_secret: "replace-with-your-client-secret",
+          id: 'replace-with-your-intent-id',
+          client_secret: 'replace-with-your-client-secret',
         })
           .then((response) => {
             // STEP #6b: Listen to the request response
@@ -165,12 +165,12 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           .catch((response) => {
             // STEP #6c: Listen to the error response
             /* handle error response*/
-            console.log("There was an error", response);
+            console.log('There was an error', response);
           });
       });
 
       // STEP #7: Add an event listener to ensure the element is mounted
-      window.addEventListener("onReady", (event) => {
+      window.addEventListener('onReady', (event) => {
         /*
         ... Handle event
          */

@@ -23,7 +23,7 @@ Want more details? See the integration in [React](/integrations/react/src/compon
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
 ```js
-import Airwallex from "airwallex-payment-elements";
+import Airwallex from 'airwallex-payment-elements';
 ```
 
 or add the bundle as a script in your HTML head
@@ -38,7 +38,7 @@ Be sure to replace the x.x.x with the `airwallex-payment-elements` package versi
 
 ```js
 Airwallex.init({
-  env: "demo", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
   origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
@@ -61,22 +61,22 @@ This creates the specified [Element](/docs#Element) object. We specify the type 
 For requirements and values of **attributes** in creating an `Element`, refer to Table: [Redirect Element Attributes](#redirect-element-attributes)
 
 ```js
-const element = Airwallex.createElement("redirect", {
+const element = Airwallex.createElement('redirect', {
   intent: {
     // Required, the redirect element uses intent_id and client_secret to prepare checkout
-    id: "replace-with-your-intent-id",
-    client_secret: "replace-with-your-client-secret",
+    id: 'replace-with-your-intent-id',
+    client_secret: 'replace-with-your-client-secret',
   },
-  mode: "payment", // Optional
+  mode: 'payment', // Optional
   /*
     For following attributes, refer to Table: Redirect Element Attributes at the end of this page
     to see if you need to include them for the payment method you are integrating
   */
-  method: "replace-with-your-redirect-method",
-  country_code: "Alpha-2 country code",
-  shopper_name: "name",
-  shopper_email: "email address",
-  shopper_phone: "phone number",
+  method: 'replace-with-your-redirect-method',
+  country_code: 'Alpha-2 country code',
+  shopper_name: 'name',
+  shopper_email: 'email address',
+  shopper_phone: 'phone number',
 });
 ```
 
@@ -91,7 +91,7 @@ There are also additional options as a second parameter to the `createElement` f
 Next, we need to mount the redirect element to the DOM.
 
 ```js
-element.mount("redirect");
+element.mount('redirect');
 ```
 
 This function will append the redirect element to your div with an id `redirect` as created in Step 3. **Ensure that there are no other elements in the document with the same id**.
@@ -101,7 +101,7 @@ The **element should only be mounted once** in a single payment flow.
 ### 6. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
-window.addEventListener("onReady", (event) => {
+window.addEventListener('onReady', (event) => {
   /*
     ... Handle event
   */
@@ -114,7 +114,7 @@ This can be used to set a loading state as the checkout screen is being prepared
 ### 7. Add an `onError` event listener to handle events when the payment has failed.
 
 ```js
-window.addEventListener("onError", (event) => {
+window.addEventListener('onError', (event) => {
   /*
     ... Handle event on error
   */
@@ -151,23 +151,23 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
-        env: "staging", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'redirect' element
-      const element = Airwallex.createElement("redirect", {
+      const element = Airwallex.createElement('redirect', {
         intent: {
           // Required
-          id: "replace-with-your-intent-id",
-          client_secret: "replace-with-your-client-secret",
+          id: 'replace-with-your-intent-id',
+          client_secret: 'replace-with-your-client-secret',
         },
-        method: "replace-with-your-redirect-method", // Required
+        method: 'replace-with-your-redirect-method', // Required
       });
       // STEP #5: Mount the 'redirect' element
-      element.mount("redirect");
+      element.mount('redirect');
 
       // STEP #6: Add an event listener to handle events when the element is mounted
-      window.addEventListener("onReady", (event) => {
+      window.addEventListener('onReady', (event) => {
         /*
           ... Handle event
         */
@@ -175,7 +175,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to handle events when the payment has failed.
-      window.addEventListener("onError", (event) => {
+      window.addEventListener('onError', (event) => {
         /*
           ... Handle event on error
         */

@@ -15,7 +15,7 @@ Want more details? See the integration in [React](/integrations/react/src/compon
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
 ```js
-import Airwallex from "airwallex-payment-elements";
+import Airwallex from 'airwallex-payment-elements';
 ```
 
 or add the bundle as a script in your HTML head
@@ -30,7 +30,7 @@ Be sure to replace the x.x.x with the `airwallex-payment-elements` package versi
 
 ```js
 Airwallex.init({
-  env: "demo", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
   origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
@@ -52,10 +52,10 @@ We will mount the card element into the empty div in step 5.
 This creates the specified [Element](/docs#Element) object. We specify the type as **`dropIn`**.
 
 ```js
-const element = Airwallex.createElement("dropIn", {
-  intent_id: "replace-with-your-intent-id",
-  client_secret: "replace-with-your-client-secret",
-  currency: "replace-with-your-intent-currency",
+const element = Airwallex.createElement('dropIn', {
+  intent_id: 'replace-with-your-intent-id',
+  client_secret: 'replace-with-your-client-secret',
+  currency: 'replace-with-your-intent-currency',
 });
 ```
 
@@ -68,7 +68,7 @@ There are also additional options as a second parameter to the `createElement` f
 Next, we need to mount the card element to the DOM.
 
 ```js
-element.mount("drop-in");
+element.mount('drop-in');
 ```
 
 This function will append the card element to your div with an id `drop-in` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
@@ -78,7 +78,7 @@ The **element should only be mounted once** in a single payment flow.
 ### 6. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
-window.addEventListener("onReady", (event) => {
+window.addEventListener('onReady', (event) => {
   /*
     ... Handle event
   */
@@ -91,7 +91,7 @@ This can be used to set a loading state as the checkout screen is being prepared
 ### 7. Add an `onSuccess` event listener to handle events when the payment is successful.
 
 ```js
-window.addEventListener("onSuccess", (event) => {
+window.addEventListener('onSuccess', (event) => {
   /*
     ... Handle event on success
   */
@@ -102,7 +102,7 @@ window.addEventListener("onSuccess", (event) => {
 ### 8. Add an `onError` event listener to handle events when the payment has failed.
 
 ```js
-window.addEventListener("onError", (event) => {
+window.addEventListener('onError', (event) => {
   /*
     ... Handle event on error
   */
@@ -139,22 +139,22 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
-        env: "staging", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'dropIn' element
-      const dropIn = Airwallex.createElement("dropIn", {
+      const dropIn = Airwallex.createElement('dropIn', {
         intent: {
           // Required, dropIn use intent Id and client_secret to prepare checkout
-          id: "replace-with-your-intent-id",
-          client_secret: "replace-with-your-client-secret",
+          id: 'replace-with-your-intent-id',
+          client_secret: 'replace-with-your-client-secret',
         },
       });
       // STEP #5: Mount 'dropIn' element
-      dropIn.mount("dropIn");
+      dropIn.mount('dropIn');
 
       // STEP #6: Add an event listener to handle events when the element is mounted
-      window.addEventListener("onReady", (event) => {
+      window.addEventListener('onReady', (event) => {
         /*
           ... Handle event
         */
@@ -162,7 +162,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to handle events when the payment is successful.
-      window.addEventListener("onSuccess", (event) => {
+      window.addEventListener('onSuccess', (event) => {
         /*
           ... Handle event on success
         */
@@ -170,7 +170,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #8: Add an event listener to handle events when the payment has failed.
-      window.addEventListener("onError", (event) => {
+      window.addEventListener('onError', (event) => {
         /*
           ... Handle event on error
         */
