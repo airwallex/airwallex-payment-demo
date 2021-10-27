@@ -29,13 +29,13 @@ Be sure to replace the x.x.x with the `airwallex-payment-elements` package versi
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
-Airwallex.loadAirwallex({
+Airwallex.init({
   env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
   origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
 
-`loadAirwallex` takes in options to set up the payment environment. See docs for further customizations [here](/docs#loadAirwallex).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -156,8 +156,8 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
                * Currency of the initial PaymentIntent to verify the PaymentConsent. Three-letter ISO currency code
                */
               currency: 'replace-with-your-currency',
-            }
-          }
+            },
+          },
         });
       });
     </script>

@@ -12,9 +12,7 @@
   <div>
     <h2>Hosted payment page (HPP) integration</h2>
     <!-- STEP #2: Add a checkout button -->
-    <button @click="redirectHpp()">
-      Redirect to HPP
-    </button>
+    <button @click="redirectHpp()">Redirect to HPP</button>
   </div>
 </template>
 
@@ -29,62 +27,60 @@ const client_secret = 'replace-with-your-client-secret';
 const currency = 'replace-with-your-currency';
 const mode = 'payment'; // Should be one of ['payment', 'recurring']
 
-  const redirectHppForCheckout = () => {
-    redirectToCheckout({
-      env: 'demo',
-      mode: 'payment',
-      currency,
-      intent_id, // Required, must provide intent details
-      client_secret, // Required
-      theme: {
-        // Must provide theme to display the checkout page properly
-        fonts: [
-          // Customizes the font for the payment elements
-          {
-            src:
-              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-            family: 'AxLLCircular',
-            weight: 400,
-          },
-        ],
-      },
-      successUrl: 'https://www.google.com', // Must be HTTPS sites
-      failUrl: 'https://www.google.com', // Must be HTTPS sites
-      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
-    });
-  };
-
-  const redirectHppForRecurring = () => {
-    redirectToCheckout({
-      env: 'demo',
-      mode: 'recurring',
-      currency,
-      client_secret, // Required
-      recurringOptions: {
-        card: {
-          next_triggered_by: 'customer',
-          merchant_trigger_reason: 'scheduled',
-          requires_cvc: true,
-          currency,
+const redirectHppForCheckout = () => {
+  redirectToCheckout({
+    env: 'demo',
+    mode: 'payment',
+    currency,
+    intent_id, // Required, must provide intent details
+    client_secret, // Required
+    theme: {
+      // Must provide theme to display the checkout page properly
+      fonts: [
+        // Customizes the font for the payment elements
+        {
+          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+          family: 'AxLLCircular',
+          weight: 400,
         },
+      ],
+    },
+    successUrl: 'https://www.google.com', // Must be HTTPS sites
+    failUrl: 'https://www.google.com', // Must be HTTPS sites
+    // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
+  });
+};
+
+const redirectHppForRecurring = () => {
+  redirectToCheckout({
+    env: 'demo',
+    mode: 'recurring',
+    currency,
+    client_secret, // Required
+    recurringOptions: {
+      card: {
+        next_triggered_by: 'customer',
+        merchant_trigger_reason: 'scheduled',
+        requires_cvc: true,
+        currency,
       },
-      theme: {
-        // Must provide theme to display the checkout page properly
-        fonts: [
-          // Customizes the font for the payment elements
-          {
-            src:
-              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-            family: 'AxLLCircular',
-            weight: 400,
-          },
-        ],
-      },
-      successUrl: 'https://www.google.com', // Must be HTTPS sites
-      failUrl: 'https://www.google.com', // Must be HTTPS sites
-      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
-    });
-  };
+    },
+    theme: {
+      // Must provide theme to display the checkout page properly
+      fonts: [
+        // Customizes the font for the payment elements
+        {
+          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+          family: 'AxLLCircular',
+          weight: 400,
+        },
+      ],
+    },
+    successUrl: 'https://www.google.com', // Must be HTTPS sites
+    failUrl: 'https://www.google.com', // Must be HTTPS sites
+    // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
+  });
+};
 
 // STEP #2: Initialize Airwallex on click with appropriate production environment and other configurations
 loadAirwallex({

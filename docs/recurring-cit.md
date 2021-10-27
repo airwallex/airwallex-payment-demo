@@ -3,13 +3,14 @@
 The Recurring flow enables shopper to create and save their CIT(customer initial transaction) payment consent which could be use to payment in the future transaction.
 
 ### Confirm payment using consent
-For CIT subsequent transaction, merchant need query and list available consents and render cvc element to let shopper choose consent and input cvc number to finish transaction. 
 
-![](assets/cit.png)
-\* _An example of a cvc element. Can be customized._
+For CIT subsequent transaction, merchant need query and list available consents and render cvc element to let shopper choose consent and input cvc number to finish transaction.
+
+![](assets/cit.png) \* _An example of a cvc element. Can be customized._
 
 ## Guide for `Confirm payment using consent` with CIT flow
-For CIT consent, when shoppers trigger a transaction, they will need to select their saved payment consent and enter the respective cvc number to finish the payment.  Merchants will only need to integrate the cvc element.
+
+For CIT consent, when shoppers trigger a transaction, they will need to select their saved payment consent and enter the respective cvc number to finish the payment. Merchants will only need to integrate the cvc element.
 
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
@@ -28,13 +29,13 @@ Be sure to replace the x.x.x with the `airwallex-payment-elements` package versi
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
-Airwallex.loadAirwallex({
+Airwallex.init({
   env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
   origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
 
-`loadAirwallex` takes in options to set up the payment environment. See docs for further customizations [here](/docs#loadAirwallex).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -85,7 +86,7 @@ document.getElementById('submit').addEventListener('click', () => {
     element: cvc, // Provide the cvc element
     id: 'replace-with-your-intent-id', // Payment Intent ID
     client_secret: 'replace-with-your-client-secret', // Client Secret
-    payment_consent_id: 'replace-with-your-consent-id' // Payment Consent id of the payment consent the customer had selected
+    payment_consent_id: 'replace-with-your-consent-id', // Payment Consent id of the payment consent the customer had selected
   }).then((response) => {
     // STEP #6b: Listen to the request response
     /* Handle response */
@@ -141,7 +142,7 @@ window.addEventListener('onChange', (event) => {
 
   <body>
     <h1>Cvc integration</h1>
-    <div style={containerStyle}>
+    <div style="{containerStyle}">
       <div>Cvc</div>
       <div id="cvc"></div>
     </div>

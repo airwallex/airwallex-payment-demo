@@ -37,13 +37,13 @@ Be sure to replace the x.x.x with the `airwallex-payment-elements` package versi
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
-Airwallex.loadAirwallex({
+Airwallex.init({
   env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
   origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
 
-`loadAirwallex` takes in options to set up the payment environment. See docs for further customizations [here](/docs#loadAirwallex).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -59,6 +59,7 @@ We will mount the redirect element into the empty div in Step 5.
 
 This creates the specified [Element](/docs#Element) object. We specify the type as **`redirect`**.  
 For requirements and values of **attributes** in creating an `Element`, refer to Table: [Redirect Element Attributes](#redirect-element-attributes)
+
 ```js
 const element = Airwallex.createElement('redirect', {
   intent: {
@@ -66,7 +67,7 @@ const element = Airwallex.createElement('redirect', {
     id: 'replace-with-your-intent-id',
     client_secret: 'replace-with-your-client-secret',
   },
-  mode: 'payment',  // Optional
+  mode: 'payment', // Optional
   /*
     For following attributes, refer to Table: Redirect Element Attributes at the end of this page
     to see if you need to include them for the payment method you are integrating
@@ -185,7 +186,8 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
 </html>
 ```
 
-## Redirect Element Attributes ##
+## Redirect Element Attributes
+
 :eight_spoked_asterisk: : Required&nbsp;&nbsp;&nbsp;&nbsp;
 :large_orange_diamond: : Optional&nbsp;&nbsp;&nbsp;&nbsp;
 :heavy_minus_sign: : Not Applicable
