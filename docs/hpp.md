@@ -15,7 +15,7 @@ Want more details? See the integration in [React](/integrations/react/src/compon
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
 ```js
-import Airwallex from 'airwallex-payment-elements';
+import Airwallex from "airwallex-payment-elements";
 ```
 
 or add the bundle as a script in your HTML head
@@ -29,13 +29,13 @@ Be sure to replace the x.x.x with the `airwallex-payment-elements` package versi
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
-Airwallex.loadAirwallex({
-  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+Airwallex.init({
+  env: "demo", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
   origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
 
-`loadAirwallex` takes in options to set up the payment environment. See docs for further customizations [here](/docs#loadAirwallex).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -51,10 +51,10 @@ We will add the button listener in the next step.
 
 ```js
 Airwallex.redirectToCheckout({
-  env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
-  intent_id: 'replace-with-your-intent-id',
-  client_secret: 'replace-with-your-client-secret',
-  currency: 'replace-with-your-currency',
+  env: "demo", // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+  intent_id: "replace-with-your-intent-id",
+  client_secret: "replace-with-your-client-secret",
+  currency: "replace-with-your-currency",
 });
 ```
 
@@ -91,17 +91,17 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <script>
       // STEP #2: Initialize the Airwallex package with the appropriate environment
       Airwallex.init({
-        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        env: "demo", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
-      document.getElementById('hpp').addEventListener('click', () => {
+      document.getElementById("hpp").addEventListener("click", () => {
         // STEP #4: Add a button handler to trigger the redirect to HPP
         Airwallex.redirectToCheckout({
-          env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
-          mode: 'payment',
-          intent_id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret',
-          currency: 'replace-with-your-currency',
+          env: "demo", // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+          mode: "payment",
+          intent_id: "replace-with-your-intent-id",
+          client_secret: "replace-with-your-client-secret",
+          currency: "replace-with-your-currency",
         });
       });
     </script>
@@ -128,26 +128,26 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <script>
       // STEP #2: Initialize the Airwallex package with the appropriate environment
       Airwallex.init({
-        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        env: "demo", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
-      document.getElementById('hpp').addEventListener('click', () => {
+      document.getElementById("hpp").addEventListener("click", () => {
         // STEP #4: Add a button handler to trigger the redirect to HPP
         Airwallex.redirectToCheckout({
-          env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
-          mode: 'recurring',
-          client_secret: 'replace-with-your-client-secret',
-          currency: 'replace-with-your-currency',
+          env: "demo", // Which env('staging' | 'demo' | 'prod') you would like to integrate with
+          mode: "recurring",
+          client_secret: "replace-with-your-client-secret",
+          currency: "replace-with-your-currency",
           recurringOptions: {
             card: {
               /**
                * The subsequent transactions are triggered by `merchant` or `customer`
                */
-              next_triggered_by: 'merchant',
+              next_triggered_by: "merchant",
               /**
                * The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`
                */
-              merchant_trigger_reason: 'scheduled',
+              merchant_trigger_reason: "scheduled",
               /**
                * Only applicable when next_triggered_by is customer. If true, the customer must provide cvc for the subsequent payment with this PaymentConsent
                */
@@ -155,9 +155,9 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
               /**
                * Currency of the initial PaymentIntent to verify the PaymentConsent. Three-letter ISO currency code
                */
-              currency: 'replace-with-your-currency',
-            }
-          }
+              currency: "replace-with-your-currency",
+            },
+          },
         });
       });
     </script>

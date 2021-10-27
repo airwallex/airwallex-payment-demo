@@ -20,7 +20,7 @@ See `node_modules/airwallex-payment-elements/types` for a more detailed overview
 
 Initialization
 
-- [loadAirwallex](#loadAirwallex)
+- [init](#init)
 
 Interacting with Elements
 
@@ -50,12 +50,12 @@ Common Errors
 
 ## Initialization
 
-### loadAirwallex
+### init
 
 The following will inject a script with the Airwallex bundle into your site's HTML head.
 
 ```ts
-await Airwallex.loadAirwallex(options);
+await Airwallex.init(options);
 ```
 
 An equivalent step is:
@@ -64,7 +64,7 @@ An equivalent step is:
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
-Running `loadAirwallex` and embedding the above script in your document head will initialize a global variable in your document called `window.Airwallex`. This variable consists of all the functions to process payments.
+Running `init` and embedding the above script in your document head will initialize a global variable in your document called `window.Airwallex`. This variable consists of all the functions to process payments.
 
 | Option   | Default  | Description                                                                                    |
 | -------- | -------- | ---------------------------------------------------------------------------------------------- |
@@ -128,47 +128,47 @@ const element = Airwallex.createElement(type, options);
 
 All the following options are optional with the exception of `'intent'`.
 
-| Element              | Props                   | Type                        | Description                                                                                                                                                  |
-| -------------------- | ----------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| cardNumber           | `intent` (**required**) | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-|                      | `disabled`              | boolean                     | Config if the element input are disabled or not, default false                                                                                               |
-|                      | `autoCapture`           | boolean                     | Indicate whether to capture immediate when authentication success, apply when shopper using card payment method                                              |
-|                      | `placeholder`           | string                      | The placeholder attribute specifies a short hint that describes the expected value of an input field                                                         |
-|                      | `style`                 | InputStyle                  | Style for cardNumber element                                                                                                                                 |
-|                      | `authFormContainer`     | string                      | Container for authentication form                                                                                                                            |
-| expiry               | `disabled`              | boolean                     | Config if the element input are disabled or not, default false                                                                                               |
-|                      | `placeholder`           | string                      | The placeholder attribute specifies a short hint that describes the expected value of an input field                                                         |
-|                      | `style`                 | InputStyle                  | Style for expiry element                                                                                                                                     |
-| cvc                  | `disabled`              | boolean                     | Config if the element input are disabled or not, default false                                                                                               |
-|                      | `placeholder`           | string                      | The placeholder attribute specifies a short hint that describes the expected value of an input field                                                         |
-|                      | `cycLength`             | number                      | Indicate cvc's length                                                                                                                                        |
-|                      | `style`                 | InputStyle                  | Style for expiry element                                                                                                                                     |
-|                      | `authFormContainer`     | string                      | Container for authentication form                                                                                                                            |
-| card                 | `disabled`              | boolean                     | Config if the element input are disabled or not, default false                                                                                               |
-|                      | `autoCapture`           | boolean                     | Indicate whether to capture immediate when authentication success                                                                                            |
-|                      | `style`                 | InputStyle                  | Style for expiry element                                                                                                                                     |
-|                      | `authFormContainer`     | string                      | Container for authentication form                                                                                                                            |
-| fullFeaturedCard     | `intent` (**required**) | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-|                      | `mode`                  | Mode                        | Checkout mode, should be one of `'payment'`, `'recurring'` |
-|                      | `autoCapture`           | boolean                     | Indicate whether to capture immediate when authentication success                                                                                            |
-|                      | `withBilling`           | boolean                     | Indicate to improve 3DS experience, indicate if the payment form will collect billing info from shopper                                                      |
-|                      | `style`                 | InputStyle                  | Style for cardNumber element                                                                                                                                 |
-|                      | `authFormContainer`     | string                      | Container for authentication form                                                                                                                            |
-| wechat               | `intent` (**required**) | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-| redirect             | `intent` (**required**) | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-|                      | `method`                | PaymentMethodWithRedirect[] | An array of the following available methods: `'alipaycn'`, `'alipayhk'` , `'gcash'` , `'dana'`, `'kakaopay'` , `'tng'`                                       |
-| qrcode               | `intent` (**required**) | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-|                      | `qrcodeMethod`                | PaymentMethodWithQrcode[] | An array of the following available methods: `'wechatpay'`, `'kakaopay'` , `'alipayhk'`    |
-| dropIn               | `client_secret` (**required**) | string               | The client_secret when you create payment intent, contain in the response |
-|                      | `currency`(**required**) | string                     | Currency of your payment intent or consent. Three-letter ISO currency code |
-|                      | `mode`                  | Mode                        | Checkout mode, should be one of `'payment'`, `'recurring'` |
-|                      | `intent_id`             | string                      | The intent id you shopper want to checkout |
-|                      | `customer_id`           | string                      | Checkout for know customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
-|                      | `components`            | PaymentMethodType[]         | The payment method component your website would like to integrate with |
-|                      | `autoCapture`           | boolean                     | Indicate whether to capture immediate when authentication success, apply when shopper using card payment method                                              |
-|                      | `withBilling`           | boolean                     | Indicate to improve 3DS experience, indicate if the payment form will collect billing info from shopper                                                      |
-|                      | `style`                 | InputStyle                  | Style for cardNumber element                                                                                                                                 |
-|                      | `authFormContainer`     | string                      | Container for authentication form                                                                                                                            |
+| Element          | Props                          | Type                        | Description                                                                                                                                                  |
+| ---------------- | ------------------------------ | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| cardNumber       | `intent` (**required**)        | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
+|                  | `disabled`                     | boolean                     | Config if the element input are disabled or not, default false                                                                                               |
+|                  | `autoCapture`                  | boolean                     | Indicate whether to capture immediate when authentication success, apply when shopper using card payment method                                              |
+|                  | `placeholder`                  | string                      | The placeholder attribute specifies a short hint that describes the expected value of an input field                                                         |
+|                  | `style`                        | InputStyle                  | Style for cardNumber element                                                                                                                                 |
+|                  | `authFormContainer`            | string                      | Container for authentication form                                                                                                                            |
+| expiry           | `disabled`                     | boolean                     | Config if the element input are disabled or not, default false                                                                                               |
+|                  | `placeholder`                  | string                      | The placeholder attribute specifies a short hint that describes the expected value of an input field                                                         |
+|                  | `style`                        | InputStyle                  | Style for expiry element                                                                                                                                     |
+| cvc              | `disabled`                     | boolean                     | Config if the element input are disabled or not, default false                                                                                               |
+|                  | `placeholder`                  | string                      | The placeholder attribute specifies a short hint that describes the expected value of an input field                                                         |
+|                  | `cycLength`                    | number                      | Indicate cvc's length                                                                                                                                        |
+|                  | `style`                        | InputStyle                  | Style for expiry element                                                                                                                                     |
+|                  | `authFormContainer`            | string                      | Container for authentication form                                                                                                                            |
+| card             | `disabled`                     | boolean                     | Config if the element input are disabled or not, default false                                                                                               |
+|                  | `autoCapture`                  | boolean                     | Indicate whether to capture immediate when authentication success                                                                                            |
+|                  | `style`                        | InputStyle                  | Style for expiry element                                                                                                                                     |
+|                  | `authFormContainer`            | string                      | Container for authentication form                                                                                                                            |
+| fullFeaturedCard | `intent` (**required**)        | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
+|                  | `mode`                         | Mode                        | Checkout mode, should be one of `'payment'`, `'recurring'`                                                                                                   |
+|                  | `autoCapture`                  | boolean                     | Indicate whether to capture immediate when authentication success                                                                                            |
+|                  | `withBilling`                  | boolean                     | Indicate to improve 3DS experience, indicate if the payment form will collect billing info from shopper                                                      |
+|                  | `style`                        | InputStyle                  | Style for cardNumber element                                                                                                                                 |
+|                  | `authFormContainer`            | string                      | Container for authentication form                                                                                                                            |
+| wechat           | `intent` (**required**)        | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
+| redirect         | `intent` (**required**)        | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
+|                  | `method`                       | PaymentMethodWithRedirect[] | An array of the following available methods: `'alipaycn'`, `'alipayhk'` , `'gcash'` , `'dana'`, `'kakaopay'` , `'tng'`                                       |
+| qrcode           | `intent` (**required**)        | Intent                      | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
+|                  | `qrcodeMethod`                 | PaymentMethodWithQrcode[]   | An array of the following available methods: `'wechatpay'`, `'kakaopay'` , `'alipayhk'`                                                                      |
+| dropIn           | `client_secret` (**required**) | string                      | The client_secret when you create payment intent, contain in the response                                                                                    |
+|                  | `currency`(**required**)       | string                      | Currency of your payment intent or consent. Three-letter ISO currency code                                                                                   |
+|                  | `mode`                         | Mode                        | Checkout mode, should be one of `'payment'`, `'recurring'`                                                                                                   |
+|                  | `intent_id`                    | string                      | The intent id you shopper want to checkout                                                                                                                   |
+|                  | `customer_id`                  | string                      | Checkout for know customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro)                          |
+|                  | `components`                   | PaymentMethodType[]         | The payment method component your website would like to integrate with                                                                                       |
+|                  | `autoCapture`                  | boolean                     | Indicate whether to capture immediate when authentication success, apply when shopper using card payment method                                              |
+|                  | `withBilling`                  | boolean                     | Indicate to improve 3DS experience, indicate if the payment form will collect billing info from shopper                                                      |
+|                  | `style`                        | InputStyle                  | Style for cardNumber element                                                                                                                                 |
+|                  | `authFormContainer`            | string                      | Container for authentication form                                                                                                                            |
 
 <br>
 
@@ -210,22 +210,22 @@ Used for the Hosted Payment Page (HPP) method that redirects the customer to an 
 Airwallex.redirectToCheckout(props);
 ```
 
-| Props           | Required? | Default  | Description                                                                                                                          |
-| --------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `intent_id`     | false     |          | The intent id you shopper want to checkout                                                                                           |
-| `client_secret` | true      |          | The client_secret when you create payment intent, contain in the response                                                            |
-| `mode`          | false     | `payment`| Checkout mode, can be one of payment, recurring                                                                                      |
-| `env`           | false     | `'prod'` | Indicate which airwallex integration env your merchant site would like to connect with                                               |
-| `currency`      | true      |          | Currency of your payment intent or consent. Three-letter ISO currency code                                                           |
-| `autoCapture`   | false     | `true`   | Only support for card payment, indicate whether to capture immediate when authentication success                                     |
-| `theme`         | false     |          | Option with limited support for HPP page style customization                                                                         |
-| `customer_id`   | false     |          | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
-| `components`    | false     |          | The payment method component your website would like to integrate with                                                               |
-| `successUrl`    | false     |          | The success return url after shopper succeeded the payment (must be https)                                                           |
-| `failUrl`       | false     |          | The failed return url when shopper can not fulfill the payment intent (must be https)                                                |
-| `cancelUrl`     | false     |          | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
-| `logoUrl`       | false     |          | The logo url of your website you want to show in the HPP head                                                                        |
-| `locale`        | false     |          | i18n localization config, 'en' or 'zh'                                                                                               |
+| Props           | Required? | Default   | Description                                                                                                                          |
+| --------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `intent_id`     | false     |           | The intent id you shopper want to checkout                                                                                           |
+| `client_secret` | true      |           | The client_secret when you create payment intent, contain in the response                                                            |
+| `mode`          | false     | `payment` | Checkout mode, can be one of payment, recurring                                                                                      |
+| `env`           | false     | `'prod'`  | Indicate which airwallex integration env your merchant site would like to connect with                                               |
+| `currency`      | true      |           | Currency of your payment intent or consent. Three-letter ISO currency code                                                           |
+| `autoCapture`   | false     | `true`    | Only support for card payment, indicate whether to capture immediate when authentication success                                     |
+| `theme`         | false     |           | Option with limited support for HPP page style customization                                                                         |
+| `customer_id`   | false     |           | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
+| `components`    | false     |           | The payment method component your website would like to integrate with                                                               |
+| `successUrl`    | false     |           | The success return url after shopper succeeded the payment (must be https)                                                           |
+| `failUrl`       | false     |           | The failed return url when shopper can not fulfill the payment intent (must be https)                                                |
+| `cancelUrl`     | false     |           | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
+| `logoUrl`       | false     |           | The logo url of your website you want to show in the HPP head                                                                        |
+| `locale`        | false     |           | i18n localization config, 'en' or 'zh'                                                                                               |
 
 <br>
 
@@ -252,8 +252,7 @@ PaymentMethod (without being attached to be an existing customer)
 | `customer_id`            | false     | string              | The payment method component your website would like to integrate with                                                                                       |
 | `save_payment_method`    | false     | boolean             | Indicate whether to save this payment method for future payment                                                                                              |
 | `error`                  | false     | {}                  | Response error when failed to call createPaymentMethod                                                                                                       |
-| `payment_consent_id`     | false     | string              | The payment consent id if you have, can be create by createPaymentConsent                                                                                                       |
-
+| `payment_consent_id`     | false     | string              | The payment consent id if you have, can be create by createPaymentConsent                                                                                    |
 
 <br>
 
@@ -265,17 +264,17 @@ Used to create a payment consent which could used to confirm an intent in the su
 Airwallex.createPaymentConsent(props);
 ```
 
-| Props           | Required? | Default  | Description                                                                                                                          |
-| --------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `intent_id`            | false      |          | The intent_id that would be confirmed with the new created payment consent                                                                                           |
-| `client_secret` | true      |          | If the intent provided, this should be the client_secret of the intent, If no intent provided, this should be the client_secret of the customer                                                            |
-| `currency`           | false     |      | The currency of the payment consent, Only applicable for card consent                                               |
-| `element`         | true     |          | The element you would like to use to create consent                                                                         |
-| `customer_id`   | true     |          | The customer_id of the consent |
-| `payment_method_id`    | false     |          | If customer already has a payment method, merchant could provide it instead of create a new one        |
-| `next_triggered_by`    | false     |    `merchant`      | The subsequent transactions are triggered by `merchant` or `customer`                                                           |
-| `merchant_trigger_reason`       | false     |   `unscheduled `       | The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`      |
-| `requires_cvc`     | false     |     `false `    | `requires_cvc` used for decide whether cvc is required for subsequent transactions. Only applicable when next_triggered_by is `customer`                                                       |
+| Props                     | Required? | Default        | Description                                                                                                                                     |
+| ------------------------- | --------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `intent_id`               | false     |                | The intent_id that would be confirmed with the new created payment consent                                                                      |
+| `client_secret`           | true      |                | If the intent provided, this should be the client_secret of the intent, If no intent provided, this should be the client_secret of the customer |
+| `currency`                | false     |                | The currency of the payment consent, Only applicable for card consent                                                                           |
+| `element`                 | true      |                | The element you would like to use to create consent                                                                                             |
+| `customer_id`             | true      |                | The customer_id of the consent                                                                                                                  |
+| `payment_method_id`       | false     |                | If customer already has a payment method, merchant could provide it instead of create a new one                                                 |
+| `next_triggered_by`       | false     | `merchant`     | The subsequent transactions are triggered by `merchant` or `customer`                                                                           |
+| `merchant_trigger_reason` | false     | `unscheduled ` | The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`                                               |
+| `requires_cvc`            | false     | `false `       | `requires_cvc` used for decide whether cvc is required for subsequent transactions. Only applicable when next_triggered_by is `customer`        |
 
 <br>
 
@@ -287,7 +286,7 @@ Takes in the PaymentMethod prop from above.
 
 ```ts
 const confirmResult = await Airwallex.confirmPaymentIntentWithSavedCard(
-  paymentMethod,
+  paymentMethod
 );
 ```
 
@@ -327,11 +326,11 @@ const intent = await Airwallex.getPaymentIntent(id, client_secret);
 
 ```js
 // Enter your Payment Intent secret keys here
-const intent_id = 'replace-with-your-intent-id';
-const client_secret = 'replace-with-your-client-secret';
+const intent_id = "replace-with-your-intent-id";
+const client_secret = "replace-with-your-client-secret";
 ```
 
 3. `The resource with ID int_xxxxxxxxx cannot be found.`
 
 - Does the environment you initialized Airwallex in (eg. demo, staging, or prod) match the environment you retrieved your intent keys in?
-- If you ran `loadAirwallex` in demo environment, did you also create your intent in the demo environment?
+- If you ran `init` in demo environment, did you also create your intent in the demo environment?

@@ -15,7 +15,7 @@ Want more details? See the integration in [React](/integrations/react/src/compon
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
 ```js
-import Airwallex from 'airwallex-payment-elements';
+import Airwallex from "airwallex-payment-elements";
 ```
 
 or add the bundle as a script in your HTML head
@@ -29,13 +29,13 @@ Be sure to replace the x.x.x with the `airwallex-payment-elements` package versi
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
-Airwallex.loadAirwallex({
-  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+Airwallex.init({
+  env: "demo", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
   origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
 
-`loadAirwallex` takes in options to set up the payment environment. See docs for further customizations [here](/docs#loadAirwallex).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -65,9 +65,9 @@ We will mount the card elements into the empty divs in step 5 and create a handl
 This creates the specified [Element](/docs#Element) objects. We specify the types as `cardNumber`, `expiry`, and `cvc` respectively.
 
 ```js
-const cardNumber = Airwallex.createElement('cardNumber');
-const expiry = Airwallex.createElement('expiry');
-const cvc = Airwallex.createElement('cvc');
+const cardNumber = Airwallex.createElement("cardNumber");
+const expiry = Airwallex.createElement("expiry");
+const cvc = Airwallex.createElement("cvc");
 ```
 
 There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
@@ -77,9 +77,9 @@ There are also additional options as a second parameter to the `createElement` f
 Next, we need to mount the card element to the DOM.
 
 ```js
-cardNumber.mount('cardNumber');
-expiry.mount('expiry');
-cvc.mount('cvc');
+cardNumber.mount("cardNumber");
+expiry.mount("expiry");
+cvc.mount("cvc");
 ```
 
 This function will append the card element to your divs with ids `cardNumber`, `expiry`, and `cvc` respectively, as created above in step 3. **Ensure that there are no other elements in the document with the same ids**.
@@ -92,11 +92,11 @@ This handler is called when a customer is ready to make a payment according to t
 
 ```js
 // STEP #6a: Add a button handler
-document.getElementById('submit').addEventListener('click', () => {
+document.getElementById("submit").addEventListener("click", () => {
   Airwallex.confirmPaymentIntent({
     element: cardNumber, // Provide the cardNumber element
-    id: 'replace-with-your-intent-id', // Payment Intent ID
-    client_secret: 'replace-with-your-client-secret', // Client Secret
+    id: "replace-with-your-intent-id", // Payment Intent ID
+    client_secret: "replace-with-your-client-secret", // Client Secret
   }).then((response) => {
     // STEP #6b: Listen to the request response
     /* Handle response */
@@ -112,7 +112,7 @@ More details about the `confirmPaymentIntent` function can be found [here](/docs
 ### 7. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
-window.addEventListener('onReady', (event) => {
+window.addEventListener("onReady", (event) => {
   /*
     ... Handle event
   */
@@ -125,7 +125,7 @@ This can be used to set a loading state as the checkout screen is being prepared
 ### 8. Add an `onChange` event listener to listen to the changes in each of the input fields
 
 ```js
-window.addEventListener('onChange', (event) => {
+window.addEventListener("onChange", (event) => {
   /*
     ... Handle event
   */
