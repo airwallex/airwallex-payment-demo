@@ -34,10 +34,6 @@ Frontend integration:
 
 For those using [Next.js](https://nextjs.org/) as their web framework, feel free to see the [React](/integrations/react)/[React Typescript](/integrations/react-ts) examples.
 
-Other integrations coming soon:
-
-- PHP
-
 ## Sandboxes
 
 You also can play around with the different web integrations with the sandboxes below:
