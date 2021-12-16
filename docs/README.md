@@ -217,7 +217,7 @@ Airwallex.redirectToCheckout(props);
 | `mode`          | false     | `payment` | Checkout mode, can be one of payment, recurring                                                                                      |
 | `env`           | false     | `'prod'`  | Indicate which airwallex integration env your merchant site would like to connect with                                               |
 | `currency`      | true      |           | Currency of your payment intent or consent. Three-letter ISO currency code                                                           |
-| `autoCapture`   | false     | `true`    | Only support for card payment, indicate whether to capture immediate when authentication success                                     |
+| `autoCapture`   | false     |           | Only support for card payment, indicate whether to capture immediate when authentication success                                     |
 | `theme`         | false     |           | Option with limited support for HPP page style customization                                                                         |
 | `customer_id`   | false     |           | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
 | `components`    | false     |           | The payment method component your website would like to integrate with                                                               |
@@ -225,7 +225,8 @@ Airwallex.redirectToCheckout(props);
 | `failUrl`       | false     |           | The failed return url when shopper can not fulfill the payment intent (must be https)                                                |
 | `cancelUrl`     | false     |           | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
 | `logoUrl`       | false     |           | The logo url of your website you want to show in the HPP head                                                                        |
-| `locale`        | false     |           | i18n localization config, 'en' or 'zh'                                                                                               |
+| `locale`        | false     |           | i18n localization config, 'en' or 'zh'   |
+| `showTermLink`  | false     |  `false`  | Need to show the  Legal & Privacy  |
 
 <br>
 
