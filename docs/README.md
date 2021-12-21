@@ -317,7 +317,7 @@ PaymentMethod (without being attached to be an existing customer)
 | `payment_consent_id`     | false     | string              | The payment consent id if you have, can be create by createPaymentConsent                                                                                    |
 
 
-#### payment_method:
+#### payment_method
 
 ```ts
 interface Address {
