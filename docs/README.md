@@ -293,8 +293,8 @@ type PaymentMethodWithRedirect =
   | 'truemoney';
 ```
 
-
 <br>
+
 ### confirmPaymentIntent
 
 The following function confirms payment intent with element and the rest of the payment method info. Only required for the card payment method.
@@ -317,7 +317,7 @@ PaymentMethod (without being attached to be an existing customer)
 | `payment_consent_id`     | false     | string              | The payment consent id if you have, can be create by createPaymentConsent                                                                                    |
 
 
-#### payment_method: {
+#### payment_method
 
 ```ts
 interface Address {
@@ -341,7 +341,7 @@ interface Billing {
 }
 
 
-interface payment_method?: {
+interface payment_method {
   card: {
     /**
      * Card holder name
@@ -358,7 +358,7 @@ interface payment_method?: {
 #### payment_method_options
 
 ```ts
-interface payment_method_options?: {
+interface payment_method_options {
   card?: {
     /**
      * Only support for card payment, indicate whether to capture immediate when authentication success
