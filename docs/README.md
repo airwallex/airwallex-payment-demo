@@ -34,13 +34,6 @@ Payment Processing
 
 - [redirectToCheckout](#redirectToCheckout)
 - [confirmPaymentIntent](#confirmPaymentIntent)
-- [confirmPaymentIntentWithSavedCard](#confirmPaymentIntentWithSavedCard)
-
-Querying the API
-
-- [createPaymentMethod](#createPaymentMethod)
-- [getPaymentIntent](#getPaymentIntent)
-- createPaymentContract
 
 Common Errors
 
@@ -215,21 +208,93 @@ Airwallex.redirectToCheckout(props);
 | `intent_id`     | false     |           | The intent id you shopper want to checkout                                                                                           |
 | `client_secret` | true      |           | The client_secret when you create payment intent, contain in the response                                                            |
 | `mode`          | false     | `payment` | Checkout mode, can be one of payment, recurring                                                                                      |
-| `env`           | false     | `'prod'`  | Indicate which airwallex integration env your merchant site would like to connect with                                               |
+| `env`           | false     |   `prod`  | Indicate which airwallex integration env your merchant site would like to connect with, the options would be `staging`, `demo`, `prod`                                          |
 | `currency`      | true      |           | Currency of your payment intent or consent. Three-letter ISO currency code                                                           |
 | `autoCapture`   | false     |           | Only support for card payment, indicate whether to capture immediate when authentication success                                     |
 | `theme`         | false     |           | Option with limited support for HPP page style customization                                                                         |
 | `customer_id`   | false     |           | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
-| `components`    | false     |           | The payment method component your website would like to integrate with                                                               |
+| `components`    | false     |           | The payment method component your website would like to integrate with, the type fo this field should be Array of type `PaymentMethodWithRedirect`  below                         |
 | `successUrl`    | false     |           | The success return url after shopper succeeded the payment (must be https)                                                           |
 | `failUrl`       | false     |           | The failed return url when shopper can not fulfill the payment intent (must be https)                                                |
 | `cancelUrl`     | false     |           | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
 | `logoUrl`       | false     |           | The logo url of your website you want to show in the HPP head                                                                        |
-| `locale`        | false     |           | i18n localization config, 'en' or 'zh'   |
+| `locale`        | false     |           | i18n localization config, 'en', 'zh', 'ja', 'ko', 'ar', 'fr'
 | `showTermLink`  | false     |  `false`  | Need to show the  Legal & Privacy  |
+| `withBilling`  | false     |  `false`  | Need to show the  Billing fields for card payment  |
+| `country_code`  | false     |          | The 2-letter ISO country code from which the consumer will be paying, If you want to integrate with `bank_transfer`, `online_banking`, `skrill` or `seven_eleven` payment method, it would be required  |
+| `shopper_name`  | false     |        | for ppro only: Customer name - minimum of 3 characters, up to 100 characters, refer to [**Redirect**](/docs/redirect.md) |
+| `shopper_phone`  | false     |        | for ppro only: Customer phone, refer to [**Redirect**](/docs/redirect.md)  |
+| `shopper_email`  | false     |        | for ppro only: Customer email, refer to [**Redirect**](/docs/redirect.md)  |
+
 
 <br>
 
+
+#### components
+```ts
+type PaymentMethodWithRedirect =
+  | 'card'
+  | 'wechatpay'
+  | 'alipaycn'
+  | 'alipayhk'
+  | 'gcash'
+  | 'dana'
+  | 'kakaopay'
+  | 'tng'
+  | 'poli'
+  | 'fpx'
+  | 'online_banking'
+  | 'bank_transfer'
+  | 'permatanet'
+  | 'alfamart'
+  | 'indomaret'
+  | 'doku_ewallet'
+  | 'enets'
+  | 'payeasy'
+  | 'seven_eleven'
+  | 'konbini'
+  | 'tesco_lotus'
+  | 'grabpay'
+  | 'skrill'
+  | 'eps'
+  | 'giropay'
+  | 'ideal'
+  | 'multibanco'
+  | 'p24'
+  | 'sofort'
+  | 'trustly'
+  | 'bancontact'
+  | 'dragonpay'
+  | 'blik'
+  | 'mybank'
+  | 'paybybankapp'
+  | 'verkkopankki'
+  | 'maxima'
+  | 'narvesen'
+  | 'paypost'
+  | 'perlas_terminals'
+  | 'paysafecash'
+  | 'paysafecard'
+  | 'paysera'
+  | 'satispay'
+  | 'family_mart'
+  | 'hi_life'
+  | 'sam_kiosk'
+  | 'axs_kiosk'
+  | 'bigc'
+  | 'esun'
+  | 'permata_atm'
+  | 'boost'
+  | 'shopee_pay'
+  | 'paypal'
+  | 'payu'
+  | 'ovo'
+  | 'bitpay'
+  | 'truemoney';
+```
+
+
+<br>
 ### confirmPaymentIntent
 
 The following function confirms payment intent with element and the rest of the payment method info. Only required for the card payment method.
@@ -247,13 +312,61 @@ PaymentMethod (without being attached to be an existing customer)
 | `element`                | true      | Element             | Element create by call createElement interface with 'cardNumber' element type                                                                                |
 | `client_secret`          | true      | string              | The client_secret when you create payment intent, contain in the response                                                                                    |
 | `id`                     | true      | string              | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-| `paymentMethod`          | false     | PaymentMethodDetail | The payment method detail return by call createPaymentMethod                                                                                                 |
-| `payment_method_options` | false     | {}                  | Only apply for card payment, use this option to provide additional config to confirm payment intent                                                          |
-| `methodId`               | false     | string              | The payment method id if you have, can be create by call createPaymentMethod                                                                                 |
-| `customer_id`            | false     | string              | The payment method component your website would like to integrate with                                                                                       |
-| `save_payment_method`    | false     | boolean             | Indicate whether to save this payment method for future payment                                                                                              |
-| `error`                  | false     | {}                  | Response error when failed to call createPaymentMethod                                                                                                       |
+| `payment_method`          | false     | PaymentMethodDetail | The payment method detail when confirm intent, refer to type `payment_method` below          |
+| `payment_method_options` | false     | {}                  | The payment method options when confirm intent, refer to type `payment_method_options`  below      |
 | `payment_consent_id`     | false     | string              | The payment consent id if you have, can be create by createPaymentConsent                                                                                    |
+
+
+#### payment_method: {
+
+```ts
+interface Address {
+  city: string;
+  /**
+   * https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+   */
+  country_code: string;
+  postcode: string;
+  state: string;
+  street: string;
+}
+
+interface Billing {
+  email: string;
+  first_name: string;
+  last_name: string;
+  date_of_birth?: string;
+  phone_number?: string;
+  address: Address;
+}
+
+
+interface payment_method?: {
+  card: {
+    /**
+     * Card holder name
+     */
+    name?: string;
+  };
+  /**
+   * Card billing information
+   */
+  billing?: Billing;
+};
+```
+
+#### payment_method_options
+
+```ts
+interface payment_method_options?: {
+  card?: {
+    /**
+     * Only support for card payment, indicate whether to capture immediate when authentication success
+     */
+    auto_capture?: boolean;
+  };
+};
+```
 
 <br>
 
@@ -278,38 +391,6 @@ Airwallex.createPaymentConsent(props);
 | `requires_cvc`            | false     | `false `       | `requires_cvc` used for decide whether cvc is required for subsequent transactions. Only applicable when next_triggered_by is `customer`        |
 
 <br>
-
-### confirmPaymentIntentWithSavedCard
-
-The following function confirms a payment intent and the rest of the payment method details with a saved card. Only required for the cvc element.
-
-Takes in the PaymentMethod prop from above.
-
-```ts
-const confirmResult = await Airwallex.confirmPaymentIntentWithSavedCard(paymentMethod);
-```
-
-<br>
-
-## Querying the API
-
-### createPaymentMethod
-
-This function is used to create a payment method for checkout, the created payment method can be saved in your system. Takes in a client secret and PaymentMethod. Returns a PaymentMethod if successful.
-
-```ts
-const paymentMethod = await createPaymentMethod(clientSecret, PaymentMethod); // only need element and customer_id for PaymentMethod
-```
-
-<br>
-
-### getPaymentIntent
-
-This function gets intent `id` and `client secret` from browser side to directly query Airwallex API. Returns a PaymentIntent if successful.
-
-```ts
-const intent = await Airwallex.getPaymentIntent(id, client_secret);
-```
 
 ## Common Errors
 
