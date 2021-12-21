@@ -203,36 +203,49 @@ Used for the Hosted Payment Page (HPP) method that redirects the customer to an 
 Airwallex.redirectToCheckout(props);
 ```
 
-| Props           | Required? | Default   | Description                                                                                                                          |
+| Props           | Required? | Type   | Description                                                                                                                          |
 | --------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `intent_id`     | false     |           | The intent id you shopper want to checkout                                                                                           |
-| `client_secret` | true      |           | The client_secret when you create payment intent, contain in the response                                                            |
-| `mode`          | false     | `payment` | Checkout mode, can be one of payment, recurring                                                                                      |
-| `env`           | false     |   `prod`  | Indicate which airwallex integration env your merchant site would like to connect with, the options would be `staging`, `demo`, `prod`                                          |
-| `currency`      | true      |           | Currency of your payment intent or consent. Three-letter ISO currency code                                                           |
-| `autoCapture`   | false     |           | Only support for card payment, indicate whether to capture immediate when authentication success                                     |
-| `theme`         | false     |           | Option with limited support for HPP page style customization                                                                         |
-| `customer_id`   | false     |           | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
-| `components`    | false     |           | The payment method component your website would like to integrate with, the type fo this field should be Array of type `PaymentMethodWithRedirect`  below                         |
-| `successUrl`    | false     |           | The success return url after shopper succeeded the payment (must be https)                                                           |
-| `failUrl`       | false     |           | The failed return url when shopper can not fulfill the payment intent (must be https)                                                |
-| `cancelUrl`     | false     |           | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
-| `logoUrl`       | false     |           | The logo url of your website you want to show in the HPP head                                                                        |
-| `locale`        | false     |           | i18n localization config, 'en', 'zh', 'ja', 'ko', 'ar', 'fr'
-| `showTermLink`  | false     |  `false`  | Need to show the  Legal & Privacy  |
-| `withBilling`  | false     |  `false`  | Need to show the  Billing fields for card payment  |
-| `country_code`  | false     |          | The 2-letter ISO country code from which the consumer will be paying, If you want to integrate with `bank_transfer`, `online_banking`, `skrill` or `seven_eleven` payment method, it would be required  |
-| `shopper_name`  | false     |        | for ppro only: Customer name - minimum of 3 characters, up to 100 characters, refer to [**Redirect**](/docs/redirect.md) |
-| `shopper_phone`  | false     |        | for ppro only: Customer phone, refer to [**Redirect**](/docs/redirect.md)  |
-| `shopper_email`  | false     |        | for ppro only: Customer email, refer to [**Redirect**](/docs/redirect.md)  |
+| `intent_id`     | false     |     string      | The intent id you shopper want to checkout                                                                                           |
+| `client_secret` | true      |     string      | The client_secret when you create payment intent, contain in the response                                                            |
+| `mode`          | false     | string | Checkout mode, can be `payment` or `recurring`                                      |
+| `env`           | false     |   string  | Indicate which airwallex integration env your merchant site would like to connect with, the options would be `staging`, `demo`, `prod`                                          |
+| `currency`      | true      |     string      | Currency of your payment intent or consent. Three-letter ISO currency code                                                           |
+| `autoCapture`   | false     |      boolean     | Only support for card payment, indicate whether to capture immediate when authentication success                                     |
+| `theme`         | false     |      Theme     | Option with limited support for HPP page style customization                                                                         |
+| `customer_id`   | false     |      string     | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
+| `components`    | false     |   Array    | The payment method component your website would like to integrate with, the type fo this field should be Array of type `PaymentMethod`  below                         |
+| `successUrl`    | false     |      string     | The success return url after shopper succeeded the payment (must be https)                                                           |
+| `failUrl`       | false     |     string      | The failed return url when shopper can not fulfill the payment intent (must be https)                                                |
+| `cancelUrl`     | false     |      string     | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
+| `logoUrl`       | false     |      string     | The logo url of your website you want to show in the HPP head                                                                        |
+| `locale`        | false     |     string      | i18n localization config, 'en', 'zh', 'ja', 'ko', 'ar', 'fr'
+| `showTermLink`  | false     |  boolean  | Need to show the  Legal & Privacy  |
+| `withBilling`  | false     |  boolean  | Need to show the  Billing fields for card payment  |
+| `country_code`  | false     |     string     | The 2-letter ISO country code from which the consumer will be paying, If you want to integrate with `bank_transfer`, `online_banking`, `skrill` or `seven_eleven` payment method, it would be required  |
+| `shopper_name`  | false     |    string    | for ppro only: Customer name - minimum of 3 characters, up to 100 characters, refer to [**Redirect**](/docs/redirect.md) |
+| `shopper_phone`  | false     |    string    | for ppro only: Customer phone, refer to [**Redirect**](/docs/redirect.md)  |
+| `shopper_email`  | false     |    string    | for ppro only: Customer email, refer to [**Redirect**](/docs/redirect.md)  |
 
 
 <br>
 
+#### theme
+```ts
+interface Theme {
+  fonts?: FontOptions[];
+}
+
+interface FontOptions {
+  family?: string;
+  src?: string;
+  weight?: string | number;
+}
+```
+
 
 #### components
 ```ts
-type PaymentMethodWithRedirect =
+type PaymentMethod =
   | 'card'
   | 'wechatpay'
   | 'alipaycn'
@@ -312,8 +325,8 @@ PaymentMethod (without being attached to be an existing customer)
 | `element`                | true      | Element             | Element create by call createElement interface with 'cardNumber' element type                                                                                |
 | `client_secret`          | true      | string              | The client_secret when you create payment intent, contain in the response                                                                                    |
 | `id`                     | true      | string              | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-| `payment_method`          | false     | PaymentMethodDetail | The payment method detail when confirm intent, refer to type `payment_method` below          |
-| `payment_method_options` | false     | {}                  | The payment method options when confirm intent, refer to type `payment_method_options`  below      |
+| `payment_method`          | false     | payment_method | The payment method detail when confirm intent, refer to type `payment_method` below          |
+| `payment_method_options` | false     | payment_method_options                  | The payment method options when confirm intent, refer to type `payment_method_options`  below      |
 | `payment_consent_id`     | false     | string              | The payment consent id if you have, can be create by createPaymentConsent                                                                                    |
 
 
