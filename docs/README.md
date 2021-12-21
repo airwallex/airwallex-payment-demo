@@ -213,7 +213,7 @@ Airwallex.redirectToCheckout(props);
 | `autoCapture`   | false     |      boolean     | Only support for card payment, indicate whether to capture immediate when authentication success                                     |
 | `theme`         | false     |      Theme     | Option with limited support for HPP page style customization                                                                         |
 | `customer_id`   | false     |      string     | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
-| `components`    | false     |   Array    | The payment method component your website would like to integrate with, the type fo this field should be Array of type `PaymentMethod`  below                         |
+| `components`    | false     |   Array    | The payment method component your website would like to integrate with, the type fo this field should be Array of type `Components`  below                         |
 | `successUrl`    | false     |      string     | The success return url after shopper succeeded the payment (must be https)                                                           |
 | `failUrl`       | false     |     string      | The failed return url when shopper can not fulfill the payment intent (must be https)                                                |
 | `cancelUrl`     | false     |      string     | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
@@ -245,7 +245,7 @@ interface FontOptions {
 
 #### components
 ```ts
-type PaymentMethod =
+type Components =
   | 'card'
   | 'wechatpay'
   | 'alipaycn'
@@ -391,17 +391,17 @@ Used to create a payment consent which could used to confirm an intent in the su
 Airwallex.createPaymentConsent(props);
 ```
 
-| Props                     | Required? | Default        | Description                                                                                                                                     |
+| Props                     | Required? | Type        | Description                                                                                                                                     |
 | ------------------------- | --------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `intent_id`               | false     |                | The intent_id that would be confirmed with the new created payment consent                                                                      |
-| `client_secret`           | true      |                | If the intent provided, this should be the client_secret of the intent, If no intent provided, this should be the client_secret of the customer |
-| `currency`                | false     |                | The currency of the payment consent, Only applicable for card consent                                                                           |
-| `element`                 | true      |                | The element you would like to use to create consent                                                                                             |
-| `customer_id`             | true      |                | The customer_id of the consent                                                                                                                  |
-| `payment_method_id`       | false     |                | If customer already has a payment method, merchant could provide it instead of create a new one                                                 |
-| `next_triggered_by`       | false     | `merchant`     | The subsequent transactions are triggered by `merchant` or `customer`                                                                           |
-| `merchant_trigger_reason` | false     | `unscheduled ` | The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`                                               |
-| `requires_cvc`            | false     | `false `       | `requires_cvc` used for decide whether cvc is required for subsequent transactions. Only applicable when next_triggered_by is `customer`        |
+| `intent_id`               | false     |       string         | The intent_id that would be confirmed with the new created payment consent                                                                      |
+| `client_secret`           | true      |        string        | If the intent provided, this should be the client_secret of the intent, If no intent provided, this should be the client_secret of the customer |
+| `currency`                | false     |        string        | The currency of the payment consent, Only applicable for card consent                                                                           |
+| `element`                 | true      |       Element         | The element you would like to use to create consent                                                                                             |
+| `customer_id`             | true      |       string         | The customer_id of the consent                                                                                                                  |
+| `payment_method_id`       | false     |       string         | If customer already has a payment method, merchant could provide it instead of create a new one                                                 |
+| `next_triggered_by`       | false     | string    | The subsequent transactions are triggered by `merchant` or `customer`                                                                           |
+| `merchant_trigger_reason` | false     | string | The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`                                               |
+| `requires_cvc`            | false     | boolean       | `requires_cvc` used for decide whether cvc is required for subsequent transactions. Only applicable when next_triggered_by is `customer`        |
 
 <br>
 
