@@ -13,7 +13,7 @@ See `node_modules/airwallex-payment-elements/types` for a more detailed overview
 - [**Split Card**](/docs/splitcard.md)
 - [**Wechat**](/docs/wechat.md)
 - [**Redirect**](/docs/redirect.md)
-
+- [**ApplePayButton**](/docs/applepaybutton.md)
 <br>
 
 ## Functions
@@ -116,7 +116,7 @@ const element = Airwallex.createElement(type, options);
 
 | Props     | Required? | Enum                                                                                                               | Description                                                          |
 | --------- | --------- | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| `type`    | true      | 'cardNumber', 'expiry', 'cvc', 'paymentRequestButton', 'card', 'wechat', 'redirect', 'dropIn', 'fullFeaturedCard', | The type of element to be created, of the element field types        |
+| `type`    | true      | 'cardNumber', 'expiry', 'cvc', 'paymentRequestButton', 'card', 'wechat', 'redirect', 'dropIn', 'fullFeaturedCard', 'applePayButton' | The type of element to be created, of the element field types        |
 | `options` | false     |                                                                                                                    | Additional options for each element, different for each element type |
 
 All the following options are optional with the exception of `'intent'`.
@@ -162,6 +162,10 @@ All the following options are optional with the exception of `'intent'`.
 |                  | `withBilling`                  | boolean                     | Indicate to improve 3DS experience, indicate if the payment form will collect billing info from shopper                                                      |
 |                  | `style`                        | InputStyle                  | Style for cardNumber element                                                                                                                                 |
 |                  | `authFormContainer`            | string                      | Container for authentication form                                                                                                                            |
+| applePayButton           | `client_secret` (**required**) | string                      | The client_secret when you create payment intent, contain in the response                                                                                    |
+|                  | `intent_id`(**required**)      | string                      | The intent id you shopper want to checkout                                                                                                                   |
+|                  | `autoCapture`                  | boolean                     | Indicate whether to capture immediate when authentication success, apply when shopper using card payment method                                              |
+|                  | `amount` (**required**)                   | {value: number; currency:string;}                     | Indicate the amount and currency of the intent.                                                    |
 
 <br>
 
@@ -175,7 +179,7 @@ const element = Airwallex.getElement(type);
 
 | Props  | Required? | Enum                                                                                                               | Description |
 | ------ | --------- | ------------------------------------------------------------------------------------------------------------------ | ----------- |
-| `type` | true      | 'cardNumber', 'expiry', 'cvc', 'paymentRequestButton', 'card', 'wechat', 'redirect', 'dropIn', 'fullFeaturedCard', |
+| `type` | true      | 'cardNumber', 'expiry', 'cvc', 'paymentRequestButton', 'card', 'wechat', 'redirect', 'dropIn', 'fullFeaturedCard', 'applePayButton', |
 
 ### destroyElement
 
@@ -187,7 +191,7 @@ Airwallex.destroyElement(type);
 
 | Props  | Required? | Enum                                                                                                               | Description |
 | ------ | --------- | ------------------------------------------------------------------------------------------------------------------ | ----------- |
-| `type` | true      | 'cardNumber', 'expiry', 'cvc', 'paymentRequestButton', 'card', 'wechat', 'redirect', 'dropIn', 'fullFeaturedCard', |
+| `type` | true      | 'cardNumber', 'expiry', 'cvc', 'paymentRequestButton', 'card', 'wechat', 'redirect', 'dropIn', 'fullFeaturedCard','applePayButton',  |
 
 <br>
 
@@ -203,33 +207,101 @@ Used for the Hosted Payment Page (HPP) method that redirects the customer to an 
 Airwallex.redirectToCheckout(props);
 ```
 
-| Props           | Required? | Type   | Description                                                                                                                          |
-| --------------- | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `intent_id`     | false     |     string      | The intent id you shopper want to checkout                                                                                           |
-| `client_secret` | true      |     string      | The client_secret when you create payment intent, contain in the response                                                            |
-| `mode`          | false     | string | Checkout mode, can be `payment` or `recurring`                                      |
-| `env`           | false     |   string  | Indicate which airwallex integration env your merchant site would like to connect with, the options would be `staging`, `demo`, `prod`                                          |
-| `currency`      | true      |     string      | Currency of your payment intent or consent. Three-letter ISO currency code                                                           |
-| `autoCapture`   | false     |      boolean     | Only support for card payment, indicate whether to capture immediate when authentication success                                     |
-| `theme`         | false     |      Theme     | Option with limited support for HPP page style customization                                                                         |
-| `customer_id`   | false     |      string     | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro) |
-| `components`    | false     |   Array    | The payment method component your website would like to integrate with, the type fo this field should be Array of type `Components`  below                         |
-| `successUrl`    | false     |      string     | The success return url after shopper succeeded the payment (must be https)                                                           |
-| `failUrl`       | false     |     string      | The failed return url when shopper can not fulfill the payment intent (must be https)                                                |
-| `cancelUrl`     | false     |      string     | The cancel return url when shopper canceled the payment intent (must be https)                                                       |
-| `logoUrl`       | false     |      string     | The logo url of your website you want to show in the HPP head                                                                        |
-| `locale`        | false     |     string      | i18n localization config, 'en', 'zh', 'ja', 'ko', 'ar', 'fr'
-| `showTermLink`  | false     |  boolean  | Need to show the  Legal & Privacy  |
-| `withBilling`  | false     |  boolean  | Need to show the  Billing fields for card payment  |
-| `country_code`  | false     |     string     | The 2-letter ISO country code from which the consumer will be paying, If you want to integrate with `bank_transfer`, `online_banking`, `skrill` or `seven_eleven` payment method, it would be required  |
-| `shopper_name`  | false     |    string    | for ppro only: Customer name - minimum of 3 characters, up to 100 characters, refer to [**Redirect**](/docs/redirect.md) |
-| `shopper_phone`  | false     |    string    | for ppro only: Customer phone, refer to [**Redirect**](/docs/redirect.md)  |
-| `shopper_email`  | false     |    string    | for ppro only: Customer email, refer to [**Redirect**](/docs/redirect.md)  |
-
+| Props                    | Required? | Type                   | Description                                                                                                                                                                                            |
+| ------------------------ | --------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `intent_id`              | false     | string                 | The intent id you shopper want to checkout                                                                                                                                                             |
+| `client_secret`          | true      | string                 | The client_secret when you create payment intent, contain in the response                                                                                                                              |
+| `mode`                   | false     | string                 | Checkout mode, can be `payment` or `recurring`                                                                                                                                                         |
+| `env`                    | false     | string                 | Indicate which airwallex integration env your merchant site would like to connect with, the options would be `staging`, `demo`, `prod`                                                                 |
+| `currency`               | true      | string                 | Currency of your payment intent or consent. Three-letter ISO currency code                                                                                                                             |
+| `autoCapture`            | false     | boolean                | Only support for card payment, indicate whether to capture immediate when authentication success                                                                                                       |
+| `theme`                  | false     | Theme                  | Option with limited support for HPP page style customization                                                                                                                                           |
+| `customer_id`            | false     | string                 | Checkout for known customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro)                                                                   |
+| `components`             | false     | Array                  | The payment method component your website would like to integrate with, the type fo this field should be Array of type `Components` below                                                              |
+| `successUrl`             | false     | string                 | The success return url after shopper succeeded the payment (must be https)                                                                                                                             |
+| `failUrl`                | false     | string                 | The failed return url when shopper can not fulfill the payment intent (must be https)                                                                                                                  |
+| `cancelUrl`              | false     | string                 | The cancel return url when shopper canceled the payment intent (must be https)                                                                                                                         |
+| `logoUrl`                | false     | string                 | The logo url of your website you want to show in the HPP head                                                                                                                                          |
+| `locale`                 | false     | string                 | i18n localization config, 'en', 'zh', 'ja', 'ko', 'ar', 'fr'                                                                                                                                           |
+| `showTermLink`           | false     | boolean                | Need to show the Legal & Privacy                                                                                                                                                                       |
+| `withBilling`            | false     | boolean                | Need to show the Billing fields for card payment                                                                                                                                                       |
+| `country_code`           | false     | string                 | The 2-letter ISO country code from which the consumer will be paying, If you want to integrate with `bank_transfer`, `online_banking`, `skrill` or `seven_eleven` payment method, it would be required |
+| `shopper_name`           | false     | string                 | for ppro only: Customer name - minimum of 3 characters, up to 100 characters, refer to [**Redirect**](/docs/redirect.md)                                                                               |
+| `shopper_phone`          | false     | string                 | for ppro only: Customer phone, refer to [**Redirect**](/docs/redirect.md)                                                                                                                              |
+| `shopper_email`          | false     | string                 | for ppro only: Customer email, refer to [**Redirect**](/docs/redirect.md)                                                                                                                              |
+| `applePayRequestOptions` | false     | ApplePayRequestOptions | If you want to integrate with apple pay, you need to provide ApplePayHppRequestOptions                                                                                                                 |
 
 <br>
 
+### ApplePayRequestOptions
+ApplePayJS is imported from "@types/applepayjs" 
+```ts
+interface ApplePayRequestOptions {
+  /**
+   * The merchant's two-letter ISO 3166 country code. Like 'US'
+   */
+  countryCode: string;
+  /**
+   * 	Indicate the type of button you want displayed on your payments form. Like 'donate'
+   *  https://developer.apple.com/documentation/apple_pay_on_the_web/displaying_apple_pay_buttons_using_css
+   */
+  buttonType?: string;
+  /**
+   * Indicate the color of the button. Default value is 'black'
+   */
+  buttonColor?: 'black' | 'white' | ' white-with-line';
+  /**
+   * Provide a business name for the label field. Use the same business name people will see when they look for the charge on their bank or credit card statement. For example, "COMPANY, INC."
+   */
+  totalPriceLabel?: string;
+  /**
+   * A set of line items that explain recurring payments and/or additional charges.
+   */
+  lineItems?: ApplePayJS.ApplePayLineItem[];
+
+  /**
+   * Billing contact information for the user.
+   */
+  billingContact?: ApplePayJS.ApplePayPaymentContact;
+
+  /**
+   * The billing information that you require from the user in order to process the transaction.
+   */
+  requiredBillingContactFields?: ApplePayJS.ApplePayContactField[];
+
+  /**
+   * The shipping information that you require from the user in order to fulfill the order.
+   */
+  requiredShippingContactFields?: ApplePayJS.ApplePayContactField[];
+
+  /**
+   * Shipping contact information for the user.
+   */
+  shippingContact?: ApplePayJS.ApplePayPaymentContact;
+
+  /**
+   * A set of shipping method objects that describe the available shipping methods.
+   */
+  shippingMethods?: ApplePayJS.ApplePayShippingMethod[];
+
+  /**
+   * How the items are to be shipped.
+   */
+  shippingType?: ApplePayJS.ApplePayShippingType;
+  /**
+   * A list of ISO 3166 country codes for limiting payments to cards from specific countries.
+   */
+  supportedCountries?: string[];
+
+  /**
+   * Optional user-defined data.
+   */
+  applicationData?: string;
+}
+```
+
 #### theme
+
 ```ts
 interface Theme {
   fonts?: FontOptions[];
@@ -242,8 +314,8 @@ interface FontOptions {
 }
 ```
 
-
 #### components
+
 ```ts
 type Components =
   | 'card'
@@ -320,15 +392,14 @@ const confirmResult = await Airwallex.confirmPaymentIntent(paymentMethod);
 
 PaymentMethod (without being attached to be an existing customer)
 
-| Props                    | Required? | Type                | Description                                                                                                                                                  |
-| ------------------------ | --------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `element`                | true      | Element             | Element create by call createElement interface with 'cardNumber' element type                                                                                |
-| `client_secret`          | true      | string              | The client_secret when you create payment intent, contain in the response                                                                                    |
-| `id`                     | true      | string              | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
-| `payment_method`          | false     | payment_method | The payment method detail when confirm intent, refer to type `payment_method` below          |
-| `payment_method_options` | false     | payment_method_options                  | The payment method options when confirm intent, refer to type `payment_method_options`  below      |
-| `payment_consent_id`     | false     | string              | The payment consent id if you have, can be create by createPaymentConsent                                                                                    |
-
+| Props                    | Required? | Type                   | Description                                                                                                                                                  |
+| ------------------------ | --------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `element`                | true      | Element                | Element create by call createElement interface with 'cardNumber' element type                                                                                |
+| `client_secret`          | true      | string                 | The client_secret when you create payment intent, contain in the response                                                                                    |
+| `id`                     | true      | string                 | The payment intent you would like to checkout. Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro) |
+| `payment_method`         | false     | payment_method         | The payment method detail when confirm intent, refer to type `payment_method` below                                                                          |
+| `payment_method_options` | false     | payment_method_options | The payment method options when confirm intent, refer to type `payment_method_options` below                                                                 |
+| `payment_consent_id`     | false     | string                 | The payment consent id if you have, can be create by createPaymentConsent                                                                                    |
 
 #### payment_method
 
@@ -353,7 +424,6 @@ interface Billing {
   address: Address;
 }
 
-
 interface payment_method {
   card: {
     /**
@@ -365,7 +435,7 @@ interface payment_method {
    * Card billing information
    */
   billing?: Billing;
-};
+}
 ```
 
 #### payment_method_options
@@ -378,7 +448,7 @@ interface payment_method_options {
      */
     auto_capture?: boolean;
   };
-};
+}
 ```
 
 <br>
@@ -391,17 +461,17 @@ Used to create a payment consent which could used to confirm an intent in the su
 Airwallex.createPaymentConsent(props);
 ```
 
-| Props                     | Required? | Type        | Description                                                                                                                                     |
-| ------------------------- | --------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `intent_id`               | false     |       string         | The intent_id that would be confirmed with the new created payment consent                                                                      |
-| `client_secret`           | true      |        string        | If the intent provided, this should be the client_secret of the intent, If no intent provided, this should be the client_secret of the customer |
-| `currency`                | false     |        string        | The currency of the payment consent, Only applicable for card consent                                                                           |
-| `element`                 | true      |       Element         | The element you would like to use to create consent                                                                                             |
-| `customer_id`             | true      |       string         | The customer_id of the consent                                                                                                                  |
-| `payment_method_id`       | false     |       string         | If customer already has a payment method, merchant could provide it instead of create a new one                                                 |
-| `next_triggered_by`       | false     | string    | The subsequent transactions are triggered by `merchant` or `customer`                                                                           |
-| `merchant_trigger_reason` | false     | string | The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`                                               |
-| `requires_cvc`            | false     | boolean       | `requires_cvc` used for decide whether cvc is required for subsequent transactions. Only applicable when next_triggered_by is `customer`        |
+| Props                     | Required? | Type    | Description                                                                                                                                     |
+| ------------------------- | --------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `intent_id`               | false     | string  | The intent_id that would be confirmed with the new created payment consent                                                                      |
+| `client_secret`           | true      | string  | If the intent provided, this should be the client_secret of the intent, If no intent provided, this should be the client_secret of the customer |
+| `currency`                | false     | string  | The currency of the payment consent, Only applicable for card consent                                                                           |
+| `element`                 | true      | Element | The element you would like to use to create consent                                                                                             |
+| `customer_id`             | true      | string  | The customer_id of the consent                                                                                                                  |
+| `payment_method_id`       | false     | string  | If customer already has a payment method, merchant could provide it instead of create a new one                                                 |
+| `next_triggered_by`       | false     | string  | The subsequent transactions are triggered by `merchant` or `customer`                                                                           |
+| `merchant_trigger_reason` | false     | string  | The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`                                               |
+| `requires_cvc`            | false     | boolean | `requires_cvc` used for decide whether cvc is required for subsequent transactions. Only applicable when next_triggered_by is `customer`        |
 
 <br>
 
