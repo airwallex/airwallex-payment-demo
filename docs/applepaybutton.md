@@ -40,7 +40,7 @@ The Airwallex package only needs to be mounted once in an application (and every
 ### 3. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
 
 ```html
-<div id="full-featured-card"></div>
+<div id="applePayButton"></div>
 ```
 
 We will mount the card element into the empty div in step 5.
