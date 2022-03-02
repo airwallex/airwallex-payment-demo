@@ -166,6 +166,8 @@ All the following options are optional with the exception of `'intent'`.
 |                  | `intent_id`(**required**)      | string                      | The intent id you shopper want to checkout                                                                                                                   |
 |                  | `autoCapture`                  | boolean                     | Indicate whether to capture immediate when authentication success, apply when shopper using card payment method                                              |
 |                  | `amount` (**required**)                   | {value: number; currency:string;}                     | Indicate the amount and currency of the intent.                                                    |
+|                  | `countryCode` (**required**)                   | string                    | The merchant's two-letter ISO 3166 country code. Like 'US'                                                    |
+|                  | other options is same with the ApplePayRequestOptions                 | ApplePayRequestOptions                 | Please check ApplePayRequestOptions as below |
 
 <br>
 
