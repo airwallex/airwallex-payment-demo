@@ -2,8 +2,6 @@
 
 The Apple Pay Button allows merchants to embed a apple pay checkout option on their website. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex.
 
-![](assets/ffc.gif)
-
 \* _An example of a Apple Pay Button element._
 
 ## Guide
