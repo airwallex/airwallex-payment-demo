@@ -16,7 +16,7 @@ const Instructions = () => {
       <div className="instruction-container">
         <p id="bullet">1. Feeling confused about these Airwallex functions?</p>
         <p>
-          Here is the documentation to all our airwallex-payment-elements functions. You will find detailed guides to
+          Here is the documentation for all our airwallex-payment-elements functions. You will find detailed guides to
           implementing each payment method with different web frameworks as well as common errors.
         </p>
         <a href="https://github.com/airwallex/airwallex-payment-demo/tree/master/docs" target="_blank" rel="noreferrer">
