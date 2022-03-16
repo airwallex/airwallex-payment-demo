@@ -11,12 +11,7 @@
 
 import React, { useEffect, useState } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import {
-  createElement,
-  loadAirwallex,
-  getElement,
-  confirmPaymentIntent,
-} from 'airwallex-payment-elements';
+import { createElement, loadAirwallex, getElement, confirmPaymentIntent } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
@@ -98,19 +93,19 @@ const Index = () => {
     // STEP #9: Add an event listener to get input focus status
     const onFocus = (event) => {
       const { type } = event.detail;
-      setInputErrorMessage({
-        ...inputErrorMessage,
+      setInputErrorMessage((errorMessage) => ({
+        ...errorMessage,
         [type]: '', // Example: clear input error message
-      });
+      }));
       // Customize your input focus style by listen onFocus event
     };
     // STEP #10: Add an event listener to show input error message when finish typing
     const onBlur = (event) => {
       const { type, error } = event.detail;
-      setInputErrorMessage({
-        ...inputErrorMessage,
+      setInputErrorMessage((errorMessage) => ({
+        ...errorMessage,
         [type]: error?.message ?? JSON.stringify(error),
-      });
+      }));
     };
 
     window.addEventListener('onReady', onReady);
@@ -125,7 +120,7 @@ const Index = () => {
       window.removeEventListener('onFocus', onFocus);
     };
     // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
-  }, [inputErrorMessage]);
+  }, []);
 
   // STEP #6a: Add a button handler to trigger the payment request
   const handleConfirm = async () => {
@@ -165,8 +160,7 @@ const Index = () => {
   // Example: combine all element ready states
   const allElementsReady = cardNumberReady && cvcReady && expiryReady;
   // Example: combine all element complete states
-  const allElementsComplete =
-    cardNumberComplete && cvcComplete && expiryComplete;
+  const allElementsComplete = cardNumberComplete && cvcComplete && expiryComplete;
 
   // Example: Custom styling for the inputs, can be placed in css
   const inputStyle = {
