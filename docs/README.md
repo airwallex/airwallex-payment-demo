@@ -154,6 +154,7 @@ All the following options are optional with the exception of `'intent'`.
 |                  | `qrcodeMethod`                 | PaymentMethodWithQrcode[]   | An array of the following available methods: `'wechatpay'`, `'kakaopay'` , `'alipayhk'`                                                                      |
 | dropIn           | `client_secret` (**required**) | string                      | The client_secret when you create payment intent, contain in the response                                                                                    |
 |                  | `currency`(**required**)       | string                      | Currency of your payment intent or consent. Three-letter ISO currency code                                                                                   |
+|                   | `applePayRequestOptions`     | ApplePayRequestOptions  | If you want to integrate with apple pay, you need to provide merchant country code in ApplePayHppRequestOptions                                                                        |
 |                  | `mode`                         | Mode                        | Checkout mode, should be one of `'payment'`, `'recurring'`                                                                                                   |
 |                  | `intent_id`                    | string                      | The intent id you shopper want to checkout                                                                                                                   |
 |                  | `customer_id`                  | string                      | Checkout for know customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro)                          |
@@ -231,7 +232,7 @@ Airwallex.redirectToCheckout(props);
 | `shopper_name`           | false     | string                 | for ppro only: Customer name - minimum of 3 characters, up to 100 characters, refer to [**Redirect**](/docs/redirect.md)                                                                               |
 | `shopper_phone`          | false     | string                 | for ppro only: Customer phone, refer to [**Redirect**](/docs/redirect.md)                                                                                                                              |
 | `shopper_email`          | false     | string                 | for ppro only: Customer email, refer to [**Redirect**](/docs/redirect.md)                                                                                                                              |
-| `applePayRequestOptions` | false     | ApplePayRequestOptions | If you want to integrate with apple pay, you need to provide ApplePayHppRequestOptions                                                                                                                 |
+| `applePayRequestOptions` | false     | ApplePayRequestOptions | If you want to integrate with apple pay, you need to provide merchant country code in ApplePayHppRequestOptions                                                                                                                |
 
 <br>
 

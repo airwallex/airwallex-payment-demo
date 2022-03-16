@@ -86,17 +86,13 @@ const Card = () => {
     setErrorMessage(''); // Example: reset error message
 
     try {
-      const confirmRes = await axios.post(
-        `${host_Name}/api/v1/pa/payment_intents/${intent_id}/confirm`,
-        payload,
-        {
-          withCredentials: false,
-          headers: {
-            'client-secret': client_secret,
-            'Content-Type': 'application/json',
-          },
+      const confirmRes = await axios.post(`${host_Name}/api/v1/pa/payment_intents/${intent_id}/confirm`, payload, {
+        withCredentials: false,
+        headers: {
+          'client-secret': client_secret,
+          'Content-Type': 'application/json',
         },
-      );
+      });
       setIsSubmitting(false);
 
       // Step4: Deal with the confirm response

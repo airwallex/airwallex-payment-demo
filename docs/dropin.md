@@ -56,6 +56,10 @@ const element = Airwallex.createElement('dropIn', {
   intent_id: 'replace-with-your-intent-id',
   client_secret: 'replace-with-your-client-secret',
   currency: 'replace-with-your-intent-currency',
+  // if you want to use apple pay, please pass merchant country code in applePayRequestOptions
+  applePayRequestOptions: {
+    countryCode: 'replace-with-your-country-code',
+  }
 });
 ```
 

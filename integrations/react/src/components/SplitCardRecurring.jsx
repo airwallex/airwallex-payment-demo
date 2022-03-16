@@ -11,12 +11,7 @@
 
 import React, { useEffect, useState } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import {
-  createElement,
-  loadAirwallex,
-  getElement,
-  createPaymentConsent,
-} from 'airwallex-payment-elements';
+import { createElement, loadAirwallex, getElement, createPaymentConsent } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
@@ -145,8 +140,7 @@ const Index = () => {
   // Example: combine all element ready states
   const allElementsReady = cardNumberReady && cvcReady && expiryReady;
   // Example: combine all element complete states
-  const allElementsComplete =
-    cardNumberComplete && cvcComplete && expiryComplete;
+  const allElementsComplete = cardNumberComplete && cvcComplete && expiryComplete;
 
   // Example: Custom styling for the inputs, can be placed in css
   const inputStyle = {

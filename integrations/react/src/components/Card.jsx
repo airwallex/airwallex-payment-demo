@@ -11,12 +11,7 @@
 
 import React, { useEffect, useState } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import {
-  createElement,
-  loadAirwallex,
-  confirmPaymentIntent,
-  getElement,
-} from 'airwallex-payment-elements';
+import { createElement, loadAirwallex, confirmPaymentIntent, getElement } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
@@ -109,11 +104,7 @@ const Card = () => {
          * ...Handle confirm response
          */
         setIsSubmitting(false); // Example: sets loading state
-        window.alert(
-          `Payment Intent confirmation was successful: ${JSON.stringify(
-            response,
-          )}`,
-        );
+        window.alert(`Payment Intent confirmation was successful: ${JSON.stringify(response)}`);
       })
       // STEP #6c: Listen to the request failure response
       .catch((error) => {

@@ -56,59 +56,18 @@ function App() {
           <div className="payment-frame">
             <Suspense fallback={<div />}>
               <Switch>
-                <Route
-                  path="/card"
-                  component={lazy(() => import('./components/Card'))}
-                />
-                <Route
-                  path="/hpp"
-                  component={lazy(() => import('./components/Hpp'))}
-                />
-                <Route
-                  path="/drop-in"
-                  component={lazy(() => import('./components/DropIn'))}
-                />
-                <Route
-                  path="/full-featured-card"
-                  component={lazy(() =>
-                    import('./components/FullFeaturedCard'),
-                  )}
-                />
-                <Route
-                  path="/split-card"
-                  component={lazy(() => import('./components/SplitCard'))}
-                />
-                <Route
-                  path="/wechat"
-                  component={lazy(() => import('./components/Wechat'))}
-                />
-                <Route
-                  path="/redirect"
-                  component={lazy(() => import('./components/Redirect'))}
-                />
-                <Route
-                  path="/qrcode"
-                  component={lazy(() => import('./components/Qrcode'))}
-                />
-                <Route
-                  path="/split-card-recurring"
-                  component={lazy(() =>
-                    import('./components/SplitCardRecurring'),
-                  )}
-                />
-                <Route
-                  path="/recurring-cit"
-                  component={lazy(() => import('./components/RecurringCIT'))}
-                />
-                <Route
-                  path="/api-checkout"
-                  component={lazy(() => import('./components/APICheckout'))}
-                />
-                <Route
-                  exact
-                  path="/"
-                  component={lazy(() => import('./components/Instructions'))}
-                />
+                <Route path="/card" component={lazy(() => import('./components/Card'))} />
+                <Route path="/hpp" component={lazy(() => import('./components/Hpp'))} />
+                <Route path="/drop-in" component={lazy(() => import('./components/DropIn'))} />
+                <Route path="/full-featured-card" component={lazy(() => import('./components/FullFeaturedCard'))} />
+                <Route path="/split-card" component={lazy(() => import('./components/SplitCard'))} />
+                <Route path="/wechat" component={lazy(() => import('./components/Wechat'))} />
+                <Route path="/redirect" component={lazy(() => import('./components/Redirect'))} />
+                <Route path="/qrcode" component={lazy(() => import('./components/Qrcode'))} />
+                <Route path="/split-card-recurring" component={lazy(() => import('./components/SplitCardRecurring'))} />
+                <Route path="/recurring-cit" component={lazy(() => import('./components/RecurringCIT'))} />
+                <Route path="/api-checkout" component={lazy(() => import('./components/APICheckout'))} />
+                <Route exact path="/" component={lazy(() => import('./components/Instructions'))} />
               </Switch>
             </Suspense>
           </div>
