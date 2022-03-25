@@ -1686,6 +1686,11 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
+"@types/applepayjs@^3.0.3":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@types/applepayjs/-/applepayjs-3.0.4.tgz#9806a4b3ccd73dcf169c61a34be7a39f91d77540"
+  integrity sha512-RqaVZWy1Kj4e1PoUoOI8uA+4UuuLpicQFxfU9Y/xWJFZFT6mFB4PiiY911iDxFk7pdvaj5HKH7VsWRisRca1Rg==
+
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.7":
   version "7.1.16"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.16.tgz#bc12c74b7d65e82d29876b5d0baf5c625ac58702"
@@ -2215,10 +2220,11 @@ aggregate-error@^3.0.0:
     indent-string "^4.0.0"
 
 airwallex-payment-elements@latest:
-  version "0.2.49"
-  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.49.tgz#ce9a3dc9dcfac6165554dd4db7f3e511bd7416e2"
-  integrity sha512-SdY8d1dMuxtNULS0GlHihwo+EPxc5S8Vd0yN3RlHf2DhDwE2gljv4xyN0zlZ/hwqpOhodLII7+PSsmKGMMMPGg==
+  version "0.2.65"
+  resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.65.tgz#d61e3b9fd69cdc16842df987dc57c8fe80834e6e"
+  integrity sha512-IzoSlX1H8g7amz3woVGlO6toqpcYMvhDIUMqk+dg2FndTgbT+vjzapWRHGRe0BFhHwjmc0PBuc2/xzOHqBKiLg==
   dependencies:
+    "@types/applepayjs" "^3.0.3"
     csstype "^3.0.6"
 
 ajv-errors@^1.0.0:

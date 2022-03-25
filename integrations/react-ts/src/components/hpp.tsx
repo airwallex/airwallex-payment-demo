@@ -33,8 +33,7 @@ const Index: React.FC = () => {
         fonts: [
           // Customizes the font for the payment elements
           {
-            src:
-              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+            src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
             family: 'AxLLCircular',
             weight: 400,
           },
@@ -65,8 +64,7 @@ const Index: React.FC = () => {
         fonts: [
           // Customizes the font for the payment elements
           {
-            src:
-              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+            src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
             family: 'AxLLCircular',
             weight: 400,
           },
@@ -96,9 +94,7 @@ const Index: React.FC = () => {
       /**
        * ... Handle event on error
        */
-      window.alert(
-        `There was an error with HPP redirection: ${JSON.stringify(error)}`,
-      );
+      window.alert(`There was an error with HPP redirection: ${JSON.stringify(error)}`);
     }
   };
 
