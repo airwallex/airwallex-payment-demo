@@ -30,13 +30,9 @@ const Index: React.FC = () => {
   const [cvcReady, setCvcReady] = useState<boolean>(false);
   const [expiryReady, setExpiryReady] = useState<boolean>(false);
   // Example: element validation state, checks if each field is completed by the shopper
-  const [cardNumberComplete, setCardNumberComplete] = useState<
-    undefined | boolean
-  >(false);
+  const [cardNumberComplete, setCardNumberComplete] = useState<undefined | boolean>(false);
   const [cvcComplete, setCvcComplete] = useState<undefined | boolean>(false);
-  const [expiryComplete, setExpiryComplete] = useState<undefined | boolean>(
-    false,
-  );
+  const [expiryComplete, setExpiryComplete] = useState<undefined | boolean>(false);
   const [inputErrorMessage, setInputErrorMessage] = useState({
     cardNumber: '',
     expiry: '',
@@ -55,8 +51,7 @@ const Index: React.FC = () => {
       fonts: [
         // Customizes the font for the payment elements
         {
-          src:
-            'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
           family: 'AxLLCircular',
           weight: 400,
         },
@@ -167,8 +162,7 @@ const Index: React.FC = () => {
   // Example: combine all element ready states
   const allElementsReady = cardNumberReady && cvcReady && expiryReady;
   // Example: combine all element complete states
-  const allElementsComplete =
-    cardNumberComplete && cvcComplete && expiryComplete;
+  const allElementsComplete = cardNumberComplete && cvcComplete && expiryComplete;
 
   // Example: Custom styling for the inputs, can be placed in css
   const inputStyle = {
