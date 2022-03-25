@@ -2219,7 +2219,7 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-airwallex-payment-elements@^0.2.65:
+airwallex-payment-elements@latest:
   version "0.2.65"
   resolved "https://registry.yarnpkg.com/airwallex-payment-elements/-/airwallex-payment-elements-0.2.65.tgz#d61e3b9fd69cdc16842df987dc57c8fe80834e6e"
   integrity sha512-IzoSlX1H8g7amz3woVGlO6toqpcYMvhDIUMqk+dg2FndTgbT+vjzapWRHGRe0BFhHwjmc0PBuc2/xzOHqBKiLg==
