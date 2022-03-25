@@ -325,6 +325,7 @@ type Components =
   | 'wechatpay'
   | 'alipaycn'
   | 'alipayhk'
+  | 'applepay'
   | 'gcash'
   | 'dana'
   | 'kakaopay'
