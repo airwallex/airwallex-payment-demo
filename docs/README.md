@@ -102,14 +102,14 @@ This method creates an instance of an individual Element. It takes the `type` of
 Airwallex.createElement(type, options)
 ```
 
-### Method parameters
+#### Method parameters
 
 | **Parameter** | **Required?** | **Type** | **Description**   |
 | ------------- | ------------- | -------- | ----------------- |
 | `type`        | Yes           | enum     | The type of element you are creating. Possible values: '`cardNumber`', '`expiry`', '`cvc`', '`paymentRequestButton`', '`card`', '`wechat`', '`redirect`', '`dropIn`', '`fullFeaturedCard`', '`applePayButton`' |
 | `options`     | No            | object   | Options for creating an Element, which differ for each Element. Refer to the following table.   |
 
-### `options` object properties
+#### `options` object properties
 
 | **Element type**   | **Property**             | **Required?** | **Type**                          | **Description**     |
 | ------------------ | ------------------------ | ------------- | --------------------------------- | ------------------- |
@@ -126,7 +126,7 @@ Airwallex.createElement(type, options)
 |                    | `style`                  | No            | InputStyle                        | Style for the `expiry` Element  |
 | `cvc`              | `disabled`               | No            | boolean                           | Indicates if the `cvc` Element input is enabled or disabled. By default, the value is set to `false`.  |
 |                    | `placeholder`            | No            | string                            | A short hint to suggest the expected value of an input field to the shopper.  |
-|                    | `cycLength`              | No            | number                            | Indicates CVC length  |
+|                    | `cvcLength`              | No            | number                            | Indicates CVC length  |
 |                    | `style`                  | No            | InputStyle                        | Style for the `cvc` Element   |
 |                    | `authFormContainer`      | No            | string                            | Container for the authentication form used in 3D Secure authentication.  |
 | `fullFeaturedCard` | `intent`                 | No            | Intent                            | The `id` and `client_secret` of the PaymentIntent you want to checkout. It’s required when `mode`is set to `payment` else optional.    |
@@ -176,13 +176,13 @@ This method looks up a previously created Element by its type.
 Airwallex.getElement(type)
 ```
 
-### Method parameters
+#### Method parameters
 
 | **Parameter** | **Required?** | **Type** | **Description**   |
 | ------------- | ------------- | -------- | ----------------- |
 | `type`        | Yes           | enum     | The type of element you are retrieving. Options include: '`cardNumber`', '`expiry`', '`cvc`', '`paymentRequestButton`', '`card`', '`wechat`', '`redirect`', '`dropIn`', '`fullFeaturedCard`', '`applePayButton`' |
 
-### Returns
+#### Returns
 
 `Airwallex.getElement` returns one of the following:
 
@@ -200,13 +200,13 @@ Destroys the created Element. The Element can no longer be accessed after this c
 Airwallex.destroyElement(type)
 ```
 
-### Method parameters
+#### Method parameters
 
 | **Parameter** | **Required?** | **Type** | **Description**   |
 | ------------- | ------------- | -------- | ----------------- |
 | `type`        | Yes           | enum     | The type of element you are destroying. Options include: '`cardNumber`', '`expiry`', '`cvc`', '`paymentRequestButton`', '`card`', '`wechat`', '`redirect`', '`dropIn`', '`fullFeaturedCard`', '`applePayButton`' |
 
-### Returns
+#### Returns
 
 `Airwallex.destroyElement` returns true or false to indicate the success or failure of the call.
 
@@ -232,7 +232,7 @@ Attaches your Element to the DOM by accepting a DOM element. You need to create 
 element.mount('domElement' )
 ```
 
-### Method parameters
+#### Method parameters
 
 | **Parameter** | **Required?** | **Type**             | **Description**                                     |
 | ------------- | ------------- | -------------------- | --------------------------------------------------- |
@@ -280,7 +280,6 @@ window.addEventListener('onReady', (event) => {
       });
 ```
 
-
 | **Event**                   | **Purpose**     |
 | --------------------------- | -------------- |
 | `onReady`                  | Triggered when the Element is fully rendered and can accept `element.focus` calls.   |
@@ -310,13 +309,13 @@ When called, this method will attempt to complete any required actions, such as 
 Airwallex.confirmPaymentIntent(paymentMethod);
 ```
 
-### Method parameters
+#### Method parameters
 
 | **Parameter**   | **Required?** | **Type** | **Description**     |
 | --------------- | ------------- | -------- | ------------------- |
 | `paymentMethod` | Yes           | string   | The PaymentMethod associated with a Customer as part of a PaymentConsent or a PaymentMethod for a guest Customer. See PaymentMethod object properties in the following table. |
 
-### `PaymentMethod` object properties
+#### `PaymentMethod` object properties
 
 | **Property**             | **Required?** | **Type**                 | **Description**     |
 | ------------------------ | ------------- | ------------------------ | ------------------- |
@@ -339,7 +338,7 @@ This method creates a PaymentConsent, which may be be used to confirm a PaymentI
 Airwallex.createPaymentConsent(options);
 ```
 
-### `options` object properties
+#### `options` object properties
 
 | **Property**        | **Required?** | **Type** | **Description**     |
 | ------------------- | ------------- | -------- | -------------------- |
@@ -375,7 +374,7 @@ Redirects shoppers to a payment page hosted by Airwallex to securely collect the
 Airwallex.redirectToCheckout(options);
 ```
 
-### `options` object properties
+#### `options` object properties
 
 | **Property**             | **Required?** | **Type**               | **Description**           |
 | ------------------------ | ------------- | ---------------------- | ------------------------- |
@@ -441,7 +440,6 @@ Additional Apple Pay customization options for the button style and configuratio
 
 | **Property**    | **Required?** | **Type** | **Description**         |
 | --------------- | ------------- | -------- | ----------------------- |
-|  |
 | `email`         | No            | string   | Shopper’s email         |
 | `first_name`    | No            | string   | Shopper’s first name    |
 | `last_name`     | No            | string   | Shopper’s last name     |
