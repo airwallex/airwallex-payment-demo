@@ -156,7 +156,7 @@ const element = createElement(type, options)
 |                    | `authFormContainer`      | No            | string                            | Container for the authentication form used in 3D Secure authentication.   |
 |                    | `country_code`           | No            | string                            | The country code of the shipping address. This field is required for the following payment methods: `online_banking`, `bank_transfer`, `seven_eleven`, `skrill`, `sofort`, `trustly`, `paysafecash`, `paysafecard`, `satispay`, `paysera`, `paypal`, `bitpay`    |
 |                    | `recurringOptions`       | No            | RecurringOptions                  | Applicable to the card payment method. See [save payment details for future payments](https://www.airwallex.com/docs/online-payments__save-payment-details-for-future-payments "https://www.airwallex.com/docs/online-payments__save-payment-details-for-future-payments") .    |
-|                    | `applePayRequestOptions` | No            | applePayRequestOptions            | Applicable if you want to offer Apple Pay as a checkout option. Providing your `countryCode` is mandatory. For details, see [applePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/README.md#applepayrequestoptions "https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/README.md#applepayrequestoptions")   |
+|                    | `applePayRequestOptions` | No            | [applePayRequestOptions](#applepayrequestoptions-object)            | Applicable if you want to offer Apple Pay as a checkout option. Providing your `countryCode` is mandatory. For details, see [applePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/README.md#applepayrequestoptions "https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/README.md#applepayrequestoptions")   |
 | `redirect`         | `intent`                 | Yes           | Intent                            | The `id` and `client_secret` of the PaymentIntent you want to checkout. |
 |                    | `method`                 | Yes           | PaymentMethodWithRedirect\[\]    | An array of the available methods. For example, `alipaycn`, `alipayhk` , `gcash` , `dana`, `kakaopay` , `tng`, etc. Depending on the payment method, you might need to provide additional properties in `options`. See [payment method table](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/redirect.md#redirect-element-attributes "https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/redirect.md#redirect-element-attributes") . |
 |                    | `mode`                   | No            | Mode                              | The checkout mode for the shopper. By default, the mode is set to `payment`. Set it to `recurring` if you want to save the payment method for future payments with the shopper. Supported payment methods include Alipay, AlipayHK, Gcash, Dana, KakaoPay, Touch ‘n Go. Only merchant-initiated subsequent payments are supported.    |
@@ -344,8 +344,8 @@ Airwallex.confirmPaymentIntent(paymentMethod);
 | `element`                | Yes           | Element                  | The `card` Element type created by `createElement( )`. For Split Card, use `cardNumber`   |
 | `id`                     | Yes           | string                   | The `id` of the PaymentIntent you want to confirm and complete.   |
 | `client_secret`          | Yes           | string                   | The `client_secret` of the PaymentIntent you want to confirm and complete. |
-| `payment_method`         | No            | payment\_method          | Use this to provide the payment method details such as billing address, cardholder name, etc, when confirming the payment. See **payment\_method object properties**    |
-| `payment_method_options` | No            | payment\_method\_options | Use this to provide the payment method options such as auto capture flag when confirming the payment. See **payment\_method\_options object properties**    |
+| `payment_method`         | No            | [payment\_method](#paymentmethod-object)          | Use this to provide the payment method details such as billing address, cardholder name, etc, when confirming the payment. See **payment\_method object properties**    |
+| `payment_method_options` | No            | [payment\_method\_options](#paymentmethodoptions-object) | Use this to provide the payment method options such as auto capture flag when confirming the payment. See **payment\_method\_options object properties**    |
 | `payment_consent_id`     | No            | string                   | The `id` of the PaymentConsent for initiating scheduled or unscheduled payments with saved card details. See [Save payment details for future payments](https://www.airwallex.com/docs/online-payments__save-payment-details-for-future-payments "https://www.airwallex.com/docs/online-payments__save-payment-details-for-future-payments") . |
 
 <br>
@@ -420,7 +420,7 @@ Airwallex.redirectToCheckout(options);
 | `shopper_name`           | No            | string                 | Applies to PPRO payment methods only. The name of the shopper - must be minimum of 3 characters, up to 100 characters allowed.      |
 | `shopper_phone`          | No            | string                 | Applies to PPRO payment methods only. The phone number of the shopper.    |
 | `shopper_email`          | No            | string                 | Applies to PPRO payment methods only. The email of the shopper.    |
-| `applePayRequestOptions` | No            | ApplePayRequestOptions | Applicable if you want to offer Apple Pay as a checkout option. Providing your `countryCode` is mandatory. For details, see [applePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/README.md#applepayrequestoptions "https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/README.md#applepayrequestoptions") |
+| `applePayRequestOptions` | No            | [ApplePayRequestOptions](#applepayrequestoptions-object) | Applicable if you want to offer Apple Pay as a checkout option. Providing your `countryCode` is mandatory. For details, see [applePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/README.md#applepayrequestoptions "https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/README.md#applepayrequestoptions") |
 
 <br>
 
@@ -430,11 +430,11 @@ Airwallex.redirectToCheckout(options);
 
 | **Property**   | **Required?** | **Type** | **Description**                            |
 | -------------- | ------------- | -------- | ------------------------------------------ |
-| `city`         | No            | string   | Shopper’s city                             |
-| `country_code` | No            | string   | Shopper’s two-letter ISO 3166 country code |
+| `city`         | Yes            | string   | Shopper’s city                             |
+| `country_code` | Yes            | string   | Shopper’s two-letter ISO 3166 country code |
 | `postcode`     | No            | string   | Shopper’s post code                        |
 | `state`        | No            | string   | Shopper’s state                            |
-| `street`       | No            | string   | Shopper’s street                           |
+| `street`       | Yes            | string   | Shopper’s street                           |
 
 <br>
 
@@ -463,11 +463,11 @@ Additional Apple Pay customization options for the button style and configuratio
 | **Property**    | **Required?** | **Type** | **Description**         |
 | --------------- | ------------- | -------- | ----------------------- |
 | `email`         | No            | string   | Shopper’s email         |
-| `first_name`    | No            | string   | Shopper’s first name    |
-| `last_name`     | No            | string   | Shopper’s last name     |
+| `first_name`    | Yes            | string   | Shopper’s first name    |
+| `last_name`     | Yes            | string   | Shopper’s last name     |
 | `date_of_birth` | No            | string   | Shopper’s date of birth |
 | `phone_number`  | No            | string   | Shopper’s phone number  |
-| `address`       | No            | Address  | Shopper’s address       |
+| `address`       | No            | [Address](#address-object)  | Shopper’s address.  |
 
 <br>
 
@@ -475,7 +475,7 @@ Additional Apple Pay customization options for the button style and configuratio
 
 | **Property** | **Required?** | **Type** | **Description**  |
 | ------------ | ------------- | -------- | ---------------- |
-| `Components` | No            | Array    | The available payment methods: 'card' | 'wechatpay' | 'alipaycn' | 'alipayhk' | 'gcash' | 'dana' | 'kakaopay' | 'tng' | 'poli' | 'fpx' | 'online\_banking' | 'bank\_transfer' | 'permatanet' | 'alfamart' | 'indomaret' | 'doku\_ewallet' | 'enets' | 'payeasy' | 'seven\_eleven' | 'konbini' | 'tesco\_lotus' | 'grabpay' | 'skrill' | 'eps' | 'giropay' | 'ideal' | 'multibanco' | 'p24' | 'sofort' | 'trustly' | 'bancontact' | 'dragonpay' | 'blik' | 'mybank' | 'paybybankapp' | 'verkkopankki' | 'maxima' | 'narvesen' | 'paypost' | 'perlas\_terminals' | 'paysafecash' | 'paysafecard' | 'paysera' | 'satispay' | 'family\_mart' | 'hi\_life' | 'sam\_kiosk' | 'axs\_kiosk' | 'bigc' | 'esun' | 'permata\_atm' | 'boost' | 'shopee\_pay' | 'paypal' | 'payu' | 'ovo' | 'bitpay' | 'truemoney'; |
+| `Components` | No            | Array    | The available payment methods: 'card', 'wechatpay', 'alipaycn', 'alipayhk', 'gcash', 'dana', 'kakaopay', 'tng', 'poli', 'fpx', 'online\_banking', 'bank\_transfer', 'permatanet', 'alfamart', 'indomaret', 'doku\_ewallet', 'enets', 'payeasy', 'seven\_eleven', 'konbini', 'tesco\_lotus', 'grabpay', 'skrill', 'eps', 'giropay', 'ideal', 'multibanco', 'p24', 'sofort', 'trustly', 'bancontact', 'dragonpay', 'blik', 'mybank', 'paybybankapp', 'verkkopankki', 'maxima', 'narvesen', 'paypost', 'perlas\_terminals', 'paysafecash', 'paysafecard', 'paysera', 'satispay', 'family\_mart', 'hi\_life', 'sam\_kiosk', 'axs\_kiosk', 'bigc', 'esun', 'permata\_atm', 'boost', 'shopee\_pay', 'paypal', 'payu', 'ovo', 'bitpay', 'truemoney'; |
 
 <br>
 
@@ -494,7 +494,7 @@ Additional Apple Pay customization options for the button style and configuratio
 | **Property** | **Required?** | **Type**         | **Description**               |
 | ------------ | ------------- | ---------------- | ----------------------------- |
 | `card`       | No            | {name: string; } | The name of the cardholder    |
-| `billing`    | No            | Billing          | Shopper’s billing information |
+| `billing`    | No            | [Billing](#billing-object)          | Shopper’s billing information |
 
 <br>
 
