@@ -17,7 +17,7 @@
 | :-: | :-: | :-: |
 |intent\_id|string|The payment intent id you would like to checkout|
 |client\_secret|string|This should be the client\_secret of the intent|
-|amount|<p>{</p><p>`    `value: number;</p><p>`    `currency: string;</p><p>`  `};</p>|Indicate the amount and currency of the intent.|
+|amount|<p>{</p><p>    value: number;</p><p>    currency: string;</p><p>  };</p>|Indicate the amount and currency of the intent.|
 |countryCode|string|<p>The ISO 3166-1 alpha-2 country code where the transaction is processed. This property is required for merchants who process transactions in European Economic Area (EEA) countries and any other countries that are subject to [Strong Customer Authentication](https://developers.google.com/pay/api/web/guides/resources/sca) (SCA). Merchants must specify the acquirer bank country code.</p><p>**Note:** When you support Brazilian combo cards like Mastro, the countryCode must be BR.</p>|
 |merchantInfo|<p>MerchantInfo</p><p><https://developers.google.com/pay/api/web/reference/request-objects#MerchantInfo></p>|This object provides information about the merchant that requests payment data.|
 ## **Optional Options:**
