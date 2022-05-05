@@ -1,5 +1,5 @@
-# **Hpp googlepay options design**
-- [**Hpp googlepay options design**](#hpp-googlepay-options-design)
+# **Hpp googlepay options**
+- [**Hpp googlepay options**](#hpp-googlepay-options)
   - [**Required Options:**](#required-options)
   - [**Optional Options:**](#optional-options)
     - [**TransactionInfo**](#transactioninfo)
@@ -28,7 +28,7 @@
 
 |**name**|**type**|**description**|
 | :-: | :-: | :-: |
-|**merchantInfo**|<p>{</p><p>`    `/\*\*</p><p>`     `\* Merchant name encoded as UTF-8.</p><p>`     `\*/</p><p>`    `merchantName?: string;</p><p>`    `/\*\*</p><p>`     `\*The fully qualified domain of the requesting merchant.</p><p>`     `\*/</p><p>`    `merchantOrigin?: string;</p><p>`  `};</p>|**For hpp mode, we will use the airwallex merchant id in google.**<br>This object provides information about the merchant that requests payment data.|
+|**merchantInfo**|<p>{</p><p>    /\*\*</p><p>     \* Merchant name encoded as UTF-8.</p><p>     \*/</p><p>    merchantName?: string;</p><p>    /\*\*</p><p>     \*The fully qualified domain of the requesting merchant.</p><p>     \*/</p><p>    merchantOrigin?: string;</p><p>  };</p>|**For hpp mode, we will use the airwallex merchant id in google.**<br>This object provides information about the merchant that requests payment data.|
 |paymentDataCallbacks|[PaymentDataCallbacks](https://developers.google.com/pay/api/web/reference/request-objects#PaymentDataCallbacks)|This object declares the callbacks used for Dynamic Price Updates.|
 ### **CardParameters**
 

@@ -1,5 +1,5 @@
-# **Dropin google pay options design**
-- [**Dropin google pay options design**](#dropin-google-pay-options-design)
+# **Dropin google pay options**
+- [**Dropin google pay options**](#dropin-google-pay-options)
   - [**Required Options:**](#required-options)
   - [**Optional Options:**](#optional-options)
     - [**TransactionInfo**](#transactioninfo)
