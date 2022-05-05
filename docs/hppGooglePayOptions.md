@@ -10,6 +10,7 @@
   - [**Use cases**](#use-cases)
     - [**How to save shopper’s billing info in intent?**](#how-to-save-shoppers-billing-info-in-intent)
     - [**How to save shopper’s shipping info in intent?**](#how-to-save-shoppers-shipping-info-in-intent)
+    - [**How to style your google pay button?**](#how-to-style-your-google-pay-button)
 ## **Required Options:**
 
 |**name**|**type**|**description**|
@@ -101,3 +102,25 @@ redirectToCheckout({
 ```
 ### **How to save shopper’s shipping info in intent?**
 currently, we only support save shipping info when creating the intent.
+### **How to style your google pay button?**
+code sample:
+```
+redirectToCheckout({
+
+    env: getAirwallexEnv(),
+
+    intent_id: data?.id,
+
+   client_secret: data?.client_secret,
+
+    ...
+
+    googlePayRequestOptions: {
+
+       countryCode: 'US',
+
+       buttonColor: 'white',
+    }
+
+  });
+```

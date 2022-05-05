@@ -10,6 +10,7 @@
   - [**Use cases**](#use-cases)
     - [**How to save shopper’s billing info in intent?**](#how-to-save-shoppers-billing-info-in-intent)
     - [**How to save shopper’s shipping info in intent?**](#how-to-save-shoppers-shipping-info-in-intent)
+    - [**How to style your google pay button?**](#how-to-style-your-google-pay-button)
 ## **Required Options:**
 
 |**name**|**type**|**description**|
@@ -60,7 +61,7 @@
 
       currency: intent.currency ?? '',
 
-      customer\_id: intent.customer\_id,
+      customer_id: intent.customer_id,
 
       origin: window.location.origin,
 
@@ -102,7 +103,7 @@ createElement('dropIn', {
 
       currency: intent.currency ?? '',
 
-      customer\_id: intent.customer\_id,
+      customer_id: intent.customer_id,
 
       origin: window.location.origin,
 
@@ -143,3 +144,46 @@ createElement('dropIn', {
 
 ### **How to save shopper’s shipping info in intent?**
 currently, we only support save shipping info when creating the intent.
+### **How to style your google pay button?**
+code sample:
+```
+createElement('dropIn', {
+
+      mode: isPaymentFlow ? 'payment' : 'recurring',
+
+      intent_id: intent.id,
+
+      client_secret: intent.client_secret ?? '',
+
+      currency: intent.currency ?? '',
+
+      customer_id: intent.customer_id,
+
+      origin: window.location.origin,
+
+      autoCapture: true,
+
+      withBilling: true,
+
+      applePayRequestOptions,
+
+      googlePayRequestOptions: {
+
+            countryCode: currency2countryCode(currency),
+
+            merchantInfo: {
+
+              merchantId: '123',
+
+              merchantName: 'Airwallex',
+
+            },
+
+            buttonColor: 'white',
+
+      },
+
+      country_code: currency2countryCode(getCurrency()),
+
+    })?.mount('drop-in');
+```

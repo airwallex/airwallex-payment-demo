@@ -11,6 +11,7 @@
   - [**Use cases**](#use-cases)
     - [**How to save shopper’s billing info in intent?**](#how-to-save-shoppers-billing-info-in-intent)
     - [**How to save shopper’s shipping info in intent?**](#how-to-save-shoppers-shipping-info-in-intent)
+    - [**How to style your google pay button?**](#how-to-style-your-google-pay-button)
 ## **Required Options:**
 
 |**name**|**type**|**description**|
@@ -130,7 +131,45 @@ createElement('googlePayButton', {
 
 
 
-    })?.mount('drop-in');
+    })?.mount('google-pay-button');
 ```
 ### **How to save shopper’s shipping info in intent?**
 currently, we only support save shipping info when creating the intent.
+### **How to style your google pay button?**
+code sample:
+```
+createElement('googlePayButton', {
+
+      intent_id: intent.id,
+
+      client_secret: intent.client_secret ?? '',
+
+      amount: {
+
+      value: 1,
+
+      currency: 'CNY',
+
+      }
+
+      origin: window.location.origin,
+
+      autoCapture: true,
+
+      countryCode: currency2countryCode(currency),
+
+      merchantInfo: {
+
+        merchantId: '123',
+
+        merchantName: 'Airwallex',
+      },
+
+      buttonColor: 'white',
+
+      emailRequired: true,
+
+
+
+    })?.mount('google-pay-button');
+```
