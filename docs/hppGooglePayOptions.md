@@ -1,5 +1,5 @@
-# **Hpp googlepay options design**
-- [**Hpp googlepay options design**](#hpp-googlepay-options-design)
+# **Hpp googlepay options**
+- [**Hpp googlepay options**](#hpp-googlepay-options)
   - [**Required Options:**](#required-options)
   - [**Optional Options:**](#optional-options)
     - [**TransactionInfo**](#transactioninfo)

@@ -1,5 +1,5 @@
-# **Google pay button options design**
-- [**Google pay button options design**](#google-pay-button-options-design)
+# **Google pay button options**
+- [**Google pay button options**](#google-pay-button-options)
   - [**Required Options:**](#required-options)
   - [**Optional Options:**](#optional-options)
     - [**Basic configuration**](#basic-configuration)
