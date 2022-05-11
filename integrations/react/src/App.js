@@ -52,11 +52,15 @@ function App() {
             <Link to="/api-checkout">
               <button>API Checkout</button>
             </Link>
+            <Link to="/apple-pay-checkout">
+              <button>Apple Pay Checkout</button>
+            </Link>
           </nav>
           <div className="payment-frame">
             <Suspense fallback={<div />}>
               <Switch>
                 <Route path="/card" component={lazy(() => import('./components/Card'))} />
+                <Route path="/apple-pay-checkout" component={lazy(() => import('./components/ApplePayButton'))} />
                 <Route path="/hpp" component={lazy(() => import('./components/Hpp'))} />
                 <Route path="/drop-in" component={lazy(() => import('./components/DropIn'))} />
                 <Route path="/full-featured-card" component={lazy(() => import('./components/FullFeaturedCard'))} />
