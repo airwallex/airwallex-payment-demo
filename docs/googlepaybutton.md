@@ -50,7 +50,7 @@ This creates the specified [Element](/docs#Element) object. We specify the type 
 ```js
 const element = Airwallex.createElement('googlePayButton', {
   intent: {
-    // Required, fullFeaturedCard uses intent_id and client_secret to prepare checkout
+    // Required, googlePayButton uses intent_id and client_secret to prepare checkout
     id: 'replace-with-your-intent-id',
     client_secret: 'replace-with-your-client-secret',
   },
@@ -132,7 +132,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
   </head>
   <body>
     <h1>ApplePayButton integration</h1>
-    <!-- STEP #3: Add an empty container for the fullFeaturedCard element to be injected into -->
+    <!-- STEP #3: Add an empty container for the googlePayButton element to be injected into -->
     <div id="googlePayButton"></div>
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
@@ -140,11 +140,9 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
-      // STEP #4: Create 'fullFeaturedCard' element
+      // STEP #4: Create 'googlePayButton' element
       const element = Airwallex.createElement('googlePayButton', {
-        intent: {
-          // Required, fullFeaturedCard use intent Id and client_secret to prepare checkout
-          id: 'replace-with-your-intent-id',
+          intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
           amount: {
             value: 'replace-with-your-intent-amount',
@@ -152,14 +150,13 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           },
           autoCapture: true,
           merchantInfo: {
-            merchantId: 'replace-with-your-merchant-id',
-            merchantName: 'Airwallex',
+            merchantName: 'replace-with-your-merchant-name',
           },
           origin: window.location.origin,
           countryCode: 'replace-with-your-country-code', // merchant country code
-        },
+      
       });
-      // STEP #5: Mount 'fullFeaturedCard' element
+      // STEP #5: Mount 'googlePayButton' element
       element.mount('googlePayButton');
 
       // STEP #6: Add an event listener to handle events when the element is mounted

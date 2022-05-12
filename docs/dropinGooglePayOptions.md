@@ -16,7 +16,7 @@
 |**name**|**type**|**description**|
 | :- | :- | :- |
 |countryCode|string|The ISO 3166-1 alpha-2 country code where the transaction is processed. This property is required for merchants who process transactions in European Economic Area (EEA) countries and any other countries that are subject to [Strong Customer Authentication](https://developers.google.com/pay/api/web/guides/resources/sca) (SCA). Merchants must specify the acquirer bank country code.**Note:** When you support Brazilian combo cards like Maestro, the countryCode must be BR.|
-|merchantInfo|MerchantInfo<https://developers.google.com/pay/api/web/reference/request-objects#MerchantInfo>|This object provides information about the merchant that requests payment data.|
+
 ## **Optional Options:**
 ### **TransactionInfo**
 
@@ -26,6 +26,7 @@
 |displayItems|[DisplayItem\[ \]](https://developers.google.com/pay/api/web/reference/response-objects#DisplayItem)|All of the available charges for the current payment request. This is only populated in the payment sheet if you use [Authorize Payments](https://developers.google.com/pay/api/web/guides/tutorial#authorize-payments) or [Dynamic Price Updates](https://developers.google.com/pay/api/web/guides/tutorial#price-updates). This field is required if you implement support for Authorize Payments or Dynamic Price Updates.|
 |totalPriceLabel|string|Custom label for the total price within the display items.|
 |checkoutOption|string|Affects the submit button text displayed in the Google Pay payment sheet.- DEFAULT: Standard text applies for the given totalPriceStatus (default).COMPLETE\_IMMEDIATE\_PURCHASE: The selected payment method is charged immediately after the payer confirms their selections. This option is only available when totalPriceStatus is set to FINAL.|
+|**merchantInfo**|{    /\*\*     \* Merchant name encoded as UTF-8.     \*/    merchantName?: string;    /\*\*     \*The fully qualified domain of the requesting merchant.  };|**For hpp mode, we will use the airwallex merchant id in google.**<br>This object provides information about the merchant that requests payment data.|
 ### **PaymentOptions**
 
 |**name**|**type**|**description**|
@@ -77,8 +78,6 @@
 
             merchantInfo: {
 
-              merchantId: '123',
-
               merchantName: 'Airwallex',
 
             },
@@ -119,7 +118,6 @@ createElement('dropIn', {
 
             merchantInfo: {
 
-              merchantId: '123',
 
               merchantName: 'Airwallex',
 
@@ -172,8 +170,6 @@ createElement('dropIn', {
             countryCode: currency2countryCode(currency),
 
             merchantInfo: {
-
-              merchantId: '123',
 
               merchantName: 'Airwallex',
 

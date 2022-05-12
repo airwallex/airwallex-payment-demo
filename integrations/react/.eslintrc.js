@@ -8,12 +8,7 @@ module.exports = {
     serviceworker: true,
     jest: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'google',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'google', 'prettier'],
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2019,
@@ -54,9 +49,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
-    'no-restricted-globals': ['error', 'isFinite', 'isNaN'].concat(
-      confusingBrowserGlobals,
-    ),
+    'no-restricted-globals': ['error', 'isFinite', 'isNaN'].concat(confusingBrowserGlobals),
     'no-unused-vars': [
       'error',
       {
