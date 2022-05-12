@@ -29,7 +29,7 @@
 
 |**name**|**type**|**description**|
 | :- | :- | :- |
-|**merchantInfo**|{    /\*\*     \* Merchant name encoded as UTF-8.     \*/    merchantName?: string;    /\*\*     \*The fully qualified domain of the requesting merchant.     \*/    merchantOrigin?: string;  };|**For hpp mode, we will use the airwallex merchant id in google.**<br>This object provides information about the merchant that requests payment data.|
+|**merchantInfo**|{    /\*\*     \* Merchant name encoded as UTF-8.     \*/    merchantName?: string;    /\*\*     \*The fully qualified domain of the requesting merchant.     \*/    merchantOrigin?: string;  };|** **<br>This object provides information about the merchant that requests payment data.|
 |paymentDataCallbacks|[PaymentDataCallbacks](https://developers.google.com/pay/api/web/reference/request-objects#PaymentDataCallbacks)|This object declares the callbacks used for Dynamic Price Updates.|
 ### **CardParameters**
 
