@@ -19,6 +19,12 @@ function App() {
         <div className="container">
           <nav>
             <h2>All Demos</h2>
+            <Link to="/apple-pay-button">
+              <button>Apple Pay Button</button>
+            </Link>
+            <Link to="/google-pay-button">
+              <button>Google Pay Button</button>
+            </Link>
             <Link to="/card">
               <button>Card</button>
             </Link>
@@ -56,6 +62,8 @@ function App() {
           <div className="payment-frame">
             <Suspense fallback={<div />}>
               <Switch>
+                <Route path="/apple-pay-button" component={lazy(() => import('./components/ApplePayButton'))} />
+                <Route path="/google-pay-button" component={lazy(() => import('./components/GooglePayButton'))} />
                 <Route path="/card" component={lazy(() => import('./components/Card'))} />
                 <Route path="/hpp" component={lazy(() => import('./components/Hpp'))} />
                 <Route path="/drop-in" component={lazy(() => import('./components/DropIn'))} />
