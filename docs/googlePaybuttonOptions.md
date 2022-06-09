@@ -16,7 +16,6 @@
 
 |**name**|**type**|**description**|
 | :- | :- | :- |
-|intent_id|string|The payment intent id you would like to checkout|
 |client_secret|string|This should be the client_secret of the intent|
 |amount|{    value: number;    currency: string;  };|Indicate the amount and currency of the intent.|
 |countryCode|string|The ISO 3166-1 alpha-2 country code where the transaction is processed. This property is required for merchants who process transactions in European Economic Area (EEA) countries and any other countries that are subject to [Strong Customer Authentication](https://developers.google.com/pay/api/web/guides/resources/sca) (SCA). Merchants must specify the acquirer bank country code.**Note:** When you support Brazilian combo cards like Mastro, the countryCode must be BR.|
@@ -26,6 +25,9 @@
 
 |**name**|**type**|**description**|
 | :- | :- | :- |
+|intent_id|string|The payment intent id you would like to checkout. It's required for payment mode and optional for recurring mode|
+|mode|Mode|The checkout mode for the shopper. Use `payment` to save shopper’s card details during payment. The shopper can initiate subsequent payments using the saved card details. Use `recurring` to save shopper’s card details without payment. You or the shopper can initiate subsequent payments using the saved card details.                                                                                                                                                 |
+|customer_id|string|The `id` of the Customer for whom the consent is created – the `id` returned in [Create a Customer](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/_api_v1_pa_customers_create/post 'https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/_api_v1_pa_customers_create/post') API response |
 |authFormContainer|string|Container for authentication form, it's an element id.|
 |autoCapture|boolean|Indicate whether to capture immediate when authentication success|
 |origin|string|Your checkout website origin url, aka merchant checkout page's 'window.location.origin' field|
