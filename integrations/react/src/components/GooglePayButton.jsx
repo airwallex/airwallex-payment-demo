@@ -1,12 +1,12 @@
 /**
- * ApplePayButton.jsx
+ * GooglePayButton.jsx
  * Airwallex Payment Demo - React.  Created by Josie Ku.
  *
  * airwallex-payment-elements google pay button element integration in React.js
  * Comments with "Example" demonstrate how states can be integrated
  * with the element, they can be removed.
  *
- * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/applepaybutton.md
+ * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/googlepaybutton.md
  */
 
 import React, { useEffect, useState } from 'react';
@@ -15,7 +15,7 @@ import { createElement, loadAirwallex } from 'airwallex-payment-elements';
 
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
 
-const ApplePayButton = () => {
+const GooglePayButton = () => {
   const [elementShow, setElementShow] = useState(false); // Example: show element state
   const [errorMessage, setErrorMessage] = useState(false); // Example: set error state
   useEffect(() => {
@@ -34,7 +34,7 @@ const ApplePayButton = () => {
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
     }).then(() => {
       // STEP #4: Create the google pay button element
-      const applePayElement = createElement('googlePayButton', {
+      const googlePayElement = createElement('googlePayButton', {
         mode: 'payment', // 'payment' or 'recurring'
         intent_id: 'replace with intent id',
         origin: window.location.origin,
@@ -51,7 +51,7 @@ const ApplePayButton = () => {
         },
       });
       // STEP #5: Mount the google pay button element to the empty container created previously
-      applePayElement.mount('googlePayButton'); // This 'google pay button' id MUST MATCH the id on your empty container created in Step 3
+      googlePayElement.mount('googlePayButton'); // This 'google pay button' id MUST MATCH the id on your empty container created in Step 3
     });
 
     // STEP #7: Add an event listener to ensure the element is mounted
@@ -109,4 +109,4 @@ const ApplePayButton = () => {
   );
 };
 
-export default ApplePayButton;
+export default GooglePayButton;
