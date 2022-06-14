@@ -114,6 +114,19 @@ window.addEventListener('onError', (event) => {
 });
 ```
 
+### 9. Add an `onPendingVerifyAccount` event listener if you want to integrate with `ach_direct_debit` or `becs_direct_debit` payment method.
+
+When the event triggers, it means the shopper needs to verify the bank account before proceeding the payment. We have a pre-defined page to tell the shoppers what they should do next, and of course you can use your own customized page too.
+
+```js
+window.addEventListener('onPendingVerifyAccount', (event) => {
+  /*
+  ** handle event on pending verify bank account 
+  */
+ window.alert(event.detail);
+});
+```
+
 ### 9. Beautify and deploy!
 
 ## Documentation
