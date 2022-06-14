@@ -320,6 +320,7 @@ element.addEventListener('onReady', (event) => {
 | `onChange`                    | Triggered when the Element’s value changes. For example, by clicking outside the input field or using the tab key to switch to a different input field.                                              |
 | `onClick`                     | Triggered when the shopper clicks on an Element.                                                                                                                                                     |
 | `onDynamicCurrencyConversion` | Triggered when Dynamic Currency Conversion (DCC) is enabled and the shopper confirms the PaymentIntent with DCC.                                                                                     |
+| `onPendingVerifyAccount` | Triggered when the bank account needs to be verified | 
 
 <br>
 
