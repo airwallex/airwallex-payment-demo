@@ -64,7 +64,6 @@ export class HppComponent implements OnInit {
         card: {
           next_triggered_by: 'customer',
           merchant_trigger_reason: 'scheduled',
-          requires_cvc: true,
           currency,
         },
       },

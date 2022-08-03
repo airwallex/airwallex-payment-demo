@@ -72,7 +72,6 @@ export const generateHTML = ({
               card: {
                 next_triggered_by: 'customer',
                 merchant_trigger_reason: 'scheduled',
-                requires_cvc: true,
                 currency,
               },
             },
