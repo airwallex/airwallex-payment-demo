@@ -149,10 +149,6 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
                */
               merchant_trigger_reason: 'scheduled',
               /**
-               * Only applicable when next_triggered_by is customer. If true, the customer must provide cvc for the subsequent payment with this PaymentConsent
-               */
-              requires_cvc: true,
-              /**
                * Currency of the initial PaymentIntent to verify the PaymentConsent. Three-letter ISO currency code
                */
               currency: 'replace-with-your-currency',

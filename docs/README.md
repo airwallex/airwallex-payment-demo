@@ -383,7 +383,6 @@ Airwallex.createPaymentConsent(options);
 | **Property**        | **Required?** | **Type** | **Description**                                                                                                                     |
 | ------------------- | ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `next_triggered_by` | Yes           | string   | Set this to `customer`                                                                                                              |
-| `requires_cvc`      | Yes           | boolean  | Set to `false` by default. Indicates whether shopper must enter their CVC when making subsequent payments using saved card details. |
 
 **For merchant-initiated payments**
 
