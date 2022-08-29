@@ -12,7 +12,7 @@ For the redirect element to work properly, the merchant must enable the payment 
 
 ## Returning to Merchant Site
 
-In order for the redirect element to return to the merchant site following external payment processing, merchants **MUST** provide a `return_url` when creating the [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
+In order for the redirect element to return to the merchant site following external payment processing, merchants **MUST** provide a `return_url` when creating the [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro). It's the merchant's responsibility to check the payment status when it's back to return url.
 
 ## Guide
 
@@ -31,8 +31,6 @@ or add the bundle as a script in your HTML head
 ```html
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
-
-Be sure to replace the x.x.x with the `airwallex-payment-elements` package version you'd like to use.
 
 ### 2. Initialize the Airwallex package with the appropriate environment
 

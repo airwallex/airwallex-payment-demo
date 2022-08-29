@@ -3,7 +3,11 @@
 The Recurring flow enables shopper to create and save their CIT(customer initial transaction) and MIT(merchant initial transaction) payment consent which could be use to payment in the future transaction. 
 
 ### Create payment consent 
-This create consent flow could be achieved by Card element or Split card element. We could either simply create a consent or create a consent while confirm an intent with this consent.
+
+For HPP, dropIn and full feture card element users, 
+You could simply provide a `mode: recurring'` during `createElement` to use the recurring function, [read more](/docs#options-object-properties-1).
+
+For card element and split card element, follow the guide below. We could either simply create a consent or create a consent while confirm an intent with this consent.
 
 ![](assets/splitcard.gif)
 \* _An example of a split card integration. Can be customized._
@@ -35,7 +39,7 @@ document.getElementById('submit').addEventListener('click', () => {
   Airwallex.createPaymentConsent({
     intent_id: 'replace-with-your-intent-id', // intent id(Optional)
     customer_id: 'replace-with-your-customer-id', // customer id
-    client_secret: 'replace-with-your-client-secret', // client secret
+    client_secret: 'replace-with-your-client-secret', // client secret (from creating intent or generating client secret)
     currency: 'replace-with-your-currency', // currency
     element: cardElement // either the card element or card number element depends on the element you integrate,
     next_triggered_by: 'customer' // 'merchant' for MIT and 'customer' for CIT

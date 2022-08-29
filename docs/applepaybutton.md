@@ -20,8 +20,6 @@ or add the bundle as a script in your HTML head
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
-Be sure to replace the x.x.x with the `airwallex-payment-elements` package version you'd like to use.
-
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
@@ -51,7 +49,7 @@ This creates the specified [Element](/docs#Element) object. We specify the type 
 const element = Airwallex.createElement('applePayButton', {
   intent: {
     // Required, fullFeaturedCard uses intent_id and client_secret to prepare checkout
-    id: 'replace-with-your-intent-id',
+    intent_id: 'replace-with-your-intent-id',
     client_secret: 'replace-with-your-client-secret',
   },
 });
@@ -144,7 +142,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       const element = Airwallex.createElement('applePayButton', {
         intent: {
           // Required, fullFeaturedCard use intent Id and client_secret to prepare checkout
-          id: 'replace-with-your-intent-id',
+          intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
           amount: {
             value:  'replace-with-your-intent-amount',

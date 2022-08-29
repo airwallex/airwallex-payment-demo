@@ -22,8 +22,6 @@ or add the bundle as a script in your HTML head
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
-Be sure to replace the x.x.x with the `airwallex-payment-elements` package version you'd like to use.
-
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
@@ -77,7 +75,7 @@ This handler is called when a customer is ready to make a payment according to t
 document.getElementById('submit').addEventListener('click', () => {
   Airwallex.confirmPaymentIntent({
     element: card, // Provide Card element
-    id: 'replace-with-your-intent-id', // Payment Intent ID
+    intent_id: 'replace-with-your-intent-id', // Payment Intent ID
     client_secret: 'replace-with-your-client-secret', // Client Secret
   }).then((response) => {
     // STEP #6b: Listen to the request response
@@ -154,7 +152,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       document.getElementById('submit').addEventListener('click', () => {
         Airwallex.confirmPaymentIntent({
           element: card,
-          id: 'replace-with-your-intent-id',
+          intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
         })
           .then((response) => {

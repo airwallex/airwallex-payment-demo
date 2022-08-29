@@ -1,6 +1,6 @@
-# Recurring flow
+# Recurring subsequent flow
 
-The Recurring flow enables shopper to create and save their CIT(customer initial transaction) payment consent which could be use to payment in the future transaction.
+The Recurring subsequent flow enables shopper to process a payment with an pre-saved payment consent.
 
 ### Confirm payment using consent
 
@@ -23,8 +23,6 @@ or add the bundle as a script in your HTML head
 ```html
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
-
-Be sure to replace the x.x.x with the `airwallex-payment-elements` package version you'd like to use.
 
 ### 2. Initialize the Airwallex package with the appropriate environment
 
