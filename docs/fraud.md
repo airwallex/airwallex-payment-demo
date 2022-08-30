@@ -22,3 +22,12 @@ The airwallex-payment-elements also provide several fraud related functions. The
 | ----- | -------- | ---- | ------------- | ----------- |
 | `env` | false | 'staging', 'demo', 'prod' | 'prod' | The airwallex env that you're integrating with |
 | `checkoutOrigin` | false | string | `window.location.origin` | The checkout origin that would used to receive events |
+
+## Full Code Example
+
+```javascript
+  import { getDeviceFingerprint, getBrowserInfo } from '@airwallex/airwallex-payment-elements';
+
+  const deviceFingerprint = getDeviceFingerprint({ env: 'demo', intent_id: intentId });
+  const browserInfo = getBrowserInfo({ env: 'demo', checkoutOrigin: window.location.origin });
+```

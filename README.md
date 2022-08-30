@@ -48,4 +48,4 @@ You also can play around with the different web integrations with the sandboxes 
 
 Running into issues? Check out some of the common errors and our troubleshooting tips [here](/docs#common-errors).
 
-We want to provide you with a seamless experience integrating with our platform. [Let us know](https://www.airwallex.com/contact-sales) if you run into problems, or have any comments and suggestions for us. We value your input!
+We want to provide you with a seamless experience integrating with our platform. [Let us know](https://help.airwallex.com/hc/en-gb/requests/new) if you run into problems, or have any comments and suggestions for us. We value your input!

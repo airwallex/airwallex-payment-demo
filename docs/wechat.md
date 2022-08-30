@@ -1,6 +1,14 @@
-# Airwallex Payment Elements - Wechat Element Integration
+# Airwallex Payment Elements - Wechat Element Integration (Deprecated)
 
-The Wechat element allows merchants to embed a wechat qr code checkout option on their website. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex. It contains a QR code matched to the specified PaymentIntent and a refresh button to regenerate the QR code.
+---
+**WARNING**
+
+This element is decrecated and you can replace it with [qrcode Element](/docs/qrcode).
+
+---
+
+
+The Wechat element allows merchants to embed a wechat qr code checkout option on their website. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex. On desktop, it contains a QR code matched to the specified PaymentIntent and a refresh button to regenerate the QR code, on mobile wechat browser, it would go throgh the jsapi flow(show button to pull up Wechat pay) while on other mobile browser, it would go through the mweb flow(show button to redirect to Wechat pay).
 
 ![](assets/wechat.gif)
 
@@ -23,8 +31,6 @@ or add the bundle as a script in your HTML head
 ```html
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
-
-Be sure to replace the x.x.x with the `airwallex-payment-elements` package version you'd like to use.
 
 ### 2. Initialize the Airwallex package with the appropriate environment
 

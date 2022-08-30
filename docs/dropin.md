@@ -22,9 +22,7 @@ or add the bundle as a script in your HTML head
 
 ```html
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
-```
 
-Be sure to replace the x.x.x with the `airwallex-payment-elements` package version you'd like to use.
 
 ### 2. Initialize the Airwallex package with the appropriate environment
 
@@ -161,11 +159,9 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
       // STEP #4: Create 'dropIn' element
       const dropIn = Airwallex.createElement('dropIn', {
-        intent: {
-          // Required, dropIn use intent Id and client_secret to prepare checkout
-          id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret',
-        },
+        // Required, dropIn use intent Id and client_secret to prepare checkout
+        intent_id: 'replace-with-your-intent-id',
+        client_secret: 'replace-with-your-client-secret',
       });
       // STEP #5: Mount 'dropIn' element
       dropIn.mount('dropIn');

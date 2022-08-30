@@ -24,8 +24,6 @@ or add the bundle as a script in your HTML head
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
-Be sure to replace the x.x.x with the `airwallex-payment-elements` package version you'd like to use.
-
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
