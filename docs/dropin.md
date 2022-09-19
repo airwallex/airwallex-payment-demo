@@ -24,9 +24,15 @@ or add the bundle as a script in your HTML head
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
-### 2. Initialize the Airwallex package with the appropriate environment ```js Airwallex.init({ env: 'demo', // Setup
-which Airwallex env('staging' | 'demo' | 'prod') to integrate with origin: window.location.origin, // Setup your event
-target to receive the browser events message });
+
+### 2. Initialize the Airwallex package with the appropriate environment
+
+```js
+Airwallex.init({
+  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+  origin: window.location.origin, // Setup your event target to receive the browser events message
+});
+```
 
 `init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
 
