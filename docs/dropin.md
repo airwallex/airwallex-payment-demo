@@ -22,6 +22,7 @@ or add the bundle as a script in your HTML head
 
 ```html
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+```
 
 
 ### 2. Initialize the Airwallex package with the appropriate environment
@@ -57,7 +58,11 @@ const element = Airwallex.createElement('dropIn', {
   // if you want to use apple pay, please pass merchant country code in applePayRequestOptions
   applePayRequestOptions: {
     countryCode: 'replace-with-your-country-code',
-  }
+  },
+  // if you want to use google pay, please pass merchant country code in googlePayRequestOptions
+  googlePayRequestOptions: {
+    countryCode: 'replace-with-your-country-code',
+  },
 });
 ```
 
@@ -119,9 +124,9 @@ When the event triggers, it means the shopper needs to verify the bank account b
 ```js
 window.addEventListener('onPendingVerifyAccount', (event) => {
   /*
-  ** handle event on pending verify bank account 
-  */
- window.alert(event.detail);
+   ** handle event on pending verify bank account
+   */
+  window.alert(event.detail);
 });
 ```
 
@@ -154,7 +159,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
-        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'dropIn' element
@@ -162,6 +167,15 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         // Required, dropIn use intent Id and client_secret to prepare checkout
         intent_id: 'replace-with-your-intent-id',
         client_secret: 'replace-with-your-client-secret',
+        currency: 'replace-with-your-intent-currency',
+        // if you want to use apple pay, please pass merchant country code in applePayRequestOptions
+        applePayRequestOptions: {
+          countryCode: 'replace-with-your-country-code',
+        },
+        // if you want to use google pay, please pass merchant country code in googlePayRequestOptions
+        googlePayRequestOptions: {
+          countryCode: 'replace-with-your-country-code',
+        },
       });
       // STEP #5: Mount 'dropIn' element
       dropIn.mount('dropIn');

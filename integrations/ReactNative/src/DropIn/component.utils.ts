@@ -57,11 +57,10 @@ export const generateHTML = ({
 
         // STEP #4: Create 'dropIn' element
         const element = Airwallex.createElement('dropIn', {
-          intent: { 
-            // Required, dropIn use intent Id and client_secret to prepare checkout
-            id: '${intent_id}',
-            client_secret: '${client_secret}'
-          },
+        
+          intent_id: '${intent_id}',
+          client_secret: '${client_secret}',
+          currency: 'HKD',
           components: ['card', 'alipaycn', 'alipayhk']
         });
 
