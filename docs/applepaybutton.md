@@ -47,11 +47,9 @@ This creates the specified [Element](/docs#Element) object. We specify the type 
 
 ```js
 const element = Airwallex.createElement('applePayButton', {
-  intent: {
-    // Required, fullFeaturedCard uses intent_id and client_secret to prepare checkout
-    intent_id: 'replace-with-your-intent-id',
-    client_secret: 'replace-with-your-client-secret',
-  },
+  // Required, apple pay button uses intent_id and client_secret to prepare checkout
+  intent_id: 'replace-with-your-intent-id',
+  client_secret: 'replace-with-your-client-secret',
 });
 ```
 
@@ -140,17 +138,15 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
       // STEP #4: Create 'fullFeaturedCard' element
       const element = Airwallex.createElement('applePayButton', {
-        intent: {
-          // Required, fullFeaturedCard use intent Id and client_secret to prepare checkout
-          intent_id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret',
-          amount: {
-            value:  'replace-with-your-intent-amount',
-            currency:  'replace-with-your-intent-currency',
-          },
-          origin: window.location.origin,
-          countryCode: 'replace-with-your-country-code', // merchant country code
+        // Required, fullFeaturedCard use intent Id and client_secret to prepare checkout
+        intent_id: 'replace-with-your-intent-id',
+        client_secret: 'replace-with-your-client-secret',
+        amount: {
+          value: 'replace-with-your-intent-amount',
+          currency: 'replace-with-your-intent-currency',
         },
+        origin: window.location.origin,
+        countryCode: 'replace-with-your-country-code', // merchant country code
       });
       // STEP #5: Mount 'fullFeaturedCard' element
       element.mount('applePayButton');
