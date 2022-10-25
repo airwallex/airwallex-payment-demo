@@ -1,0 +1,253 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> types/fraud.d.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Address.html">Address</a></li><li><a href="Airwallex.html">Airwallex</a></li><li><a href="Billing.html">Billing</a></li><li><a href="BoxStyle.html">BoxStyle</a></li><li><a href="CardElementOptions.html">CardElementOptions</a></li><li><a href="CardNumberElementOptions.html">CardNumberElementOptions</a></li><li><a href="CvcElementOptions.html">CvcElementOptions</a></li><li><a href="DropInElementOptions.html">DropInElementOptions</a></li><li><a href="Element.html">Element</a></li><li><a href="ElementError.html">ElementError</a></li><li><a href="ElementEvent.html">ElementEvent</a></li><li><a href="ElementOptions.html">ElementOptions</a></li><li><a href="ElementOptionsTypeMap.html">ElementOptionsTypeMap</a></li><li><a href="EventDetail.html">EventDetail</a></li><li><a href="ExpiryDateElementOptions.html">ExpiryDateElementOptions</a></li><li><a href="FontOptions.html">FontOptions</a></li><li><a href="FullFeaturedCardPaymentOptions.html">FullFeaturedCardPaymentOptions</a></li><li><a href="Get3dsReturnUrlRequest.html">Get3dsReturnUrlRequest</a></li><li><a href="GetBrowserInfoResponse.html">GetBrowserInfoResponse</a></li><li><a href="GetDeviceFingerprintRequest.html">GetDeviceFingerprintRequest</a></li><li><a href="Handle3dsRequest.html">Handle3dsRequest</a></li><li><a href="HostPaymentPage.html">HostPaymentPage</a></li><li><a href="HppRecurringOptions.html">HppRecurringOptions</a></li><li><a href="HppTheme.html">HppTheme</a></li><li><a href="InitOptions.html">InitOptions</a></li><li><a href="InputStyle.html">InputStyle</a></li><li><a href="Intent.html">Intent</a></li><li><a href="NextAction.html">NextAction</a></li><li><a href="PaymentConsentRequest.html">PaymentConsentRequest</a></li><li><a href="PaymentConsentResponse.html">PaymentConsentResponse</a></li><li><a href="PaymentMethod.html">PaymentMethod</a></li><li><a href="PaymentMethodBasicInfo.html">PaymentMethodBasicInfo</a></li><li><a href="PaymentMethodWithConsent.html">PaymentMethodWithConsent</a></li><li><a href="PaymentRequestButtonOptions.html">PaymentRequestButtonOptions</a></li><li><a href="PaymentShippingOption.html">PaymentShippingOption</a></li><li><a href="PopUpStyle.html">PopUpStyle</a></li><li><a href="QrcodeElementOptions.html">QrcodeElementOptions</a></li><li><a href="RedirectElementPaymentBasicOptions.html">RedirectElementPaymentBasicOptions</a></li><li><a href="RedirectElementPaymentOptionsForBankTransfer.html">RedirectElementPaymentOptionsForBankTransfer</a></li><li><a href="RedirectElementPaymentOptionsForDoku.html">RedirectElementPaymentOptionsForDoku</a></li><li><a href="RedirectElementPaymentOptionsForFpx.html">RedirectElementPaymentOptionsForFpx</a></li><li><a href="RedirectElementPaymentOptionsForOnlineBanking.html">RedirectElementPaymentOptionsForOnlineBanking</a></li><li><a href="RedirectElementPaymentOptionsForPoli.html">RedirectElementPaymentOptionsForPoli</a></li><li><a href="RedirectElementPaymentOptionsForSkrill.html">RedirectElementPaymentOptionsForSkrill</a></li><li><a href="RedirectElementPaymentOptionsForSofort.html">RedirectElementPaymentOptionsForSofort</a></li><li><a href="WechatElementOptions.html">WechatElementOptions</a></li><li><a href="Window.html">Window</a></li></ul><h3>Global</h3><ul><li><a href="global.html#confirmPaymentIntent">confirmPaymentIntent</a></li><li><a href="global.html#confirmPaymentIntentWithSavedCard">confirmPaymentIntentWithSavedCard</a></li><li><a href="global.html#createElement">createElement</a></li><li><a href="global.html#createPaymentConsent">createPaymentConsent</a></li><li><a href="global.html#createPaymentMethod">createPaymentMethod</a></li><li><a href="global.html#destroyElement">destroyElement</a></li><li><a href="global.html#get3dsReturnUrl">get3dsReturnUrl</a></li><li><a href="global.html#getBrowserInfo">getBrowserInfo</a></li><li><a href="global.html#getDeviceFingerprint">getDeviceFingerprint</a></li><li><a href="global.html#getElement">getElement</a></li><li><a href="global.html#getGatewayUrl">getGatewayUrl</a></li><li><a href="global.html#handle3ds">handle3ds</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadAirwallex">loadAirwallex</a></li><li><a href="global.html#loadAirwallexJs">loadAirwallexJs</a></li><li><a href="global.html#redirectToCheckout">redirectToCheckout</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>types/fraud.d.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { AirwallexEnv } from './airwallex';
+import { Intent } from './cardNumber';
+import { ExtendEventDetail } from './element';
+
+/**
+ * The response of getBrowserInfo
+ */
+export interface GetBrowserInfoResponse {
+  /**
+   * The height of the screen
+   */
+  screen_height: number;
+  /**
+   * The width of the screen
+   */
+  screen_width: number;
+  /**
+   * The color depth of the screen
+   */
+  screen_color_depth: number;
+  /**
+   * The language of browser
+   */
+  language: string;
+  /**
+   * The offset between browser time zone and UTC in minutes
+   */
+  timezone: number;
+  /**
+   * The browser infos
+   */
+  browser: {
+    /**
+     * Indicates if the browser supports java
+     */
+    java_enabled: boolean;
+    /**
+     * Indicates if the browser supports javascript
+     */
+    javascript_enabled: boolean;
+    /**
+     * The user agent of current session
+     */
+    user_agent: string;
+  };
+}
+
+/**
+ * Method to get browser info which will be used when confirm payment intent
+ */
+export declare const getBrowserInfo: (props?: GetDeviceFingerprintRequest) => GetBrowserInfoResponse;
+
+/**
+ * The request payload for getDeviceFingerprint
+ *
+ */
+export interface GetDeviceFingerprintRequest {
+  /**
+   * The intent id that you would like to pay
+   */
+  intent_id?: string;
+  /**
+   * The airwalllex env that you would like to integrate. for example: 'staging' | 'demo' | 'prod'
+   */
+  env?: string;
+}
+
+/**
+ * Method to collect device fingerprint
+ */
+export declare const getDeviceFingerprint: (props: GetDeviceFingerprintRequest) => string;
+
+/**
+ * The `next_action` field returned from the confirm request
+ */
+interface NextAction {
+  data: {
+    jwt: string;
+    stage: string;
+    version: string;
+  };
+  type: string;
+  url: string;
+  stage?: string;
+}
+
+/**
+ * The request params when calling handle3ds
+ */
+interface Handle3dsRequest {
+  /**
+   * Indicate which airwallex integration env your merchant site would like to connect with
+   * If not provide default will be prod which point to [Airwallex Checkout](https://checkout.airwallex.com)
+   */
+  env: AirwallexEnv;
+  /**
+   * The intent that you would like to checkout
+   */
+  intent: Intent;
+  /**
+   * next_action of the transaction, could got it from confirm response
+   */
+  next_action: NextAction;
+  /**
+   * the id of the container you would like the 3ds popup to show
+   */
+  authFormContainer?: string;
+  /**
+   * The size of the 3DS challenge popup
+   * The available options are below. Any invalid option will map to option '05'
+   *
+   * '01': ['250px', '400px']
+   * '02': ['390px', '400px']
+   * '03': ['500px', '600px']
+   * '04': ['600px', '400px']
+   * '05': ['100%', '100%']
+   *
+   */
+  challengeWindowSize?: string;
+}
+
+/**
+ * @deprecated this function would need exactly the same API version for merchant and element, so better to not use it
+ * Method to let airwallex fully handle 3ds flow
+ */
+export declare const handle3ds: (props: Handle3dsRequest) => Promise&lt;ExtendEventDetail>;
+
+/**
+ * The request params for get3dsReturnUrl
+ */
+interface Get3dsReturnUrlRequest {
+  /**
+   * Indicate which airwallex integration env your merchant site would like to connect with
+   * If not provide default will be prod which point to [Airwallex Checkout](https://checkout.airwallex.com)
+   */
+  env?: AirwallexEnv;
+  // The origin of the url where user want to checkout, by default will get the window.location.origin
+  checkoutOrigin?: String;
+}
+
+/**
+ * @deprecated this function would need exactly the same API version for merchant and element, so better to not use it
+ * Method to get the return url for 3ds case
+ */
+export declare const get3dsReturnUrl: (props: Get3dsReturnUrlRequest) => string;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

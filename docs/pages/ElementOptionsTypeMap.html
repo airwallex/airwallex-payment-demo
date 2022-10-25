@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> ElementOptionsTypeMap</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Address.html">Address</a></li><li><a href="Airwallex.html">Airwallex</a></li><li><a href="Billing.html">Billing</a></li><li><a href="BoxStyle.html">BoxStyle</a></li><li><a href="CardElementOptions.html">CardElementOptions</a></li><li><a href="CardNumberElementOptions.html">CardNumberElementOptions</a></li><li><a href="CvcElementOptions.html">CvcElementOptions</a></li><li><a href="DropInElementOptions.html">DropInElementOptions</a></li><li><a href="Element.html">Element</a></li><li><a href="ElementError.html">ElementError</a></li><li><a href="ElementEvent.html">ElementEvent</a></li><li><a href="ElementOptions.html">ElementOptions</a></li><li><a href="ElementOptionsTypeMap.html">ElementOptionsTypeMap</a></li><li><a href="EventDetail.html">EventDetail</a></li><li><a href="ExpiryDateElementOptions.html">ExpiryDateElementOptions</a></li><li><a href="FontOptions.html">FontOptions</a></li><li><a href="FullFeaturedCardPaymentOptions.html">FullFeaturedCardPaymentOptions</a></li><li><a href="Get3dsReturnUrlRequest.html">Get3dsReturnUrlRequest</a></li><li><a href="GetBrowserInfoResponse.html">GetBrowserInfoResponse</a></li><li><a href="GetDeviceFingerprintRequest.html">GetDeviceFingerprintRequest</a></li><li><a href="Handle3dsRequest.html">Handle3dsRequest</a></li><li><a href="HostPaymentPage.html">HostPaymentPage</a></li><li><a href="HppRecurringOptions.html">HppRecurringOptions</a></li><li><a href="HppTheme.html">HppTheme</a></li><li><a href="InitOptions.html">InitOptions</a></li><li><a href="InputStyle.html">InputStyle</a></li><li><a href="Intent.html">Intent</a></li><li><a href="NextAction.html">NextAction</a></li><li><a href="PaymentConsentRequest.html">PaymentConsentRequest</a></li><li><a href="PaymentConsentResponse.html">PaymentConsentResponse</a></li><li><a href="PaymentMethod.html">PaymentMethod</a></li><li><a href="PaymentMethodBasicInfo.html">PaymentMethodBasicInfo</a></li><li><a href="PaymentMethodWithConsent.html">PaymentMethodWithConsent</a></li><li><a href="PaymentRequestButtonOptions.html">PaymentRequestButtonOptions</a></li><li><a href="PaymentShippingOption.html">PaymentShippingOption</a></li><li><a href="PopUpStyle.html">PopUpStyle</a></li><li><a href="QrcodeElementOptions.html">QrcodeElementOptions</a></li><li><a href="RedirectElementPaymentBasicOptions.html">RedirectElementPaymentBasicOptions</a></li><li><a href="RedirectElementPaymentOptionsForBankTransfer.html">RedirectElementPaymentOptionsForBankTransfer</a></li><li><a href="RedirectElementPaymentOptionsForDoku.html">RedirectElementPaymentOptionsForDoku</a></li><li><a href="RedirectElementPaymentOptionsForFpx.html">RedirectElementPaymentOptionsForFpx</a></li><li><a href="RedirectElementPaymentOptionsForOnlineBanking.html">RedirectElementPaymentOptionsForOnlineBanking</a></li><li><a href="RedirectElementPaymentOptionsForPoli.html">RedirectElementPaymentOptionsForPoli</a></li><li><a href="RedirectElementPaymentOptionsForSkrill.html">RedirectElementPaymentOptionsForSkrill</a></li><li><a href="RedirectElementPaymentOptionsForSofort.html">RedirectElementPaymentOptionsForSofort</a></li><li><a href="WechatElementOptions.html">WechatElementOptions</a></li><li><a href="Window.html">Window</a></li></ul><h3>Global</h3><ul><li><a href="global.html#confirmPaymentIntent">confirmPaymentIntent</a></li><li><a href="global.html#confirmPaymentIntentWithSavedCard">confirmPaymentIntentWithSavedCard</a></li><li><a href="global.html#createElement">createElement</a></li><li><a href="global.html#createPaymentConsent">createPaymentConsent</a></li><li><a href="global.html#createPaymentMethod">createPaymentMethod</a></li><li><a href="global.html#destroyElement">destroyElement</a></li><li><a href="global.html#get3dsReturnUrl">get3dsReturnUrl</a></li><li><a href="global.html#getBrowserInfo">getBrowserInfo</a></li><li><a href="global.html#getDeviceFingerprint">getDeviceFingerprint</a></li><li><a href="global.html#getElement">getElement</a></li><li><a href="global.html#getGatewayUrl">getGatewayUrl</a></li><li><a href="global.html#handle3ds">handle3ds</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadAirwallex">loadAirwallex</a></li><li><a href="global.html#loadAirwallexJs">loadAirwallexJs</a></li><li><a href="global.html#redirectToCheckout">redirectToCheckout</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Interface</p>
+                    <h1>ElementOptionsTypeMap</h1>
+                </header>
+                
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>ElementOptionsTypeMap</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">The definition mapping of supported integration element type with it's props options used to customize the element, merchant can check on each element options type for details</div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line366">line 366</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Members</h1>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">ApplePayButtonOptions</code>
+
+
+    </span>
+
+<h4 class="name" id="applePayButton">
+    <a class="href-link" href="#applePayButton">#</a>
+    
+    <span class="code-name">
+        applePayButton
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define apple pay element type and it's mapped option type
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line394">line 394</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type"><a href="CardElementOptions.html">CardElementOptions</a></code>
+
+
+    </span>
+
+<h4 class="name" id="card">
+    <a class="href-link" href="#card">#</a>
+    
+    <span class="code-name">
+        card
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define card element type and it's mapped option type, this integration make the card PCI input (card number / cvc / expiry) behavior like a single input
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line404">line 404</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type"><a href="CardNumberElementOptions.html">CardNumberElementOptions</a></code>
+
+
+    </span>
+
+<h4 class="name" id="cardNumber">
+    <a class="href-link" href="#cardNumber">#</a>
+    
+    <span class="code-name">
+        cardNumber
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define card number input element type and it's mapped option type, apply to split card element integration
+Using together with `expiry` and `cvc` element to gain maximum customization
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line370">line 370</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type"><a href="CvcElementOptions.html">CvcElementOptions</a></code>
+
+
+    </span>
+
+<h4 class="name" id="cvc">
+    <a class="href-link" href="#cvc">#</a>
+    
+    <span class="code-name">
+        cvc
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define cvc input element type and it's mapped option type, apply to split card element integration
+Using together with `cardNumber` and `expiry` element to gain maximum customization
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line382">line 382</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">DirectDebitElementOptions</code>
+
+
+    </span>
+
+<h4 class="name" id="directDebit">
+    <a class="href-link" href="#directDebit">#</a>
+    
+    <span class="code-name">
+        directDebit
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define direct debit element type and it's mapped option type, this integration make integrate with Airwallex supported direct debit payment method like a single widget
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line434">line 434</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type"><a href="DropInElementOptions.html">DropInElementOptions</a></code>
+
+
+    </span>
+
+<h4 class="name" id="dropIn">
+    <a class="href-link" href="#dropIn">#</a>
+    
+    <span class="code-name">
+        dropIn
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define dropIn element type and it's mapped option type, this integration make integrate with Airwallex supported card and APM (alternative payment method like WeChat etc.) payment method like a single widget
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line424">line 424</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type"><a href="ExpiryDateElementOptions.html">ExpiryDateElementOptions</a></code>
+
+
+    </span>
+
+<h4 class="name" id="expiry">
+    <a class="href-link" href="#expiry">#</a>
+    
+    <span class="code-name">
+        expiry
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define expiry input element type and it's mapped option type, apply to split card element integration
+Using together with `cardNumber` and `cvc` element to gain maximum customization
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line376">line 376</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">FullFeaturedCardElementOptions</code>
+
+
+    </span>
+
+<h4 class="name" id="fullFeaturedCard">
+    <a class="href-link" href="#fullFeaturedCard">#</a>
+    
+    <span class="code-name">
+        fullFeaturedCard
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define full featured card element type and it's mapped option type, this integration make integrate with Airwallex supported card payment method like a single widget
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line429">line 429</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">GooglePayButtonOptions</code>
+
+
+    </span>
+
+<h4 class="name" id="googlePayButton">
+    <a class="href-link" href="#googlePayButton">#</a>
+    
+    <span class="code-name">
+        googlePayButton
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define google pay element type and it's mapped option type
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line399">line 399</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type"><a href="PaymentRequestButtonOptions.html">PaymentRequestButtonOptions</a></code>
+
+
+    </span>
+
+<h4 class="name" id="paymentRequestButton">
+    <a class="href-link" href="#paymentRequestButton">#</a>
+    
+    <span class="code-name">
+        paymentRequestButton
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define W3C payment request API element type and it's mapped option type
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>paymentRequestButton is no longer supported by airwallex</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line388">line 388</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type"><a href="QrcodeElementOptions.html">QrcodeElementOptions</a></code>
+
+
+    </span>
+
+<h4 class="name" id="qrcode">
+    <a class="href-link" href="#qrcode">#</a>
+    
+    <span class="code-name">
+        qrcode
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define Qrcode element type and it's mapped option type
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line414">line 414</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type"><a href="global.html#RedirectElementOptions">RedirectElementOptions</a></code>
+
+
+    </span>
+
+<h4 class="name" id="redirect">
+    <a class="href-link" href="#redirect">#</a>
+    
+    <span class="code-name">
+        redirect
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define Redirect element type and it's mapped option type
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line419">line 419</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type"><a href="WechatElementOptions.html">WechatElementOptions</a></code>
+
+
+    </span>
+
+<h4 class="name" id="wechat">
+    <a class="href-link" href="#wechat">#</a>
+    
+    <span class="code-name">
+        wechat
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define WeChat element type and it's mapped option type
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line409">line 409</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+            </div>
+            
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>
