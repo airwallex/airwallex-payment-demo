@@ -1,0 +1,3828 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Global</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Address.html">Address</a></li><li><a href="Airwallex.html">Airwallex</a></li><li><a href="Billing.html">Billing</a></li><li><a href="BoxStyle.html">BoxStyle</a></li><li><a href="CardElementOptions.html">CardElementOptions</a></li><li><a href="CardNumberElementOptions.html">CardNumberElementOptions</a></li><li><a href="CvcElementOptions.html">CvcElementOptions</a></li><li><a href="DropInElementOptions.html">DropInElementOptions</a></li><li><a href="Element.html">Element</a></li><li><a href="ElementError.html">ElementError</a></li><li><a href="ElementEvent.html">ElementEvent</a></li><li><a href="ElementOptions.html">ElementOptions</a></li><li><a href="ElementOptionsTypeMap.html">ElementOptionsTypeMap</a></li><li><a href="EventDetail.html">EventDetail</a></li><li><a href="ExpiryDateElementOptions.html">ExpiryDateElementOptions</a></li><li><a href="FontOptions.html">FontOptions</a></li><li><a href="FullFeaturedCardPaymentOptions.html">FullFeaturedCardPaymentOptions</a></li><li><a href="Get3dsReturnUrlRequest.html">Get3dsReturnUrlRequest</a></li><li><a href="GetBrowserInfoResponse.html">GetBrowserInfoResponse</a></li><li><a href="GetDeviceFingerprintRequest.html">GetDeviceFingerprintRequest</a></li><li><a href="Handle3dsRequest.html">Handle3dsRequest</a></li><li><a href="HostPaymentPage.html">HostPaymentPage</a></li><li><a href="HppRecurringOptions.html">HppRecurringOptions</a></li><li><a href="HppTheme.html">HppTheme</a></li><li><a href="InitOptions.html">InitOptions</a></li><li><a href="InputStyle.html">InputStyle</a></li><li><a href="Intent.html">Intent</a></li><li><a href="NextAction.html">NextAction</a></li><li><a href="PaymentConsentRequest.html">PaymentConsentRequest</a></li><li><a href="PaymentConsentResponse.html">PaymentConsentResponse</a></li><li><a href="PaymentMethod.html">PaymentMethod</a></li><li><a href="PaymentMethodBasicInfo.html">PaymentMethodBasicInfo</a></li><li><a href="PaymentMethodWithConsent.html">PaymentMethodWithConsent</a></li><li><a href="PaymentRequestButtonOptions.html">PaymentRequestButtonOptions</a></li><li><a href="PaymentShippingOption.html">PaymentShippingOption</a></li><li><a href="PopUpStyle.html">PopUpStyle</a></li><li><a href="QrcodeElementOptions.html">QrcodeElementOptions</a></li><li><a href="RedirectElementPaymentBasicOptions.html">RedirectElementPaymentBasicOptions</a></li><li><a href="RedirectElementPaymentOptionsForBankTransfer.html">RedirectElementPaymentOptionsForBankTransfer</a></li><li><a href="RedirectElementPaymentOptionsForDoku.html">RedirectElementPaymentOptionsForDoku</a></li><li><a href="RedirectElementPaymentOptionsForFpx.html">RedirectElementPaymentOptionsForFpx</a></li><li><a href="RedirectElementPaymentOptionsForOnlineBanking.html">RedirectElementPaymentOptionsForOnlineBanking</a></li><li><a href="RedirectElementPaymentOptionsForPoli.html">RedirectElementPaymentOptionsForPoli</a></li><li><a href="RedirectElementPaymentOptionsForSkrill.html">RedirectElementPaymentOptionsForSkrill</a></li><li><a href="RedirectElementPaymentOptionsForSofort.html">RedirectElementPaymentOptionsForSofort</a></li><li><a href="WechatElementOptions.html">WechatElementOptions</a></li><li><a href="Window.html">Window</a></li></ul><h3>Global</h3><ul><li><a href="global.html#confirmPaymentIntent">confirmPaymentIntent</a></li><li><a href="global.html#confirmPaymentIntentWithSavedCard">confirmPaymentIntentWithSavedCard</a></li><li><a href="global.html#createElement">createElement</a></li><li><a href="global.html#createPaymentConsent">createPaymentConsent</a></li><li><a href="global.html#createPaymentMethod">createPaymentMethod</a></li><li><a href="global.html#destroyElement">destroyElement</a></li><li><a href="global.html#get3dsReturnUrl">get3dsReturnUrl</a></li><li><a href="global.html#getBrowserInfo">getBrowserInfo</a></li><li><a href="global.html#getDeviceFingerprint">getDeviceFingerprint</a></li><li><a href="global.html#getElement">getElement</a></li><li><a href="global.html#getGatewayUrl">getGatewayUrl</a></li><li><a href="global.html#handle3ds">handle3ds</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadAirwallex">loadAirwallex</a></li><li><a href="global.html#loadAirwallexJs">loadAirwallexJs</a></li><li><a href="global.html#redirectToCheckout">redirectToCheckout</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p></p>
+                    <h1>Global</h1>
+                </header>
+                
+
+
+
+
+<section>
+
+<header>
+    
+        <h2></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Methods</h1>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="confirmPaymentIntent">
+        <a class="href-link" href="#confirmPaymentIntent">#</a>
+        
+        <span class="code-name">
+            
+                confirmPaymentIntent<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Intent.html">Intent</a>|boolean)>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="PaymentMethod.html">PaymentMethod</a></code>
+|
+
+<code class="param-type"><a href="PaymentMethodWithConsent.html">PaymentMethodWithConsent</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line149">line 149</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Promise.&lt;(<a href="Intent.html">Intent</a>|boolean)></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="confirmPaymentIntentWithSavedCard">
+        <a class="href-link" href="#confirmPaymentIntentWithSavedCard">#</a>
+        
+        <span class="code-name">
+            
+                confirmPaymentIntentWithSavedCard<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Intent.html">Intent</a>|boolean)>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="PaymentMethod.html">PaymentMethod</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line164">line 164</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Promise.&lt;(<a href="Intent.html">Intent</a>|boolean)></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="createElement">
+        <a class="href-link" href="#createElement">#</a>
+        
+        <span class="code-name">
+            
+                createElement<span class="signature">(type, options)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>type</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="global.html#ElementType">ElementType</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>options</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="ElementOptionsTypeMap.html">ElementOptionsTypeMap</a>.&lt;T></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line105">line 105</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="createPaymentConsent">
+        <a class="href-link" href="#createPaymentConsent">#</a>
+        
+        <span class="code-name">
+            
+                createPaymentConsent<span class="signature">(data)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Intent.html">Intent</a>|boolean)>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="PaymentConsentRequest.html">PaymentConsentRequest</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line211">line 211</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Promise.&lt;(<a href="Intent.html">Intent</a>|boolean)></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="createPaymentMethod">
+        <a class="href-link" href="#createPaymentMethod">#</a>
+        
+        <span class="code-name">
+            
+                createPaymentMethod<span class="signature">(id, client_secret)</span><span class="type-signature"> &rarr; {Promise.&lt;(<a href="Intent.html">Intent</a>|boolean)>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>id</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>client_secret</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line195">line 195</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Promise.&lt;(<a href="Intent.html">Intent</a>|boolean)></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="destroyElement">
+        <a class="href-link" href="#destroyElement">#</a>
+        
+        <span class="code-name">
+            
+                destroyElement<span class="signature">(type)</span><span class="type-signature"> &rarr; {boolean}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>type</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="global.html#ElementType">ElementType</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line121">line 121</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">boolean</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="get3dsReturnUrl">
+        <a class="href-link" href="#get3dsReturnUrl">#</a>
+        
+        <span class="code-name">
+            
+                get3dsReturnUrl<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>this function would need exactly the same API version for merchant and element, so better to not use it</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line242">line 242</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="getBrowserInfo">
+        <a class="href-link" href="#getBrowserInfo">#</a>
+        
+        <span class="code-name">
+            
+                getBrowserInfo<span class="signature">(data)</span><span class="type-signature"> &rarr; {<a href="GetBrowserInfoResponse.html">GetBrowserInfoResponse</a>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="GetDeviceFingerprintRequest.html">GetDeviceFingerprintRequest</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line226">line 226</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type"><a href="GetBrowserInfoResponse.html">GetBrowserInfoResponse</a></code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="getDeviceFingerprint">
+        <a class="href-link" href="#getDeviceFingerprint">#</a>
+        
+        <span class="code-name">
+            
+                getDeviceFingerprint<span class="signature">(data)</span><span class="type-signature"> &rarr; {string}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>data</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="GetDeviceFingerprintRequest.html">GetDeviceFingerprintRequest</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line234">line 234</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">string</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="getElement">
+        <a class="href-link" href="#getElement">#</a>
+        
+        <span class="code-name">
+            
+                getElement<span class="signature">(type)</span><span class="type-signature"> &rarr; {<a href="Element.html">Element</a>|null}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>type</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="global.html#ElementType">ElementType</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line135">line 135</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type"><a href="Element.html">Element</a></code>
+|
+
+<code class="param-type">null</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="getGatewayUrl">
+        <a class="href-link" href="#getGatewayUrl">#</a>
+        
+        <span class="code-name">
+            
+                getGatewayUrl<span class="signature">(env)</span><span class="type-signature"> &rarr; {string}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>env</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="global.html#AirwallexEnv">AirwallexEnv</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Indicate which airwallex integration env your merchant site would like to connect with</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line14">line 14</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>gateway url</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">string</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="handle3ds">
+        <a class="href-link" href="#handle3ds">#</a>
+        
+        <span class="code-name">
+            
+                handle3ds<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>this function would need exactly the same API version for merchant and element, so better to not use it</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line249">line 249</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="init">
+        <a class="href-link" href="#init">#</a>
+        
+        <span class="code-name">
+            
+                init<span class="signature">(options)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>options</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="InitOptions.html">InitOptions</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line80">line 80</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="loadAirwallex">
+        <a class="href-link" href="#loadAirwallex">#</a>
+        
+        <span class="code-name">
+            
+                loadAirwallex<span class="signature">(options)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>options</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="InitOptions.html">InitOptions</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line36">line 36</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="loadAirwallexJs">
+        <a class="href-link" href="#loadAirwallexJs">#</a>
+        
+        <span class="code-name">
+            
+                loadAirwallexJs<span class="signature">(gatewayUrl)</span><span class="type-signature"> &rarr; {HTMLScriptElement}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>gatewayUrl</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">url</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line21">line 21</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">HTMLScriptElement</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="redirectToCheckout">
+        <a class="href-link" href="#redirectToCheckout">#</a>
+        
+        <span class="code-name">
+            
+                redirectToCheckout<span class="signature">(props)</span><span class="type-signature"> &rarr; {void}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>props</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type"><a href="HostPaymentPage.html">HostPaymentPage</a></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="src_index.ts.html" class="button">View Source</a>
+            <span>
+                <a href="src_index.ts.html">src/index.ts</a>, <a href="src_index.ts.html#line92">line 92</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">void</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Type Definitions</h1>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">'dev'</code>
+|
+
+<code class="param-type">'preview'</code>
+|
+
+<code class="param-type">'qa'</code>
+|
+
+<code class="param-type">'staging'</code>
+|
+
+<code class="param-type">'demo'</code>
+|
+
+<code class="param-type">'prod'</code>
+
+
+    </span>
+
+<h4 class="name" id="AirwallexEnv">
+    <a class="href-link" href="#AirwallexEnv">#</a>
+    
+    <span class="code-name">
+        AirwallexEnv
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Indicate which airwallex integration env your merchant site would like to connect with
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line37">line 37</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">'applePayButton'</code>
+|
+
+<code class="param-type">'cardNumber'</code>
+|
+
+<code class="param-type">'expiry'</code>
+|
+
+<code class="param-type">'cvc'</code>
+|
+
+<code class="param-type">'googlePayButton'</code>
+|
+
+<code class="param-type">'paymentRequestButton'</code>
+|
+
+<code class="param-type">'card'</code>
+|
+
+<code class="param-type">'wechat'</code>
+|
+
+<code class="param-type">'qrcode'</code>
+|
+
+<code class="param-type">'redirect'</code>
+|
+
+<code class="param-type">'dropIn'</code>
+|
+
+<code class="param-type">'fullFeaturedCard'</code>
+|
+
+<code class="param-type">'directDebit'</code>
+
+
+    </span>
+
+<h4 class="name" id="ElementType">
+    <a class="href-link" href="#ElementType">#</a>
+    
+    <span class="code-name">
+        ElementType
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Supported integration element type
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_element.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_element.d.ts.html">types/element.d.ts</a>, <a href="types_element.d.ts.html#line12">line 12</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">'required'</code>
+|
+
+<code class="param-type">'invalid'</code>
+|
+
+<code class="param-type">'un_support'</code>
+|
+
+<code class="param-type">'expired'</code>
+|
+
+<code class="param-type">'validation_error'</code>
+|
+
+<code class="param-type">'duplicate_request'</code>
+|
+
+<code class="param-type">'resource_not_found'</code>
+|
+
+<code class="param-type">'resource_already_exists'</code>
+|
+
+<code class="param-type">'state_invalid_for_operation'</code>
+|
+
+<code class="param-type">'service_unavailable'</code>
+|
+
+<code class="param-type">'processor_unavailable'</code>
+|
+
+<code class="param-type">'processor_busy'</code>
+|
+
+<code class="param-type">'processor_declined'</code>
+|
+
+<code class="param-type">'amount_above_limit'</code>
+|
+
+<code class="param-type">'frequency_above_limit'</code>
+|
+
+<code class="param-type">'transaction_blocked'</code>
+|
+
+<code class="param-type">'payment_blocked'</code>
+|
+
+<code class="param-type">'unsupported_operation_on_payment_method'</code>
+|
+
+<code class="param-type">'capture_amount_above_limit'</code>
+|
+
+<code class="param-type">'refund_amount_above_limit'</code>
+|
+
+<code class="param-type">'insufficient_available_funds'</code>
+|
+
+<code class="param-type">'insufficient_incoming_funds'</code>
+|
+
+<code class="param-type">'processor_user_account_abnormal'</code>
+|
+
+<code class="param-type">'processor_refund_period_expired'</code>
+|
+
+<code class="param-type">'processor_refund_offline_required'</code>
+
+
+    </span>
+
+<h4 class="name" id="ERROR_CODE">
+    <a class="href-link" href="#ERROR_CODE">#</a>
+    
+    <span class="code-name">
+        ERROR_CODE
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Define of error code when failed to validate user input or failed to request
+[Error codes](https://www.airwallex.com/docs/payments__error-codes)
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_element.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_element.d.ts.html">types/element.d.ts</a>, <a href="types_element.d.ts.html#line25">line 25</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">'onReady'</code>
+|
+
+<code class="param-type">'onSubmit'</code>
+|
+
+<code class="param-type">'onDynamicCurrencyConversion'</code>
+|
+
+<code class="param-type">'onSuccess'</code>
+|
+
+<code class="param-type">'onError'</code>
+|
+
+<code class="param-type">'onCancel'</code>
+|
+
+<code class="param-type">'onFocus'</code>
+|
+
+<code class="param-type">'onBlur'</code>
+|
+
+<code class="param-type">'onChange'</code>
+|
+
+<code class="param-type">'onClick'</code>
+|
+
+<code class="param-type">'onPendingVerifyAccount'</code>
+|
+
+<code class="param-type">'onPressArrowKey'</code>
+|
+
+<code class="param-type">'onSwitchMethod'</code>
+
+
+    </span>
+
+<h4 class="name" id="EventCode">
+    <a class="href-link" href="#EventCode">#</a>
+    
+    <span class="code-name">
+        EventCode
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Event code supported value by element when shopper interact with the checkout element
+
+`onReady`: The event fires when a given element resource has loaded.
+
+`onSubmit`: The event is raised when confirm the intent. It fires after the click Pay button or calling confirmPaymentIntent function.
+
+`onSuccess`: The event fires when a intent is confirm with Airwallex
+
+`onError`: Error events are fired at various targets for different kinds of errors with shopper interaction, refer to `ElementError` interface.
+
+`onCancel`: The event fires when shopper click cancel button when interact with the payment form.
+
+`onFocus`: The event is raised when the shopper sets focus on an input by click or tab switch interaction.
+
+`onBlur`: The event is raised when an input in element loses focus.
+
+`onChange`: The events fire when the user commits a value change to a input. This may be done, for example, by clicking outside of the input or by using the Tab key to switch to a different input.
+
+`onClick`: The event is raised when the user clicks on an input element.
+
+`onDynamicCurrencyConversion`: The events fire when merchant enable Dynamic Currency Conversion (DCC) feature and shopper is confirm payment with an intent which match DCC scenario
+
+`onPendingVerifyAccount`: The events fire when shoppers checkout with direct debit methods and the bank account need to be verified
+
+`onSwitchMethod`: The event fires when shoppers switch payment method in hpp or dropIn element
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_element.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_element.d.ts.html">types/element.d.ts</a>, <a href="types_element.d.ts.html#line30">line 30</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">'googlepay'</code>
+|
+
+<code class="param-type">'applepay'</code>
+|
+
+<code class="param-type">'card'</code>
+|
+
+<code class="param-type">'wechatpay'</code>
+|
+
+<code class="param-type"><a href="global.html#PaymentMethodWithRedirect">PaymentMethodWithRedirect</a></code>
+|
+
+<code class="param-type">DirectDebitPaymentMethod</code>
+
+
+    </span>
+
+<h4 class="name" id="PaymentMethodType">
+    <a class="href-link" href="#PaymentMethodType">#</a>
+    
+    <span class="code-name">
+        PaymentMethodType
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Supported integration payment method type for dropin and hostPaymentPage
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_element.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_element.d.ts.html">types/element.d.ts</a>, <a href="types_element.d.ts.html#line21">line 21</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">'alipayhk'</code>
+|
+
+<code class="param-type">'kakaopay'</code>
+|
+
+<code class="param-type">'wechatpay'</code>
+
+
+    </span>
+
+<h4 class="name" id="PaymentMethodWithQrcode">
+    <a class="href-link" href="#PaymentMethodWithQrcode">#</a>
+    
+    <span class="code-name">
+        PaymentMethodWithQrcode
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    All payment method options for qrcode element, those payment method type integration will render qrcode from your checkout site to specific provider’s authentication page.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_qrcodeElement.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_qrcodeElement.d.ts.html">types/qrcodeElement.d.ts</a>, <a href="types_qrcodeElement.d.ts.html#line6">line 6</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">'alipaycn'</code>
+|
+
+<code class="param-type">'alipayhk'</code>
+|
+
+<code class="param-type">'gcash'</code>
+|
+
+<code class="param-type">'dana'</code>
+|
+
+<code class="param-type">'kakaopay'</code>
+|
+
+<code class="param-type">'tng'</code>
+|
+
+<code class="param-type">'rabbit_line_pay'</code>
+|
+
+<code class="param-type">'poli'</code>
+|
+
+<code class="param-type">'fpx'</code>
+|
+
+<code class="param-type">'online_banking'</code>
+|
+
+<code class="param-type">'bank_transfer'</code>
+|
+
+<code class="param-type">'permatanet'</code>
+|
+
+<code class="param-type">'alfamart'</code>
+|
+
+<code class="param-type">'indomaret'</code>
+|
+
+<code class="param-type">'doku_ewallet'</code>
+|
+
+<code class="param-type">'enets'</code>
+|
+
+<code class="param-type">'payeasy'</code>
+|
+
+<code class="param-type">'seven_eleven'</code>
+|
+
+<code class="param-type">'konbini'</code>
+|
+
+<code class="param-type">'tesco_lotus'</code>
+|
+
+<code class="param-type">'grabpay'</code>
+|
+
+<code class="param-type">'skrill'</code>
+|
+
+<code class="param-type">'eps'</code>
+|
+
+<code class="param-type">'giropay'</code>
+|
+
+<code class="param-type">'ideal'</code>
+|
+
+<code class="param-type">'multibanco'</code>
+|
+
+<code class="param-type">'p24'</code>
+|
+
+<code class="param-type">'sofort'</code>
+|
+
+<code class="param-type">'trustly'</code>
+|
+
+<code class="param-type">'bancontact'</code>
+|
+
+<code class="param-type">'dragonpay'</code>
+|
+
+<code class="param-type">'blik'</code>
+|
+
+<code class="param-type">'mybank'</code>
+|
+
+<code class="param-type">'paybybankapp'</code>
+|
+
+<code class="param-type">'verkkopankki'</code>
+|
+
+<code class="param-type">'maxima'</code>
+|
+
+<code class="param-type">'narvesen'</code>
+|
+
+<code class="param-type">'paypost'</code>
+|
+
+<code class="param-type">'perlas_terminals'</code>
+|
+
+<code class="param-type">'paysafecash'</code>
+|
+
+<code class="param-type">'paysafecard'</code>
+|
+
+<code class="param-type">'paysera'</code>
+|
+
+<code class="param-type">'satispay'</code>
+|
+
+<code class="param-type">'family_mart'</code>
+|
+
+<code class="param-type">'hi_life'</code>
+|
+
+<code class="param-type">'sam_kiosk'</code>
+|
+
+<code class="param-type">'axs_kiosk'</code>
+|
+
+<code class="param-type">'bigc'</code>
+|
+
+<code class="param-type">'esun'</code>
+|
+
+<code class="param-type">'permata_atm'</code>
+|
+
+<code class="param-type">'boost'</code>
+|
+
+<code class="param-type">'shopee_pay'</code>
+|
+
+<code class="param-type">'paypal'</code>
+|
+
+<code class="param-type">'payu'</code>
+|
+
+<code class="param-type">'ovo'</code>
+|
+
+<code class="param-type">'bitpay'</code>
+|
+
+<code class="param-type">'truemoney'</code>
+|
+
+<code class="param-type">'atome'</code>
+|
+
+<code class="param-type">'duit_now'</code>
+|
+
+<code class="param-type">'pay_now'</code>
+|
+
+<code class="param-type">'prompt_pay'</code>
+|
+
+<code class="param-type">'go_pay'</code>
+|
+
+<code class="param-type">'linkaja'</code>
+|
+
+<code class="param-type">'jenius_pay'</code>
+
+
+    </span>
+
+<h4 class="name" id="PaymentMethodWithRedirect">
+    <a class="href-link" href="#PaymentMethodWithRedirect">#</a>
+    
+    <span class="code-name">
+        PaymentMethodWithRedirect
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    All payment method options for redirect element, those payment method type integration will trigger redirection from your checkout site to specific provider’s authentication page.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_element.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_element.d.ts.html">types/element.d.ts</a>, <a href="types_element.d.ts.html#line16">line 16</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">':hover'</code>
+|
+
+<code class="param-type">':focus'</code>
+|
+
+<code class="param-type">'::placeholder'</code>
+|
+
+<code class="param-type">'::selection'</code>
+|
+
+<code class="param-type">':disabled'</code>
+
+
+    </span>
+
+<h4 class="name" id="PseudoClasses">
+    <a class="href-link" href="#PseudoClasses">#</a>
+    
+    <span class="code-name">
+        PseudoClasses
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Supported customized pseudo css style for `cardNumber` | `expiry` | `cvc` elements
+https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_element.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_element.d.ts.html">types/element.d.ts</a>, <a href="types_element.d.ts.html#line174">line 174</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">RedirectElementPaymentOptions</code>
+|
+
+<code class="param-type">RedirectElementRecurringOptions</code>
+
+
+    </span>
+
+<h4 class="name" id="RedirectElementOptions">
+    <a class="href-link" href="#RedirectElementOptions">#</a>
+    
+    <span class="code-name">
+        RedirectElementOptions
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Apply to Redirect element type integration, interface used when call createElement with type `redirect`
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_redirectElement.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_redirectElement.d.ts.html">types/redirectElement.d.ts</a>, <a href="types_redirectElement.d.ts.html#line49">line 49</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+            </div>
+            
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

@@ -1,0 +1,1124 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> types/element.d.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Address.html">Address</a></li><li><a href="Airwallex.html">Airwallex</a></li><li><a href="Billing.html">Billing</a></li><li><a href="BoxStyle.html">BoxStyle</a></li><li><a href="CardElementOptions.html">CardElementOptions</a></li><li><a href="CardNumberElementOptions.html">CardNumberElementOptions</a></li><li><a href="CvcElementOptions.html">CvcElementOptions</a></li><li><a href="DropInElementOptions.html">DropInElementOptions</a></li><li><a href="Element.html">Element</a></li><li><a href="ElementError.html">ElementError</a></li><li><a href="ElementEvent.html">ElementEvent</a></li><li><a href="ElementOptions.html">ElementOptions</a></li><li><a href="ElementOptionsTypeMap.html">ElementOptionsTypeMap</a></li><li><a href="EventDetail.html">EventDetail</a></li><li><a href="ExpiryDateElementOptions.html">ExpiryDateElementOptions</a></li><li><a href="FontOptions.html">FontOptions</a></li><li><a href="FullFeaturedCardPaymentOptions.html">FullFeaturedCardPaymentOptions</a></li><li><a href="Get3dsReturnUrlRequest.html">Get3dsReturnUrlRequest</a></li><li><a href="GetBrowserInfoResponse.html">GetBrowserInfoResponse</a></li><li><a href="GetDeviceFingerprintRequest.html">GetDeviceFingerprintRequest</a></li><li><a href="Handle3dsRequest.html">Handle3dsRequest</a></li><li><a href="HostPaymentPage.html">HostPaymentPage</a></li><li><a href="HppRecurringOptions.html">HppRecurringOptions</a></li><li><a href="HppTheme.html">HppTheme</a></li><li><a href="InitOptions.html">InitOptions</a></li><li><a href="InputStyle.html">InputStyle</a></li><li><a href="Intent.html">Intent</a></li><li><a href="NextAction.html">NextAction</a></li><li><a href="PaymentConsentRequest.html">PaymentConsentRequest</a></li><li><a href="PaymentConsentResponse.html">PaymentConsentResponse</a></li><li><a href="PaymentMethod.html">PaymentMethod</a></li><li><a href="PaymentMethodBasicInfo.html">PaymentMethodBasicInfo</a></li><li><a href="PaymentMethodWithConsent.html">PaymentMethodWithConsent</a></li><li><a href="PaymentRequestButtonOptions.html">PaymentRequestButtonOptions</a></li><li><a href="PaymentShippingOption.html">PaymentShippingOption</a></li><li><a href="PopUpStyle.html">PopUpStyle</a></li><li><a href="QrcodeElementOptions.html">QrcodeElementOptions</a></li><li><a href="RedirectElementPaymentBasicOptions.html">RedirectElementPaymentBasicOptions</a></li><li><a href="RedirectElementPaymentOptionsForBankTransfer.html">RedirectElementPaymentOptionsForBankTransfer</a></li><li><a href="RedirectElementPaymentOptionsForDoku.html">RedirectElementPaymentOptionsForDoku</a></li><li><a href="RedirectElementPaymentOptionsForFpx.html">RedirectElementPaymentOptionsForFpx</a></li><li><a href="RedirectElementPaymentOptionsForOnlineBanking.html">RedirectElementPaymentOptionsForOnlineBanking</a></li><li><a href="RedirectElementPaymentOptionsForPoli.html">RedirectElementPaymentOptionsForPoli</a></li><li><a href="RedirectElementPaymentOptionsForSkrill.html">RedirectElementPaymentOptionsForSkrill</a></li><li><a href="RedirectElementPaymentOptionsForSofort.html">RedirectElementPaymentOptionsForSofort</a></li><li><a href="WechatElementOptions.html">WechatElementOptions</a></li><li><a href="Window.html">Window</a></li></ul><h3>Global</h3><ul><li><a href="global.html#confirmPaymentIntent">confirmPaymentIntent</a></li><li><a href="global.html#confirmPaymentIntentWithSavedCard">confirmPaymentIntentWithSavedCard</a></li><li><a href="global.html#createElement">createElement</a></li><li><a href="global.html#createPaymentConsent">createPaymentConsent</a></li><li><a href="global.html#createPaymentMethod">createPaymentMethod</a></li><li><a href="global.html#destroyElement">destroyElement</a></li><li><a href="global.html#get3dsReturnUrl">get3dsReturnUrl</a></li><li><a href="global.html#getBrowserInfo">getBrowserInfo</a></li><li><a href="global.html#getDeviceFingerprint">getDeviceFingerprint</a></li><li><a href="global.html#getElement">getElement</a></li><li><a href="global.html#getGatewayUrl">getGatewayUrl</a></li><li><a href="global.html#handle3ds">handle3ds</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadAirwallex">loadAirwallex</a></li><li><a href="global.html#loadAirwallexJs">loadAirwallexJs</a></li><li><a href="global.html#redirectToCheckout">redirectToCheckout</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>types/element.d.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Intent, PaymentMethodBasicInfo } from './cardNumber';
+import { Properties } from 'csstype';
+import { QrcodeElementOptions } from './qrcodeElement';
+import { RecurringOptions } from './airwallex';
+import { DropInElementOptions } from './dropInElement';
+import { RedirectElementOptions } from './redirectElement';
+import { NextAction } from './fraud';
+import { Mode } from './airwallex';
+
+/// &lt;reference types="applepayjs" />
+
+/**
+ * Supported integration element type
+ */
+export type ElementType =
+  | 'applePayButton'
+  | 'cardNumber'
+  | 'expiry'
+  | 'cvc'
+  | 'googlePayButton'
+  /**
+   * @deprecated paymentRequestButton is no longer supported by airwallex
+   */
+  | 'paymentRequestButton'
+  | 'card'
+  | 'wechat'
+  | 'qrcode'
+  | 'redirect'
+  | 'dropIn'
+  | 'fullFeaturedCard'
+  | 'directDebit';
+
+/**
+ * All payment method options for redirect element, those payment method type integration will trigger redirection from your checkout site to specific provider’s authentication page.
+ */
+export type PaymentMethodWithRedirect =
+  | 'alipaycn'
+  | 'alipayhk'
+  | 'gcash'
+  | 'dana'
+  | 'kakaopay'
+  | 'tng'
+  | 'rabbit_line_pay'
+  | 'poli'
+  | 'fpx'
+  | 'online_banking'
+  | 'bank_transfer'
+  | 'permatanet'
+  | 'alfamart'
+  | 'indomaret'
+  | 'doku_ewallet'
+  | 'enets'
+  | 'payeasy'
+  | 'seven_eleven'
+  | 'konbini'
+  | 'tesco_lotus'
+  | 'grabpay'
+  | 'skrill'
+  | 'eps'
+  | 'giropay'
+  | 'ideal'
+  | 'multibanco'
+  | 'p24'
+  | 'sofort'
+  | 'trustly'
+  | 'bancontact'
+  | 'dragonpay'
+  | 'blik'
+  | 'mybank'
+  | 'paybybankapp'
+  | 'verkkopankki'
+  | 'maxima'
+  | 'narvesen'
+  | 'paypost'
+  | 'perlas_terminals'
+  | 'paysafecash'
+  | 'paysafecard'
+  | 'paysera'
+  | 'satispay'
+  | 'family_mart'
+  | 'hi_life'
+  | 'sam_kiosk'
+  | 'axs_kiosk'
+  | 'bigc'
+  | 'esun'
+  | 'permata_atm'
+  | 'boost'
+  | 'shopee_pay'
+  | 'paypal'
+  | 'payu'
+  | 'ovo'
+  | 'bitpay'
+  | 'truemoney'
+  | 'atome'
+  | 'duit_now'
+  | 'pay_now'
+  | 'prompt_pay'
+  | 'go_pay'
+  | 'linkaja'
+  | 'jenius_pay';
+
+export type DirectDebitPaymentMethod =
+  | 'ach_direct_debit'
+  | 'bacs_direct_debit'
+  | 'becs_direct_debit'
+  | 'sepa_direct_debit';
+
+/**
+ * Supported integration payment method type for dropin and hostPaymentPage
+ */
+export type PaymentMethodType =
+  | 'googlepay'
+  | 'applepay'
+  | 'card'
+  | 'wechatpay'
+  | PaymentMethodWithRedirect
+  | DirectDebitPaymentMethod;
+
+/**
+ * Define of error code when failed to validate user input or failed to request
+ * [Error codes](https://www.airwallex.com/docs/payments__error-codes)
+ */
+export type ERROR_CODE =
+  | 'required'
+  | 'invalid'
+  | 'un_support'
+  | 'expired'
+  | 'validation_error'
+  | 'duplicate_request'
+  | 'resource_not_found'
+  | 'resource_already_exists'
+  | 'state_invalid_for_operation'
+  | 'service_unavailable'
+  | 'processor_unavailable'
+  | 'processor_busy'
+  | 'processor_declined'
+  | 'amount_above_limit'
+  | 'frequency_above_limit'
+  | 'transaction_blocked'
+  | 'payment_blocked'
+  | 'unsupported_operation_on_payment_method'
+  | 'capture_amount_above_limit'
+  | 'refund_amount_above_limit'
+  | 'insufficient_available_funds'
+  | 'insufficient_incoming_funds'
+  | 'processor_user_account_abnormal'
+  | 'processor_refund_period_expired'
+  | 'processor_refund_offline_required';
+
+/**
+ * Event code supported value by element when shopper interact with the checkout element
+ *
+ * `onReady`: The event fires when a given element resource has loaded.
+ *
+ * `onSubmit`: The event is raised when confirm the intent. It fires after the click Pay button or calling confirmPaymentIntent function.
+ *
+ * `onSuccess`: The event fires when a intent is confirm with Airwallex
+ *
+ * `onError`: Error events are fired at various targets for different kinds of errors with shopper interaction, refer to `ElementError` interface.
+ *
+ * `onCancel`: The event fires when shopper click cancel button when interact with the payment form.
+ *
+ * `onFocus`: The event is raised when the shopper sets focus on an input by click or tab switch interaction.
+ *
+ * `onBlur`: The event is raised when an input in element loses focus.
+ *
+ * `onChange`: The events fire when the user commits a value change to a input. This may be done, for example, by clicking outside of the input or by using the Tab key to switch to a different input.
+ *
+ * `onClick`: The event is raised when the user clicks on an input element.
+ *
+ * `onDynamicCurrencyConversion`: The events fire when merchant enable Dynamic Currency Conversion (DCC) feature and shopper is confirm payment with an intent which match DCC scenario
+ *
+ * `onPendingVerifyAccount`: The events fire when shoppers checkout with direct debit methods and the bank account need to be verified
+ *
+ * `onSwitchMethod`: The event fires when shoppers switch payment method in hpp or dropIn element
+ */
+export type EventCode =
+  | 'onReady'
+  | 'onSubmit'
+  | 'onDynamicCurrencyConversion'
+  | 'onSuccess'
+  | 'onError'
+  | 'onCancel'
+  | 'onFocus'
+  | 'onBlur'
+  | 'onChange'
+  | 'onClick'
+  | 'onPendingVerifyAccount'
+  | 'onPressArrowKey'
+  | 'onSwitchMethod';
+
+/**
+ * Return error when failed to validate user input or failed to request
+ */
+export interface ElementError {
+  /**
+   * Feel text message in english
+   */
+  message: string;
+  /**
+   * String code, will support in the future
+   */
+  code?: ERROR_CODE;
+}
+
+/**
+ * Event detail, field define by CustomEvent, we fully leverage it to communicate the event payload
+ */
+export interface EventDetail {
+  /**
+   * Type of element which fire the event
+   */
+  type: ElementType | 'threeDsFrictionless' | 'threeDsChallenge';
+  /**
+   * Indicate if the element input is validate format
+   */
+  complete?: boolean;
+  /**
+   * Indicate if the element input is empty or not
+   */
+  empty?: boolean;
+  /**
+   * Indicate the brand of card, only apply for card payment method
+   */
+  brand?: string;
+  /**
+   * Indicate the confirm response when integrate with `card` | `wechat` | `dropIn` element
+   */
+  intent?: Intent &amp; {
+    latest_payment_attempt: {
+      payment_method: PaymentMethodBasicInfo;
+    };
+  };
+  /**
+   * Response error when failed to call interact with shopper input
+   */
+  error?: ElementError;
+  /**
+   * Indicate the direct debit information
+   */
+  directDebit?: {
+    url: string;
+  };
+  arrowKey?: 'ArrowLeft' | 'ArrowRight' | 'ArrowTop' | 'ArrowDown';
+}
+
+export type ExtendEventDetail = EventDetail &amp; {
+  code?: string;
+  redirectUrl?: string;
+  cardBin?: string;
+  status?: string;
+  auto_capture?: boolean;
+  paymentMethod?: PaymentMethodBasicInfo;
+  next_action?: NextAction;
+  testCard?: string;
+  width?: number;
+  height?: number;
+};
+
+/**
+ * The event object your checkout page can listen to by below implementation:
+ *
+ * Using html [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent)
+ *
+ * window.addEventListener(code: EventCode, (event: { detail: ElementEvent }) => /* Your code here *\/ );
+ */
+export interface ElementEvent {
+  /**
+   * Event type code
+   * https://developer.mozilla.org/en-US/docs/Web/API/Event/type
+   */
+  type: EventCode;
+  /**
+   * Event detail of CustomEvent
+   * https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/detail
+   */
+  detail: EventDetail;
+}
+
+/**
+ * To support customized popup overlay width and height when trigger 3DS V2 challenge flow
+ */
+export interface PopUpStyle {
+  /**
+   * Customized Popup overlay width like 3DS payment flow
+   */
+  popupWidth?: number;
+  /**
+   * Customized Popup overlay height like 3DS payment flow
+   */
+  popupHeight?: number;
+}
+
+/**
+ * Config base options for element integration, support using for ElementType
+ */
+export interface ElementOptions {
+  /**
+   * Element css style camelcase option, default style by Chrome browser default
+   */
+  style?: PopUpStyle &amp; Properties;
+  /**
+   * Your checkout website origin url, aka merchant checkout page's 'window.location.origin' field
+   */
+  origin?: string;
+}
+
+/**
+ * Supported customized pseudo css style for `cardNumber` | `expiry` | `cvc` elements
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+ */
+type PseudoClasses = ':hover' | ':focus' | '::placeholder' | '::selection' | ':disabled';
+
+/**
+ * Pseudo-classes object
+ */
+type PseudoClassStyle = { [K in PseudoClasses]?: Properties };
+
+/**
+ * Customize the the input element using CSS properties
+ *
+ */
+export interface InputStyle extends PopUpStyle {
+  /**
+   * Base styling applied to the input iframe. All styling extends from this style.
+   */
+  base?: PseudoClassStyle &amp; Properties;
+  /**
+   * Styling applied to the input element when a field passes validation.
+   */
+  valid?: Properties;
+  /**
+   * Styling applied to the input element when a field fails validation.
+   */
+  invalid?: Properties;
+}
+
+/**
+ * Customize `dropIn`, `fullFeaturedCard`,  and hosted payment page integration layout by using CSS properties
+ *
+ */
+export interface BoxStyle extends PopUpStyle {
+  /**
+   * Base styling applied to the integral iframe. All styling extends from this style.
+   */
+  base?: Properties;
+  /**
+   * Styling applied to the input element
+   */
+  input?: Properties &amp; PseudoClassStyle;
+  /**
+   * Input variation
+   */
+  variant?: 'outlined' | 'filled' | 'standard' | 'bootstrap';
+}
+
+/**
+ * Apply to slim `card` element type integration, interface used when call createElement with type `card`
+ */
+export interface CardElementOptions extends ElementOptions {
+  /**
+   * Config if the element input are disabled or not, default false
+   */
+  disabled?: boolean;
+  /**
+   * Indicate whether to capture immediate when authentication success
+   */
+  autoCapture?: boolean;
+  /**
+   * One or more card networks that you support.
+   */
+  allowedCardNetworks?: CardNetwork[];
+  /**
+   * Style for card element
+   */
+  style?: InputStyle;
+  /**
+   * Container for authentication form, it's an element id
+   */
+  authFormContainer?: string;
+}
+
+/**
+ * Apply to split card element type integration, interface used when call createElement with type `cardNumber`
+ */
+export interface CardNumberElementOptions extends ElementOptions {
+  /**
+   * Config if the element input are disabled or not, default false
+   */
+  disabled?: boolean;
+  /**
+   * The payment intent you would like to checkout
+   * Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+   *
+   */
+  intent?: Intent;
+  /**
+   * Indicate whether to capture immediate when authentication success
+   */
+  autoCapture?: boolean;
+  /**
+   * One or more card networks that you support.
+   */
+  allowedCardNetworks?: CardNetwork[];
+  /**
+   * The placeholder attribute specifies a short hint that describes the expected value of an input field
+   */
+  placeholder?: string;
+  /**
+   * Style for cardNumber element
+   */
+  style?: InputStyle;
+  /**
+   * Container for authentication form, it's an element id
+   */
+  authFormContainer?: string;
+}
+
+/**
+ * Apply to split card element type integration, interface used when call createElement with type `expiry`
+ */
+export interface ExpiryDateElementOptions extends ElementOptions {
+  /**
+   * Config if the element input are disabled or not, default false
+   */
+  disabled?: boolean;
+  /**
+   * The placeholder attribute specifies a short hint that describes the expected value of an input field
+   */
+  placeholder?: string;
+  /**
+   * Style for expiry element
+   */
+  style?: InputStyle;
+}
+
+/**
+ * Apply to split card element type integration, interface used when call createElement with type `cvc`
+ */
+export interface CvcElementOptions extends ElementOptions {
+  /**
+   * Config if the element input are disabled or not, default false
+   */
+  disabled?: boolean;
+  /**
+   * The placeholder attribute specifies a short hint that describes the expected value of an input field
+   */
+  placeholder?: string;
+  /**
+   * Indicate cvc's length
+   */
+  cvcLength?: number;
+  /**
+   * Style for cvc element
+   */
+  style?: InputStyle;
+  /**
+   * Container for authentication form, it's an element id
+   */
+  authFormContainer?: string;
+}
+
+/**
+ * Apply to full featured card element type integration, interface used when call createElement with type `fullFeaturedCard`
+ */
+export interface FullFeaturedCardPaymentOptions extends ElementOptions {
+  /**
+   * The payment intent you would like to checkout
+   * Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+   *
+   */
+  intent?: Intent;
+  /**
+   * Indicate whether to capture immediate when authentication success, apply when shopper using card payment method
+   */
+  autoCapture?: boolean;
+  /**
+   * Indicate to improve 3DS experience, indicate if the payment form will collect billing info from shopper
+   */
+  withBilling?: boolean;
+  /**
+   * Style for fullFeaturedCard element
+   */
+  style?: BoxStyle;
+  /**
+   * Container for authentication form, it's an element id
+   */
+  authFormContainer?: string;
+  /**
+   * Checkout mode
+   */
+  mode?: 'payment';
+}
+
+export interface FullFeaturedCardRecurringOptions extends Omit&lt;FullFeaturedCardPaymentOptions, 'mode'> {
+  /**
+   * If the intent provided, this should be the client_secret of the intent
+   * If no intent provided, this should be the client_secret of the customer
+   */
+  client_secret: string;
+  /**
+   * Checkout mode
+   */
+  mode: 'recurring';
+  /**
+   * Checkout for know customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro)
+   * If no intent provided, this field should be required
+   */
+  customer_id: string;
+  /**
+   * The options of recurring flow
+   */
+  recurringOptions: RecurringOptions;
+}
+
+export type FullFeaturedCardElementOptions = FullFeaturedCardPaymentOptions | FullFeaturedCardRecurringOptions;
+
+/**
+ * The PaymentShippingOption dictionary has members describing a shipping option.
+ */
+export interface PaymentShippingOption {
+  id: string;
+  label: string;
+  amount: {
+    currency: string;
+    value: string;
+  };
+  selected: boolean;
+}
+
+export type ApplePayHppOrDropInRequestOptions = ApplePayRequestOptions;
+
+export type ApplePayRecurringLineItem = {
+  paymentTiming: 'recurring' | 'deferred';
+  recurringPaymentStartDate: Date;
+  recurringPaymentIntervalUnit: 'year' | 'month' | 'day' | 'hour' | 'minute';
+  recurringPaymentIntervalCount: number;
+  recurringPaymentEndDate: Date;
+};
+
+export interface ApplePayRequestOriginalOptions {
+  /**
+   * The merchant's two-letter ISO 3166 country code. Like 'US'
+   */
+  countryCode: string;
+
+  /**
+   * A set of line items that explain recurring payments and/or additional charges.
+   */
+  lineItems?: (ApplePayJS.ApplePayLineItem &amp; ApplePayRecurringLineItem)[];
+
+  /**
+   * Billing contact information for the user.
+   */
+  billingContact?: ApplePayJS.ApplePayPaymentContact;
+
+  /**
+   * The billing information that you require from the user in order to process the transaction.
+   */
+  requiredBillingContactFields?: ApplePayJS.ApplePayContactField[];
+
+  /**
+   * The shipping information that you require from the user in order to fulfill the order.
+   * @deprecated Airwallex won't save shipping info in apple pay
+   */
+  requiredShippingContactFields?: ApplePayJS.ApplePayContactField[];
+
+  /**
+   * Shipping contact information for the user.
+   * @deprecated Airwallex won't save shipping info in apple pay
+   */
+  shippingContact?: ApplePayJS.ApplePayPaymentContact;
+
+  /**
+   * A set of shipping method objects that describe the available shipping methods.
+   * @deprecated Airwallex won't save shipping info in apple pay
+   */
+  shippingMethods?: ApplePayJS.ApplePayShippingMethod[];
+
+  /**
+   * How the items are to be shipped.
+   * @deprecated Airwallex won't save shipping info in apple pay
+   */
+  shippingType?: ApplePayJS.ApplePayShippingType;
+
+  /**
+   * A list of ISO 3166 country codes for limiting payments to cards from specific countries.
+   */
+  supportedCountries?: string[];
+
+  /**
+   * Optional user-defined data.
+   */
+  applicationData?: string;
+}
+export interface GooglePayHppRequestOptions extends Omit&lt;GooglePayRequestOptions, 'merchantInfo'> {
+  /**
+   * Detailed information about the merchant.
+   */
+  merchantInfo?: {
+    /**
+     * Merchant name encoded as UTF-8.
+     */
+    merchantName?: string;
+    /**
+     *The fully qualified domain of the requesting merchant.
+     */
+    merchantOrigin?: string;
+  };
+}
+
+export type CardNetwork = 'visa' | 'mastercard' | 'maestro' | 'unionpay' | 'amex';
+
+export type GoogleSupportedCardNetWork = 'MASTERCARD' | 'MAESTRO' | 'VISA';
+export interface GooglePayRequestOptions {
+  /**
+   * The two-letter ISO-3166 country code.
+   */
+  countryCode: string;
+  /**
+   * Detailed information about the merchant.
+   */
+  merchantInfo?: {
+    /**
+     * Merchant name encoded as UTF-8.
+     */
+    merchantName?: string;
+  };
+  /**
+   * Whether to collect the email from the buyer.
+   *
+   * If omitted, defaults to `false`.
+   *
+   * @default false
+   */
+  emailRequired?: boolean;
+  /**
+   * Specifies the text to be displayed within the Google Pay button.
+   *
+   * @default "buy"
+   */
+  buttonType?: google.payments.api.ButtonType;
+  /**
+   * Specifies the button color of the Google Pay button.
+   *
+   * @default "default"
+   */
+  buttonColor?: google.payments.api.ButtonColor;
+  /**
+   * Determines how the button's size should change relative to the
+   * button's parent element.
+   *
+   * @default "static"
+   */
+  buttonSizeMode?: google.payments.api.ButtonSizeMode;
+  /**
+   * Correlation ID to refer to this transaction.
+   *
+   * This field is optional. It is generated by the merchant and is used
+   * for referring to this transaction later on (e.g. for debugging issues
+   * when communicating with Google).
+   */
+  transactionId?: string;
+  /**
+   * Definition of a cart item.
+   */
+  displayItems?: google.payments.api.DisplayItem[];
+  /**
+   * The status of the total price used.
+   * If it is a variable subscription, the status should be NOT_CURRENTLY_KNOWN.
+   *
+   * Options:
+   *
+   * - `NOT_CURRENTLY_KNOWN`:
+   *   The total price is not known currently.
+   *
+   * - `ESTIMATED`:
+   *   The total price provided is an estimated price. The final price may
+   *   change depending on the selected shipping address or billing address,
+   *   if requested.
+   *
+   * - `FINAL`:
+   *   The total price is the final total price of the transaction, and will
+   *   not change based on selections made by the buyer.
+   * * @default "FINAL"
+   */
+  totalPriceStatus?: 'NOT_CURRENTLY_KNOWN' | 'ESTIMATED' | 'FINAL';
+  /**
+   * Total price label of this transaction.
+   *
+   * The string will be shown as the total price label on the cart modal
+   * dialog page.
+   *
+   * This field is optional, but required if developer wants to show cart
+   * information. Otherwise the cart modal dialog will not be rendered
+   * even if transactionInfo.displayItems is set.
+   */
+  totalPriceLabel?: string;
+  /**
+   * The options for checkout.
+   */
+  checkoutOption?: google.payments.api.CheckoutOption;
+  /**
+   * Defines callback methods for handling payment data changed and payment
+   * authorized events.
+   *
+   * If you set up Dynamic Price Updates in your integration, be sure to add
+   * the following [[PaymentDataChangedHandler|`onPaymentDataChanged`]] and
+   * [[PaymentAuthorizedHandler|`onPaymentAuthorized`]] callbacks.
+   *
+   * Example:
+   *
+   * The following example configuration uses the callbacks needed to set up
+   * Dynamic Price Updates:
+   *
+   * ```js
+   * {
+   *   onPaymentDataChanged: onPaymentDataChanged,
+   *   onPaymentAuthorized: onPaymentAuthorized
+   * }
+   * ```
+   */
+  paymentDataCallbacks?: google.payments.api.PaymentDataCallbacks;
+  /**
+   * Allowed authentication methods. The default value is ["PAN_ONLY", "CRYPTOGRAM_3DS"]
+   */
+  allowedAuthMethods?: google.payments.api.CardAuthMethod[];
+  /**
+   * One or more card networks that you support, The default value is ["MASTERCARD", "MAESTRO", "VISA"]
+   */
+  allowedCardNetworks?: GoogleSupportedCardNetWork[];
+  /**
+   * Whether a prepaid card may be used for this transaction.
+   *
+   * If omitted, defaults to `true`.
+   *
+   * @default true
+   */
+  allowPrepaidCards?: boolean;
+  /**
+   * Whether a credit card may be used for this transaction.
+   *
+   * If omitted, defaults to `true`.
+   *
+   * @default true
+   */
+  allowCreditCards?: boolean;
+  /**
+   * Set to `true` to request assuranceDetails.
+   *
+   * If omitted, defaults to `false`.
+   *
+   * You may set if you need object provides information about the validation performed on the returned payment data.
+   *
+   * @default false
+   */
+  assuranceDetailsRequired?: boolean;
+  /**
+   * Set to `true` to request assuranceDetails.
+   *
+   * If omitted, defaults to `false`.
+   *
+   * You may set if you need object provides information about the validation performed on the returned payment data.
+   *
+   * @default false
+   */
+  billingAddressRequired?: boolean;
+
+  /**
+   * Optional billing address parameters for the returned billing address.
+   */
+  billingAddressParameters?: google.payments.api.BillingAddressParameters;
+}
+
+export interface GooglePayButtonOptions extends GooglePayRequestOptions, ElementOptions {
+  /**
+   * The payment intent id you would like to checkout
+   * It's required for payment mode and optional for recurring mode
+   * Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+   *
+   */
+  intent_id?: string;
+  /**
+   * If the intent_id provided, this should be the client_secret of the intent
+   * If no intent_id provided, this should be the client_secret of the customer
+   */
+  client_secret: string;
+  /**
+   * Checkout for know customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro)
+   * It's required for recurring mode
+   */
+  customer_id?: string;
+  /**
+   * Checkout mode
+   * @default "payment"
+   */
+  mode?: Mode;
+  /**
+   * Indicate the amount and currency of the intent.
+   * If the mode is recurring and there is no intent_id provided, amount should be {value: 0, currency: 'Replace with payment currency'}.
+   */
+  amount: {
+    value: number;
+    currency: string;
+  };
+
+  /**
+   * Indicate whether to capture immediate when authentication success
+   */
+  autoCapture?: boolean;
+  /**
+   * Container for authentication form, it's an element id
+   */
+  authFormContainer?: string;
+}
+
+export interface ApplePayRequestOptions extends ApplePayRequestOriginalOptions {
+  /**
+   * 	Indicate the type of button you want displayed on your payments form. Like 'donate'
+   *  https://developer.apple.com/documentation/apple_pay_on_the_web/displaying_apple_pay_buttons_using_css
+   */
+  buttonType?: string;
+  /**
+   * Indicate the color of the button. Default value is 'black'
+   */
+  buttonColor?: 'black' | 'white' | ' white-with-line';
+  /**
+   * Provide a business name for the label field. Use the same business name people will see when they look for the charge on their bank or credit card statement. For example, "COMPANY, INC."
+   */
+  totalPriceLabel?: string;
+  /**
+   * A type that indicates whether a line item is final or pending.
+   * if the mode is recurring and it's a variable subscription, the value should be pending.
+   * @default "final"
+   */
+  totalPriceType?: 'final' | 'pending';
+  /**
+   * Card networks supported by the merchant.
+   * if not configured, supportedNetworks will automatically configure based on merchant account settings
+   * For more details, please refer to https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916122-supportednetworks
+   */
+  supportedNetworks?: string[];
+  /**
+   * Payment capabilities supported by the merchant.
+   * If not configured, supportedNetworks will automatically configure according to the merchant account settings
+   * supports3DS - Required. This value must be supplied.
+   * supportsCredit - Optional. If present, only transactions that are categorized as credit cards are allowed.
+   * supportsDebit - Optional. If present, only transactions that are categorized as debit cards are allowed.
+   * supportsEMV - Include this value only if you support China Union Pay transactions. (if supportedNetworks don't contains chinaUnionPay, please don't include it).
+   */
+  merchantCapabilities?: ApplePayJS.ApplePayMerchantCapability[];
+}
+export interface ApplePayButtonOptions extends ElementOptions, ApplePayRequestOptions {
+  /**
+   * The payment intent id you would like to checkout
+   * It's required for payment mode and optional for recurring mode
+   * Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+   *
+   */
+  intent_id?: string;
+  /**
+   * If the intent_id provided, this should be the client_secret of the intent
+   * If no intent_id provided, this should be the client_secret of the customer
+   */
+  client_secret: string;
+  /**
+   * Checkout for know customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro)
+   * It's required for recurring mode
+   */
+  customer_id?: string;
+  /**
+   * Checkout mode
+   * @default "payment"
+   */
+  mode?: Mode;
+  /**
+   * Indicate the amount and currency of the intent.
+   * If the mode is recurring and there is no intent_id provided, amount should be {value: 0, currency: 'Replace with payment currency'}.
+   */
+  amount: {
+    value: number;
+    currency: string;
+  };
+  /**
+   * Indicate whether to capture immediate when authentication success
+   */
+  autoCapture?: boolean;
+}
+
+/**
+ * Apply to W3C payment request API element type integration, interface used when call createElement with type `paymentRequestButton`
+ * @deprecated paymentRequestButton is no longer supported by airwallex
+ */
+export interface PaymentRequestButtonOptions extends ElementOptions {
+  /**
+   * The payment intent you would like to checkout
+   * Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+   *
+   */
+  intent?: Intent;
+  /**
+   * Indicate whether to capture immediate when authentication success
+   */
+  autoCapture?: boolean;
+  /**
+   * Indicate if the payment form collect payer name is required
+   */
+  requestPayerName?: boolean;
+  /**
+   * Indicate if the payment form collect payer email is required
+   */
+  requestPayerEmail?: boolean;
+  /**
+   * Indicate if the payment form collect payer phone is required
+   */
+  requestPayerPhone?: boolean;
+  /**
+   * Indicate if the payment form collect shipping info from shopper is required
+   */
+  requestShipping?: boolean;
+  /**
+   * The shippingOptions must be supplied when requestShipping is true for the customer to proceed in the flow.
+   */
+  shippingOptions?: Array&lt;PaymentShippingOption>;
+  /**
+   * Container for authentication form, it's an element id
+   */
+  authFormContainer?: string;
+}
+
+/**
+ * Apply to wechat element type integration, interface used when call createElement with type `wechat`
+ */
+export interface WechatElementOptions extends ElementOptions {
+  /**
+   * The payment intent you would like to checkout
+   * Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+   *
+   */
+  intent?: Intent;
+}
+
+/**
+ * Functions and external fields can be using in your integration flow with airwallex element
+ *
+ * Two ways to get elements, by call createElement function or getElement
+ *
+ * ***IMPORTANT***
+ *
+ * Once element destroy by call function destroyElement, the element reference should not be using anymore
+ */
+export interface Element {
+  /**
+   * Refer to the options when call createElement
+   */
+  options?:
+    | CardElementOptions
+    | CardNumberElementOptions
+    | ExpiryDateElementOptions
+    | CvcElementOptions
+    | FullFeaturedCardElementOptions
+    | DropInElementOptions
+    | WechatElementOptions
+    | QrcodeElementOptions
+    | RedirectElementOptions
+    | PaymentRequestButtonOptions;
+  /**
+   * The iframe element after mount to the DOM
+   */
+  iframe: HTMLIFrameElement | null;
+  /**
+   * Refer to the DOM element you call mount function
+   */
+  domElement: null | HTMLElement;
+  /**
+   * Element integration `step #3`
+   * Mount payment element to your HTML DOM element for checkout
+   */
+  mount(domElement: string | HTMLElement): null | HTMLElement;
+  /**
+   * Using this function to blur the input html element
+   */
+  blur(): void;
+  /**
+   * Using this function to clear the input html element
+   */
+  clear(): void;
+  /**
+   * Using this function to focus the input html element
+   * https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/blur
+   */
+  focus(): void;
+  /**
+   * Using this function to unmount the element, opposite to mount function
+   * https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus
+   */
+  unmount(): void;
+  /**
+   * Using this function to update the element option after create the element
+   */
+  update(
+    options?:
+      | CardElementOptions
+      | CardNumberElementOptions
+      | ExpiryDateElementOptions
+      | CvcElementOptions
+      | FullFeaturedCardElementOptions
+      | DropInElementOptions
+      | WechatElementOptions
+      | QrcodeElementOptions
+      | RedirectElementOptions
+      | ApplePayButtonOptions
+      | GooglePayButtonOptions
+      | PaymentRequestButtonOptions,
+  ): void;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

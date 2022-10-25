@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> PaymentMethod</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Address.html">Address</a></li><li><a href="Airwallex.html">Airwallex</a></li><li><a href="Billing.html">Billing</a></li><li><a href="BoxStyle.html">BoxStyle</a></li><li><a href="CardElementOptions.html">CardElementOptions</a></li><li><a href="CardNumberElementOptions.html">CardNumberElementOptions</a></li><li><a href="CvcElementOptions.html">CvcElementOptions</a></li><li><a href="DropInElementOptions.html">DropInElementOptions</a></li><li><a href="Element.html">Element</a></li><li><a href="ElementError.html">ElementError</a></li><li><a href="ElementEvent.html">ElementEvent</a></li><li><a href="ElementOptions.html">ElementOptions</a></li><li><a href="ElementOptionsTypeMap.html">ElementOptionsTypeMap</a></li><li><a href="EventDetail.html">EventDetail</a></li><li><a href="ExpiryDateElementOptions.html">ExpiryDateElementOptions</a></li><li><a href="FontOptions.html">FontOptions</a></li><li><a href="FullFeaturedCardPaymentOptions.html">FullFeaturedCardPaymentOptions</a></li><li><a href="Get3dsReturnUrlRequest.html">Get3dsReturnUrlRequest</a></li><li><a href="GetBrowserInfoResponse.html">GetBrowserInfoResponse</a></li><li><a href="GetDeviceFingerprintRequest.html">GetDeviceFingerprintRequest</a></li><li><a href="Handle3dsRequest.html">Handle3dsRequest</a></li><li><a href="HostPaymentPage.html">HostPaymentPage</a></li><li><a href="HppRecurringOptions.html">HppRecurringOptions</a></li><li><a href="HppTheme.html">HppTheme</a></li><li><a href="InitOptions.html">InitOptions</a></li><li><a href="InputStyle.html">InputStyle</a></li><li><a href="Intent.html">Intent</a></li><li><a href="NextAction.html">NextAction</a></li><li><a href="PaymentConsentRequest.html">PaymentConsentRequest</a></li><li><a href="PaymentConsentResponse.html">PaymentConsentResponse</a></li><li><a href="PaymentMethod.html">PaymentMethod</a></li><li><a href="PaymentMethodBasicInfo.html">PaymentMethodBasicInfo</a></li><li><a href="PaymentMethodWithConsent.html">PaymentMethodWithConsent</a></li><li><a href="PaymentRequestButtonOptions.html">PaymentRequestButtonOptions</a></li><li><a href="PaymentShippingOption.html">PaymentShippingOption</a></li><li><a href="PopUpStyle.html">PopUpStyle</a></li><li><a href="QrcodeElementOptions.html">QrcodeElementOptions</a></li><li><a href="RedirectElementPaymentBasicOptions.html">RedirectElementPaymentBasicOptions</a></li><li><a href="RedirectElementPaymentOptionsForBankTransfer.html">RedirectElementPaymentOptionsForBankTransfer</a></li><li><a href="RedirectElementPaymentOptionsForDoku.html">RedirectElementPaymentOptionsForDoku</a></li><li><a href="RedirectElementPaymentOptionsForFpx.html">RedirectElementPaymentOptionsForFpx</a></li><li><a href="RedirectElementPaymentOptionsForOnlineBanking.html">RedirectElementPaymentOptionsForOnlineBanking</a></li><li><a href="RedirectElementPaymentOptionsForPoli.html">RedirectElementPaymentOptionsForPoli</a></li><li><a href="RedirectElementPaymentOptionsForSkrill.html">RedirectElementPaymentOptionsForSkrill</a></li><li><a href="RedirectElementPaymentOptionsForSofort.html">RedirectElementPaymentOptionsForSofort</a></li><li><a href="WechatElementOptions.html">WechatElementOptions</a></li><li><a href="Window.html">Window</a></li></ul><h3>Global</h3><ul><li><a href="global.html#confirmPaymentIntent">confirmPaymentIntent</a></li><li><a href="global.html#confirmPaymentIntentWithSavedCard">confirmPaymentIntentWithSavedCard</a></li><li><a href="global.html#createElement">createElement</a></li><li><a href="global.html#createPaymentConsent">createPaymentConsent</a></li><li><a href="global.html#createPaymentMethod">createPaymentMethod</a></li><li><a href="global.html#destroyElement">destroyElement</a></li><li><a href="global.html#get3dsReturnUrl">get3dsReturnUrl</a></li><li><a href="global.html#getBrowserInfo">getBrowserInfo</a></li><li><a href="global.html#getDeviceFingerprint">getDeviceFingerprint</a></li><li><a href="global.html#getElement">getElement</a></li><li><a href="global.html#getGatewayUrl">getGatewayUrl</a></li><li><a href="global.html#handle3ds">handle3ds</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadAirwallex">loadAirwallex</a></li><li><a href="global.html#loadAirwallexJs">loadAirwallexJs</a></li><li><a href="global.html#redirectToCheckout">redirectToCheckout</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Interface</p>
+                    <h1>PaymentMethod</h1>
+                </header>
+                
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>PaymentMethod</h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Interface to confirm a payment intent with card payment method, the full api request payload can be found:
+[Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents__id__confirm/post)
+
+BACKGROUNDS:
+------------
+Due to [PCI CSS](https://www.pcisecuritystandards.org/) Airwallex js SDK will load Airwallex javascript to handle all sensitive information
+The PCI Security Standards Council (SSC) defines `cardholder data` which must also be protected:
+
+Primary Account Number (PAN) or the full PAN along with any of the following elements: `Cardholder name` `Expiration date` `Service code`
+
+Sensitive Authentication Data, which must also be protected, includes full magnetic stripe data, CAV2, CVC2, CVV2, CID, PINs, PIN blocks
+Only apply to Card elements (`cardNumber` | `cvc` | `expiry`) integration, refer to ElementType
+
+SOLUTIONS:
+------------
+The javascript SDK will fulfill collection of all the sensitive information required by PCI DSS
+
+You checkout page can collect the rest of NON-PCI DSS data and call confirmPaymentIntent using below interface to pass them to Airwallex checkout</div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line274">line 274</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Members</h1>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">string</code>
+
+
+    </span>
+
+<h4 class="name" id="client_secret">
+    <a class="href-link" href="#client_secret">#</a>
+    
+    <span class="code-name">
+        client_secret
+    </span>
+    
+        <span class='tag'>Optional</span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    The client_secret when you create payment intent, contain in the response
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line306">line 306</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">string</code>
+
+
+    </span>
+
+<h4 class="name" id="customer_id">
+    <a class="href-link" href="#customer_id">#</a>
+    
+    <span class="code-name">
+        customer_id
+    </span>
+    
+        <span class='tag'>Optional</span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    The payment method component your website would like to integrate with
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line327">line 327</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type"><a href="Element.html">Element</a></code>
+
+
+    </span>
+
+<h4 class="name" id="element">
+    <a class="href-link" href="#element">#</a>
+    
+    <span class="code-name">
+        element
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Element create by call createElement interface with 'cardNumber' element type
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line295">line 295</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">object</code>
+
+
+    </span>
+
+<h4 class="name" id="error">
+    <a class="href-link" href="#error">#</a>
+    
+    <span class="code-name">
+        error
+    </span>
+    
+        <span class='tag'>Optional</span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Response error when failed to call createPaymentMethod
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+<div class="table-container">
+    <table class="props table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>message</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">string</code>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last">Free text message in english</td>
+</tr>
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>code</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">string</code>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last">String code, will support in the future</td>
+</tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line356">line 356</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">string</code>
+
+
+    </span>
+
+<h4 class="name" id="id">
+    <a class="href-link" href="#id">#</a>
+    
+    <span class="code-name">
+        id
+    </span>
+    
+        <span class='tag'>Optional</span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    The payment intent you would like to checkout
+Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <dt class="important tag-deprecated">Deprecated:</dt><dd><ul class="dummy"><li>use `intent_id` instead</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line312">line 312</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">string</code>
+
+
+    </span>
+
+<h4 class="name" id="intent_id">
+    <a class="href-link" href="#intent_id">#</a>
+    
+    <span class="code-name">
+        intent_id
+    </span>
+    
+        <span class='tag'>Optional</span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    The payment intent you would like to checkout
+Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line320">line 320</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">string</code>
+
+
+    </span>
+
+<h4 class="name" id="methodId">
+    <a class="href-link" href="#methodId">#</a>
+    
+    <span class="code-name">
+        methodId
+    </span>
+    
+        <span class='tag'>Optional</span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    The payment method id if you have, can be create by call createPaymentMethod
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line300">line 300</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">object</code>
+
+
+    </span>
+
+<h4 class="name" id="payment_method">
+    <a class="href-link" href="#payment_method">#</a>
+    
+    <span class="code-name">
+        payment_method
+    </span>
+    
+        <span class='tag'>Optional</span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    The payment method detail return by call createPaymentMethod
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+<div class="table-container">
+    <table class="props table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>card</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">object</code>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last">Card info</td>
+</tr>
+
+  
+      
+<tr class="deep-level-1">
+    
+        <td class="name"><code>name</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">string</code>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last">Card holder name</td>
+</tr>
+
+  
+
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>billing</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type"><a href="Billing.html">Billing</a></code>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last">Card billing information if exist</td>
+</tr>
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line339">line 339</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">object</code>
+
+
+    </span>
+
+<h4 class="name" id="payment_method_options">
+    <a class="href-link" href="#payment_method_options">#</a>
+    
+    <span class="code-name">
+        payment_method_options
+    </span>
+    
+        <span class='tag'>Optional</span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Only apply for card payment, use this option to provide additional config to confirm payment intent
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+<div class="table-container">
+    <table class="props table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+            
+<tr class="deep-level-0">
+    
+        <td class="name"><code>card</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">object</code>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last">Option only apply to card</td>
+</tr>
+
+  
+      
+<tr class="deep-level-1">
+    
+        <td class="name"><code>auto_capture</code></td>
+    
+
+    <td class="type">
+    
+        
+<code class="param-type">boolean</code>
+
+
+    
+    </td>
+
+    
+        <td class="attributes">
+        
+            &lt;optional><br>
+        
+
+        
+        </td>
+    
+
+    
+
+    <td class="description last">Only support for card payment, indicate whether to capture immediate when authentication success</td>
+</tr>
+
+  
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line348">line 348</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<code class="param-type">boolean</code>
+
+
+    </span>
+
+<h4 class="name" id="save_payment_method">
+    <a class="href-link" href="#save_payment_method">#</a>
+    
+    <span class="code-name">
+        save_payment_method
+    </span>
+    
+        <span class='tag'>Optional</span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    Indicate whether to save this payment method for future payment
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="types_airwallex.d.ts.html" class="button">View Source</a>
+            <span>
+                <a href="types_airwallex.d.ts.html">types/airwallex.d.ts</a>, <a href="types_airwallex.d.ts.html#line333">line 333</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+            </div>
+            
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

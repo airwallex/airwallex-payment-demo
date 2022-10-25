@@ -1,0 +1,810 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> types/airwallex.d.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Interfaces</h3><ul><li><a href="Address.html">Address</a></li><li><a href="Airwallex.html">Airwallex</a></li><li><a href="Billing.html">Billing</a></li><li><a href="BoxStyle.html">BoxStyle</a></li><li><a href="CardElementOptions.html">CardElementOptions</a></li><li><a href="CardNumberElementOptions.html">CardNumberElementOptions</a></li><li><a href="CvcElementOptions.html">CvcElementOptions</a></li><li><a href="DropInElementOptions.html">DropInElementOptions</a></li><li><a href="Element.html">Element</a></li><li><a href="ElementError.html">ElementError</a></li><li><a href="ElementEvent.html">ElementEvent</a></li><li><a href="ElementOptions.html">ElementOptions</a></li><li><a href="ElementOptionsTypeMap.html">ElementOptionsTypeMap</a></li><li><a href="EventDetail.html">EventDetail</a></li><li><a href="ExpiryDateElementOptions.html">ExpiryDateElementOptions</a></li><li><a href="FontOptions.html">FontOptions</a></li><li><a href="FullFeaturedCardPaymentOptions.html">FullFeaturedCardPaymentOptions</a></li><li><a href="Get3dsReturnUrlRequest.html">Get3dsReturnUrlRequest</a></li><li><a href="GetBrowserInfoResponse.html">GetBrowserInfoResponse</a></li><li><a href="GetDeviceFingerprintRequest.html">GetDeviceFingerprintRequest</a></li><li><a href="Handle3dsRequest.html">Handle3dsRequest</a></li><li><a href="HostPaymentPage.html">HostPaymentPage</a></li><li><a href="HppRecurringOptions.html">HppRecurringOptions</a></li><li><a href="HppTheme.html">HppTheme</a></li><li><a href="InitOptions.html">InitOptions</a></li><li><a href="InputStyle.html">InputStyle</a></li><li><a href="Intent.html">Intent</a></li><li><a href="NextAction.html">NextAction</a></li><li><a href="PaymentConsentRequest.html">PaymentConsentRequest</a></li><li><a href="PaymentConsentResponse.html">PaymentConsentResponse</a></li><li><a href="PaymentMethod.html">PaymentMethod</a></li><li><a href="PaymentMethodBasicInfo.html">PaymentMethodBasicInfo</a></li><li><a href="PaymentMethodWithConsent.html">PaymentMethodWithConsent</a></li><li><a href="PaymentRequestButtonOptions.html">PaymentRequestButtonOptions</a></li><li><a href="PaymentShippingOption.html">PaymentShippingOption</a></li><li><a href="PopUpStyle.html">PopUpStyle</a></li><li><a href="QrcodeElementOptions.html">QrcodeElementOptions</a></li><li><a href="RedirectElementPaymentBasicOptions.html">RedirectElementPaymentBasicOptions</a></li><li><a href="RedirectElementPaymentOptionsForBankTransfer.html">RedirectElementPaymentOptionsForBankTransfer</a></li><li><a href="RedirectElementPaymentOptionsForDoku.html">RedirectElementPaymentOptionsForDoku</a></li><li><a href="RedirectElementPaymentOptionsForFpx.html">RedirectElementPaymentOptionsForFpx</a></li><li><a href="RedirectElementPaymentOptionsForOnlineBanking.html">RedirectElementPaymentOptionsForOnlineBanking</a></li><li><a href="RedirectElementPaymentOptionsForPoli.html">RedirectElementPaymentOptionsForPoli</a></li><li><a href="RedirectElementPaymentOptionsForSkrill.html">RedirectElementPaymentOptionsForSkrill</a></li><li><a href="RedirectElementPaymentOptionsForSofort.html">RedirectElementPaymentOptionsForSofort</a></li><li><a href="WechatElementOptions.html">WechatElementOptions</a></li><li><a href="Window.html">Window</a></li></ul><h3>Global</h3><ul><li><a href="global.html#confirmPaymentIntent">confirmPaymentIntent</a></li><li><a href="global.html#confirmPaymentIntentWithSavedCard">confirmPaymentIntentWithSavedCard</a></li><li><a href="global.html#createElement">createElement</a></li><li><a href="global.html#createPaymentConsent">createPaymentConsent</a></li><li><a href="global.html#createPaymentMethod">createPaymentMethod</a></li><li><a href="global.html#destroyElement">destroyElement</a></li><li><a href="global.html#get3dsReturnUrl">get3dsReturnUrl</a></li><li><a href="global.html#getBrowserInfo">getBrowserInfo</a></li><li><a href="global.html#getDeviceFingerprint">getDeviceFingerprint</a></li><li><a href="global.html#getElement">getElement</a></li><li><a href="global.html#getGatewayUrl">getGatewayUrl</a></li><li><a href="global.html#handle3ds">handle3ds</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadAirwallex">loadAirwallex</a></li><li><a href="global.html#loadAirwallexJs">loadAirwallexJs</a></li><li><a href="global.html#redirectToCheckout">redirectToCheckout</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>types/airwallex.d.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+  Element,
+  ElementType,
+  CardElementOptions,
+  CardNumberElementOptions,
+  ExpiryDateElementOptions,
+  CvcElementOptions,
+  FullFeaturedCardElementOptions,
+  WechatElementOptions,
+  PaymentRequestButtonOptions,
+  ApplePayButtonOptions,
+  GooglePayButtonOptions,
+} from './element';
+import { QrcodeElementOptions } from './qrcodeElement';
+import { Intent, PaymentMethodBasicInfo } from './cardNumber';
+import { BoxStyle, PaymentMethodType, ApplePayHppOrDropInRequestOptions, GooglePayHppRequestOptions } from './element';
+import { getBrowserInfo, getDeviceFingerprint, get3dsReturnUrl, handle3ds } from './fraud';
+import { DropInElementOptions } from './dropInElement';
+import { RedirectElementOptions } from './redirectElement';
+import { DirectDebitElementOptions } from './directDebitElement';
+
+/**
+ * Global font option config for Airwallex integration methods
+ */
+export interface FontOptions {
+  /**
+   * The font-family property
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/font-family
+   */
+  family?: string;
+  /**
+   * The font source url
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face
+   */
+  src?: string;
+  /**
+   * The font-weight property
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
+   */
+  weight?: string | number;
+}
+
+/**
+ * Indicate which airwallex integration env your merchant site would like to connect with
+ */
+export type AirwallexEnv = 'dev' | 'preview' | 'qa' | 'staging' | 'demo' | 'prod';
+
+export type Mode = 'payment' | 'recurring';
+
+/**
+ * Global init option config for Airwallex javascript SDK
+ */
+export interface InitOptions {
+  /**
+   * Indicate which airwallex integration env your merchant site would like to connect with
+   * If not provide default will be prod which point to [Airwallex Checkout](https://checkout.airwallex.com)
+   */
+  env?: AirwallexEnv;
+  /**
+   * Your checkout website origin url, aka merchant checkout page's 'window.location.origin' field
+   */
+  origin?: string;
+  /**
+   * i18n localization config
+   */
+  locale?: 'en' | 'zh' | 'ja' | 'ko' | 'ar' | 'fr' | 'es' | 'nl' | 'de' | 'it' | 'zh-HK' | 'pl' | 'fi' | 'ru';
+  /**
+   * Global font options
+   */
+  fonts?: FontOptions[];
+}
+
+/**
+ * Config Host Payment Page's (HPP integration) theme
+ */
+export interface HppTheme extends BoxStyle {
+  fonts?: FontOptions[];
+}
+
+export interface RecurringOptions extends HppRecurringOptions {
+  /**
+   * The subsequent transactions are triggered by `merchant` or `customer`
+   */
+  next_triggered_by?: 'merchant' | 'customer';
+  /**
+   * The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`
+   */
+  merchant_trigger_reason?: 'scheduled' | 'unscheduled';
+  /**
+   * Currency of the initial PaymentIntent to verify the PaymentConsent. Three-letter ISO currency code. Only applicable for card method
+   */
+  currency?: string;
+  /**
+   * It is to be used by the platform to indicate the connected entity in the transaction where platform is the owner of transaction.
+   */
+  connected_account_id?: string;
+  /**
+   *  Set it to true if you want to skip 3DS regardless of the risk score and SCA. Only applicable when it's card recurring flow.
+   */
+  skip_3ds?: boolean;
+}
+
+/**
+ * Config for HPP recurring flow
+ */
+export interface HppRecurringOptions {
+  /**
+   * Currently we supports card and alipay(exclude alipaycn) recurring flow
+   * For alipay, merchant does not need to config anything
+   * For card, merchant needs to provide related configurations
+   * @deprecated use `RecurringOptions` instead
+   */
+  card?: {
+    /**
+     * The subsequent transactions are triggered by `merchant` or `customer`
+     */
+    next_triggered_by?: 'merchant' | 'customer';
+    /**
+     * The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`
+     */
+    merchant_trigger_reason?: 'scheduled' | 'unscheduled';
+    /**
+     * Currency of the initial PaymentIntent to verify the PaymentConsent. Three-letter ISO currency code
+     */
+    currency?: string;
+    /**
+     * It is to be used by the platform to indicate the connected entity in the transaction where platform is the owner of transaction.
+     */
+    connected_account_id?: string;
+  };
+}
+
+/**
+ * Config option for Hosted Payment Page(HPP) when doing redirect checkout using Airwallex payment page
+ */
+export interface HostPaymentPage {
+  /**
+   * Indicate which airwallex integration env your merchant site would like to connect with
+   * If not provide default will be prod which point to [Airwallex Checkout](https://checkout.airwallex.com)
+   */
+  env?: AirwallexEnv;
+  /**
+   * The intent id you shopper want to checkout
+   */
+  intent_id?: string;
+  /**
+   * The client_secret when you create payment intent, contain in the response
+   */
+  client_secret: string;
+  /**
+   * Option with limited support for HPP page style customization
+   */
+  theme?: HppTheme;
+  /**
+   * Checkout for know customer, refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/Intro)
+   */
+  customer_id?: string;
+  /**
+   * The payment methods your website would like to integrate with
+   * @deprecated use `methods` instead
+   */
+  components?: Array&lt;PaymentMethodType>;
+  /**
+   * The payment methods your website would like to integrate with
+   */
+  methods?: Array&lt;PaymentMethodType>;
+  /**
+   * Only support for card payment, indicate whether to capture immediate when authentication success
+   */
+  autoCapture?: boolean;
+  /**
+   * The success return url after shopper succeeded the payment
+   */
+  successUrl?: string;
+  /**
+   * The failed return url when shopper can not fulfill the payment intent
+   */
+  failUrl?: string;
+  /**
+   * The cancel return url when shopper canceled the payment intent
+   */
+  cancelUrl?: string;
+  /**
+   * The logo url of your website you want to show in the HPP head
+   */
+  logoUrl?: string;
+  /**
+   * i18n localization config
+   */
+  locale?: 'en' | 'zh' | 'ja' | 'ko' | 'ar' | 'fr' | 'es' | 'nl' | 'de' | 'it' | 'zh-HK' | 'pl' | 'fi' | 'ru';
+  /**
+   * Apply only for card, to improve 3DS experience, indicate if the payment form will collect billing info from shopper
+   */
+  withBilling?: boolean;
+  /**
+   * Checkout mode, can be one of payment, recurring
+   * @default payment
+   */
+  mode?: Mode;
+  /**
+   * The options of recurring flow
+   */
+  recurringOptions?: RecurringOptions;
+  /**
+   * The options of apple pay
+   * If you want to integrate with apple pay, you need to provide the following options
+   */
+  applePayRequestOptions?: ApplePayHppOrDropInRequestOptions;
+  /**
+   * Define google pay type and it's mapped option type
+   */
+  googlePayRequestOptions?: GooglePayHppRequestOptions;
+  /**
+   * Currency of your payment intent or consent. Three-letter ISO currency code
+   */
+  currency: string;
+  /**
+   * The 2-letter ISO country code from which the consumer will be paying
+   * If you want to integrate with `bank_transfer`, `online_banking`, `skrill` or `seven_eleven` payment method, it would be required
+   */
+  country_code?: string;
+  /**
+   * Customer name - minimum of 3 characters, up to 100 characters
+   */
+  shopper_name?: string;
+  /**
+   * Customer phone
+   */
+  shopper_phone?: string;
+  /**
+   * Customer email
+   */
+  shopper_email?: string;
+  showTermLink?: boolean;
+  /**
+   * Disable redirect, return the hpp url to the merchant instead
+   * @default false
+   */
+  disableAutoRedirect?: boolean;
+}
+
+/**
+ * Bill address option, only apply to card payment method
+ */
+export interface Address {
+  city: string;
+  /**
+   * Country code if you know
+   * https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+   */
+  country_code: string;
+  /**
+   * Local post code in string mode
+   */
+  postcode: string;
+  state: string;
+  street: string;
+}
+/**
+ * The billing info, only apply for card payment
+ */
+export interface Billing {
+  /**
+   * Billing email address in string mode, refer to https://en.wikipedia.org/wiki/Email_address
+   */
+  email: string;
+  first_name: string;
+  last_name: string;
+  date_of_birth?: string;
+  phone_number?: string;
+  /**
+   * Billing address
+   */
+  address: Address;
+}
+
+/**
+ * Interface to confirm a payment intent with card payment method, the full api request payload can be found:
+ * [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents__id__confirm/post)
+ *
+ * BACKGROUNDS:
+ * ------------
+ * Due to [PCI CSS](https://www.pcisecuritystandards.org/) Airwallex js SDK will load Airwallex javascript to handle all sensitive information
+ * The PCI Security Standards Council (SSC) defines `cardholder data` which must also be protected:
+ *
+ * Primary Account Number (PAN) or the full PAN along with any of the following elements: `Cardholder name` `Expiration date` `Service code`
+ *
+ * Sensitive Authentication Data, which must also be protected, includes full magnetic stripe data, CAV2, CVC2, CVV2, CID, PINs, PIN blocks
+ * Only apply to Card elements (`cardNumber` | `cvc` | `expiry`) integration, refer to ElementType
+ *
+ * SOLUTIONS:
+ * ------------
+ * The javascript SDK will fulfill collection of all the sensitive information required by PCI DSS
+ *
+ * You checkout page can collect the rest of NON-PCI DSS data and call confirmPaymentIntent using below interface to pass them to Airwallex checkout
+ */
+export interface PaymentMethod {
+  /**
+   * Element create by call createElement interface with 'cardNumber' element type
+   */
+  element: Element;
+  /**
+   * The payment method id if you have, can be create by call createPaymentMethod
+   */
+  methodId?: string;
+  /**
+   * The client_secret when you create payment intent, contain in the response
+   */
+  client_secret?: string;
+  /**
+   * The payment intent you would like to checkout
+   * Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+   * @deprecated use `intent_id` instead
+   */
+  id?: string;
+  /**
+   * The payment intent you would like to checkout
+   * Refer to [Airwallex Client API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro)
+   */
+  intent_id?: string;
+  /**
+   * The payment method component your website would like to integrate with
+   */
+  customer_id?: string;
+  /**
+   * Indicate whether to save this payment method for future payment
+   */
+  save_payment_method?: boolean;
+  /**
+   * The payment method detail return by call createPaymentMethod
+   */
+  payment_method?: {
+    /**
+     * Card info
+     */
+    card: {
+      /**
+       * Card holder name
+       */
+      name?: string;
+    };
+    /**
+     * Card billing information if exist
+     */
+    billing?: Billing;
+  };
+  /**
+   * Only apply for card payment, use this option to provide additional config to confirm payment intent
+   */
+  payment_method_options?: {
+    /**
+     * Option only apply to card
+     */
+    card?: {
+      /**
+       * Only support for card payment, indicate whether to capture immediate when authentication success
+       */
+      auto_capture?: boolean;
+    };
+  };
+  /**
+   * Response error when failed to call createPaymentMethod
+   */
+  error?: {
+    /**
+     * Free text message in english
+     */
+    message?: string;
+    /**
+     * String code, will support in the future
+     */
+    code?: string;
+  };
+}
+/**
+ * Element integration `step #1.1` (optional)
+ *
+ * Optional if you already call `loadAirwallex: (options?: InitOptions | undefined)`
+ *
+ * The first method call to init element integration after loadAirwallex successfully return
+ *
+ * ***Exceptional***: not needed for HPP integration, means you can call redirectToCheckout right after loadAirwallex succeeded
+ */
+export declare const init: (options?: InitOptions | undefined) => void;
+
+/**
+ * Hosted payment page(HPP) integration entrance function
+ */
+export declare const redirectToCheckout: (props: HostPaymentPage) => void | string;
+
+/**
+ * The definition mapping of supported integration element type with it's props options used to customize the element, merchant can check on each element options type for details
+ */
+export interface ElementOptionsTypeMap {
+  /**
+   * Define card number input element type and it's mapped option type, apply to split card element integration
+   * Using together with `expiry` and `cvc` element to gain maximum customization
+   */
+  cardNumber: CardNumberElementOptions;
+  /**
+   * Define expiry input element type and it's mapped option type, apply to split card element integration
+   * Using together with `cardNumber` and `cvc` element to gain maximum customization
+   */
+  expiry: ExpiryDateElementOptions;
+  /**
+   * Define cvc input element type and it's mapped option type, apply to split card element integration
+   * Using together with `cardNumber` and `expiry` element to gain maximum customization
+   */
+  cvc: CvcElementOptions;
+  /**
+   * Define W3C payment request API element type and it's mapped option type
+   * @deprecated paymentRequestButton is no longer supported by airwallex
+   */
+  paymentRequestButton: PaymentRequestButtonOptions;
+  /**
+   * Define apple pay element type and it's mapped option type
+   */
+  applePayButton: ApplePayButtonOptions;
+  /**
+   * Define google pay element type and it's mapped option type
+   */
+  googlePayButton: GooglePayButtonOptions;
+  /**
+   * Define card element type and it's mapped option type, this integration make the card PCI input (card number / cvc / expiry) behavior like a single input
+   */
+  card: CardElementOptions;
+  /**
+   * Define WeChat element type and it's mapped option type
+   */
+  wechat: WechatElementOptions;
+  /**
+   * Define Qrcode element type and it's mapped option type
+   */
+  qrcode: QrcodeElementOptions;
+  /**
+   * Define Redirect element type and it's mapped option type
+   */
+  redirect: RedirectElementOptions;
+  /**
+   * Define dropIn element type and it's mapped option type, this integration make integrate with Airwallex supported card and APM (alternative payment method like WeChat etc.) payment method like a single widget
+   */
+  dropIn: DropInElementOptions;
+  /**
+   * Define full featured card element type and it's mapped option type, this integration make integrate with Airwallex supported card payment method like a single widget
+   */
+  fullFeaturedCard: FullFeaturedCardElementOptions;
+  /**
+   * Define direct debit element type and it's mapped option type, this integration make integrate with Airwallex supported direct debit payment method like a single widget
+   */
+  directDebit: DirectDebitElementOptions;
+}
+
+/**
+ * Interface of the request when call confirmPaymentIntent with contact.
+ * The application scenario: when you already have a payment consent created by call createPaymentConsent and your customer would like to trigger a payment intent confirm with the pre signed consent (linked with customer_id)
+ */
+export interface PaymentMethodWithConsent {
+  /**
+   * The id of the intent which would be confirmed
+   * @deprecated Please use `intent_id`
+   */
+  id: string;
+  /**
+   * The id of the intent which would be confirmed
+   */
+  intent_id: string;
+  /**
+   * The `client_secret` of the intent. It returns when you create payment intent
+   */
+  client_secret: string;
+  /**
+   * The element you would like to use to confirm intent
+   */
+  element: Element;
+  /**
+   * The id of the payment consent which used to confirm intent
+   */
+  payment_consent_id: string;
+}
+
+export interface Consent {
+  /**
+   * The id of the consent which would be confirmed
+   */
+  id: string;
+  /**
+   * The `client_secret` of the consent.
+   */
+  client_secret: string;
+  /**
+   * The status of the consent.
+   */
+  status: 'PENDING_VERIFICATION' | 'VERIFIED' | 'DISABLED';
+  /**
+   * The create time of the consent.
+   */
+  created_at: string;
+  /**
+   * The update time of the consent.
+   */
+  updated_at: string;
+  /**
+   * It determines who will be the next one to trigger this consent.
+   */
+  next_triggered_by: 'merchant' | 'customer';
+  /**
+   * The reason why the consent is triggered.
+   */
+  merchant_trigger_reason?: 'scheduled' | 'unscheduled';
+  /**
+   * The id of the customer
+   */
+  customer_id: string;
+  /**
+   * The id of the initial payment intent
+   */
+  initial_payment_intent_id?: string;
+}
+
+/**
+ * Element integration `step #2`
+ * Create payment element for checkout
+ */
+export declare function createElement&lt;T extends ElementType>(
+  type: T,
+  options?: ElementOptionsTypeMap[T],
+): Element | null;
+/**
+ * Destroy element on the demand
+ */
+export declare const destroyElement: (type: ElementType) => boolean;
+
+/**
+ * Query created element by type, there are only exist one type of element in one page
+ */
+export declare const getElement: (type: ElementType) => Element | null;
+
+/**
+ * Element integration `step #4`
+ * Confirm payment intent with element and the rest of payment method info
+ * Only need for card payment method
+ *
+ * `PaymentMethod` -  the request payload using for guest checkout without pre created consent
+ *
+ * `PaymentMethodWithConsent` - the request payload using for confirm intent with pre created consent (created by `createPaymentConsent` with existing customer)
+ */
+export declare const confirmPaymentIntent: (
+  data?: PaymentMethod | PaymentMethodWithConsent,
+) => Promise&lt;Intent | boolean>;
+
+/**
+ * Confirm payment intent with saved card and the rest of payment method info
+ * Only need for cvc element
+ */
+export declare const confirmPaymentIntentWithSavedCard: (data?: PaymentMethod) => Promise&lt;Intent | boolean>;
+
+/**
+ * Using this function to create payment method for future checkout, the created payment method can be save in your system
+ * Optional to for checkout flow
+ */
+export declare const createPaymentMethod: (
+  client_secret: string,
+  data: PaymentMethod,
+) => Promise&lt;PaymentMethodBasicInfo | boolean>;
+
+/**
+ * Using this function to get intent details from browser side to directly query on Airwallex api server
+ * Guarantee with fast query speed
+ */
+export declare const getPaymentIntent: (id: string, client_secret: string) => Promise&lt;Intent | boolean>;
+
+/**
+ * Interface of the request when call createPaymentConsent
+ */
+export interface PaymentConsentRequest {
+  /**
+   * The intent_id that would be confirmed with the new created payment consent
+   */
+  intent_id?: string;
+  /**
+   * The currency of the payment consent, Only applicable for card consent
+   */
+  currency?: string;
+  /**
+   * If the intent provided, this should be the client_secret of the intent
+   * If no intent provided, this should be the client_secret of the customer
+   * For `cardNumber` or `card` element, it should be required.
+   * For `directDebit` element, you needn't provide it.
+   */
+  client_secret?: string;
+  /**
+   * The element you would like to use to create consent
+   */
+  element: Element;
+  /**
+   * The customer_id of the consent
+   */
+  customer_id: string;
+  /**
+   * The cardholder name for this payment method
+   */
+  cardname?: string;
+  /**
+   * If customer already has a payment method, merchant could provide it instead of create a new one
+   */
+  payment_method_id?: string;
+  /**
+   * The subsequent transactions are triggered by `merchant` or `customer`
+   */
+  next_triggered_by?: 'merchant' | 'customer';
+  /**
+   * The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`
+   */
+  merchant_trigger_reason?: 'scheduled' | 'unscheduled';
+  /**
+   * The billing info for the payment consent
+   */
+  billing?: Billing;
+  /**
+   * It is to be used by the platform to indicate the connected entity in the transaction where platform is the owner of transaction.
+   */
+  connected_account_id?: string;
+  /**
+   * A set of key-value pairs that can be attached to this PaymentConsent
+   */
+  metadata?: Record&lt;string, unknown>;
+  /**
+   *  Set it to true if you want to skip 3DS regardless of the risk score and SCA. Only applicable when it's card recurring flow.
+   */
+  skip_3ds?: boolean;
+}
+
+/**
+ * Interface of the response payload when call createPaymentConsent
+ */
+export interface PaymentConsentResponse {
+  /**
+   * If merchant provide `intent_id` when call createPaymentConsent, we will return the `intent_id`
+   * If merchant not provide `intent_id` when call createPaymentConsent, we will create an initial intent and return the intent id
+   */
+  intent_id?: string;
+  /**
+   * The id of the new created payment consent
+   */
+  payment_consent_id: string;
+  /**
+   * The id of the customer
+   */
+  customer_id: string;
+  /**
+   * The currency of the payment consent
+   */
+  currency?: string;
+  /**
+   * The payment method of the payment consent
+   */
+  payment_method?: {
+    /**
+     * The id of the payment method
+     */
+    id: string;
+    /**
+     * The bin code of the card
+     */
+    bin?: string;
+    /**
+     * The last 4 numbers of the card
+     */
+    last4?: string;
+    /**
+     * The brand of the card
+     */
+    brand?: string;
+  };
+}
+
+/**
+ * Interface for recurring consent payment, using this interface to create payment consent with element integration
+ */
+export declare const createPaymentConsent: (data: PaymentConsentRequest) => Promise&lt;PaymentConsentResponse | boolean>;
+
+/**
+ * Interface of global const can be use directly in browser javascript
+ */
+export interface Airwallex {
+  init: typeof init;
+  redirectToCheckout: typeof redirectToCheckout;
+  createElement: typeof createElement;
+  destroyElement: typeof destroyElement;
+  getElement: typeof getElement;
+  confirmPaymentIntent: typeof confirmPaymentIntent;
+  confirmPaymentIntentWithSavedCard: typeof confirmPaymentIntentWithSavedCard;
+  createPaymentMethod: typeof createPaymentMethod;
+  createPaymentConsent: typeof createPaymentConsent;
+  getPaymentIntent: typeof getPaymentIntent;
+  getBrowserInfo: typeof getBrowserInfo;
+  getDeviceFingerprint: typeof getDeviceFingerprint;
+  get3dsReturnUrl: typeof get3dsReturnUrl;
+  handle3ds: typeof handle3ds;
+}
+
+export default Airwallex;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>
