@@ -12,11 +12,9 @@
   <div>
     <h2>Card Element Integration</h2>
     <!-- Example below: show loading state when element is not ready -->
-    <p id="loading">
-      Loading...
-    </p>
+    <p id="loading">Loading...</p>
     <!-- Example: response message container -->
-    <p id="error" style="display:none" />
+    <p id="error" style="display: none" />
     <!-- 
       STEP #3: Add an empty container for the card element to be injected into 
       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
@@ -24,9 +22,7 @@
     <div id="field-container" :style="{ display: 'none' }">
       <div id="card" />
       <p id="card-error" :style="{ color: 'red' }" />
-      <button id="submit" :disabled="true" @click="triggerConfirm()">
-        Confirm
-      </button>
+      <button id="submit" :disabled="true" @click="triggerConfirm()">Confirm</button>
     </div>
   </div>
 </template>
@@ -144,19 +140,23 @@ export default {
   },
   mounted() {
     init();
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onError', onError);
-    window.addEventListener('onChange', onChange);
-    window.addEventListener('onFocus', onFocus);
-    window.addEventListener('onBlur', onBlur);
+    const domElement = document.getElementById('card');
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onError', onError);
+    domElement.addEventListener('onChange', onChange);
+    domElement.addEventListener('onFocus', onFocus);
+    domElement.addEventListener('onBlur', onBlur);
   },
   beforeDestroy() {
-    // Be sure to clean up event listeners when component unmounts
-    window.removeEventListener('onReady', onReady);
-    window.removeEventListener('onError', onError);
-    window.removeEventListener('onChange', onChange);
-    window.removeEventListener('onFocus', onFocus);
-    window.removeEventListener('onBlur', onBlur);
+    const domElement = document.getElementById('card');
+    if (domElement) {
+      // Be sure to clean up event listeners when component unmounts
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onError', onError);
+      domElement.removeEventListener('onChange', onChange);
+      domElement.removeEventListener('onFocus', onFocus);
+      domElement.removeEventListener('onBlur', onBlur);
+    }
   },
 };
 </script>

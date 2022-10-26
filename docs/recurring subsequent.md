@@ -100,7 +100,7 @@ More details about the `confirmPaymentIntent` function can be found [here](/docs
 ### 7. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
-window.addEventListener('onReady', (event) => {
+cvc.addEventListener('onReady', (event) => {
   /*
     ... Handle event
   */
@@ -113,7 +113,7 @@ This can be used to set a loading state as the checkout screen is being prepared
 ### 8. Add an `onChange` event listener to listen to the changes in each of the input fields
 
 ```js
-window.addEventListener('onChange', (event) => {
+cvc.addEventListener('onChange', (event) => {
   /*
     ... Handle event
   */
@@ -173,7 +173,7 @@ window.addEventListener('onChange', (event) => {
       });
 
       // STEP #7: Add an event listener to ensure the element is mounted
-      window.addEventListener('onReady', (event) => {
+      cvc.addEventListener('onReady', (event) => {
         /*
         ... Handle event
          */
@@ -181,7 +181,7 @@ window.addEventListener('onChange', (event) => {
       });
 
       // STEP #8: Add an event listener to listen to the changes in each of the input fields
-      window.addEventListener('onChange', (event) => {
+      cvc.addEventListener('onChange', (event) => {
         /*
         ... Handle event
          */

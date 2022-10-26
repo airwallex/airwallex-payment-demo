@@ -128,7 +128,7 @@ More details about the `createPaymentConsent` function can be found [here](/docs
       });
 
       // STEP #7: Add an event listener to ensure the element is mounted
-      window.addEventListener('onReady', (event) => {
+      cardNumber.addEventListener('onReady', (event) => {
         /*
         ... Handle event
          */
@@ -136,7 +136,7 @@ More details about the `createPaymentConsent` function can be found [here](/docs
       });
 
       // STEP #8: Add an event listener to listen to the changes in each of the input fields
-      window.addEventListener('onChange', (event) => {
+      cardNumber.addEventListener('onChange', (event) => {
         /*
         ... Handle event
          */

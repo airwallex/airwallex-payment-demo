@@ -12,11 +12,9 @@
   <div>
     <h2>Full Featured Card integration</h2>
     <!-- Example below: show loading state when element is not ready -->
-    <p id="loading">
-      Loading...
-    </p>
+    <p id="loading">Loading...</p>
     <!-- Example: response message container -->
-    <p id="error" style="display:none" />
+    <p id="error" style="display: none" />
     <!-- 
       STEP #3: Add an empty container for the fullFeaturedCard element to be injected into 
       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
@@ -95,15 +93,19 @@ export default {
   name: 'FullFeaturedCard',
   mounted() {
     init();
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onSuccess', onSuccess);
-    window.addEventListener('onError', onError);
+    const domElement = document.getElementById('fullFeaturedCard');
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onSuccess', onSuccess);
+    domElement.addEventListener('onError', onError);
   },
   beforeDestroy() {
     // Be sure to clean up event listeners when component unmounts
-    window.removeEventListener('onReady', onReady);
-    window.removeEventListener('onSuccess', onSuccess);
-    window.removeEventListener('onError', onError);
+    const domElement = document.getElementById('fullFeaturedCard');
+    if (domElement) {
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onSuccess', onSuccess);
+      domElement.removeEventListener('onError', onError);
+    }
   },
 };
 </script>

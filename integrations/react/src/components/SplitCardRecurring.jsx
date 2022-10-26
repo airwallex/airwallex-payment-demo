@@ -89,13 +89,14 @@ const Index = () => {
         setExpiryComplete(complete);
       }
     };
+    const domElement = document.getElementById('cardNumber');
 
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onChange', onChange); // Can also use onBlur
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onChange', onChange); // Can also use onBlur
 
     return () => {
-      window.removeEventListener('onReady', onReady);
-      window.removeEventListener('onChange', onChange);
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onChange', onChange);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 

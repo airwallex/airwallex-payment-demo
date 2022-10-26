@@ -64,11 +64,13 @@ const Redirect = () => {
       console.error('There was an error', error);
     };
 
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onError', onError);
+    const domElement = document.getElementById('redirect');
+
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onError', onError);
     return () => {
-      window.removeEventListener('onReady', onReady);
-      window.removeEventListener('onError', onError);
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onError', onError);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 

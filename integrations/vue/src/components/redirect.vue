@@ -12,11 +12,9 @@
   <div>
     <h2>Redirect Element Integration</h2>
     <!-- Example below: show loading state when element is not ready -->
-    <p id="loading">
-      Loading...
-    </p>
+    <p id="loading">Loading...</p>
     <!-- Example: response message container -->
-    <p id="error" style="display:none" />
+    <p id="error" style="display: none" />
     <!-- 
       STEP #3: Add an empty container for the redirect element to be injected into 
       - Ensure this is the only element in your document with this id, otherwise the element may fail to mount.
@@ -89,13 +87,17 @@ export default {
   name: 'Redirect',
   mounted() {
     init();
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onError', onError);
+    const domElement = document.getElementById('redirect');
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onError', onError);
   },
   beforeDestroy() {
+    const domElement = document.getElementById('redirect');
     // Be sure to clean up event listeners when component unmounts
-    window.removeEventListener('onReady', onReady);
-    window.removeEventListener('onError', onError);
+    if (domElement) {
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onError', onError);
+    }
   },
 };
 </script>

@@ -59,7 +59,7 @@ You can also add additional options as a second parameter to the `createElement`
 Next, we need to mount the card element to the DOM.
 
 ```js
-card.mount('card');
+const domElement = card.mount('card');
 ```
 
 This function will append the card element to your div with an id `card` as created above in step 3. **Ensure that there are no other elements in the document with the same id**.
@@ -92,7 +92,7 @@ More details about the `confirmPaymentIntent` function can be found [here](/docs
 ### 7. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
-window.addEventListener('onReady', (event) => {
+domElement.addEventListener('onReady', (event) => {
   /*
     ... Handle event
   */
@@ -146,7 +146,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       const card = Airwallex.createElement('card');
 
       // STEP #5: Mount card element
-      card.mount('card');
+      const domElement = card.mount('card');
 
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
@@ -168,7 +168,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to ensure the element is mounted
-      window.addEventListener('onReady', (event) => {
+      domElement.addEventListener('onReady', (event) => {
         /*
         ... Handle event
          */

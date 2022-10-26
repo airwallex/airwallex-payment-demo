@@ -73,16 +73,16 @@ const Index: React.FC = () => {
       const { error } = event.detail;
       setInputErrorMessage(error?.message ?? JSON.stringify(error)); // Example: set input error message
     };
-
-    window.addEventListener('onReady', onReady as EventListener);
-    window.addEventListener('onError', onError as EventListener);
-    window.addEventListener('onFocus', onFocus as EventListener);
-    window.addEventListener('onBlur', onBlur as EventListener);
+    const domElement = document.getElementById('card');
+    domElement?.addEventListener('onReady', onReady as EventListener);
+    domElement?.addEventListener('onError', onError as EventListener);
+    domElement?.addEventListener('onFocus', onFocus as EventListener);
+    domElement?.addEventListener('onBlur', onBlur as EventListener);
     return () => {
-      window.removeEventListener('onReady', onReady as EventListener);
-      window.removeEventListener('onError', onError as EventListener);
-      window.removeEventListener('onFocus', onFocus as EventListener);
-      window.removeEventListener('onBlur', onBlur as EventListener);
+      domElement?.removeEventListener('onReady', onReady as EventListener);
+      domElement?.removeEventListener('onError', onError as EventListener);
+      domElement?.removeEventListener('onFocus', onFocus as EventListener);
+      domElement?.removeEventListener('onBlur', onBlur as EventListener);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 

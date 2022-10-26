@@ -75,7 +75,7 @@ There are also additional options as a second parameter to the `createElement` f
 Next, we need to mount the card element to the DOM.
 
 ```js
-element.mount('drop-in');
+const domElement = element.mount('drop-in');
 ```
 
 This function will append the card element to your div with an id `drop-in` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
@@ -85,7 +85,7 @@ The **element should only be mounted once** in a single payment flow.
 ### 6. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
-window.addEventListener('onReady', (event) => {
+domElement.addEventListener('onReady', (event) => {
   /*
     ... Handle event
   */
@@ -98,7 +98,7 @@ This can be used to set a loading state as the checkout screen is being prepared
 ### 7. Add an `onSuccess` event listener to handle events when the payment is successful.
 
 ```js
-window.addEventListener('onSuccess', (event) => {
+domElement.addEventListener('onSuccess', (event) => {
   /*
     ... Handle event on success
   */
@@ -109,7 +109,7 @@ window.addEventListener('onSuccess', (event) => {
 ### 8. Add an `onError` event listener to handle events when the payment has failed.
 
 ```js
-window.addEventListener('onError', (event) => {
+domElement.addEventListener('onError', (event) => {
   /*
     ... Handle event on error
   */
@@ -122,7 +122,7 @@ window.addEventListener('onError', (event) => {
 When the event triggers, it means the shopper needs to verify the bank account before proceeding the payment. We have a pre-defined page to tell the shoppers what they should do next, and of course you can use your own customized page too.
 
 ```js
-window.addEventListener('onPendingVerifyAccount', (event) => {
+domElement.addEventListener('onPendingVerifyAccount', (event) => {
   /*
    ** handle event on pending verify bank account
    */
@@ -178,10 +178,10 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         },
       });
       // STEP #5: Mount 'dropIn' element
-      dropIn.mount('dropIn');
+      const domElement = dropIn.mount('dropIn');
 
       // STEP #6: Add an event listener to handle events when the element is mounted
-      window.addEventListener('onReady', (event) => {
+      domElement.addEventListener('onReady', (event) => {
         /*
           ... Handle event
         */
@@ -189,7 +189,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to handle events when the payment is successful.
-      window.addEventListener('onSuccess', (event) => {
+      domElement.addEventListener('onSuccess', (event) => {
         /*
           ... Handle event on success
         */
@@ -197,7 +197,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #8: Add an event listener to handle events when the payment has failed.
-      window.addEventListener('onError', (event) => {
+      domElement.addEventListener('onError', (event) => {
         /*
           ... Handle event on error
         */

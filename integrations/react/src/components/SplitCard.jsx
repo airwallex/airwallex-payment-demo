@@ -108,16 +108,17 @@ const Index = () => {
       }));
     };
 
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onChange', onChange); // Can also use onBlur
-    window.addEventListener('onBlur', onBlur);
-    window.addEventListener('onFocus', onFocus);
+    const domElement = document.getElementById('cardNumber');
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onChange', onChange); // Can also use onBlur
+    domElement.addEventListener('onBlur', onBlur);
+    domElement.addEventListener('onFocus', onFocus);
 
     return () => {
-      window.removeEventListener('onReady', onReady);
-      window.removeEventListener('onChange', onChange);
-      window.removeEventListener('onBlur', onBlur);
-      window.removeEventListener('onFocus', onFocus);
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onChange', onChange);
+      domElement.removeEventListener('onBlur', onBlur);
+      domElement.removeEventListener('onFocus', onFocus);
     };
     // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
   }, []);

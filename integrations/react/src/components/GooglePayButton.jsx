@@ -11,7 +11,7 @@
 
 import React, { useEffect, useState } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import { createElement, loadAirwallex } from 'airwallex-payment-elements';
+import { createElement, getElement, loadAirwallex } from 'airwallex-payment-elements';
 
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
 
@@ -76,14 +76,14 @@ const GooglePayButton = () => {
     const onSuccess = (event) => {
       console.log(event);
     };
-
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onError', onError);
-    window.addEventListener('onSuccess', onSuccess);
+    const domElement = document.getElementById('googlePayButton');
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onError', onError);
+    domElement.addEventListener('onSuccess', onSuccess);
     return () => {
-      window.removeEventListener('onReady', onReady);
-      window.removeEventListener('onError', onError);
-      window.removeEventListener('onSuccess', onSuccess);
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onError', onError);
+      domElement.removeEventListener('onSuccess', onSuccess);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 

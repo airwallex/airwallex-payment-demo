@@ -76,15 +76,16 @@ const Card = () => {
       setInputErrorMessage(error?.message ?? JSON.stringify(error)); // Example: set input error message
     };
 
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onError', onError);
-    window.addEventListener('onBlur', onBlur);
-    window.addEventListener('onFocus', onFocus);
+    const domElement = document.getElementById('card');
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onError', onError);
+    domElement.addEventListener('onBlur', onBlur);
+    domElement.addEventListener('onFocus', onFocus);
     return () => {
-      window.removeEventListener('onReady', onReady);
-      window.removeEventListener('onError', onError);
-      window.removeEventListener('onFocus', onFocus);
-      window.removeEventListener('onBlur', onBlur);
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onError', onError);
+      domElement.removeEventListener('onFocus', onFocus);
+      domElement.removeEventListener('onBlur', onBlur);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
