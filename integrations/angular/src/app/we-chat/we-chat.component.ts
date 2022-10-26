@@ -11,11 +11,7 @@
 
 import { Component, OnInit } from '@angular/core';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import {
-  createElement,
-  loadAirwallex,
-  ElementType,
-} from 'airwallex-payment-elements';
+import { createElement, loadAirwallex, ElementType } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
@@ -45,7 +41,7 @@ export class WeChatComponent implements OnInit {
       origin: window.location.origin, // Setup your event target to receive the browser events message
     }).then(() => {
       // STEP #4, 5: Create and mount the wechat element
-      createElement('wechat' as ElementType, {
+      const domElement = createElement('wechat' as ElementType, {
         intent: {
           // Required, must provide intent details to prepare wechat element for checkout
           id: intent_id,
@@ -53,11 +49,11 @@ export class WeChatComponent implements OnInit {
         },
         origin: window.location.origin,
       })?.mount('wechat'); // This 'wechat' id MUST MATCH the id on your empty container created in Step 3
-    });
 
-    window.addEventListener('onReady', this.onReady);
-    window.addEventListener('onSuccess', this.onSuccess);
-    window.addEventListener('onError', this.onError);
+      domElement?.addEventListener('onReady', this.onReady);
+      domElement?.addEventListener('onSuccess', this.onSuccess);
+      domElement?.addEventListener('onError', this.onError);
+    });
   }
 
   // STEP #6: Add an event listener to handle events when the element is mounted
