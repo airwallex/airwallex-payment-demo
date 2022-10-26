@@ -66,7 +66,7 @@ There are also additional options as a second parameter to the `createElement` f
 Next, we need to mount the cvc element to the DOM.
 
 ```js
-cvc.mount('cvc');
+const domElement = cvc.mount('cvc');
 ```
 
 This function will append the cvc element to your divs with ids `cvc`, as created above in step 3. **Ensure that there are no other elements in the document with the same ids**.
@@ -100,7 +100,7 @@ More details about the `confirmPaymentIntent` function can be found [here](/docs
 ### 7. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
-cvc.addEventListener('onReady', (event) => {
+domElement.addEventListener('onReady', (event) => {
   /*
     ... Handle event
   */
@@ -113,7 +113,7 @@ This can be used to set a loading state as the checkout screen is being prepared
 ### 8. Add an `onChange` event listener to listen to the changes in each of the input fields
 
 ```js
-cvc.addEventListener('onChange', (event) => {
+domElement.addEventListener('onChange', (event) => {
   /*
     ... Handle event
   */
@@ -158,7 +158,7 @@ cvc.addEventListener('onChange', (event) => {
       const cvcElement = Airwallex.createElement('cvc');
 
       // STEP #5: Mount cvc element
-      cvcElement.mount('cvc');
+      const domElement = cvcElement.mount('cvc');
 
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
@@ -173,7 +173,7 @@ cvc.addEventListener('onChange', (event) => {
       });
 
       // STEP #7: Add an event listener to ensure the element is mounted
-      cvc.addEventListener('onReady', (event) => {
+      domElement.addEventListener('onReady', (event) => {
         /*
         ... Handle event
          */
@@ -181,7 +181,7 @@ cvc.addEventListener('onChange', (event) => {
       });
 
       // STEP #8: Add an event listener to listen to the changes in each of the input fields
-      cvc.addEventListener('onChange', (event) => {
+      domElement.addEventListener('onChange', (event) => {
         /*
         ... Handle event
          */

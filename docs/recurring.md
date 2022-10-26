@@ -107,7 +107,7 @@ More details about the `createPaymentConsent` function can be found [here](/docs
       const cvc = Airwallex.createElement('cvc');
 
       // STEP #5: Mount split card elements
-      cardNumber.mount('cardNumber');
+      const domElement = cardNumber.mount('cardNumber');
       expiry.mount('expiry');
       cvc.mount('cvc');
 
@@ -128,7 +128,7 @@ More details about the `createPaymentConsent` function can be found [here](/docs
       });
 
       // STEP #7: Add an event listener to ensure the element is mounted
-      cardNumber.addEventListener('onReady', (event) => {
+      domElement.addEventListener('onReady', (event) => {
         /*
         ... Handle event
          */
@@ -136,7 +136,7 @@ More details about the `createPaymentConsent` function can be found [here](/docs
       });
 
       // STEP #8: Add an event listener to listen to the changes in each of the input fields
-      cardNumber.addEventListener('onChange', (event) => {
+      domElement.addEventListener('onChange', (event) => {
         /*
         ... Handle event
          */
