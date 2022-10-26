@@ -11,11 +11,7 @@
 
 import { Component, OnInit } from '@angular/core';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import {
-  createElement,
-  loadAirwallex,
-  ElementType,
-} from 'airwallex-payment-elements';
+import { createElement, loadAirwallex, ElementType } from 'airwallex-payment-elements';
 
 // Enter your Payment Intent secret keys here
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
@@ -31,12 +27,14 @@ const currency = 'replace-with-your-intent-currency';
 export class DropInComponent implements OnInit {
   loading: boolean;
   errorMessage: string;
+  domElement?: HTMLElement | null;
   constructor() {
     this.loading = true;
     this.errorMessage = '';
     this.onReady = this.onReady.bind(this);
     this.onSuccess = this.onSuccess.bind(this);
     this.onError = this.onError.bind(this);
+    this.domElement = null;
   }
 
   ngOnInit(): void {
@@ -47,8 +45,7 @@ export class DropInComponent implements OnInit {
       fonts: [
         // Customizes the font for the payment elements
         {
-          src:
-            'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
           family: 'AxLLCircular',
           weight: 400,
         },
@@ -56,19 +53,18 @@ export class DropInComponent implements OnInit {
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
     }).then(() => {
       // STEP #4: Create the drop-in element
-      const element = createElement('dropIn' as ElementType, {
+      // STEP #5: Mount the drop-in element to the empty container created previously
+      this.domElement = createElement('dropIn' as ElementType, {
         // Required, dropIn use intent Id, client_secret and currency to prepare checkout
         intent_id,
         client_secret,
         currency,
-      });
-      // STEP #5: Mount the drop-in element to the empty container created previously
-      element?.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 3
-    });
+      })?.mount('dropIn');
 
-    window.addEventListener('onReady', this.onReady);
-    window.addEventListener('onSuccess', this.onSuccess);
-    window.addEventListener('onError', this.onError);
+      this.domElement?.addEventListener('onReady', this.onReady);
+      this.domElement?.addEventListener('onSuccess', this.onSuccess);
+      this.domElement?.addEventListener('onError', this.onError);
+    });
   }
 
   // STEP #6: Add an event listener to handle events when the element is mounted
@@ -100,8 +96,8 @@ export class DropInComponent implements OnInit {
 
   OnDestroy(): void {
     // Clean up listeners when the component is unmounting
-    window.removeEventListener('onReady', this.onReady);
-    window.removeEventListener('onSuccess', this.onSuccess);
-    window.removeEventListener('onError', this.onError);
+    this.domElement?.removeEventListener('onReady', this.onReady);
+    this.domElement?.removeEventListener('onSuccess', this.onSuccess);
+    this.domElement?.removeEventListener('onError', this.onError);
   }
 }

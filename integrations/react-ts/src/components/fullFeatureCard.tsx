@@ -75,14 +75,14 @@ const Index: React.FC = () => {
       setErrorMessage(error.message ?? JSON.stringify(error)); // Example: set error message
       console.error('There is an error', error);
     };
-
-    window.addEventListener('onReady', onReady as EventListener);
-    window.addEventListener('onSuccess', onSuccess as EventListener);
-    window.addEventListener('onError', onError as EventListener);
+    const domElement = document.getElementById('fullFeaturedCard');
+    domElement?.addEventListener('onReady', onReady as EventListener);
+    domElement?.addEventListener('onSuccess', onSuccess as EventListener);
+    domElement?.addEventListener('onError', onError as EventListener);
     return () => {
-      window.removeEventListener('onReady', onReady as EventListener);
-      window.removeEventListener('onSuccess', onSuccess as EventListener);
-      window.removeEventListener('onError', onError as EventListener);
+      domElement?.removeEventListener('onReady', onReady as EventListener);
+      domElement?.removeEventListener('onSuccess', onSuccess as EventListener);
+      domElement?.removeEventListener('onError', onError as EventListener);
     };
   }, []);
 

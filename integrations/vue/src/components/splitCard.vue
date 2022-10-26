@@ -12,41 +12,31 @@
   <div>
     <h2>Split Card element integration</h2>
     <!-- Styling example below: show loading state when element is not ready -->
-    <p id="loading">
-      Loading...
-    </p>
+    <p id="loading">Loading...</p>
     <!-- Example: response message container -->
-    <p id="error" style="display:none" />
+    <p id="error" style="display: none" />
     <div id="card-container" :style="{ display: 'none' }">
       <!-- 
         STEP #3a: Add empty containers for the split elements to be injected into 
         - Ensure these are the only elements in your document with these id, otherwise the elements may fail to mount.
       -->
       <div class="field-container">
-        <div class="field-label">
-          Card number
-        </div>
+        <div class="field-label">Card number</div>
         <div id="cardNumber" />
         <p id="cardNumber-error" :style="{ color: 'red' }" />
       </div>
       <div class="field-container">
-        <div class="field-label">
-          Expiry
-        </div>
+        <div class="field-label">Expiry</div>
         <div id="expiry" />
         <p id="expiry-error" :style="{ color: 'red' }" />
       </div>
       <div class="field-container">
-        <div class="field-label">
-          Cvc
-        </div>
+        <div class="field-label">Cvc</div>
         <div id="cvc" />
         <p id="cvc-error" :style="{ color: 'red' }" />
       </div>
       <!-- STEP #3b: Add a submit button to trigger the payment request -->
-      <button id="confirm" :disabled="true" @click="triggerConfirm()">
-        Confirm
-      </button>
+      <button id="confirm" :disabled="true" @click="triggerConfirm()">Confirm</button>
     </div>
   </div>
 </template>
@@ -197,19 +187,24 @@ export default {
   },
   mounted() {
     init();
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onChange', onChange);
-    window.addEventListener('onError', onError);
-    window.addEventListener('onFocus', onFocus);
-    window.addEventListener('onBlur', onBlur);
+    const domElement = document.getElementById('cardNumber');
+
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onChange', onChange);
+    domElement.addEventListener('onError', onError);
+    domElement.addEventListener('onFocus', onFocus);
+    domElement.addEventListener('onBlur', onBlur);
   },
   beforeDestroy() {
+    const domElement = document.getElementById('cardNumber');
     // Be sure to clean up event listeners when component unmounts
-    window.removeEventListener('onReady', onReady);
-    window.removeEventListener('onChange', onChange);
-    window.removeEventListener('onError', onError);
-    window.removeEventListener('onFocus', onFocus);
-    window.removeEventListener('onBlur', onBlur);
+    if (domElement) {
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onChange', onChange);
+      domElement.removeEventListener('onError', onError);
+      domElement.removeEventListener('onFocus', onFocus);
+      domElement.removeEventListener('onBlur', onBlur);
+    }
   },
 };
 </script>

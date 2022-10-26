@@ -75,14 +75,15 @@ const DropIn = () => {
       setErrorMessage(error.message);
       console.error('There was an error', error);
     };
+    const domElement = document.getElementById('dropIn');
 
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onSuccess', onSuccess);
-    window.addEventListener('onError', onError);
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onSuccess', onSuccess);
+    domElement.addEventListener('onError', onError);
     return () => {
-      window.removeEventListener('onReady', onReady);
-      window.removeEventListener('onSuccess', onSuccess);
-      window.removeEventListener('onError', onError);
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onSuccess', onSuccess);
+      domElement.removeEventListener('onError', onError);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 

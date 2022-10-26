@@ -68,13 +68,13 @@ const Index: React.FC = () => {
       setErrorMessage(error.message ?? JSON.stringify(error)); // Example: set error message
       console.error('There is an error', error);
     };
-
-    window.addEventListener('onReady', onReady as EventListener);
-    window.addEventListener('onError', onError as EventListener);
+    const domElement = document.getElementById('redirect');
+    domElement?.addEventListener('onReady', onReady as EventListener);
+    domElement?.addEventListener('onError', onError as EventListener);
 
     return () => {
-      window.removeEventListener('onReady', onReady as EventListener);
-      window.removeEventListener('onError', onError as EventListener);
+      domElement?.removeEventListener('onReady', onReady as EventListener);
+      domElement?.removeEventListener('onError', onError as EventListener);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 

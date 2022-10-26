@@ -46,12 +46,14 @@ export class SplitCardComponent implements OnInit {
   isSubmitting: boolean;
   // Example: set error state
   errorMessage: string;
+  domElement?: HTMLElement | null;
   constructor() {
     this.cardNumberReady = this.cvcReady = this.expiryReady = false;
     this.cardNumberComplete = this.cvcComplete = this.expiryComplete = false;
     this.isSubmitting = false;
     this.fieldsCompleted = false;
     this.errorMessage = '';
+    this.domElement = null;
     this.onReady = this.onReady.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
@@ -67,8 +69,7 @@ export class SplitCardComponent implements OnInit {
       fonts: [
         // Customizes the font for the payment elements
         {
-          src:
-            'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
           family: 'AxLLCircular',
           weight: 400,
         },
@@ -76,14 +77,14 @@ export class SplitCardComponent implements OnInit {
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
     }).then(() => {
       // STEP #4, 5: Create and mount the individual card elements
-      createElement('cardNumber')?.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
+      this.domElement = createElement('cardNumber')?.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
       createElement('cvc')?.mount('cvc'); // Same as above
       createElement('expiry')?.mount('expiry'); // Same as above
+      this.domElement?.addEventListener('onReady', this.onReady);
+      this.domElement?.addEventListener('onChange', this.onChange);
+      this.domElement?.addEventListener('onBlur', this.onBlur);
+      this.domElement?.addEventListener('onFocus', this.onFocus);
     });
-    window.addEventListener('onReady', this.onReady);
-    window.addEventListener('onChange', this.onChange);
-    window.addEventListener('onBlur', this.onBlur);
-    window.addEventListener('onFocus', this.onFocus);
   }
 
   // STEP #7: Add an event handler to ensure the element is mounted
@@ -113,8 +114,7 @@ export class SplitCardComponent implements OnInit {
       this.expiryComplete = complete ?? false;
     }
 
-    this.fieldsCompleted =
-      this.cardNumberComplete && this.cvcComplete && this.expiryComplete; // Example: set button disabled state
+    this.fieldsCompleted = this.cardNumberComplete && this.cvcComplete && this.expiryComplete; // Example: set button disabled state
   };
 
   // STEP #9: Add an event listener to get input focus status
@@ -173,7 +173,7 @@ export class SplitCardComponent implements OnInit {
   };
 
   OnDestroy(): void {
-    window.removeEventListener('onReady', this.onReady);
-    window.removeEventListener('onChange', this.onChange);
+    this.domElement?.removeEventListener('onReady', this.onReady);
+    this.domElement?.removeEventListener('onChange', this.onChange);
   }
 }

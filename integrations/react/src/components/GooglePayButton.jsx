@@ -76,14 +76,14 @@ const GooglePayButton = () => {
     const onSuccess = (event) => {
       console.log(event);
     };
-
-    window.addEventListener('onReady', onReady);
-    window.addEventListener('onError', onError);
-    window.addEventListener('onSuccess', onSuccess);
+    const domElement = document.getElementById('googlePayButton');
+    domElement.addEventListener('onReady', onReady);
+    domElement.addEventListener('onError', onError);
+    domElement.addEventListener('onSuccess', onSuccess);
     return () => {
-      window.removeEventListener('onReady', onReady);
-      window.removeEventListener('onError', onError);
-      window.removeEventListener('onSuccess', onSuccess);
+      domElement.removeEventListener('onReady', onReady);
+      domElement.removeEventListener('onError', onError);
+      domElement.removeEventListener('onSuccess', onSuccess);
     };
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 

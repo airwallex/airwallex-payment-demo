@@ -109,15 +109,18 @@ const Index: React.FC = () => {
         [type]: error?.message ?? JSON.stringify(error),
       });
     };
-    window.addEventListener('onReady', onReady as EventListener);
-    window.addEventListener('onChange', onChange as EventListener); // Can also using onBlur
-    window.addEventListener('onBlur', onBlur as EventListener);
-    window.addEventListener('onFocus', onFocus as EventListener);
+
+    const domElement = document.getElementById('cardNumber');
+
+    domElement?.addEventListener('onReady', onReady as EventListener);
+    domElement?.addEventListener('onChange', onChange as EventListener); // Can also using onBlur
+    domElement?.addEventListener('onBlur', onBlur as EventListener);
+    domElement?.addEventListener('onFocus', onFocus as EventListener);
     return () => {
-      window.removeEventListener('onReady', onReady as EventListener);
-      window.removeEventListener('onChange', onChange as EventListener);
-      window.removeEventListener('onBlur', onBlur as EventListener);
-      window.removeEventListener('onFocus', onFocus as EventListener);
+      domElement?.removeEventListener('onReady', onReady as EventListener);
+      domElement?.removeEventListener('onChange', onChange as EventListener);
+      domElement?.removeEventListener('onBlur', onBlur as EventListener);
+      domElement?.removeEventListener('onFocus', onFocus as EventListener);
     };
   }, [inputErrorMessage]);
   // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements

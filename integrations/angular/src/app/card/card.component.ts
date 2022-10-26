@@ -37,6 +37,7 @@ export class CardComponent implements OnInit {
   isSubmitting: boolean;
   errorMessage: string;
   inputErrorMessage: string;
+  domElement?: HTMLElement | null;
   constructor() {
     this.loading = true;
     this.isSubmitting = false;
@@ -46,6 +47,7 @@ export class CardComponent implements OnInit {
     this.onError = this.onError.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.onFocus = this.onFocus.bind(this);
+    this.domElement = null;
     this.triggerConfirm = this.triggerConfirm.bind(this);
   }
 
@@ -57,8 +59,7 @@ export class CardComponent implements OnInit {
       fonts: [
         // Customizes the font for the payment elements
         {
-          src:
-            'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
           family: 'AxLLCircular',
           weight: 400,
         },
@@ -66,13 +67,12 @@ export class CardComponent implements OnInit {
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
     }).then(() => {
       // STEP #4, #5: Create and mount the card element
-      createElement('card' as ElementType)?.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
+      this.domElement = createElement('card' as ElementType)?.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
+      this.domElement?.addEventListener('onReady', this.onReady);
+      this.domElement?.addEventListener('onError', this.onError);
+      this.domElement?.addEventListener('onBlur', this.onBlur);
+      this.domElement?.addEventListener('onFocus', this.onFocus);
     });
-
-    window.addEventListener('onReady', this.onReady);
-    window.addEventListener('onError', this.onError);
-    window.addEventListener('onBlur', this.onBlur);
-    window.addEventListener('onFocus', this.onFocus);
   }
 
   // STEP #7: Add an event listener to ensure the element is mounted
@@ -128,11 +128,7 @@ export class CardComponent implements OnInit {
            * ...Handle confirm response
            */
           this.isSubmitting = false; // Example: sets loading state
-          window.alert(
-            `Payment Intent confirmation was successful: ${JSON.stringify(
-              response
-            )}`
-          );
+          window.alert(`Payment Intent confirmation was successful: ${JSON.stringify(response)}`);
         })
         // STEP #6c: Listen to the request failure response
         .catch((error) => {
@@ -148,7 +144,7 @@ export class CardComponent implements OnInit {
 
   OnDestroy(): void {
     // Clean up listeners when the component is unmounting
-    window.removeEventListener('onReady', this.onReady);
-    window.removeEventListener('onError', this.onError);
+    this.domElement?.removeEventListener('onReady', this.onReady);
+    this.domElement?.removeEventListener('onError', this.onError);
   }
 }

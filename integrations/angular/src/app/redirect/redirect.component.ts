@@ -35,11 +35,13 @@ const redirect_method = 'replace-with-your-redirect-method' as PaymentMethodWith
 export class RedirectComponent implements OnInit {
   loading: boolean; // Example: set loading state
   errorMessage: string; // Example: set error state
+  domElement?: HTMLElement | null;
   constructor() {
     this.loading = true;
     this.errorMessage = '';
     this.onReady = this.onReady.bind(this);
     this.onError = this.onError.bind(this);
+    this.domElement = null;
   }
 
   ngOnInit(): void {
@@ -49,7 +51,7 @@ export class RedirectComponent implements OnInit {
       origin: window.location.origin, // Setup your event target to receive the browser events message
     }).then(() => {
       // STEP #4, 5: Create and mount the redirect element
-      createElement('redirect' as ElementType, {
+      this.domElement = createElement('redirect' as ElementType, {
         intent: {
           // Required, must provide intent details to prepare redirect element for checkout
           id: intent_id,
@@ -57,10 +59,9 @@ export class RedirectComponent implements OnInit {
         },
         method: redirect_method, // Required, must provide payment method type
       })?.mount('redirect'); // This 'redirect' id MUST MATCH the id on your empty container created in Step 3
+      this.domElement?.addEventListener('onReady', this.onReady);
+      this.domElement?.addEventListener('onError', this.onError);
     });
-
-    window.addEventListener('onReady', this.onReady);
-    window.addEventListener('onError', this.onError);
   }
 
   // STEP #6: Add an event listener to handle events when the element is mounted
@@ -83,7 +84,7 @@ export class RedirectComponent implements OnInit {
   };
 
   OnDestroy(): void {
-    window.removeEventListener('onReady', this.onReady);
-    window.removeEventListener('onError', this.onError);
+    this.domElement?.removeEventListener('onReady', this.onReady);
+    this.domElement?.removeEventListener('onError', this.onError);
   }
 }
