@@ -77,7 +77,7 @@ export const generateHTML = ({
       const cvc = Airwallex.createElement('cvc');
 
       // STEP #5: Mount split card elements
-      cardNumber.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
+      const domElement = cardNumber.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
       expiry.mount('expiry'); // Same as above
       cvc.mount('cvc'); // Same as above
       
@@ -113,7 +113,7 @@ export const generateHTML = ({
       };
 
       // STEP #8: Add an event listener to listen to the changes in each of the input fields
-      window.addEventListener('onChange', (event) => {
+      domElement.addEventListener('onChange', (event) => {
         const { type, complete } = event.detail;
         if (elementsCompleted.hasOwnProperty(type)) {
           elementsCompleted[type] = complete; // Set element completion state
@@ -127,7 +127,7 @@ export const generateHTML = ({
         document.getElementById('submit').disabled = !allElementsCompleted; // Example: Enable button only when all fields are completed
       })
       // STEP #9: Add an event listener to get input focus status
-      window.addEventListener('onFocus', (event) => {
+      domElement.addEventListener('onFocus', (event) => {
         const { type } = event.detail;
         const element = document.getElementById(type + '-error');
         if (element) {
@@ -137,7 +137,7 @@ export const generateHTML = ({
       });
 
       // STEP #10: Add an event listener to show input error message when finish typing
-      window.addEventListener('onBlur', (event) => {
+      domElement.addEventListener('onBlur', (event) => {
         const { error, type } = event.detail;
         const element = document.getElementById(type + '-error');
         if (element && error) {
