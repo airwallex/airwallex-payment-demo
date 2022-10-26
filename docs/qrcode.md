@@ -69,7 +69,7 @@ There are also additional options as a second parameter to the `createElement` f
 Next, we need to mount the qrcode element to the DOM.
 
 ```js
-element.mount('qrcode');
+const domElement = element.mount('qrcode');
 ```
 
 This function will append the qrcode element to your div with an id `qrcode` as created in Step 3. **Ensure that there are no other elements in the document with the same id**.
@@ -79,7 +79,7 @@ The **element should only be mounted once** in a single payment flow.
 ### 6. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
-element.addEventListener('onReady', (event) => {
+domElement.addEventListener('onReady', (event) => {
   /*
     ... Handle event
   */
@@ -92,7 +92,7 @@ This can be used to set a loading state as the checkout screen is being prepared
 ### 7. Add an `onSuccess` event listener to handle events when the payment is successful.
 
 ```js
-element.addEventListener('onSuccess', (event) => {
+domElement.addEventListener('onSuccess', (event) => {
   /*
     ... Handle event on success
   */
@@ -103,7 +103,7 @@ element.addEventListener('onSuccess', (event) => {
 ### 8. Add an `onError` event listener to handle events when the payment has failed.
 
 ```js
-element.addEventListener('onError', (event) => {
+domElement.addEventListener('onError', (event) => {
   /*
     ... Handle event on error
   */
@@ -153,10 +153,10 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         qrcodeMethod: 'replace-with-your-payment-method',
       });
       // STEP #5: Mount 'qrcode' element
-      element.mount('qrcode');
+      const domElement = element.mount('qrcode');
 
       // STEP #6: Add an event listener to handle events when the element is mounted
-      element.addEventListener('onReady', (event) => {
+      domElement.addEventListener('onReady', (event) => {
         /*
           ... Handle event
         */
@@ -164,7 +164,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to handle events when the payment is successful.
-      element.addEventListener('onSuccess', (event) => {
+      domElement.addEventListener('onSuccess', (event) => {
         /*
           ... Handle event on success
         */
@@ -172,7 +172,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #8: Add an event listener to handle events when the payment has failed.
-      element.addEventListener('onError', (event) => {
+      domElement.addEventListener('onError', (event) => {
         /*
           ... Handle event on error
         */
