@@ -11,7 +11,7 @@
 
 import React, { useEffect, useState } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import { createElement, getElement, loadAirwallex } from 'airwallex-payment-elements';
+import { createElement, loadAirwallex } from 'airwallex-payment-elements';
 
 // More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
 
