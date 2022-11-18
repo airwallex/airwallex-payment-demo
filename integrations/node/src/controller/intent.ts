@@ -4,7 +4,7 @@
  *
  * This file describes that how to create a paymentIntent and retrieve a paymentIntent.
  */
-import express, { Response } from 'express';
+import express from 'express';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import config from '../config';
@@ -17,8 +17,7 @@ intentRouter.get('/create', async (req, res) => {
   const createIntentUrl = `${config.airwallex.clientPciApiHost}/api/v1/pa/payment_intents/create`;
   try {
     // STEP #1: Before create intent, should get authorized token first.
-    const token = await getToken(res);
-
+    const token = await getToken();
     // STEP #2: Create the paymentIntent.
     // The payment amount and currency, as well as the merchant order ID must be provided.
     const intentRes = await axios.post(
@@ -40,7 +39,7 @@ intentRouter.get('/create', async (req, res) => {
         },
       },
     );
-    res.status(200).json(intentRes.data);
+    return res.status(200).json(intentRes.data);
   } catch (err) {
     // Handle api error here
     return res.status(500).json({ error: err.message });
@@ -53,7 +52,7 @@ intentRouter.get('/:id', async (req, res) => {
   const createIntentUrl = `${config.airwallex.clientPciApiHost}/api/v1/pa/payment_intents/${id}`;
   try {
     // STEP #1: Before retrieve a intent, should get authorized token first.
-    const token = await getToken(res);
+    const token = await getToken();
 
     // STEP #2: Retrieve a paymentIntent by the intentId
     const intentRes = await axios.get(createIntentUrl, {
@@ -72,31 +71,28 @@ intentRouter.get('/:id', async (req, res) => {
 // Use your test keys for development and live keys for real charges in production.
 // If your want to change your environment keys, please go to .env file.
 let cachedToken = '';
-const getToken = async (res: Response) => {
+const getToken = async () => {
   if (cachedToken) {
     return cachedToken;
   }
-  const loginUrl = `${config.airwallex.clientApiHost}/api/v1/authentication/login?api_key=${config.airwallex.apiKey}&client_id=${config.airwallex.clientId}`;
-  try {
-    const loginHeader = {
-      'x-client-id': config.airwallex.clientId,
-      'x-api-key': config.airwallex.apiKey,
-    };
-    const loginRes = await axios.post(
-      loginUrl,
-      {},
-      {
-        headers: loginHeader,
-      },
-    );
-    const token = loginRes.data.token;
-    cachedToken = token;
-    // Cache token for a while
-    setTimeout(() => (cachedToken = ''), 20 * 60 * 1000);
-    return token;
-  } catch (err) {
-    return res.status(500).json({ error: err.message });
-  }
+  const loginUrl = `${config.airwallex.clientApiHost}/api/v1/authentication/login`;
+  const loginHeader = {
+    'x-client-id': config.airwallex.clientId,
+    'x-api-key': config.airwallex.apiKey,
+    'Content-Type': 'application/json'
+  };
+  const loginRes = await axios.post(
+    loginUrl,
+    {},
+    {
+      headers: loginHeader,
+    },
+  );
+  const token = loginRes.data.token;
+  cachedToken = token;
+  // Cache token for a while
+  setTimeout(() => (cachedToken = ''), 20 * 60 * 1000);
+  return token;
 };
 
 export default intentRouter;
