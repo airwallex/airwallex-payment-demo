@@ -6,9 +6,15 @@
  */
 
 import express from "express";
+import cors from 'cors';
 import intentRouter from "./controller/intent";
 
 const app = express();
+app.use(express.json());
+app.use(cors({
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
+}))
 
 // Server port.
 const port = 3002;

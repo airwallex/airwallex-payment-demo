@@ -13,9 +13,10 @@ const intentRouter = express.Router();
 
 // Create the PaymentIntent on the backend.
 // Since this is a demo, to simplify the flow you can using a get call to create an intent, when doing integration you can change to post along with payload your shopper provided
-intentRouter.get('/create', async (req, res) => {
+intentRouter.post('/create', async (req, res) => {
   const createIntentUrl = `${config.airwallex.clientPciApiHost}/api/v1/pa/payment_intents/create`;
   try {
+    const { amount, currency, order } = req.body || {}
     // STEP #1: Before create intent, should get authorized token first.
     const token = await getToken();
     // STEP #2: Create the paymentIntent.
@@ -26,12 +27,13 @@ intentRouter.get('/create', async (req, res) => {
         // Unique request ID specified by the merchant.
         request_id: uuid(),
         // Payment amount.
-        amount: '20',
+        amount,
         // Payment currency.
-        currency: 'CNY',
+        currency,
         // The order ID created in merchant's order system that corresponds to this PaymentIntent.
         merchant_order_id: uuid(),
         // You can find more api information from https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post.
+        order
       },
       {
         headers: {
