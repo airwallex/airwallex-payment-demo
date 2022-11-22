@@ -12,11 +12,8 @@
 import React, { useEffect, useState } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
 import { createElement, loadAirwallex, getElement, confirmPaymentIntent } from 'airwallex-payment-elements';
-
-// Enter your Payment Intent secret keys here
-// More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
-const intent_id = 'replace-with-your-intent-id';
-const client_secret = 'replace-with-your-client-secret';
+import { v4 as uuid } from 'uuid';
+import { createPaymentIntent } from '../util';
 
 const Index: React.FC = () => {
   const [elementShow, setElementShow] = useState(false); // Example: show element state
@@ -87,14 +84,33 @@ const Index: React.FC = () => {
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
   // STEP ##6a: Add a button handler to trigger the payment request
-  const triggerConfirm = (): void => {
+  const triggerConfirm = async () => {
     setIsSubmitting(true); // Example: set loading state
     setErrorMessage(''); // Example: reset error message
     const card = getElement('card');
     if (card) {
+      const intent = await createPaymentIntent({
+        request_id: uuid(),
+        merchant_order_id: uuid(),
+        amount: 68 * 2,
+        currency: 'USD',
+        order: {
+          products: [
+            {
+              url: 'https://staging-pacheckoutdemo.airwallex.com/assets/img/book1_detail.png',
+              name: 'Lumario',
+              desc: 'Example product',
+              unit_price: 68,
+              currency: 'USD',
+              quantity: 2,
+            },
+          ],
+        },
+      });
+      const { id, client_secret } = intent;
       confirmPaymentIntent({
         element: card,
-        id: intent_id,
+        id,
         client_secret,
         // Add other payment confirmation details, see docs here: https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
         payment_method_options: {
@@ -134,7 +150,6 @@ const Index: React.FC = () => {
 
   return (
     <div>
-      <h2>Card integration</h2>
       {/* Example below: show loading state */}
       {!elementShow && <p>Loading...</p>}
       {/* Example below: display response message block */}

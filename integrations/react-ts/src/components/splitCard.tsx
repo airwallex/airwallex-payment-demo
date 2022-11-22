@@ -18,11 +18,8 @@ import {
   confirmPaymentIntent,
   EventDetail,
 } from 'airwallex-payment-elements';
-
-// Enter your Payment Intent secret keys here
-// More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
-const intent_id = 'replace-with-your-intent-id';
-const client_secret = 'replace-with-your-client-secret';
+import { v4 as uuid } from 'uuid';
+import { createPaymentIntent } from '../util';
 
 const Index: React.FC = () => {
   // Example: element ready states, controls the display for when elements are successfully mounted
@@ -57,13 +54,16 @@ const Index: React.FC = () => {
         },
       ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
-    }).then(() => {
-      // STEP #4, 5: Create and mount the individual card elements
-      createElement('cardNumber')?.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
-      createElement('cvc')?.mount('cvc'); // Same as above
-      createElement('expiry')?.mount('expiry'); // Same as above
-    });
-
+    })
+      .then(() => {
+        // STEP #4, 5: Create and mount the individual card elements
+        createElement('cardNumber')?.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
+        createElement('cvc')?.mount('cvc'); // Same as above
+        createElement('expiry')?.mount('expiry'); // Same as above
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     // STEP #7: Add an event handler to ensure the element is mounted
     const onReady = (event: CustomEvent): void => {
       const { type } = event.detail as EventDetail;
@@ -104,14 +104,12 @@ const Index: React.FC = () => {
     // STEP #10: Add an event listener to show input error message when finish typing
     const onBlur = (event: CustomEvent) => {
       const { type, error } = event.detail;
-      setInputErrorMessage({
-        ...inputErrorMessage,
+      setInputErrorMessage((prev) => ({
+        ...prev,
         [type]: error?.message ?? JSON.stringify(error),
-      });
+      }));
     };
-
-    const domElement = document.getElementById('cardNumber');
-
+    const domElement = document.getElementById('splitCard');
     domElement?.addEventListener('onReady', onReady as EventListener);
     domElement?.addEventListener('onChange', onChange as EventListener); // Can also using onBlur
     domElement?.addEventListener('onBlur', onBlur as EventListener);
@@ -122,43 +120,60 @@ const Index: React.FC = () => {
       domElement?.removeEventListener('onBlur', onBlur as EventListener);
       domElement?.removeEventListener('onFocus', onFocus as EventListener);
     };
-  }, [inputErrorMessage]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
   // STEP #6a: Add a button handler to trigger the payment request
-  const handleConfirm = (): void => {
+  const handleConfirm = async () => {
     setIsSubmitting(true); // Example: set loading state
     setErrorMessage(''); // Example: reset error message
     const cardNumber = getElement('cardNumber');
     if (cardNumber) {
-      confirmPaymentIntent({
-        element: cardNumber, // Only need to submit CardNumber element
-        id: intent_id,
-        client_secret,
-        // Add other payment confirmation details, see docs here: https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
-        payment_method_options: {
-          card: {
-            auto_capture: true,
+      try {
+        // STEP #3: Create payment intent
+        const intent = await createPaymentIntent({
+          request_id: uuid(),
+          merchant_order_id: uuid(),
+          amount: 68 * 2,
+          currency: 'USD',
+          order: {
+            products: [
+              {
+                url: 'https://staging-pacheckoutdemo.airwallex.com/assets/img/book1_detail.png',
+                name: 'Lumario',
+                desc: 'Example product',
+                unit_price: 68,
+                currency: 'USD',
+                quantity: 2,
+              },
+            ],
           },
-        },
-      })
-        // STEP #6b: Listen to the request response
-        .then((response) => {
-          /**
-           * ... Handle event on success
-           */
-          setIsSubmitting(false); // Example: reset loading state
-          window.alert(`Confirm success with ${JSON.stringify(response)}`);
-        })
-        // STEP #6c: Listen to errors
-        .catch((error) => {
-          /**
-           * ... Handle event on error
-           */
-          setIsSubmitting(false); // Example: reset loading state
-          setErrorMessage(error.message ?? JSON.stringify(error)); // Example: set error message
-          console.error('There is an error', error);
         });
+        const { id, client_secret } = intent;
+        const response = await confirmPaymentIntent({
+          element: cardNumber, // Only need to submit CardNumber element
+          id,
+          client_secret,
+          // Add other payment confirmation details, see docs here: https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
+          payment_method_options: {
+            card: {
+              auto_capture: true,
+            },
+          },
+        });
+        // STEP #6b: Listen to the request response
+        setIsSubmitting(false); // Example: reset loading state
+        window.alert(`Confirm success with ${JSON.stringify(response)}`);
+      } catch (error) {
+        // STEP #6c: Listen to error
+        /**
+         *  Handle event on error
+         */
+        setIsSubmitting(false); // Example: reset loading state
+        setErrorMessage(JSON.stringify(error)); // Example: set error message
+        console.error('There is an error', error);
+      }
     }
   };
 
@@ -177,8 +192,7 @@ const Index: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Split Card element integration</h2>
+    <div id="splitCard">
       {/* Example below: show loading state */}
       {!allElementsReady && <p>Loading...</p>}
       {/* Example below: display response message block */}

@@ -1,6 +1,6 @@
 /**
  * fullFeatureCard.tsx
- * Airwallex Payment Demo - React Typescript.  Created by Olivia Wei and Josie Ku.
+ * Airwallex Payment Demo - React Typescript.
  *
  * airwallex-payment-elements FullFeaturedCard element integration in React Typescript
  * Comments with "Example" demonstrate how states can be integrated
@@ -11,48 +11,64 @@
 
 import React, { useEffect, useState } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import { createElement, loadAirwallex, ElementType } from 'airwallex-payment-elements';
-
-// Enter your Payment Intent secret keys here
-// More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
-const intent_id = 'replace-with-your-intent-id';
-const client_secret = 'replace-with-your-client-secret';
+import { createElement, loadAirwallex } from 'airwallex-payment-elements';
+import { v4 as uuid } from 'uuid';
+import { createPaymentIntent } from '../util';
 
 const Index: React.FC = () => {
   const [elementShow, setElementShow] = useState(false); // Example: set element show state
-  const [errorMessage, setErrorMessage] = useState(''); // Example: set error state
 
   useEffect(() => {
-    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
-    loadAirwallex({
-      env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
-      origin: window.location.origin, // Setup your event target to receive the browser events message
-      fonts: [
-        // Can customize the font for the payment elements
-        {
-          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-          family: 'AxLLCircular',
-          weight: 400,
-        },
-      ],
-      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
-    }).then(() => {
-      // STEP #4: Create the full featured card element
-      const element = createElement('fullFeaturedCard' as ElementType, {
-        intent: {
-          // Required, must provide intent details to prepare fullFeaturedCard element
-          id: intent_id,
-          client_secret,
-        },
-      });
-      // STEP #5: Mount the element to the empty container created previously
-      element?.mount('fullFeaturedCard'); // This 'fullFeaturedCard' id MUST MATCH the id on your empty container created in Step 3
-    });
-
+    const loadFullFeaturedCard = async () => {
+      try {
+        // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+        await loadAirwallex({
+          env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
+          origin: window.location.origin, // Setup your event target to receive the browser events message
+          fonts: [
+            // Customizes the font for the payment elements
+            {
+              src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
+              family: 'AxLLCircular',
+              weight: 400,
+            },
+          ],
+          // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
+        });
+        // STEP #3: Create payment intent
+        const intent = await createPaymentIntent({
+          request_id: uuid(),
+          merchant_order_id: uuid(),
+          amount: 68 * 2,
+          currency: 'USD',
+          order: {
+            products: [
+              {
+                url: 'https://staging-pacheckoutdemo.airwallex.com/assets/img/book1_detail.png',
+                name: 'Lumario',
+                desc: 'Example product',
+                unit_price: 68,
+                currency: 'USD',
+                quantity: 2,
+              },
+            ],
+          },
+        });
+        // STEP #4: Create the drop-in element
+        const element = createElement('fullFeaturedCard', {
+          intent,
+        });
+        // STEP #5: Mount the element to the empty container created previously
+        element?.mount('fullFeaturedCard'); // This 'fullFeaturedCard' id MUST MATCH the id on your empty container created in Step 4
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    loadFullFeaturedCard();
     // STEP #6: Add an event listener to handle events when the element is mounted
     const onReady = (event: CustomEvent): void => {
       /**
-       * ... Handle event on element mount
+       * Handle event on element mount
        */
       setElementShow(true);
       console.log(`Element is ready ${JSON.stringify(event.detail)}`);
@@ -61,7 +77,7 @@ const Index: React.FC = () => {
     // STEP #7: Add an event listener to handle events when the payment is successful
     const onSuccess = (event: CustomEvent): void => {
       /**
-       * ... Handle event on success
+       * Handle event on success
        */
       console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
     };
@@ -69,10 +85,9 @@ const Index: React.FC = () => {
     // STEP #8: Add an event listener to handle events when the payment has failed
     const onError = (event: CustomEvent) => {
       /**
-       * ... Handle event on error
+       * Handle event on error
        */
       const { error } = event.detail;
-      setErrorMessage(error.message ?? JSON.stringify(error)); // Example: set error message
       console.error('There is an error', error);
     };
     const domElement = document.getElementById('fullFeaturedCard');
@@ -94,11 +109,8 @@ const Index: React.FC = () => {
 
   return (
     <div>
-      <h2>Full Featured Card integration</h2>
       {/* Example below: show loading state */}
       {!elementShow && <p>Loading...</p>}
-      {/* Example below: display response message block */}
-      {errorMessage.length > 0 && <p id="error">{errorMessage}</p>}
       {/**
        * STEP #3: Add an empty container for the fullFeaturedCard element to be placed into
        * - Ensure this is the only element in your document with this id,
