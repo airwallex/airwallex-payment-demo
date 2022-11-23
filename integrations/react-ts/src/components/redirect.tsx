@@ -30,14 +30,6 @@ const Index: React.FC = () => {
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
-      fonts: [
-        // Can customize the font for the payment elements
-        {
-          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-          family: 'AxLLCircular',
-          weight: 400,
-        },
-      ],
     }).then(() => {
       // STEP #4, 5: Create and mount the redirect element
       createElement('redirect' as ElementType, {

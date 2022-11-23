@@ -1,6 +1,6 @@
 /**
  * wechat.tsx
- * Airwallex Payment Demo - React Typescript.  Created by Olivia Wei and Josie Ku.
+ * Airwallex Payment Demo - React Typescript.
  *
  * airwallex-payment-elements Wechat element integration in React Typescript
  * Comments with "Example" demonstrate how states can be integrated
@@ -12,37 +12,51 @@
 import React, { useEffect, useState } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
 import { createElement, loadAirwallex, ElementType } from 'airwallex-payment-elements';
-
-// Enter your Payment Intent secret keys here
-// More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
-const intent_id = 'replace-with-your-intent-id';
-const client_secret = 'replace-with-your-client-secret';
+import { v4 as uuid } from 'uuid';
+import { createPaymentIntent } from '../util';
 
 const Index: React.FC = () => {
   const [elementShow, setElementShow] = useState(false); // Example: set loading state for element
   const [errorMessage, setErrorMessage] = useState(''); // Example: set error state
 
   useEffect(() => {
-    // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
-    loadAirwallex({
-      env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
-      origin: window.location.origin, // Setup your event target to receive the browser events message
-    }).then(() => {
+    const loadWeChat = async () => {
+      // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
+      await loadAirwallex({
+        env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
+        origin: window.location.origin, // Setup your event target to receive the browser events message
+      });
+      // STEP #3: Create payment intent
+      const intent = await createPaymentIntent({
+        request_id: uuid(),
+        merchant_order_id: uuid(),
+        amount: 68 * 2,
+        currency: 'USD',
+        order: {
+          products: [
+            {
+              url: 'https://via.placeholder.com/503x570',
+              name: 'Sample product',
+              desc: 'Sample product',
+              unit_price: 68,
+              currency: 'USD',
+              quantity: 2,
+            },
+          ],
+        },
+      });
       // STEP #4, 5: Create and mount the wechat element
       createElement('wechat' as ElementType, {
-        intent: {
-          // Required, must provide intent details to prepare wechat element for checkout
-          id: intent_id,
-          client_secret,
-        },
+        intent,
         origin: window.location.origin,
       })?.mount('wechat'); // This 'wechat' id MUST MATCH the id on your empty container created in Step 3
-    });
-
+    };
+    loadWeChat();
     // STEP #6: Add an event listener to handle events when the element is mounted
     const onReady = (event: CustomEvent): void => {
+      console.log('In the onReady event handler');
       /**
-       * ... Handle event on element mount
+       * Handle event on element mount
        */
       setElementShow(true);
       console.log(`Element ready, ${JSON.stringify(event.detail)}`);
@@ -85,7 +99,6 @@ const Index: React.FC = () => {
 
   return (
     <div>
-      <h2>Wechat element integration</h2>
       {/* Example below: show loading state */}
       {!elementShow && <p>Loading...</p>}
       {/* Example below: display response message block */}

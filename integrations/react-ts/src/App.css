@@ -30,10 +30,6 @@ div.container {
   height: 90vh;
 }
 
-div.payment-frame {
-  width: 85vw;
-}
-
 nav {
   display: flex;
   flex-direction: column;

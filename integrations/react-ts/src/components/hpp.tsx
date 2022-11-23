@@ -1,6 +1,6 @@
 /**
  * hpp.tsx
- * Airwallex Payment Demo - React Typescript.  Created by Olivia Wei and Josie Ku.
+ * Airwallex Payment Demo - React Typescript.
  *
  * airwallex-payment-elements Hosted Payment Page integration in React Typescript
  * Comments with "Example" demonstrate how states can be integrated
@@ -11,46 +11,32 @@
 
 import React from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import { redirectToCheckout, loadAirwallex } from 'airwallex-payment-elements';
+import { loadAirwallex, redirectToCheckout } from 'airwallex-payment-elements';
+import { v4 as uuid } from 'uuid';
+import { createPaymentIntent } from '../util';
 
-// Enter your Payment Intent secret keys here
-// More on getting these secrets: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro
-const intent_id = 'replace-with-your-intent-id';
-const client_secret = 'replace-with-your-client-secret';
-const currency = 'replace-with-your-currency';
-const mode = 'payment'; // Should be one of ['payment', 'recurring']
+export const Index: React.FC = () => {
+  const mode = 'payment'; // Should be one of ['payment', 'recurring']
+  const selectedBook = {
+    url: 'https://via.placeholder.com/503x570',
+    name: 'Sample product',
+    desc: 'Example product',
+    unit_price: 68,
+    currency: 'USD',
+    quantity: 1,
+  };
+  const theme = {
+    popupWidth: 418,
+    popupHeight: 549,
+  };
 
-const Index: React.FC = () => {
-  const redirectHppForCheckout = () => {
+  const redirectHppForCheckout = (intentId: string, clientSecret: string, currency: string) => {
     redirectToCheckout({
       env: 'demo',
       mode: 'payment',
       currency,
-      intent_id, // Required, must provide intent details
-      client_secret, // Required
-      theme: {
-        // Must provide theme to display the checkout page properly
-        fonts: [
-          // Customizes the font for the payment elements
-          {
-            src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-            family: 'AxLLCircular',
-            weight: 400,
-          },
-        ],
-      },
-      successUrl: 'https://www.google.com', // Must be HTTPS sites
-      failUrl: 'https://www.google.com', // Must be HTTPS sites
-      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
-    });
-  };
-
-  const redirectHppForRecurring = () => {
-    redirectToCheckout({
-      env: 'demo',
-      mode: 'recurring',
-      currency,
-      client_secret, // Required
+      intent_id: intentId, // Required, must provide intent details
+      client_secret: clientSecret, // Required
       recurringOptions: {
         card: {
           next_triggered_by: 'customer',
@@ -58,50 +44,129 @@ const Index: React.FC = () => {
           currency,
         },
       },
-      theme: {
-        // Must provide theme to display the checkout page properly
-        fonts: [
-          // Customizes the font for the payment elements
-          {
-            src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-            family: 'AxLLCircular',
-            weight: 400,
-          },
-        ],
-      },
-      successUrl: 'https://www.google.com', // Must be HTTPS sites
-      failUrl: 'https://www.google.com', // Must be HTTPS sites
+      theme,
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
     });
   };
 
-  // STEP #3: Add a button handler to trigger the redirect to HPP
-  const redirectHpp = async (): Promise<void> => {
+  const redirectHppForRecurring = (intentId: string, clientSecret: string, currency: string) => {
+    redirectToCheckout({
+      env: 'demo',
+      mode: 'recurring',
+      currency,
+      intent_id: intentId,
+      client_secret: clientSecret, // Required
+      recurringOptions: {
+        card: {
+          next_triggered_by: 'customer',
+          merchant_trigger_reason: 'scheduled',
+          currency,
+        },
+      },
+      theme,
+      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
+    });
+  };
+
+  const redirectHpp = (intentId: string, clientSecret: string, currency: string) => {
     try {
-      // STEP #3a: Initialize Airwallex on click with appropriate production environment and other configurations
+      if (mode === 'payment') {
+        redirectHppForCheckout(intentId, clientSecret, currency);
+      } else if (mode === 'recurring') {
+        redirectHppForRecurring(intentId, clientSecret, currency);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleCheckout = async () => {
+    try {
+      // STEP #3: Initialize Airwallex on click with appropriate production environment and other configurations
       await loadAirwallex({
         env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       });
-      // STEP #3b: Redirect the customer to Airwallex checkout
-      if (mode === 'payment') {
-        redirectHppForCheckout();
-      } else if (mode === 'recurring') {
-        redirectHppForRecurring();
-      }
+      // STEP #4: create payment intent
+      const intent = await createPaymentIntent({
+        request_id: uuid(),
+        merchant_order_id: uuid(),
+        amount: selectedBook.unit_price,
+        currency: selectedBook.currency,
+        order: {
+          products: [selectedBook],
+        },
+      });
+      const { id, client_secret, currency } = intent || {};
+      // STEP #5: Add a button handler to trigger the redirect to HPP
+      redirectHpp(id, client_secret, currency);
     } catch (error) {
-      // STEP #4: Catch error events
-      /**
-       * ... Handle event on error
-       */
-      window.alert(`There was an error with HPP redirection: ${JSON.stringify(error)}`);
+      console.error(error);
     }
   };
 
   return (
-    <div>
-      <h2>Hosted payment page (HPP) integration</h2>
-      {/* STEP #2: Add a checkout button */}
-      <button onClick={redirectHpp}>Redirect to HPP</button>
+    <div style={{ width: 1012, margin: '0px auto' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+        }}
+      >
+        <img
+          style={{
+            filter: 'drop-shadow(0 24px 38px rgba(22, 37, 51, 0.32))',
+          }}
+          src={selectedBook.url}
+          width={'416px'}
+          height={'auto'}
+          alt="book"
+        />
+
+        <div
+          style={{
+            width: 416,
+            position: 'relative',
+            textAlign: 'start',
+          }}
+        >
+          <div
+            style={{
+              marginTop: 24,
+              color: '#2A2A2A',
+              fontSize: 40,
+              fontWeight: 700,
+              lineHeight: 1.25,
+            }}
+          >
+            {selectedBook.name}
+          </div>
+          <div
+            style={{
+              marginTop: 32,
+              color: '#2A2A2A',
+              fontSize: 24,
+              fontWeight: 700,
+              lineHeight: 1.25,
+            }}
+          >
+            {`$${selectedBook.unit_price}`}
+          </div>
+          {/* STEP #2: Add a checkout button */}
+          <button
+            style={{
+              borderRadius: 2,
+              backgroundColor: '#161412',
+              width: '100%',
+              margin: '32px 0px 0px 0px',
+            }}
+            color="primary"
+            onClick={handleCheckout}
+          >
+            PROCEED TO CHECKOUT
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

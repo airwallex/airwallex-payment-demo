@@ -9,6 +9,7 @@ import express from "express";
 import intentRouter from "./controller/intent";
 
 const app = express();
+app.use(express.json());
 
 // Server port.
 const port = 3002;
