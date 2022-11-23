@@ -34,9 +34,9 @@ const Index: React.FC = () => {
           order: {
             products: [
               {
-                url: 'https://staging-pacheckoutdemo.airwallex.com/assets/img/book1_detail.png',
-                name: 'Lumario',
-                desc: 'Example product',
+                url: 'https://via.placeholder.com/503x570',
+                name: 'Sample product',
+                desc: 'Sample product',
                 unit_price: 68,
                 currency: 'USD',
                 quantity: 2,
