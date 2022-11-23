@@ -18,8 +18,8 @@ import { createPaymentIntent } from '../util';
 export const Index: React.FC = () => {
   const mode = 'payment'; // Should be one of ['payment', 'recurring']
   const selectedBook = {
-    url: 'https://staging-pacheckoutdemo.airwallex.com/assets/img/book1_detail.png',
-    name: 'Lumario',
+    url: 'https://via.placeholder.com/503x570',
+    name: 'Sample product',
     desc: 'Example product',
     unit_price: 68,
     currency: 'USD',
@@ -37,12 +37,6 @@ export const Index: React.FC = () => {
       currency,
       intent_id: intentId, // Required, must provide intent details
       client_secret: clientSecret, // Required
-      applePayRequestOptions: {
-        countryCode: 'USA',
-      },
-      googlePayRequestOptions: {
-        countryCode: 'USA',
-      },
       recurringOptions: {
         card: {
           next_triggered_by: 'customer',
@@ -51,7 +45,6 @@ export const Index: React.FC = () => {
         },
       },
       theme,
-      successUrl: 'https://demo-pacheckoutdemo.airwallex.com/checkout-success?isTesting=Y', // Must be HTTPS sites
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
     });
   };
@@ -71,7 +64,6 @@ export const Index: React.FC = () => {
         },
       },
       theme,
-      successUrl: 'https://demo-pacheckoutdemo.airwallex.com/checkout-success?isTesting=Y', // Must be HTTPS sites
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
     });
   };
