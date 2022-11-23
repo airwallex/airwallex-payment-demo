@@ -26,13 +26,6 @@ export const Index: React.FC = () => {
     quantity: 1,
   };
   const theme = {
-    fonts: [
-      {
-        src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-        family: 'AxLLCircular',
-        weight: 400,
-      },
-    ],
     popupWidth: 418,
     popupHeight: 549,
   };

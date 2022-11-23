@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
     "airwallex-payment-elements": "latest",
     "axios": "^1.1.3",
     "confusing-browser-globals": "^1.0.10",
@@ -41,6 +38,9 @@
     "eslint": "^7.16.0",
     "eslint-plugin-prettier": "^3.3.0",
     "prettier": "^2.2.1",
-    "typescript": "^3.9.10"
+    "typescript": "^4.0.3",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8"
   }
 }

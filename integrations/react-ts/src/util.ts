@@ -26,10 +26,15 @@ type PaymentIntentBody = {
   currency: string;
 };
 
+// warning: This domain is for creating mock payment intents.
+// The intents can only be paid in the "demo" environment.
+// Please use the API on production to create real payment intent
+// that can be paid in "prod". You can refer to the docs on how
+// to create payment intents in "prod" here:
+// https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post
+const API_DOMAIN = 'https://demo-pacheckoutdemo.airwallex.com';
+
 export const createPaymentIntent = async (paymentIntent: PaymentIntentRequest): Promise<PaymentIntentBody> => {
-  const intentData = await axios.post(
-    'https://demo-pacheckoutdemo.airwallex.com/api/v1/pa/payment_intents/create',
-    paymentIntent,
-  );
+  const intentData = await axios.post(`${API_DOMAIN}/api/v1/pa/payment_intents/create`, paymentIntent);
   return intentData.data;
 };
