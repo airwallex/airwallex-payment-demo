@@ -14,8 +14,10 @@ import React, { useEffect } from 'react';
 import { createElement, loadAirwallex } from 'airwallex-payment-elements';
 import { v4 as uuid } from 'uuid';
 import { createPaymentIntent } from '../util';
+import { useHistory } from 'react-router-dom';
 
 const Index: React.FC = () => {
+  const history = useHistory();
   useEffect(() => {
     const loadDropInElement = async () => {
       try {
@@ -51,6 +53,11 @@ const Index: React.FC = () => {
           intent_id: id,
           client_secret,
           currency,
+          style: {
+            // the 3ds popup window dimension
+            popupWidth: 400,
+            popupHeight: 549,
+          },
         });
         // STEP #5: Mount the drop-in element to the empty container created previously
         element?.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 4
@@ -73,6 +80,7 @@ const Index: React.FC = () => {
        * Handle events on success
        */
       console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
+      history.push('/checkout-success');
     };
 
     // STEP #8: Add an event listener to handle events when the payment has failed.
@@ -92,7 +100,7 @@ const Index: React.FC = () => {
       domElement?.removeEventListener('onSuccess', onSuccess as EventListener);
       domElement?.removeEventListener('onError', onError as EventListener);
     };
-  }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
+  }, [history]); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
   // Example: Custom styling for the dropIn container, can be placed in css
   const containerStyle = {
