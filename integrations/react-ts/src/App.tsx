@@ -24,7 +24,7 @@ const App: React.FC = () => (
             <Route path="/card" component={lazy(() => import('./components/card'))} />
             <Route path="/redirect" component={lazy(() => import('./components/redirect'))} />
             <Route path="/checkout-success" component={lazy(() => import('./components/checkoutSuccess.tsx'))} />
-            <Route exact path="/" component={lazy(() => import('./components/instructions'))} />
+            <Route path="/instructions" component={lazy(() => import('./components/instructions'))} />
           </Switch>
         </Suspense>
       </div>
