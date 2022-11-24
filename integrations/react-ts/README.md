@@ -6,7 +6,6 @@ This directory contains the React and Typescript implementation of [Airwallex Pa
 
 - [node.js](https://nodejs.org/en/)
 - `npm` or `yarn` package manager
-- node version <= 16
 
 ## Installation and Development
 
