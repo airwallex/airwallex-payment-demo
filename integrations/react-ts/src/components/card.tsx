@@ -14,12 +14,14 @@ import React, { useEffect, useState } from 'react';
 import { createElement, loadAirwallex, getElement, confirmPaymentIntent } from 'airwallex-payment-elements';
 import { v4 as uuid } from 'uuid';
 import { createPaymentIntent } from '../util';
+import { useHistory } from 'react-router-dom';
 
 const Index: React.FC = () => {
   const [elementShow, setElementShow] = useState(false); // Example: show element state
   const [isSubmitting, setIsSubmitting] = useState(false); // Example: show submission processing state
   const [errorMessage, setErrorMessage] = useState(''); // Example: set error state
   const [inputErrorMessage, setInputErrorMessage] = useState(''); //  Example: set input error state
+  const history = useHistory();
 
   useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
@@ -29,7 +31,13 @@ const Index: React.FC = () => {
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
     }).then(() => {
       // STEP #4, 5: Create and mount the card element
-      createElement('card')?.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
+      createElement('card', {
+        style: {
+          // the 3ds popup window dimension
+          popupWidth: 400,
+          popupHeight: 549,
+        },
+      })?.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
     });
 
     // STEP ##7: Add an event listener to ensure the element is mounted
@@ -117,7 +125,8 @@ const Index: React.FC = () => {
            * ...Handle confirm response
            */
           setIsSubmitting(false); // Example: sets loading state
-          window.alert(`Payment Intent confirmation was successful: ${JSON.stringify(response)}`);
+          console.log(`Payment Intent confirmation was successful: ${JSON.stringify(response)}`);
+          history.push('/checkout-success');
         })
         // STEP ##6c: Listen to the request failure response
         .catch((error) => {

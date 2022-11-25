@@ -14,10 +14,11 @@ import React, { useEffect, useState } from 'react';
 import { createElement, loadAirwallex } from 'airwallex-payment-elements';
 import { v4 as uuid } from 'uuid';
 import { createPaymentIntent } from '../util';
+import { useHistory } from 'react-router-dom';
 
 const Index: React.FC = () => {
   const [elementShow, setElementShow] = useState(false); // Example: set element show state
-
+  const history = useHistory();
   useEffect(() => {
     const loadFullFeaturedCard = async () => {
       try {
@@ -49,6 +50,11 @@ const Index: React.FC = () => {
         // STEP #4: Create the drop-in element
         const element = createElement('fullFeaturedCard', {
           intent,
+          style: {
+            // the 3ds popup window dimension
+            popupWidth: 400,
+            popupHeight: 549,
+          },
         });
         // STEP #5: Mount the element to the empty container created previously
         element?.mount('fullFeaturedCard'); // This 'fullFeaturedCard' id MUST MATCH the id on your empty container created in Step 4
@@ -72,6 +78,7 @@ const Index: React.FC = () => {
        * Handle event on success
        */
       console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
+      history.push('/checkout-success');
     };
 
     // STEP #8: Add an event listener to handle events when the payment has failed
@@ -91,7 +98,7 @@ const Index: React.FC = () => {
       domElement?.removeEventListener('onSuccess', onSuccess as EventListener);
       domElement?.removeEventListener('onError', onError as EventListener);
     };
-  }, []);
+  }, [history]);
 
   // Example: Custom styling for the wechat container, can be placed in css
   const containerStyle = {

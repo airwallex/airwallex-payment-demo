@@ -20,6 +20,7 @@ import {
 } from 'airwallex-payment-elements';
 import { v4 as uuid } from 'uuid';
 import { createPaymentIntent } from '../util';
+import { useHistory } from 'react-router-dom';
 
 const Index: React.FC = () => {
   // Example: element ready states, controls the display for when elements are successfully mounted
@@ -39,6 +40,7 @@ const Index: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   // Example: set error state
   const [errorMessage, setErrorMessage] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
@@ -156,7 +158,8 @@ const Index: React.FC = () => {
         });
         // STEP #6b: Listen to the request response
         setIsSubmitting(false); // Example: reset loading state
-        window.alert(`Confirm success with ${JSON.stringify(response)}`);
+        console.log(`Confirm success with ${JSON.stringify(response)}`);
+        history.push('/checkout-success');
       } catch (error) {
         // STEP #6c: Listen to error
         /**
