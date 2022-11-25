@@ -79,14 +79,7 @@ export const Index: React.FC = () => {
   );
 
   const handleCheckout = useCallback(
-    async (selectedBook: {
-      url: string;
-      name: string;
-      desc: string;
-      unit_price: number;
-      currency: string;
-      quantity: 1;
-    }) => {
+    async (product: { url: string; name: string; desc: string; unit_price: number; currency: string; quantity: 1 }) => {
       try {
         // STEP #3: Initialize Airwallex on click with appropriate production environment and other configurations
         await loadAirwallex({
@@ -96,10 +89,10 @@ export const Index: React.FC = () => {
         const intent = await createPaymentIntent({
           request_id: uuid(),
           merchant_order_id: uuid(),
-          amount: selectedBook.unit_price,
-          currency: selectedBook.currency,
+          amount: product.unit_price * product.quantity,
+          currency: product.currency,
           order: {
-            products: [selectedBook],
+            products: [product],
           },
         });
         const { id, client_secret, currency } = intent || {};
