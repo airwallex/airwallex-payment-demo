@@ -101,6 +101,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
           currency: 'replace-with-your-currency',
+          country_code: 'replace-with-your-country-code'
         });
       });
     </script>
