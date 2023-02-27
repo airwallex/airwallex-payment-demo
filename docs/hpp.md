@@ -137,6 +137,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
           mode: 'recurring',
           client_secret: 'replace-with-your-client-secret',
+          customer_id: 'replace-with-your-customer-id',
           currency: 'replace-with-your-currency',
           recurringOptions: {
             card: {
