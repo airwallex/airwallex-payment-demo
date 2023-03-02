@@ -139,21 +139,20 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           client_secret: 'replace-with-your-client-secret',
           customer_id: 'replace-with-your-customer-id',
           currency: 'replace-with-your-currency',
+          country_code: 'replace-with-your-country-code',
           recurringOptions: {
-            card: {
-              /**
-               * The subsequent transactions are triggered by `merchant` or `customer`
-               */
-              next_triggered_by: 'merchant',
-              /**
-               * The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`
-               */
-              merchant_trigger_reason: 'scheduled',
-              /**
-               * Currency of the initial PaymentIntent to verify the PaymentConsent. Three-letter ISO currency code
-               */
-              currency: 'replace-with-your-currency',
-            },
+            /**
+             * The subsequent transactions are triggered by `merchant` or `customer`
+             */
+            next_triggered_by: 'merchant',
+            /**
+             * The reason why merchant trigger transaction. Only applicable when next_triggered_by is `merchant`
+             */
+            merchant_trigger_reason: 'scheduled',
+            /**
+             * Currency of the initial PaymentIntent to verify the PaymentConsent. Three-letter ISO currency code
+             */
+            currency: 'replace-with-your-currency',
           },
         });
       });
