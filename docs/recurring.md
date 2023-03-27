@@ -41,8 +41,8 @@ document.getElementById('submit').addEventListener('click', () => {
     customer_id: 'replace-with-your-customer-id', // customer id
     client_secret: 'replace-with-your-client-secret', // client secret (from creating intent or generating client secret)
     currency: 'replace-with-your-currency', // currency
-    element: cardElement // either the card element or card number element depends on the element you integrate,
-    next_triggered_by: 'customer' // 'merchant' for MIT and 'customer' for CIT
+    element: 'cardElement', // either the card element or card number element depends on the element you integrate,
+    next_triggered_by: 'customer', // 'merchant' for MIT and 'customer' for CIT
   }).then((response) => {
     // STEP #6b: Listen to the request response
     /* Handle response */
