@@ -80,10 +80,16 @@ export class SplitCardComponent implements OnInit {
       this.domElement = createElement('cardNumber')?.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
       createElement('cvc')?.mount('cvc'); // Same as above
       createElement('expiry')?.mount('expiry'); // Same as above
-      this.domElement?.addEventListener('onReady', this.onReady);
-      this.domElement?.addEventListener('onChange', this.onChange);
-      this.domElement?.addEventListener('onBlur', this.onBlur);
-      this.domElement?.addEventListener('onFocus', this.onFocus);
+      const cardNumberElement = document.getElementById('cardNumber');
+      const expiryElement = document.getElementById('expiry');
+      const cvcElement = document.getElementById('cvc');
+      const domElementArray = [cardNumberElement, expiryElement, cvcElement];
+      domElementArray.forEach((element) => {
+        element?.addEventListener('onReady', this.onReady);
+        element?.addEventListener('onChange', this.onChange);
+        element?.addEventListener('onFocus', this.onFocus);
+        element?.addEventListener('onBlur', this.onBlur);
+      });
     });
   }
 
@@ -173,7 +179,15 @@ export class SplitCardComponent implements OnInit {
   };
 
   OnDestroy(): void {
-    this.domElement?.removeEventListener('onReady', this.onReady);
-    this.domElement?.removeEventListener('onChange', this.onChange);
+    const cardNumberElement = document.getElementById('cardNumber');
+    const expiryElement = document.getElementById('expiry');
+    const cvcElement = document.getElementById('cvc');
+    const domElementArray = [cardNumberElement, expiryElement, cvcElement];
+    domElementArray.forEach((element) => {
+      element?.removeEventListener('onReady', this.onReady);
+      element?.removeEventListener('onChange', this.onChange);
+      element?.removeEventListener('onFocus', this.onFocus);
+      element?.removeEventListener('onBlur', this.onBlur);
+    });
   }
 }

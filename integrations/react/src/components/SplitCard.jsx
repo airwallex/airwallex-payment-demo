@@ -108,17 +108,23 @@ const Index = () => {
       }));
     };
 
-    const domElement = document.getElementById('cardNumber');
-    domElement.addEventListener('onReady', onReady);
-    domElement.addEventListener('onChange', onChange); // Can also use onBlur
-    domElement.addEventListener('onBlur', onBlur);
-    domElement.addEventListener('onFocus', onFocus);
-
+    const cardNumberElement = document.getElementById('cardNumber');
+    const expiryElement = document.getElementById('expiry');
+    const cvcElement = document.getElementById('cvc');
+    const domElementArray = [cardNumberElement, expiryElement, cvcElement];
+    domElementArray.forEach((element) => {
+      element.addEventListener('onReady', onReady);
+      element.addEventListener('onChange', onChange);
+      element.addEventListener('onFocus', onFocus);
+      element.addEventListener('onBlur', onBlur);
+    });
     return () => {
-      domElement.removeEventListener('onReady', onReady);
-      domElement.removeEventListener('onChange', onChange);
-      domElement.removeEventListener('onBlur', onBlur);
-      domElement.removeEventListener('onFocus', onFocus);
+      domElementArray.forEach((element) => {
+        element.removeEventListener('onReady', onReady);
+        element.removeEventListener('onChange', onChange);
+        element.removeEventListener('onFocus', onFocus);
+        element.removeEventListener('onBlur', onBlur);
+      });
     };
     // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
   }, []);
