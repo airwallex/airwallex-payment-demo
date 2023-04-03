@@ -103,16 +103,23 @@ const Index: React.FC = () => {
         [type]: error?.message ?? JSON.stringify(error),
       }));
     };
-    const domElement = document.getElementById('splitCard');
-    domElement?.addEventListener('onReady', onReady as EventListener);
-    domElement?.addEventListener('onChange', onChange as EventListener); // Can also using onBlur
-    domElement?.addEventListener('onBlur', onBlur as EventListener);
-    domElement?.addEventListener('onFocus', onFocus as EventListener);
+    const cardNumberElement = document.getElementById('cardNumber');
+    const expiryElement = document.getElementById('expiry');
+    const cvcElement = document.getElementById('cvc');
+    const domElementArray = [cardNumberElement, expiryElement, cvcElement];
+    domElementArray.forEach((element) => {
+      element?.addEventListener('onReady', onReady as EventListener);
+      element?.addEventListener('onChange', onChange as EventListener);
+      element?.addEventListener('onFocus', onFocus as EventListener);
+      element?.addEventListener('onBlur', onBlur as EventListener);
+    });
     return () => {
-      domElement?.removeEventListener('onReady', onReady as EventListener);
-      domElement?.removeEventListener('onChange', onChange as EventListener);
-      domElement?.removeEventListener('onBlur', onBlur as EventListener);
-      domElement?.removeEventListener('onFocus', onFocus as EventListener);
+      domElementArray.forEach((element) => {
+        element?.removeEventListener('onReady', onReady as EventListener);
+        element?.removeEventListener('onChange', onChange as EventListener);
+        element?.removeEventListener('onFocus', onFocus as EventListener);
+        element?.removeEventListener('onBlur', onBlur as EventListener);
+      });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

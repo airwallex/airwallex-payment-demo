@@ -15,6 +15,7 @@ const App: React.FC = () => (
       <div>
         <Suspense fallback={<div />}>
           <Switch>
+            <Route path="/" component={lazy(() => import('./components/home'))} />
             <Route path="/all" component={lazy(() => import('./components/home'))} />
             <Route path="/hpp" component={lazy(() => import('./components/hpp'))} />
             <Route path="/drop-in" component={lazy(() => import('./components/dropIn'))} />

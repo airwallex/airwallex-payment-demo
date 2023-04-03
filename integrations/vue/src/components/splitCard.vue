@@ -83,7 +83,6 @@ const elementsReady = {
   expiry: false,
   cvc: false,
 };
-
 // STEP #7: Add an event handler to ensure the element is mounted
 const onReady = (event) => {
   const { type } = event.detail;
@@ -187,24 +186,36 @@ export default {
   },
   mounted() {
     init();
-    const domElement = document.getElementById('cardNumber');
-
-    domElement.addEventListener('onReady', onReady);
-    domElement.addEventListener('onChange', onChange);
-    domElement.addEventListener('onError', onError);
-    domElement.addEventListener('onFocus', onFocus);
-    domElement.addEventListener('onBlur', onBlur);
+    const cardNumberElement = document.getElementById('cardNumber');
+    const expiryElement = document.getElementById('expiry');
+    const cvcElement = document.getElementById('cvc');
+    const domElementArray = [cardNumberElement, expiryElement, cvcElement];
+    domElementArray.forEach((element) => {
+      if (!element) {
+        return;
+      }
+      element.addEventListener('onReady', onReady);
+      element.addEventListener('onChange', onChange);
+      element.addEventListener('onError', onError);
+      element.addEventListener('onFocus', onFocus);
+      element.addEventListener('onBlur', onBlur);
+    });
   },
   beforeDestroy() {
-    const domElement = document.getElementById('cardNumber');
-    // Be sure to clean up event listeners when component unmounts
-    if (domElement) {
-      domElement.removeEventListener('onReady', onReady);
-      domElement.removeEventListener('onChange', onChange);
-      domElement.removeEventListener('onError', onError);
-      domElement.removeEventListener('onFocus', onFocus);
-      domElement.removeEventListener('onBlur', onBlur);
-    }
+    const cardNumberElement = document.getElementById('cardNumber');
+    const expiryElement = document.getElementById('expiry');
+    const cvcElement = document.getElementById('cvc');
+    const domElementArray = [cardNumberElement, expiryElement, cvcElement];
+    domElementArray.forEach((element) => {
+      if (!element) {
+        return;
+      }
+      element.removeEventListener('onReady', onReady);
+      element.removeEventListener('onChange', onChange);
+      element.removeEventListener('onError', onError);
+      element.removeEventListener('onFocus', onFocus);
+      element.removeEventListener('onBlur', onBlur);
+    });
   },
 };
 </script>
