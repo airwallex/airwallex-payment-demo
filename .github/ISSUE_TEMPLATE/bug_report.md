@@ -20,7 +20,7 @@ assignees: ''
 **Screenshots** If applicable, add screenshots to help explain your problem.
 
 **Integration information:**
-- integrations
+- language
   - [ ] angular
   - [ ] cdn
   - [ ] node
@@ -28,13 +28,21 @@ assignees: ''
   - [ ] react-ts
   - [ ] ReactNative
   - [ ] vue
-**Environment:**
 
-- Environment (e.g.demo):
+- element
+  - [ ] hpp
+  - [ ] dropIn element
+  - [ ] card element
+  - [ ] split card element
+  - [ ] full featured card element
+  - [ ] applePay element
+  - [ ] googlePay element
+**Contexts:**
+- Integration env (e.g. demo):
 - Device (e.g. iPhone12):
 - OS (e.g. iOS8.1):
-- Browser (e.g. stock browser, safari)
-- IntentId:
+- Browser (e.g. stock browser, safari):
 - Language:
+- IntentId: 
 
 **Additional context** Add any other context about the problem here.

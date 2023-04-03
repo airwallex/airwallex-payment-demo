@@ -9,7 +9,7 @@ assignees: ''
 <!-- Add your question here -->
 
 This question is related to:
-- integrations
+- language
   - [ ] angular
   - [ ] cdn
   - [ ] node
@@ -17,3 +17,12 @@ This question is related to:
   - [ ] react-ts
   - [ ] ReactNative
   - [ ] vue
+  
+- element
+  - [ ] hpp
+  - [ ] dropIn element
+  - [ ] card element
+  - [ ] split card element
+  - [ ] full featured card element
+  - [ ] applePay element
+  - [ ] googlePay element
