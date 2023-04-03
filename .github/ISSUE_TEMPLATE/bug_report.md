@@ -8,7 +8,7 @@ assignees: ''
 
 **Describe the bug** A clear and concise description of what the bug is.
 
-**To Reproduce** Steps to reproduce the behavior:
+**To Reproduce** Steps to reproduce the behavior, better to provide the link to reproduce:
 
 1. Go to '...'
 2. Click on '....'
