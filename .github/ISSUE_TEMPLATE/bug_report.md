@@ -39,10 +39,11 @@ assignees: ''
   - [ ] googlePay element
 **Contexts:**
 - Integration env (e.g. demo):
+- IntentId: 
 - Device (e.g. iPhone12):
 - OS (e.g. iOS8.1):
 - Browser (e.g. stock browser, safari):
 - Language:
-- IntentId: 
+
 
 **Additional context** Add any other context about the problem here.
