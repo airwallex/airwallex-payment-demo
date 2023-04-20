@@ -113,11 +113,8 @@
          document.getElementById("submit").disabled = true;
  
          // STEP #5: Send request to your backend to get customer id and customer client secret
-         // const customerId = 'MOCK_CUSTOMER_ID';
-         // const customerClientSecret = 'MOCK_CUSTOMER_CLIENT_SECRET';
-         const customerId = "cus_hkstpf27fgk7ix5zd9q";
-         const customerClientSecret =
-           "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODE5NzEyNDgsImV4cCI6MTY4MTk3NDg0OCwidHlwZSI6ImNsaWVudC1zZWNyZXQiLCJwYWRjIjoiSEsiLCJhY2NvdW50X2lkIjoiYjlmYzY1ZDktNzJlNS00Yzc2LThkNDMtYjc5ZmEyYmE2ZGZhIiwiY3VzdG9tZXJfaWQiOiJjdXNfaGtzdHBmMjdmZ2s3aXg1emQ5cSJ9.-df6x6nvBDkQij57nBRJEgvZB-LtugRVKhbhNmdsBXE";
+         const customerId = 'MOCK_CUSTOMER_ID';
+         const customerClientSecret = 'MOCK_CUSTOMER_CLIENT_SECRET';
  
          // STEP #6: call createPaymentMethod function with customer id and customer client secret
          Airwallex.createPaymentMethod(customerClientSecret, {
@@ -131,11 +128,8 @@
              // STEP #8a: If it is a fraud checkout show fraud popup
  
              // STEP #8b: If no fraud, continue to create intent
-             // const intentId = "MOCK_INTENT_ID";
-             // const intentClientSecret = "MOCK_INTENT_CLIENT_SECRET";
-             const intentId = "int_hkstxhtk8gk7jw7j1o5";
-             const intentClientSecret =
-               "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODE5NzMzNjAsImV4cCI6MTY4MTk3Njk2MCwidHlwZSI6ImNsaWVudC1zZWNyZXQiLCJwYWRjIjoiSEsiLCJhY2NvdW50X2lkIjoiYjlmYzY1ZDktNzJlNS00Yzc2LThkNDMtYjc5ZmEyYmE2ZGZhIiwiaW50ZW50X2lkIjoiaW50X2hrc3R4aHRrOGdrN2p3N2oxbzUiLCJjdXN0b21lcl9pZCI6ImN1c19oa3N0cGYyN2ZnazdpeDV6ZDlxIiwiYnVzaW5lc3NfbmFtZSI6IlNhd2F5biwgTydDb25uZXIgYW5kIFF1aWdsZXkifQ.kwQehT_VA1jRqSDW9w41Go1ADdKZCi2Nkj5TNXbO2jo";
+             const intentId = "MOCK_INTENT_ID";
+             const intentClientSecret = "MOCK_INTENT_CLIENT_SECRET";
  
              // STEP #9: Call createPaymentConsent function with intent_id and payment_method_id
              return Airwallex.createPaymentConsent({
