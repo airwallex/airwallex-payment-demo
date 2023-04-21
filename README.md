@@ -2,7 +2,9 @@
 
 The purpose of this project is to demonstrate how [Airwallex payment element](https://www.npmjs.com/package/airwallex-payment-elements) can be integrated with different web frameworks. Demos in each framework demonstrate each of the various payment acceptance methods merchants can use.
 
-Our goal is to make it easy for you (Merchants) to use our platform, as easy as a copy-paste!
+Our goal is to make it easy for you (Merchants) to use our platform, as easy as a copy-paste! If you have any futher requests for product, integration or supports, please raise your questions on this page [Airwallex Support Desk](https://help.airwallex.com/hc/en-gb/requests/new) and choose the area **Online Payments**.
+<img src="docs/assets/support-desk.png" width="650px">
+
 
 Before getting start, check out what the Airwallex Checkout elements look like here: [https://demo-pacheckoutdemo.airwallex.com/](https://demo-pacheckoutdemo.airwallex.com/).
 
