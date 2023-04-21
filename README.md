@@ -10,6 +10,13 @@ Before getting start, check out what the Airwallex Checkout elements look like h
 <img src="docs/assets/payment-demo.png" width="650px">
 </div>
 
+## Questions, comments, or suggestions?
+
+Running into issues? Check out some of the common errors and our troubleshooting tips [here](/docs#common-errors).
+
+[Let us know](https://help.airwallex.com/hc/en-gb/requests/new) if you run into problems, or have any comments and suggestions for us. We value your input!
+<img src="docs/assets/support-desk.png" width="650px">
+
 ## Creating a Payment Intent
 
 Throughout this demo, you will be asked to insert your intent secrets to properly enact a payment checkout, more details can be found in the [Airwallex API](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
@@ -43,9 +50,3 @@ You also can play around with the different web integrations with the sandboxes 
 - [React-Typescript](https://codesandbox.io/s/airwallex-payment-demo-react-typescript-buuhk)
 - [Vue](https://codesandbox.io/s/airwallex-payment-demo-vue-ffhrw)
 - [Angular](https://codesandbox.io/s/airwallex-payment-demo-angular-zgx32)
-
-## Questions, comments, or suggestions?
-
-Running into issues? Check out some of the common errors and our troubleshooting tips [here](/docs#common-errors).
-
-We want to provide you with a seamless experience integrating with our platform. [Let us know](https://help.airwallex.com/hc/en-gb/requests/new) if you run into problems, or have any comments and suggestions for us. We value your input!
