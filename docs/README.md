@@ -116,7 +116,7 @@ const element = createElement(type, options);
 
 | **Parameter** | **Required?** | **Type** | **Description**                                                                                                                                                                                                                     |
 | ------------- | ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`        | Yes           | enum     | The type of element you are creating. Possible values: `cardNumber`, `expiry`, `cvc`, `paymentRequestButton`, `card`, `qrcode`, `redirect`, `dropIn`, `fullFeaturedCard`, `applePayButton`, `googlePayButton`, `directDebit` |
+| `type`        | Yes           | enum     | The type of element you are creating. Possible values: `cardNumber`, `expiry`, `cvc`, `card`, `qrcode`, `redirect`, `dropIn`, `fullFeaturedCard`, `applePayButton`, `googlePayButton`, `directDebit` |
 | `options`     | No            | object   | Options for creating an Element, which differ for each Element. Refer to the following table.                                                                                                                                       |
 
 #### `options` object properties
@@ -214,7 +214,7 @@ const element = getElement(type);
 
 | **Parameter** | **Required?** | **Type** | **Description**                                                                                                                                                                                                  |
 | ------------- | ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`        | Yes           | enum     | The type of element you are retrieving. Options include: '`cardNumber`', '`expiry`', '`cvc`', '`paymentRequestButton`', '`card`', '`qrcode`', '`redirect`', '`dropIn`', '`fullFeaturedCard`', '`applePayButton`', `directDebit` |
+| `type`        | Yes           | enum     | The type of element you are retrieving. Options include: '`cardNumber`', '`expiry`', '`cvc`', '`card`', '`qrcode`', '`redirect`', '`dropIn`', '`fullFeaturedCard`', '`applePayButton`', `directDebit` |
 
 #### Returns
 
@@ -237,7 +237,7 @@ Airwallex.destroyElement(type);
 
 | **Parameter** | **Required?** | **Type** | **Description**                                                                                                                                                                                                  |
 | ------------- | ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`        | Yes           | enum     | The type of element you are destroying. Options include: '`cardNumber`', '`expiry`', '`cvc`', '`paymentRequestButton`', '`card`', '`qrcode`', '`redirect`', '`dropIn`', '`fullFeaturedCard`', '`applePayButton`', `directDebit` |
+| `type`        | Yes           | enum     | The type of element you are destroying. Options include: '`cardNumber`', '`expiry`', '`cvc`', '`card`', '`qrcode`', '`redirect`', '`dropIn`', '`fullFeaturedCard`', '`applePayButton`', `directDebit` |
 
 #### Returns
 
