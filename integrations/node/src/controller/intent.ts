@@ -85,7 +85,7 @@ intentRouter.get('/:id', async (req: any, res: any) => {
 // If the api response is success, redirect to 3ds success page, the 3ds success page will send a successful message to its parent window
 // If the api response is failed, redirect to 3ds success page, the 3ds success page will send a failed message to its parent window
 // If the api response still need next action, return a html and send a trigger challenge message to its parent window
-// go to ../cdn/3dsAPI.html to check the next steps
+// go to ../cdn/3dsForNativeApi.html to check the next steps
 intentRouter.post('/elements/3ds/:id', bodyParser.urlencoded(),  async (req: any, res: any) => {
   const { id } = req.params;
   const { origin } = req.query || {};
