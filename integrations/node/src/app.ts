@@ -6,15 +6,16 @@
  */
 
 import express from "express";
-import intentRouter from "./controller/intent";
-
+//@ts-ignore
+import intentRouter from "./controller/intent.ts";
+import cors from 'cors';
 const app = express();
 app.use(express.json());
 
 // Server port.
 const port = 3002;
 const entryRouter = express.Router();
-
+app.use(cors())
 // Define routes.
 app.use("/api/v1", entryRouter);
 // create or retrieve a paymentIntent 
