@@ -129,7 +129,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
   <body>
-    <h1>ApplePayButton integration</h1>
+    <h1>GooglePayButton integration</h1>
     <!-- STEP #3: Add an empty container for the googlePayButton element to be injected into -->
     <div id="googlePayButton"></div>
     <script>
