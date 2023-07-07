@@ -118,7 +118,7 @@ More details about the `createPaymentConsent` function can be found [here](/docs
           customer_id: 'replace-with-your-customer-id', // customer id
           client_secret: 'replace-with-your-client-secret', // client secret
           currency: 'replace-with-your-currency', // currency
-          element: cardElement // either the card element or card number element depends on the element you integrate,
+          element: cardElement, // either the card element or card number element depends on the element you integrate,
           next_triggered_by: 'customer' // 'merchant' for MIT and 'customer' for CIT
         }).then((response) => {
           // STEP #6b: Listen to the request response
