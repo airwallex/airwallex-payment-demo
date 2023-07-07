@@ -74,7 +74,6 @@ function App() {
                 <Route path="/qrcode" component={lazy(() => import('./components/Qrcode'))} />
                 <Route path="/split-card-recurring" component={lazy(() => import('./components/SplitCardRecurring'))} />
                 <Route path="/recurring-cit" component={lazy(() => import('./components/RecurringCIT'))} />
-                <Route path="/api-checkout" component={lazy(() => import('./components/APICheckout'))} />
                 <Route exact path="/" component={lazy(() => import('./components/Instructions'))} />
               </Switch>
             </Suspense>
