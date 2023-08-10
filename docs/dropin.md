@@ -63,6 +63,12 @@ const element = Airwallex.createElement('dropIn', {
   googlePayRequestOptions: {
     countryCode: 'replace-with-your-country-code',
   },
+  // theme field is optional, you can customize dropIn element style here
+  theme: {
+    palette: {
+      primary: '#612FFF', // brand color, the default value is #612FFF
+    }
+  }
 });
 ```
 
