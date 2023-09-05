@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Airwallex Payment Elements Playground</title>
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+    <style>
+      #confirm {
+        margin-bottom: 24px;
+      }
+
+      #payButton {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Please refresh page to try another elemnt</h1>
+    <select id="elements">
+      <option value="hpp">Hosted Payment Page (HPP)</option>
+      <option value="dropin">Dropin</option>
+      <option value="full-featured-card">Full Feature Card</option>
+      <option value="card">Card</option>
+      <option value="split-card">Split Card</option>
+      <option value="qrcode">Qrcode</option>
+      <option value="redirect">Redirect</option>
+      <option value="applepay">Applepay</option>
+      <option value="googlepay">Googlepay</option>
+    </select>
+    <button id="confirm">Confirm</button>
+    <div id="elementContainer"></div>
+    <div id="elementContainer2"></div>
+    <div id="elementContainer3"></div>
+    <button id="payButton">Pay</button>
+    <script>
+      function loadScript() {
+        document.querySelector('#payButton').style.display = 'none';
+         const value = document.querySelector('#elements').value;
+         const script = document.createElement('script');
+         script.src = './elements/' + value + '.js';
+         document.body.appendChild(script);
+         if (['split-card', 'card'].includes(value)) {
+          document.querySelector('#payButton').style.display = 'block';
+         }
+      }
+
+      document.querySelector('#confirm').addEventListener('click', loadScript)
+    </script>
+  </body>
+</html>
