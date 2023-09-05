@@ -4,6 +4,6 @@ cardElement.mount('elementContainer');
 document.getElementById('payButton').addEventListener('click', () => {
   Airwallex.confirmPaymentIntent({
     element: cardElement,
-    client_secret: 'REPLACE_YOUR_CLIENT_SECRET',
+    client_secret: 'replace-with-your-client-secret',
   });
 });

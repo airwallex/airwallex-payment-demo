@@ -1,6 +1,6 @@
 # Airwallex Payment Elements - CDN Demo
 
-This directory contains an implementation of [Airwallex Payment Element](https://www.npmjs.com/package/airwallex-payment-elements) using static html files. The HTML files are served using [Serve](https://www.npmjs.com/package/serve).
+This directory contains an simplest implementation of [Airwallex Payment Element](https://www.npmjs.com/package/airwallex-payment-elements) using static html files.
 
 ## Requirements
 
@@ -13,7 +13,7 @@ This directory contains an implementation of [Airwallex Payment Element](https:/
 
 `git clone https://github.com/airwallex/airwallex-payment-demo`
 
-2. Navigate into the react directory with `cd integrations/cdn`
+2. Navigate into the react directory with `cd integrations/simplify`
 
 3. Install the package with `yarn` or `npm install`
 
@@ -21,22 +21,10 @@ This directory contains an implementation of [Airwallex Payment Element](https:/
 
 ## Usage
 
-Each of the payment methods are written as a separate html file found in [/integrations/cdn](/integrations/cdn) folder.
+Each of the payment methods are written as a separate html file found in [/integrations/simplify](/integrations/simplify) folder.
 
-First, when running each html file, be sure to replace `x.x.x` with the latest [airwallex-payment-elements](https://www.npmjs.com/package/airwallex-payment-elements) bundle version.
-
-```html
-<!-- STEP #1: Import airwallex-payment-elements bundle -->
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
-```
-
-Also, to test each of the payment methods, be sure to replace the `intent_id` and `client_secret` variables in the file with your own unique keys. These values can be created with the backend API integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
-
-```jsx
-const intent_id = 'replace-with-your-intent-id';
-const client_secret = 'replace-with-your-client-secret';
-```
+Also, to test each of the payment methods, be sure to replace the `replace-with-your-client-secret` variables in the file with your own unique keys. These values can be created with the backend API integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
 
 ## Authors
 
-Charlie Lang, Josie Ku, and Shirly Chen
+Chao Ding

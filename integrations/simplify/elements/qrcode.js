@@ -1,3 +1,3 @@
 Airwallex.init({ env: 'demo' });
-const qrcodeElement = Airwallex.createElement('qrcode', { client_secret: 'REPLACE_YOUR_CLIENT_SECRET' });
+const qrcodeElement = Airwallex.createElement('qrcode', { client_secret: 'replace-with-your-client-secret' });
 qrcodeElement.mount('elementContainer');
