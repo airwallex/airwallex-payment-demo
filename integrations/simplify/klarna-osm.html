@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .container {
+        margin-bottom: 32px;
+      }
+
+      p {
+        font-weight: bold;
+        font-size: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <div calss="container">
+      <p>credit-promotion-auto-size</p>
+      <!-- Placement v2: need to replace the 300 with the purchase amount -->
+      <klarna-placement
+        id="credit-promotion-auto-size"
+        data-key="credit-promotion-auto-size"
+        data-locale="en-US"
+        data-purchase-amount="300" 
+        >
+      </klarna-placement>
+      <!-- end Placement -->
+    </div>
+
+    <div calss="container">
+      <p>sidebar-promotion-auto-size</p>
+      <!-- Placement v2 -->
+      <klarna-placement
+        id="sidebar-promotion-auto-size"
+        data-key="sidebar-promotion-auto-size"
+        data-locale="en-US"
+      >
+      </klarna-placement>
+      <!-- end Placement -->
+    </div>
+    
+
+    <div calss="container">
+      <p>top-strip-promotion-auto-size</p>
+      <!-- Placement v2 -->
+      <klarna-placement
+        id="top-strip-promotion-auto-size"
+        data-key="top-strip-promotion-auto-size"
+        data-locale="en-US"
+      >
+      </klarna-placement>
+      <!-- end Placement -->
+    </div>
+
+
+    <div calss="container">
+      <p>info-page</p>
+      <!-- Placement v2 -->
+      <klarna-placement
+        id="info-page"
+        data-key="info-page"
+        data-locale="en-US"
+      >
+      </klarna-placement>
+      <!-- end Placement -->
+    </div>
+    
+    <script
+      async
+      data-environment="playground"
+      src="https://js.klarna.com/web-sdk/v1/klarna.js"
+      data-client-id="cba31504-43f1-5c18-a583-5ae6e7407d72"
+    ></script>
+  </body>
+</html>
