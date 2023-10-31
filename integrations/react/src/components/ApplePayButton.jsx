@@ -85,10 +85,7 @@ const ApplePayButton = () => {
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
   useEffect(() => {
-    if (
-      document.getElementById('applePayButton')?.childNodes[0]?.contentWindow?.location?.href === 'about:blank' &&
-      elementShow
-    ) {
+    if (!document.getElementById('applePayButton')?.childNodes[0]?.src && elementShow) {
       setErrorMessage('Apple pay only support safari browser');
     }
   }, [elementShow, setErrorMessage]);
