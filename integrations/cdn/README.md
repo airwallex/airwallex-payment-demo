@@ -23,8 +23,6 @@ This directory contains an implementation of [Airwallex Payment Element](https:/
 
 Each of the payment methods are written as a separate html file found in [/integrations/cdn](/integrations/cdn) folder.
 
-First, when running each html file, be sure to replace `x.x.x` with the latest [airwallex-payment-elements](https://www.npmjs.com/package/airwallex-payment-elements) bundle version.
-
 ```html
 <!-- STEP #1: Import airwallex-payment-elements bundle -->
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
