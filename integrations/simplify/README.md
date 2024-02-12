@@ -13,7 +13,7 @@ This directory contains an simplest implementation of [Airwallex Payment Element
 
 `git clone https://github.com/airwallex/airwallex-payment-demo`
 
-2. Navigate into the react directory with `cd integrations/simplify`
+2. Navigate into the simplify directory with `cd integrations/simplify`
 
 3. Install the package with `yarn` or `npm install`
 
