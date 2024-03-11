@@ -8,7 +8,7 @@ The Card element allows merchants to embed a card element checkout option on the
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/react/src/components/Card.jsx).
+Want more details? See the integration in [React](/integrations/cdn (components-sdk)/card.html).
 
 ### 1. At the start of your file, import `@airwallex/components-sdk`.
 

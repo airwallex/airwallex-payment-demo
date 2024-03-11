@@ -19,7 +19,7 @@ For card element and split card element, follow the guide below. We could either
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/react/src/components/SplitCard.jsx).
+Want more details? See the integration in [React](/integrations/cdn (components-sdk)/split-card.html).
 
 ### 1. Follow the split card element / card element integration document step 1-5
 

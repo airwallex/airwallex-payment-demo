@@ -10,7 +10,7 @@ The Drop-in element allows merchants to embed a card element checkout option on 
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/react/src/components/Dropin.jsx).
+Want more details? See the integration in [React](/integrations/cdn (components-sdk)/dropin.html).
 
 ### 1. At the start of your file, import `@airwallex/components-sdk`.
 

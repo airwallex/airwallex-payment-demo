@@ -10,7 +10,7 @@ The HPP checkout option redirects customers to an Airwallex checkout page, allow
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/react/src/components/Hpp.jsx).
+Want more details? See the integration in [React](/integrations/cdn (components-sdk)/hpp.html).
 
 ### 1. At the start of your file, import `@airwallex/components-sdk`.
 

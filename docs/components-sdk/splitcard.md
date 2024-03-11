@@ -10,7 +10,7 @@ The Split Card element enables merchants to process a card checkout on their web
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/react/src/components/SplitCard.jsx).
+Want more details? See the integration in [React](/integrations/cdn (components-sdk)/split-card.html).
 
 ### 1. At the start of your file, import `@airwallex/components-sdk`.
 
