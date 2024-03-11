@@ -1,16 +1,16 @@
-# Airwallex Payment Elements - Full Featured Card Element Integration
+# Airwallex Payment Elements - Drop-in Element Integration
 
-The Full Featured Card element allows merchants to embed a card element checkout option on their website. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex. It contains all the fields and the submit button so that merchants don't have to handle the payment confirmation process.
+The Drop-in element allows merchants to embed a card element checkout option on their website. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex. It gives customers different payment options.
 
-![](assets/ffc.gif)
+![](assets/dropin.gif)
 
-\* _An example of a Full Featured Card element._
+\* _An example of a Drop-in element._
 
 ## Guide
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/react/src/components/FullFeaturedCard.jsx).
+Want more details? See the integration in [React](/integrations/react/src/components/Dropin.jsx).
 
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
@@ -24,6 +24,7 @@ or add the bundle as a script in your HTML head
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
+
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
@@ -33,33 +34,45 @@ Airwallex.init({
 });
 ```
 
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs/airwallex-payment-elements#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
 ### 3. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
 
 ```html
-<div id="full-featured-card"></div>
+<div id="drop-in"></div>
 ```
 
 We will mount the card element into the empty div in step 5.
 
-### 4. Create the fullFeaturedCard element
+### 4. Create the dropIn element
 
-This creates the specified [Element](/docs#Element) object. We specify the type as **`fullFeaturedCard`**.
+This creates the specified [Element](/docs#Element) object. We specify the type as **`dropIn`**.
 
 ```js
-const element = Airwallex.createElement('fullFeaturedCard', {
-  intent: {
-    // Required, fullFeaturedCard uses intent_id and client_secret to prepare checkout
-    id: 'replace-with-your-intent-id',
-    client_secret: 'replace-with-your-client-secret',
+const element = Airwallex.createElement('dropIn', {
+  intent_id: 'replace-with-your-intent-id',
+  client_secret: 'replace-with-your-client-secret',
+  currency: 'replace-with-your-intent-currency',
+  // if you want to use apple pay, please pass merchant country code in applePayRequestOptions
+  applePayRequestOptions: {
+    countryCode: 'replace-with-your-country-code',
   },
+  // if you want to use google pay, please pass merchant country code in googlePayRequestOptions
+  googlePayRequestOptions: {
+    countryCode: 'replace-with-your-country-code',
+  },
+  // theme field is optional, you can customize dropIn element style here
+  theme: {
+    palette: {
+      primary: '#612FFF', // brand color, the default value is #612FFF
+    }
+  }
 });
 ```
 
-You **must provide intent details** to create the fullFeaturedCard element.
+You **must provide intent details** to create the dropIn element.
 
 There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
 
@@ -68,10 +81,10 @@ There are also additional options as a second parameter to the `createElement` f
 Next, we need to mount the card element to the DOM.
 
 ```js
-const domElement = element.mount('full-featured-card');
+const domElement = element.mount('drop-in');
 ```
 
-This function will append the card element to your div with an id `full-featured-card` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
+This function will append the card element to your div with an id `drop-in` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
 
 The **element should only be mounted once** in a single payment flow.
 
@@ -110,6 +123,19 @@ domElement.addEventListener('onError', (event) => {
 });
 ```
 
+### 9. Add an `onPendingVerifyAccount` event listener if you want to integrate with `ach_direct_debit` or `becs_direct_debit` payment method.
+
+When the event triggers, it means the shopper needs to verify the bank account before proceeding the payment. We have a pre-defined page to tell the shoppers what they should do next, and of course you can use your own customized page too.
+
+```js
+domElement.addEventListener('onPendingVerifyAccount', (event) => {
+  /*
+   ** handle event on pending verify bank account
+   */
+  window.alert(event.detail);
+});
+```
+
 ### 9. Beautify and deploy!
 
 ## Documentation
@@ -133,25 +159,32 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
   <body>
-    <h1>Full Feature Card integration</h1>
-    <!-- STEP #3: Add an empty container for the fullFeaturedCard element to be injected into -->
-    <div id="full-featured-card"></div>
+    <h1>DropIn integration</h1>
+    <!-- STEP #3: Add an empty container for the dropIn element to be injected into -->
+    <div id="dropIn"></div>
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
       Airwallex.init({
-        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
-      // STEP #4: Create 'fullFeaturedCard' element
-      const element = Airwallex.createElement('fullFeaturedCard', {
-        intent: {
-          // Required, fullFeaturedCard use intent Id and client_secret to prepare checkout
-          id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret',
+      // STEP #4: Create 'dropIn' element
+      const dropIn = Airwallex.createElement('dropIn', {
+        // Required, dropIn use intent Id and client_secret to prepare checkout
+        intent_id: 'replace-with-your-intent-id',
+        client_secret: 'replace-with-your-client-secret',
+        currency: 'replace-with-your-intent-currency',
+        // if you want to use apple pay, please pass merchant country code in applePayRequestOptions
+        applePayRequestOptions: {
+          countryCode: 'replace-with-your-country-code',
+        },
+        // if you want to use google pay, please pass merchant country code in googlePayRequestOptions
+        googlePayRequestOptions: {
+          countryCode: 'replace-with-your-country-code',
         },
       });
-      // STEP #5: Mount 'fullFeaturedCard' element
-      const domElement = element.mount('full-featured-card');
+      // STEP #5: Mount 'dropIn' element
+      const domElement = dropIn.mount('dropIn');
 
       // STEP #6: Add an event listener to handle events when the element is mounted
       domElement.addEventListener('onReady', (event) => {

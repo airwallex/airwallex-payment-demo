@@ -25,9 +25,9 @@ Want more details? See the integration in [React](/integrations/react/src/compon
 
 You can choose the split card element or card element to setup the recurring flow. Follow the steps 1-5 in the integration doc.
 
-[Split card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/splitcard.md#guide)
+[Split card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/splitcard.md#guide)
 
-[Card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/card.md#guide)
+[Card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/card.md#guide)
  
 ### 2. Add a button handler to trigger the recurring request and listen to the request response.
 
@@ -57,9 +57,9 @@ More details about the `createPaymentConsent` function can be found [here](/docs
 
 ### 3. Follow the split card element / card element integration document step 7-9
 
-[Split card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/splitcard.md#guide)
+[Split card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/splitcard.md#guide)
 
-[Card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/card.md#guide)
+[Card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/card.md#guide)
 
 ## Full Code Example
 

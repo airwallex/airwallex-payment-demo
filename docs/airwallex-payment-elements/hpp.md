@@ -33,7 +33,7 @@ Airwallex.init({
 });
 ```
 
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs/airwallex-payment-elements#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 

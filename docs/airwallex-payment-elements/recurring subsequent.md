@@ -1,16 +1,16 @@
-# Airwallex Payment Elements - Split Card Element Integration
+# Recurring subsequent flow
 
-The Split Card element enables merchants to process a card checkout on their website, with greater control over the look and feel of their checkout page. This element differs from the card element as it allows merchants to embed individual input fields (card number, card expiry, card cvc).
+The Recurring subsequent flow enables shopper to process a payment with an pre-saved payment consent.
 
-![](assets/splitcard.gif)
+### Confirm payment using consent
 
-\* _An example of a split card integration. Can be customized._
+For CIT subsequent transaction, merchant need query and list available consents and render cvc element to let shopper choose consent and input cvc number to finish transaction.
 
-## Guide
+![](assets/cit.png) \* _An example of a cvc element. Can be customized._
 
-The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
+## Guide for `Confirm payment using consent` with CIT flow
 
-Want more details? See the integration in [React](/integrations/react/src/components/SplitCard.jsx).
+For CIT consent, when shoppers trigger a transaction, they will need to select their saved payment consent and enter the respective cvc number to finish the payment. Merchants will only need to integrate the cvc element.
 
 ### 1. At the start of your file, import `airwallex-payment-elements`.
 
@@ -33,21 +33,14 @@ Airwallex.init({
 });
 ```
 
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs/airwallex-payment-elements#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
-### 3. Add empty containers for each card input element to be injected into and a submit button to trigger the payment request
+### 3. Add empty containers for cvc element to be injected into and a submit button to trigger the payment request
 
 ```html
-<label>
-  Card number
-  <div id="cardNumber"></div>
-</label>
-<label>
-  Expiry
-  <div id="expiry"></div>
-</label>
+<div>List of payment consents</div>
 <label>
   CVC
   <div id="cvc"></div>
@@ -56,33 +49,29 @@ The Airwallex package only needs to be mounted once in an application (and every
 <button id="submit">Submit</button>
 ```
 
-We will mount the card elements into the empty divs in step 5 and create a handler for the submit button in step 6.
+We will mount the cvc elements into the empty divs in step 5 and create a handler for the submit button in step 6.
 
-### 4. Create the split card elements
+### 4. Create the split cvc elements
 
-This creates the specified [Element](/docs#Element) objects. We specify the types as `cardNumber`, `expiry`, and `cvc` respectively.
+This creates the specified [Element](/docs#Element) objects. We specify the types as `cvc`.
 
 ```js
-const cardNumber = Airwallex.createElement('cardNumber');
-const expiry = Airwallex.createElement('expiry');
 const cvc = Airwallex.createElement('cvc');
 ```
 
 There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
 
-### 5. Mount the split card elements
+### 5. Mount the cvc elements
 
-Next, we need to mount the card element to the DOM.
+Next, we need to mount the cvc element to the DOM.
 
 ```js
-const domElement = cardNumber.mount('cardNumber');
-expiry.mount('expiry');
-cvc.mount('cvc');
+const domElement = cvc.mount('cvc');
 ```
 
-This function will append the card element to your divs with ids `cardNumber`, `expiry`, and `cvc` respectively, as created above in step 3. **Ensure that there are no other elements in the document with the same ids**.
+This function will append the cvc element to your divs with ids `cvc`, as created above in step 3. **Ensure that there are no other elements in the document with the same ids**.
 
-Each **element should only be mounted once** in a single payment flow.
+Each **cvc element should only be mounted once** in a single payment flow.
 
 ### 6. Add a button handler to trigger the payment request and listen to the request response.
 
@@ -92,9 +81,10 @@ This handler is called when a customer is ready to make a payment according to t
 // STEP #6a: Add a button handler
 document.getElementById('submit').addEventListener('click', () => {
   Airwallex.confirmPaymentIntent({
-    element: cardNumber, // Provide the cardNumber element
+    element: cvc, // Provide the cvc element
     id: 'replace-with-your-intent-id', // Payment Intent ID
     client_secret: 'replace-with-your-client-secret', // Client Secret
+    payment_consent_id: 'replace-with-your-consent-id', // Payment Consent id of the payment consent the customer had selected
   }).then((response) => {
     // STEP #6b: Listen to the request response
     /* Handle response */
@@ -103,7 +93,7 @@ document.getElementById('submit').addEventListener('click', () => {
 });
 ```
 
-`Airwallex.confirmPaymentIntent` will take the cardNumber element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
+`Airwallex.confirmPaymentIntent` will take the cvc element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
 
 More details about the `confirmPaymentIntent` function can be found [here](/docs#confirmPaymentIntent).
 
@@ -135,14 +125,6 @@ domElement.addEventListener('onChange', (event) => {
 
 ### 9. Beautify and deploy!
 
-## Documentation
-
-See the full documentation for `airwallex-payment-elements` [here](/docs).
-
-## Integration Examples
-
-Check out [airwallex-payment-demo](/../../tree/master) for integration examples with different web frameworks!
-
 ## Full Code Example
 
 ```html
@@ -157,21 +139,10 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
   </head>
 
   <body>
-    <h1>Split Card integration</h1>
-    <div id="element">
-      Card Information
-      <!-- STEP #3a: Add empty containers for each card input element to be injected into -->
-      <div style={containerStyle}>
-        <div>Card number</div>
-        <div id="cardNumber"></div>
-      </div>
-      <div style={containerStyle}>
-        <div>Expiry</div>
-        <div id="expiry"></div>
-      </div>
-      <div style={containerStyle}>
-        <div>Cvc</div>
-        <div id="cvc"></div>
+    <h1>Cvc integration</h1>
+    <div style="{containerStyle}">
+      <div>Cvc</div>
+      <div id="cvc"></div>
     </div>
     <br />
     <!-- STEP #3b: Add a submit button to trigger the payment request -->
@@ -183,27 +154,22 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
-      // STEP #4: Create split card elements
-      const cardNumber = Airwallex.createElement('cardNumber');
-      const expiry = Airwallex.createElement('expiry');
-      const cvc = Airwallex.createElement('cvc');
+      // STEP #4: Create cvc element
+      const cvcElement = Airwallex.createElement('cvc');
 
-      // STEP #5: Mount split card elements
-      const domElement = cardNumber.mount('cardNumber');
-      expiry.mount('expiry');
-      cvc.mount('cvc');
+      // STEP #5: Mount cvc element
+      const domElement = cvcElement.mount('cvc');
 
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
-        Airwallex.confirmPaymentIntent({
-          element: cardNumber,
-          id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret',
-        }).then((response) => {
-          // STEP #6b: Listen to the request response
-          /* handle confirm response in your business flow */
-          window.alert(JSON.stringify(response));
+        const confirmRes = await confirmPaymentIntent({
+          id: intent.id,
+          customerId: 'replace-with-your-customer-id', // customer id
+          client_secret: 'replace-with-your-client-secret', // client secret
+          element: cvcElement,
+          payment_consent_id: 'replace-with-your-payment-consent-id', // payment consent id,
         });
+        window.alert(JSON.stringify(confirmRes));
       });
 
       // STEP #7: Add an event listener to ensure the element is mounted

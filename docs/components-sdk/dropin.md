@@ -1,4 +1,4 @@
-# Airwallex Payment Elements - Drop-in Element Integration
+# Components SDK - Drop-in Element Integration
 
 The Drop-in element allows merchants to embed a card element checkout option on their website. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex. It gives customers different payment options.
 
@@ -10,31 +10,31 @@ The Drop-in element allows merchants to embed a card element checkout option on 
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/react/src/components/Dropin.jsx).
+Want more details? See the integration in [React](/integrations/cdn (components-sdk)/dropin.html).
 
-### 1. At the start of your file, import `airwallex-payment-elements`.
+### 1. At the start of your file, import `@airwallex/components-sdk`.
 
 ```js
-import Airwallex from 'airwallex-payment-elements';
+import Airwallex from '@airwallex/components-sdk';
 ```
 
 or add the bundle as a script in your HTML head
 
 ```html
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
 ```
 
 
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
-Airwallex.init({
+await window.AirwallexComponentsSDK.init({
   env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
   origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
 
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs/components-sdk#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -48,10 +48,10 @@ We will mount the card element into the empty div in step 5.
 
 ### 4. Create the dropIn element
 
-This creates the specified [Element](/docs#Element) object. We specify the type as **`dropIn`**.
+This creates the specified [Element](/docs/components-sdk#Element) object. We specify the type as **`dropIn`**.
 
 ```js
-const element = Airwallex.createElement('dropIn', {
+const element = await window.AirwallexComponentsSDK.createElement('dropIn', {
   intent_id: 'replace-with-your-intent-id',
   client_secret: 'replace-with-your-client-secret',
   currency: 'replace-with-your-intent-currency',
@@ -74,7 +74,7 @@ const element = Airwallex.createElement('dropIn', {
 
 You **must provide intent details** to create the dropIn element.
 
-There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
+There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs/components-sdk#createElement) for more details.
 
 ### 5. Mount the card element
 
@@ -140,7 +140,7 @@ domElement.addEventListener('onPendingVerifyAccount', (event) => {
 
 ## Documentation
 
-See the full documentation for `airwallex-payment-elements` [here](/docs).
+See the full documentation for `@airwallex/components-sdk` [here](/docs).
 
 ## Integration Examples
 
@@ -155,8 +155,8 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- STEP #1: Import airwallex-payment-elements bundle -->
-    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+    <!-- STEP #1: Import @airwallex/components-sdk bundle -->
+    <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
   </head>
   <body>
     <h1>DropIn integration</h1>
@@ -164,12 +164,12 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <div id="dropIn"></div>
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
+      await window.AirwallexComponentsSDK.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'dropIn' element
-      const dropIn = Airwallex.createElement('dropIn', {
+      const dropIn = await window.AirwallexComponentsSDK.createElement('dropIn', {
         // Required, dropIn use intent Id and client_secret to prepare checkout
         intent_id: 'replace-with-your-intent-id',
         client_secret: 'replace-with-your-client-secret',
