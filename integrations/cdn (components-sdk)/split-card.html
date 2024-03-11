@@ -56,9 +56,10 @@
      <p id="error"></p>
      <p id="success">Payment Successful!</p>
      <script>
-       try {
+      (async () => {
+        try {
          // STEP #2: Initialize the Airwallex global context for event communication
-         Airwallex.init({
+         await window.AirwallexComponentsSDK.init({
            env: "demo", // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
            origin: window.location.origin, // Setup your event target to receive the browser events message
          });
@@ -78,6 +79,7 @@
          document.getElementById("error").innerHTML = error.message; // Example: set error message
          console.error("There was an error", error);
        }
+      })();
  
        // STEP #6a: Add a button handler to trigger the payment request
        document.getElementById("submit").addEventListener("click", () => {

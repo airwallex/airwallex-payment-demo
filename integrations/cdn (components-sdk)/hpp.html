@@ -36,11 +36,14 @@
       const currency = 'replace-with-your-currency';
       const mode = 'payment'; // Should be one of ['payment', 'recurring']
 
-      // STEP #2: Initialize the Airwallex package with the appropriate environment
-      Airwallex.init({
-        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-        origin: window.location.origin, // Setup your event target to receive the browser events message
-      });
+
+      (async () => {
+        // STEP #2: Initialize the Airwallex package with the appropriate environment
+        await window.AirwallexComponentsSDK.init({
+          env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+          origin: window.location.origin, // Setup your event target to receive the browser events message
+        });
+      })();
 
       const redirectHppForCheckout = () => {
         window.AirwallexComponentsSDK.payment.redirectToCheckout({

@@ -39,65 +39,67 @@
   <p id="error"></p>
   <p id="success">Payment successful!</p>
   <script>
-    try {
-      // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
-        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-        origin: window.location.origin, // Setup your event target to receive the browser events message
-      });
+    (async () => {
+      try {
+        // STEP #2: Initialize the Airwallex global context for event communication
+        await window.AirwallexComponentsSDK.init({
+          env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+          origin: window.location.origin, // Setup your event target to receive the browser events message
+        });
 
-      // STEP #4: Create 'card' element
-      const card = await window.AirwallexComponentsSDK.createElement('card');
+        // STEP #4: Create 'card' element
+        const card = await window.AirwallexComponentsSDK.createElement('card');
+        // STEP #5: Mount card element
+        const domElement = card.mount('card');
 
-      // STEP #5: Mount card element
-      const domElement = card.mount('card');
-      // STEP #7: Add an event listener to ensure the element is mounted
-      domElement.addEventListener('onReady', (event) => {
-        /*
-       ... Handle event
-        */
-        document.getElementById('card-container').style.display = 'block'; // Example: show element when it is mounted
-        document.getElementById('submit').style.display = 'block'; // Example: show element when it is mounted
-        console.log('Element is ready', event.detail);
-      });
 
-      // STEP #8: Add an event listener to validate element input
-      domElement.addEventListener('onChange', (event) => {
-        const { complete } = event.detail;
-        document.getElementById('submit').disabled = !complete; // Example: only enable button when element input is completed
-      });
+        // STEP #7: Add an event listener to ensure the element is mounted
+        domElement.addEventListener('onReady', (event) => {
+          /*
+        ... Handle event
+          */
+          document.getElementById('card-container').style.display = 'block'; // Example: show element when it is mounted
+          document.getElementById('submit').style.display = 'block'; // Example: show element when it is mounted
+          console.log('Element is ready', event.detail);
+        });
 
-      // STEP #9: Add an event listener to get input focus status
-      domElement.addEventListener('onFocus', (event) => {
-        // Customize your input focus style by listen onFocus event
-        const element = document.getElementById('input-error');
-        if (element) {
-          element.innerHTML = ''; // Example: clear input error message
-        }
-      });
+        // STEP #8: Add an event listener to validate element input
+        domElement.addEventListener('onChange', (event) => {
+          const { complete } = event.detail;
+          document.getElementById('submit').disabled = !complete; // Example: only enable button when element input is completed
+        });
+        // STEP #9: Add an event listener to get input focus status
+        domElement.addEventListener('onFocus', (event) => {
+          // Customize your input focus style by listen onFocus event
+          const element = document.getElementById('input-error');
+          if (element) {
+            element.innerHTML = ''; // Example: clear input error message
+          }
+        });
 
-      // STEP #10: Add an event listener to show input error message when finish typing
-      domElement.addEventListener('onBlur', (event) => {
-        const { complete } = event.detail;
-        const { error } = event.detail;
-        const element = document.getElementById('input-error');
-        if (element & error) {
-          element.innerHTML = error.message || JSON.stringify(error); // Example: set input error message
-        }
-      });
+        // STEP #10: Add an event listener to show input error message when finish typing
+        domElement.addEventListener('onBlur', (event) => {
+          const { complete } = event.detail;
+          const { error } = event.detail;
+          const element = document.getElementById('input-error');
+          if (element & error) {
+            element.innerHTML = error.message || JSON.stringify(error); // Example: set input error message
+          }
+        });
 
-      // STEP #11: Add an event listener to handle errors
-      domElement.addEventListener('onError', (event) => {
-        const { error } = event.detail;
+        // STEP #11: Add an event listener to handle errors
+        domElement.addEventListener('onError', (event) => {
+          const { error } = event.detail;
+          document.getElementById('error').style.display = 'block'; // Example: show error
+          document.getElementById('error').innerHTML = error.message; // Example: set error message
+          console.error('There was an error', error);
+        });
+      } catch(error) {
         document.getElementById('error').style.display = 'block'; // Example: show error
         document.getElementById('error').innerHTML = error.message; // Example: set error message
         console.error('There was an error', error);
-      });
-    } catch (error) {
-      document.getElementById('error').style.display = 'block'; // Example: show error
-      document.getElementById('error').innerHTML = error.message; // Example: set error message
-      console.error('There was an error', error);
-    }
+      }
+    })();
 
     // STEP #6a: Add a button handler to trigger the payment request
     document.getElementById('submit').addEventListener('click', () => {
@@ -110,23 +112,23 @@
         id: 'replace-with-your-intent-id',
         client_secret: 'replace-with-your-client-secret',
       })
-        .then((response) => {
-          // STEP #6b: Listen to the request response
-          /* Handle confirm response */
-          document.getElementById('success').style.display = 'block'; // Example: show success message
-          document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
-          document.getElementById('submit').disabled = false; // Example: reset button state
-          window.alert(JSON.stringify(response));
-        })
-        .catch((response) => {
-          // STEP #6c: Listen to the error response
-          /* Handle error response */
-          document.getElementById('error').style.display = 'block'; // Example: show error message
-          document.getElementById('error').innerHTML = response.message; // Example: fill in error message
-          document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
-          document.getElementById('submit').disabled = false; // Example: reset button state
-          console.error(`There was an error, ${JSON.stringify(response)}`);
-        });
+      .then((response) => {
+        // STEP #6b: Listen to the request response
+        /* Handle confirm response */
+        document.getElementById('success').style.display = 'block'; // Example: show success message
+        document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
+        document.getElementById('submit').disabled = false; // Example: reset button state
+        window.alert(JSON.stringify(response));
+      })
+      .catch((response) => {
+        // STEP #6c: Listen to the error response
+        /* Handle error response */
+        document.getElementById('error').style.display = 'block'; // Example: show error message
+        document.getElementById('error').innerHTML = response.message; // Example: fill in error message
+        document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
+        document.getElementById('submit').disabled = false; // Example: reset button state
+        console.error(`There was an error, ${JSON.stringify(response)}`);
+      });
     });
 
 
