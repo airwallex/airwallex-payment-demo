@@ -5,7 +5,7 @@ The Recurring flow enables shopper to create and save their CIT(customer initial
 ### Create payment consent 
 
 For HPP, dropIn and full feture card element users, 
-You could simply provide a `mode: recurring'` during `createElement` to use the recurring function, [read more](/docs#options-object-properties-1).
+You could simply provide a `mode: recurring'` during `createElement` to use the recurring function, [read more](/docs/components-sdk#options-object-properties-1).
 
 For card element and split card element, follow the guide below. We could either simply create a consent or create a consent while confirm an intent with this consent.
 
@@ -25,9 +25,9 @@ Want more details? See the integration in [React](/integrations/react/src/compon
 
 You can choose the split card element or card element to setup the recurring flow. Follow the steps 1-5 in the integration doc.
 
-[Split card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/splitcard.md#guide)
+[Split card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/components-sdk/splitcard.md#guide)
 
-[Card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/card.md#guide)
+[Card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/components-sdk/card.md#guide)
  
 ### 2. Add a button handler to trigger the recurring request and listen to the request response.
 
@@ -36,7 +36,7 @@ This handler is called when a customer is ready to create a consent along with t
 ```js
 // STEP #6a: Add a button handler
 document.getElementById('submit').addEventListener('click', () => {
-  Airwallex.createPaymentConsent({
+  await window.AirwallexComponentsSDK.payment.createPaymentConsent({
     intent_id: 'replace-with-your-intent-id', // intent id(Optional)
     customer_id: 'replace-with-your-customer-id', // customer id
     client_secret: 'replace-with-your-client-secret', // client secret (from creating intent or generating client secret)
@@ -53,13 +53,13 @@ document.getElementById('submit').addEventListener('click', () => {
 
 `Airwallex.createPaymentConsent` will take the cardNumber element or card element you mounted and create payment consent.
 
-More details about the `createPaymentConsent` function can be found [here](/docs#createPaymentConsent).
+More details about the `createPaymentConsent` function can be found [here](/docs/components-sdk#createPaymentConsent).
 
 ### 3. Follow the split card element / card element integration document step 7-9
 
-[Split card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/splitcard.md#guide)
+[Split card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/components-sdk/splitcard.md#guide)
 
-[Card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/card.md#guide)
+[Card element integration guide](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/components-sdk/card.md#guide)
 
 ## Full Code Example
 
@@ -70,8 +70,8 @@ More details about the `createPaymentConsent` function can be found [here](/docs
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- STEP #1: Import airwallex-payment-elements bundle -->
-    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+    <!-- STEP #1: Import @airwallex/components-sdk bundle -->
+    <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
   </head>
 
   <body>
@@ -97,14 +97,14 @@ More details about the `createPaymentConsent` function can be found [here](/docs
 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
+      await window.AirwallexComponentsSDK.init({
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create split card elements
-      const cardNumber = Airwallex.createElement('cardNumber');
-      const expiry = Airwallex.createElement('expiry');
-      const cvc = Airwallex.createElement('cvc');
+      const cardNumber = await window.AirwallexComponentsSDK.createElement('cardNumber');
+      const expiry = await window.AirwallexComponentsSDK.createElement('expiry');
+      const cvc = await window.AirwallexComponentsSDK.createElement('cvc');
 
       // STEP #5: Mount split card elements
       const domElement = cardNumber.mount('cardNumber');
@@ -113,7 +113,7 @@ More details about the `createPaymentConsent` function can be found [here](/docs
 
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
-        Airwallex.createPaymentConsent({
+        window.AirwallexComponentsSDK.payment.createPaymentConsent({
           intent_id: 'replace-with-your-intent-id', // intent id(Optional)
           customer_id: 'replace-with-your-customer-id', // customer id
           client_secret: 'replace-with-your-client-secret', // client secret
