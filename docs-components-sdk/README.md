@@ -1,6 +1,6 @@
-# Airwallex Payment Elements - Documentation
+# Components SDK - Documentation
 
-This reference documents every object and method available in Airwallex’s browser-side JavaScript library `airwallex-payment-elements`. You can also check out `node_modules/airwallex-payment-elements/types` for a more detailed overview of the parameters and properties available for each method.
+This reference documents every object and method available in Airwallex’s browser-side JavaScript library `@airwallex/components-sdk`. You can also check out `node_modules/@airwallex/components-sdk/types` for a more detailed overview of the parameters and properties available for each method.
 
 
 ## Table of contents
@@ -61,21 +61,21 @@ Make sure you update the SDK package version in the `package.json` file.
 
 ```ts
 // from the library
-import { loadAirwallex } from '@airwallex/airwallex-payment-elements';
-loadAirwallex({
+import { init } from '@airwallex/components-sdk';
+await init({
   env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
   origin: window.location.origin, // Set up your event target to receive the browser events message
 });
 ```
 
 ### script import user
-If you are initializing from the CDN, include the `airwallex-payment-elements` script on your checkout page by adding it to the `head` of your HTML file.
+If you are initializing from the CDN, include the `@airwallex/components-sdk` script on your checkout page by adding it to the `head` of your HTML file.
 
 ```ts
 // from CDN
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>;
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>;
 
-Airwallex.init({
+await window.AirwallexComponentsSDK.init({
   env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
   origin: window.location.origin, // Set up your event target to receive the browser events message
 });
@@ -103,13 +103,13 @@ Airwallex.init({
 This method creates an instance of an individual Element. It takes the `type` of Element to create and an optional `options` object. Elements are rendered as iframes.
 
 ```ts
-Airwallex.createElement(type, options);
+await window.AirwallexComponentsSDK.createElement(type, options);
 ```
 
 ```ts
 // If using NPM
-import { createElement } from '@airwallex/airwallex-payment-elements';
-const element = createElement(type, options);
+import { createElement } from '@airwallex/components-sdk';
+const element = await createElement(type, options);
 ```
 
 #### Method parameters
@@ -164,57 +164,21 @@ const element = createElement(type, options);
 |                                                                                                                      | `layout`            | No            | `accordion` or `tab`                                                                                                                    | This field is used to specify the layout of dropin                                                                                                                                                                                                                                                                            |
 |                    | `country_code`                 | No            | string                                                                                                                    | The country code of the shipping address. This field is required for the following payment methods: `online_banking`, `bank_transfer`, `seven_eleven`, `skrill`, `sofort`, `trustly`, `paysafecash`, `paysafecard`, `satispay`, `paysera`, `paypal`, `bitpay`                                                                                                                                                                                                                |
 |                    | `recurringOptions`             | No            | RecurringOptions                                                                                                          | Applicable to the card payment method when mode is `recurring`. See [save payment details for future payments](https://www.airwallex.com/docs/online-payments__save-payment-details-for-future-payments 'https://www.airwallex.com/docs/online-payments__save-payment-details-for-future-payments') .                                                                                                                                                                                                 |
-|                    | `applePayRequestOptions`       | No            | [applePayRequestOptions](#applepayrequestoptions-object)                                                                  | Applicable if you want to offer Apple Pay as a checkout option. Providing your `countryCode` is mandatory. For details, see [applePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/README.md#applepayrequestoptions 'https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/README.md#applepayrequestoptions')                                                                                                          |
-|                    | `googlePayRequestOptions`      | No            | [googlePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/dropinGooglePayOptions.md) | Applicable if you want to offer google Pay as a checkout option. Providing your `countryCode` and `merchantId` are mandatory. For details, see [DropInGooglePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/dropinGooglePayOptions.md 'https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/dropinGooglePayOptions.md')                                                                                              |
+|                    | `applePayRequestOptions`       | No            | [applePayRequestOptions](#applepayrequestoptions-object)                                                                  | Applicable if you want to offer Apple Pay as a checkout option. Providing your `countryCode` is mandatory. For details, see [applePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs-components-sdk/README.md#applepayrequestoptions 'https://github.com/airwallex/airwallex-payment-demo/blob/master/docs-components-sdk/README.md#applepayrequestoptions')                                                                                                          |
+|                    | `googlePayRequestOptions`      | No            | [googlePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs-components-sdk/dropinGooglePayOptions.md) | Applicable if you want to offer google Pay as a checkout option. Providing your `countryCode` and `merchantId` are mandatory. For details, see [DropInGooglePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs-components-sdk/dropinGooglePayOptions.md 'https://github.com/airwallex/airwallex-payment-demo/blob/master/docs-components-sdk/dropinGooglePayOptions.md')                                                                                              |
 |                    | `shopper_name`                 | No            | string                                                                                                                    | The shopper name that will prefill for some local payment methods        |
 |                    | `shopper_phone`                 | No            | string                                                                                                                    | The shopper name that will prefill for some local payment methods        |
 |                    | `shopper_email`                 | No            | string                                                                                                                    | The shopper name that will prefill for some local payment methods        |
 |                    | `theme`      | No            |          object                                | You can customize dropIn element style here                                                           |
 |                    | `billing`                 | No            | Billing                                                                                                                    | The billing info that you collected from shopper       |
-| `redirect`         | `intent`                       | Yes           | Intent                                                                                                                    | The `id` and `client_secret` of the PaymentIntent you want to checkout.                                                                                                                                                                                                                                                                                                                                                                                                      |
-|                    | `method`                       | Yes           | PaymentMethodWithRedirect\[\]                                                                                             | An array of the available methods. For example, `alipaycn`, `alipayhk` , `gcash` , `dana`, `kakaopay` , `tng`, etc. Depending on the payment method, you might need to provide additional properties in `options`. See [payment method table](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/redirect.md#redirect-element-attributes 'https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/redirect.md#redirect-element-attributes') . |
-|                    | `mode`                         | No            | Mode                                                                                                                      | The checkout mode for the shopper. By default, the mode is set to `payment`. Set it to `recurring` if you want to save the payment method for future payments with the shopper. Supported payment methods include Alipay, AlipayHK, Gcash, Dana, KakaoPay, Touch ‘n Go. Only merchant-initiated subsequent payments are supported.                                                                                                                                           |
-|                    | `client_secret`                | No            | string                                                                                                                    | The client_secret of the Customer object. It's required when `mode` is set to `recurring` else optional.                                                                                                                                                                                                                                                                                                                                                                     |
-|                    | `customer_id`                  | No            | string                                                                                                                    | The id of the Customer for whom the PaymentIntent or PaymentConsent is created – the id returned in [Create a Customer](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/_api_v1_pa_customers_create/post 'https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/_api_v1_pa_customers_create/post') API response                                                                                                                                  |
-| `qrcode`           | `intent`                       | Yes           | Intent                                                                                                                    | The `id` and `client_secret` of the PaymentIntent you want to checkout.                                                                                                                                                                                                                                                                                                                                                                                                      |
-|                    | `qrcodeMethod`                 | Yes           | PaymentMethodWithQrcode\[\]                                                                                               | The payment method you want to redirect the shopper to. For example, `alipayhk` , `wechatpay`, `kakaopay`, etc.                                 |
-| `applePayButton`   | `intent_id`                    | No            | string                                                                                                                    | The `id` of the PaymentIntent you want to checkout. It's required for payment mode and optional for recurring mode                                                                                                                                                                                                                                                                                                                                                           |
-|                    | `client_secret`                | Yes           | string                                                                                                                    | If the intent_id provided, this should be the client_secret of the intent. If no intent_id provided, this should be the client_secret of the customer                                                                                                                                                                                                                                                                                                                        |
-|                    | `mode`                         | No            | Mode                                                                                                                      | Checkout mode                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-|                    | `customer_id`                  | No            | string                                                                                                                    | The id of the Customer for whom the PaymentIntent or PaymentConsent is created – the id returned in [Create a Customer](https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/_api_v1_pa_customers_create/post 'https://www.airwallex.com/docs/api#/Payment_Acceptance/Customers/_api_v1_pa_customers_create/post') API response                                                                                                                                  |
-|                    | `amount`                       | Yes           | {value: number; currency:string;}                                                                                         | The amount and currency of the PaymentIntent.                                                                                                                                                                                                                                                                                                                                                                                                                                |
-|                    | `country_code`                 | Yes           | string                                                                                                                    | Your two-letter ISO 3166 country code.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-|                    | `authorizationType`                  | No            | enum                                                                                                                   | The authorization type of the card payment. Options include: `pre_auth`, `final_auth`. Default to `final_auth`. Set it to `pre_auth` if you want to place a hold on your customer’s card for more than 7 days. Currently it's only available when the card brand is visa or mastercard. You should also set `auto_capture` to be `false` if you want to enable pre-auth.                                                                                                                                                                                                                                                                                                                |
-|                    | `autoCapture`                  | No            | boolean                                                                                                                   | Indicates whether the funds should be requested automatically after the payment is authorized.  Default to `true`. Set it to `false` if you want to place a hold on the payment method and capture the funds sometime later. If you want to use pre-authorization to extend the authorization time window, you must set it to `false`.                                                                                                                                                                                                                                                                                                               |
-|                    | `buttonType`                   | No            | string                                                                                                                    | The type of button you want to display on your payment form, for example, 'donate' https://developer.apple.com/documentation/apple\_pay\_on\_the\_web/displaying\_apple\_pay\_buttons\_using\_css                                                                                                                                                                                                                                                                            |
-|                    | `buttonColor`                  | No            | string                                                                                                                    | The color of the button. Default value is 'black'                                                                                                                                                                                                                                                                                                                                                                                                                            |
-|                    | `totalPriceLabel`              | No            | string                                                                                                                    | The business name your shoppers will see when they look for the charge on their bank or credit card statement. For example, "COMPANY, INC."                                                                                                                                                                                                                                                                                                                                  |
-|                    | `lineItems`                    | No            | ApplePayJS.ApplePayLineItem[];                                                                                            | A set of line items that explain recurring payments and/or additional charges.                                                                                                                                                                                                                                                                                                                                                                                               |
-|                    | `billingContact`               | No            | ApplePayJS.ApplePayPaymentContact                                                                                         | The billing contact information for the shopper.                                                                                                                                                                                                                                                                                                                                                                                                                             |
-|                    | `requiredBillingContactFields` | No            | ApplePayJS.ApplePayContactField[];                                                                                        | The billing information that you require from the shopper to process the transaction.                                                                                                                                                                                                                                                                                                                                                                                        |
-|                    | `shippingContact`              | No            | ApplePayJS.ApplePayPaymentContact                                                                                         | Shipping contact information for the user.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|                    | `shippingMethods`              | No            | ApplePayJS.ApplePayShippingMethod[];                                                                                      | The list of shipping methods available for a payment request.                                                                                                                                                                                                                                                                                                                                                                                                                |
-|                    | `shippingType`                 | No            | ApplePayJS.ApplePayShippingType;                                                                                          | An optional value that indicates how purchased items are to be shipped.                                                                                                                                                                                                                                                                                                                                                                                                      |
-|                    | `supportedCountries`           | No            | string[ ]                                                                                                                 | A list of two-letter ISO 3166 country codes, used to limit payments to cards from specific countries or regions.                                                                                                                                                                                                                                                                                                                                                             |
-|                    | `applicationData`              | No            | string                                                                                                                    | Optional user-defined data.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-|                    | `totalPriceType`               | No            | string                                                                                                                    | A type that indicates whether a line item is final or pending.                                                                                                                                                                                                                                                                                                                                                                                                               |
-|                    | `supportedNetworks`            | No            | string[]                                                                                                                  | Card networks supported by the merchant. if not configured, supportedNetworks will automatically configure based on merchant account settings. For more details, please check the [apple pay doc](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916122-supportednetworks)                                                                                                                                                           |
-|                    | `merchantCapabilities`         | No            | string[]                                                                                                                  | Payment capabilities supported by the merchant. If the supportedNetworks don't contains chinaUnionPay, please don't include supportsEMV as well. For more details, please check the [apple pay doc](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymentrequest/1916123-merchantcapabilities)                                                                                                                                                      |
-| `googlePayButton`  |                                |               |                                                                                                                           | see [googlePayButtonOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/googlePaybuttonOptions.md 'https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/googlePaybuttonOptions.md') for details                                          |                                                                                                                                                                 
-
+                                                                                                                                          
 
 ### Get an Element
 
 This method looks up a previously created Element by its type.
 
 ```ts
-Airwallex.getElement(type);
-```
-
-```ts
-// If using NPM
-import { getElement } from '@airwallex/airwallex-payment-elements';
-const element = getElement(type);
+window.AirwallexComponentsSDK.payment.getElement(type);
 ```
 
 #### Method parameters
@@ -225,7 +189,7 @@ const element = getElement(type);
 
 #### Returns
 
-`Airwallex.getElement` returns one of the following:
+`window.AirwallexComponentsSDK.payment.` returns one of the following:
 
 - An instance of an Element with a matching type.
 
@@ -237,7 +201,7 @@ const element = getElement(type);
 Destroys the created Element. The Element can no longer be accessed after this call.
 
 ```ts
-Airwallex.destroyElement(type);
+window.AirwallexComponentsSDK.payment.destroyElement(type);
 ```
 
 #### Method parameters
@@ -248,14 +212,14 @@ Airwallex.destroyElement(type);
 
 #### Returns
 
-`Airwallex.destroyElement` returns true or false to indicate the success or failure of the call.
+`window.AirwallexComponentsSDK.payment.destroyElement` returns true or false to indicate the success or failure of the call.
 
 
 ### Update an Element
 
 Updates the options the Element was initialized with. Updates are merged into the existing configuration.
 
-See `options` [object](/docs#options-object-properties-1) properties for the options you can update.
+See `options` [object](/docs-components-sdk#options-object-properties-1) properties for the options you can update.
 
 ```ts
 element.update(options);
@@ -350,7 +314,7 @@ This method confirms the PaymentIntent using payment details collected by the El
 When called, this method will attempt to complete any required actions, such as 3DS authentication. The shopper will be redirected to the `return_url` you provide once the confirmation is complete.
 
 ```ts
-Airwallex.confirmPaymentIntent(paymentMethod);
+window.AirwallexComponentsSDK.payment.confirmPaymentIntent(paymentMethod);
 ```
 
 #### Method parameters
@@ -378,7 +342,7 @@ Airwallex allows you to create a PaymentConsent that represents the consent betw
 This method creates a PaymentConsent, which may be be used to confirm a PaymentIntent in subsequent payments.
 
 ```ts
-Airwallex.createPaymentConsent(options);
+window.AirwallexComponentsSDK.payment.createPaymentConsent(options);
 ```
 
 #### `options` object properties
@@ -409,7 +373,7 @@ Airwallex.createPaymentConsent(options);
 Redirects shoppers to a payment page hosted by Airwallex to securely collect their payment information. When the shopper completes their purchase, they are redirected back to your website.
 
 ```ts
-Airwallex.redirectToCheckout(options);
+window.AirwallexComponentsSDK.payment.redirectToCheckout(options);
 ```
 
 #### `options` object properties
@@ -438,66 +402,9 @@ Airwallex.redirectToCheckout(options);
 | `shopper_email`           | No            | string                                                                                                                    | Applies to PPRO payment methods only. The email of the shopper.                                                                                                                                                                                                                                                                                                     |
 | `recurringOptions`           | No            | RecurringOptions                                                                                                                    | Applicable to the card payment method when mode is `recurring`.                                                                                                                                                                                                                                                                                                     |
 | `disableAutoRedirect`           | No            | boolean                                                                                                                    | Set to `true` if you want to get redirect url and redirect by yourself.                                                                                                                                                                                                                                                                                                     |
-| `applePayRequestOptions`  | No            | [ApplePayRequestOptions](#applepayrequestoptions-object)                                                                  | Applicable if you want to offer Apple Pay as a checkout option. Providing your `countryCode` is mandatory. For details, see [applePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/README.md#applepayrequestoptions 'https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/README.md#applepayrequestoptions') |
-| `googlePayRequestOptions` | No            | [HppGooglePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/hppGooglePayOptions.md) | Applicable if you want to offer Google Pay as a checkout option. Providing your `countryCode` is mandatory. For details, see [googlePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/hppGooglePayOptions.md 'https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/airwallex-payment-elements/hppGooglePayOptions.md')                   |
+| `applePayRequestOptions`  | No            | [ApplePayRequestOptions](#applepayrequestoptions-object)                                                                  | Applicable if you want to offer Apple Pay as a checkout option. Providing your `countryCode` is mandatory. For details, see [applePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs-components-sdk/README.md#applepayrequestoptions 'https://github.com/airwallex/airwallex-payment-demo/blob/master/docs-components-sdk/README.md#applepayrequestoptions') |
+| `googlePayRequestOptions` | No            | [HppGooglePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs-components-sdk/hppGooglePayOptions.md) | Applicable if you want to offer Google Pay as a checkout option. Providing your `countryCode` is mandatory. For details, see [googlePayRequestOptions](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs-components-sdk/hppGooglePayOptions.md 'https://github.com/airwallex/airwallex-payment-demo/blob/master/docs-components-sdk/hppGooglePayOptions.md')                   |
 
-
-### Get Payment Intent
-
-Get payment intent instead of calling [api](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents__id_/get) by your self.
-
-```ts
-Airwallex.getPaymentIntent(intent_id, client_secret);
-```
-
-#### Method parameters
-
-| **Parameter** | **Required?** | **Type** | **Description**                                                                                                                                                                                                  |
-| ------------- | ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `intent_id`        | Yes           | string     | The intent id that you want to get |
-| `client_secret`        | Yes           | string     | The `client_secret` of the intent id. Notice this secret expires soon |
-
-#### Returns
-
-Returns the intent detail.
-
-
-### Get Device Finger Print
-Insert the airwallex track js file which would used for risk control.
-
-```ts
-Airwallex.getDeviceFingerprint({ intent_id, env });
-```
-
-#### Method parameters
-
-| **Parameter** | **Required?** | **Type** | **Description**                                                                                                                                                                                                  |
-| ------------- | ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `intent_id`        | Yes           | string     | The intent id you want to pay, if not provided will generate a UUID |
-| `env`        | Yes           | enum     | The airwallex env you want to use, Options inlucde: `staging`, `demo`, `prod` |
-
-#### Returns
-
-Returns the string of device id which would used for confirm payment intent.
-
-
-### Get Browser Info
-Return the browser info of current device. It will also call the `getDeviceFingerprint` to provider the `device_id` in the response
-
-```ts
-Airwallex.getBrowserInfo({ intent_id, env });
-```
-
-#### Method parameters
-
-| **Parameter** | **Required?** | **Type** | **Description**                                                                                                                                                                                                  |
-| ------------- | ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `intent_id`        | Yes           | string     | The intent id you want to pay, if not provided will generate a UUID |
-| `env`        | Yes           | enum     | The airwallex env you want to use, Options inlucde: `staging`, `demo`, `prod` |
-
-#### Returns
-
-Returns the [browser info object](/docs#browser-info-object).
 
 
 ## Appendix
@@ -586,49 +493,6 @@ Additional Apple Pay customization options for the button style and configuratio
 | **Property** | **Required?** | **Type**        | **Description**                                                                                                                             |
 | ------------ | ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | `fonts`      | No            | FontOptions\[\] | Fonts options to customize the font styles of payment Elements. You can specify font options using `src`, `family` and `weight` attributes. |
-
-#### browser info object
-```ts
-interface GetBrowserInfoResponse {
-  /**
-   * The height of the screen
-   */
-  screen_height: number;
-  /**
-   * The width of the screen
-   */
-  screen_width: number;
-  /**
-   * The color depth of the screen
-   */
-  screen_color_depth: number;
-  /**
-   * The language of browser
-   */
-  language: string;
-  /**
-   * The offset between browser time zone and UTC in minutes
-   */
-  timezone: number;
-  /**
-   * The browser infos
-   */
-  browser: {
-    /**
-     * Indicates if the browser supports java
-     */
-    java_enabled: boolean;
-    /**
-     * Indicates if the browser supports javascript
-     */
-    javascript_enabled: boolean;
-    /**
-     * The user agent of current session
-     */
-    user_agent: string;
-  };
-}
-```
 
 #### RecurringOptions
 

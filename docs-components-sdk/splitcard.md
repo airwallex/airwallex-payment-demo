@@ -1,4 +1,4 @@
-# Airwallex Payment Elements - Split Card Element Integration
+# Components SDK - Split Card Element Integration
 
 The Split Card element enables merchants to process a card checkout on their website, with greater control over the look and feel of their checkout page. This element differs from the card element as it allows merchants to embed individual input fields (card number, card expiry, card cvc).
 
@@ -10,30 +10,30 @@ The Split Card element enables merchants to process a card checkout on their web
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/react/src/components/SplitCard.jsx).
+Want more details? See the integration in [React](/integrations/cdn (components-sdk)/split-card.html).
 
-### 1. At the start of your file, import `airwallex-payment-elements`.
+### 1. At the start of your file, import `@airwallex/components-sdk`.
 
 ```js
-import Airwallex from 'airwallex-payment-elements';
+import Airwallex from '@airwallex/components-sdk';
 ```
 
 or add the bundle as a script in your HTML head
 
 ```html
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
 ```
 
 ### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
-Airwallex.init({
+await window.AirwallexComponentsSDK.init({
   env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
   origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
 
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs/airwallex-payment-elements#init).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs-components-sdk#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -60,15 +60,15 @@ We will mount the card elements into the empty divs in step 5 and create a handl
 
 ### 4. Create the split card elements
 
-This creates the specified [Element](/docs#Element) objects. We specify the types as `cardNumber`, `expiry`, and `cvc` respectively.
+This creates the specified [Element](/docs-components-sdk#Element) objects. We specify the types as `cardNumber`, `expiry`, and `cvc` respectively.
 
 ```js
-const cardNumber = Airwallex.createElement('cardNumber');
-const expiry = Airwallex.createElement('expiry');
-const cvc = Airwallex.createElement('cvc');
+const cardNumber = await window.AirwallexComponentsSDK.createElement('cardNumber');
+const expiry = await window.AirwallexComponentsSDK.createElement('expiry');
+const cvc = await window.AirwallexComponentsSDK.createElement('cvc');
 ```
 
-There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
+There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs-components-sdk#createElement) for more details.
 
 ### 5. Mount the split card elements
 
@@ -91,7 +91,7 @@ This handler is called when a customer is ready to make a payment according to t
 ```js
 // STEP #6a: Add a button handler
 document.getElementById('submit').addEventListener('click', () => {
-  Airwallex.confirmPaymentIntent({
+  window.AirwallexComponentsSDK.payment.confirmPaymentIntent({
     element: cardNumber, // Provide the cardNumber element
     id: 'replace-with-your-intent-id', // Payment Intent ID
     client_secret: 'replace-with-your-client-secret', // Client Secret
@@ -103,9 +103,9 @@ document.getElementById('submit').addEventListener('click', () => {
 });
 ```
 
-`Airwallex.confirmPaymentIntent` will take the cardNumber element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
+`window.AirwallexComponentsSDK.payment.confirmPaymentIntent` will take the cardNumber element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
 
-More details about the `confirmPaymentIntent` function can be found [here](/docs#confirmPaymentIntent).
+More details about the `confirmPaymentIntent` function can be found [here](/docs-components-sdk#confirmPaymentIntent).
 
 ### 7. Add an `onReady` event listener to handle events when the element is mounted
 
@@ -137,7 +137,7 @@ domElement.addEventListener('onChange', (event) => {
 
 ## Documentation
 
-See the full documentation for `airwallex-payment-elements` [here](/docs).
+See the full documentation for `@airwallex/components-sdk` [here](/docs).
 
 ## Integration Examples
 
@@ -152,8 +152,8 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- STEP #1: Import airwallex-payment-elements bundle -->
-    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+    <!-- STEP #1: Import @airwallex/components-sdk bundle -->
+    <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
   </head>
 
   <body>
@@ -179,14 +179,14 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
+      await window.AirwallexComponentsSDK.init({
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create split card elements
-      const cardNumber = Airwallex.createElement('cardNumber');
-      const expiry = Airwallex.createElement('expiry');
-      const cvc = Airwallex.createElement('cvc');
+      const cardNumber = await window.AirwallexComponentsSDK.createElement('cardNumber');
+      const expiry = await window.AirwallexComponentsSDK.createElement('expiry');
+      const cvc = await window.AirwallexComponentsSDK.createElement('cvc');
 
       // STEP #5: Mount split card elements
       const domElement = cardNumber.mount('cardNumber');
@@ -195,7 +195,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
 
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
-        Airwallex.confirmPaymentIntent({
+        window.AirwallexComponentsSDK.payment.confirmPaymentIntent({
           element: cardNumber,
           id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',

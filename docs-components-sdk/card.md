@@ -31,7 +31,7 @@ await window.AirwallexComponentsSDK.init({
 });
 ```
 
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs/components-sdk#init).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs-components-sdk#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -46,13 +46,13 @@ We will mount the card element into the empty div in step 5 and create a handler
 
 ### 4. Create the card element
 
-This creates the specified [Element](/docs/components-sdk#Element) object. We specify the type as `card`.
+This creates the specified [Element](/docs-components-sdk#Element) object. We specify the type as `card`.
 
 ```js
 const card = await window.AirwallexComponentsSDK.createElement('card');
 ```
 
-You can also add additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs/components-sdk#createElement) for more details.
+You can also add additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs-components-sdk#createElement) for more details.
 
 ### 5. Mount the card element
 
@@ -87,7 +87,7 @@ document.getElementById('submit').addEventListener('click', () => {
 
 `window.AirwallexComponentsSDK.payment.confirmPaymentIntent` will take the card element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
 
-More details about the `confirmPaymentIntent` function can be found [here](/docs/components-sdk#confirmPaymentIntent).
+More details about the `confirmPaymentIntent` function can be found [here](/docs-components-sdk#confirmPaymentIntent).
 
 ### 7. Add an `onReady` event listener to handle events when the element is mounted
 
