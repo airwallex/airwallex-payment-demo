@@ -33,7 +33,7 @@ await window.AirwallexComponentsSDK.init({
 });
 ```
 
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs/components-sdk#init).
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs-components-sdk#init).
 
 The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
 
@@ -47,7 +47,7 @@ We will mount the card element into the empty div in step 5.
 
 ### 4. Create the fullFeaturedCard element
 
-This creates the specified [Element](/docs/components-sdk#Element) object. We specify the type as **`fullFeaturedCard`**.
+This creates the specified [Element](/docs-components-sdk#Element) object. We specify the type as **`fullFeaturedCard`**.
 
 ```js
 const element = await window.AirwallexComponentsSDK.createElement('fullFeaturedCard', {
@@ -61,7 +61,7 @@ const element = await window.AirwallexComponentsSDK.createElement('fullFeaturedC
 
 You **must provide intent details** to create the fullFeaturedCard element.
 
-There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs/components-sdk#createElement) for more details.
+There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs-components-sdk#createElement) for more details.
 
 ### 5. Mount the card element
 
