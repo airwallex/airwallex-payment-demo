@@ -13,7 +13,7 @@ This directory contains an implementation of [Airwallex Payment Element](https:/
 
 `git clone https://github.com/airwallex/airwallex-payment-demo`
 
-2. Navigate into the react directory with `cd integrations/cdn`
+2. Navigate into the cdn directory with `cd integrations/cdn`
 
 3. Install the package with `yarn` or `npm install`
 

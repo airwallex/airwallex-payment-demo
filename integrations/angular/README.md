@@ -14,7 +14,7 @@ This directory contains the Angular implementation of [Airwallex Payment Element
 
 `git clone https://github.com/airwallex/airwallex-payment-demo`
 
-2. Navigate into the react directory with `cd integrations/angular`
+2. Navigate into the angular directory with `cd integrations/angular`
 
 3. Install the package with `yarn` or `npm install`
 
