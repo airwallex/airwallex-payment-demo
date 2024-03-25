@@ -47,14 +47,6 @@ export const generateHTML = ({
       Airwallex.init({
         env: 'staging', // Setup which env('staging' | 'demo' | 'prod') you would like to integrate with
         origin: '*', // There is no origin in React Native WebView, so we set it as any
-        fonts: [
-          {
-            src:
-              'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-            family: 'AxLLCircular',
-            weight: 400,
-          },
-        ]
       });
 
       // STEP #4: Create 'card' element

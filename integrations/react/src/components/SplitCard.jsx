@@ -42,14 +42,6 @@ const Index = () => {
     loadAirwallex({
       env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
       origin: window.location.origin, // Setup your event target to receive the browser events message
-      fonts: [
-        // Customizes the font for the payment elements
-        {
-          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-          family: 'AxLLCircular',
-          weight: 400,
-        },
-      ],
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
     }).then(() => {
       // STEP #4: Create and mount the individual card elements

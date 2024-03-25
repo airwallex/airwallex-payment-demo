@@ -6,7 +6,6 @@
  */
 
 body {
-  font-family: 'AxLLCircular';
   padding: 15px 25px;
 }
 
@@ -23,7 +22,6 @@ div#links {
 
 button {
   margin-top: 15px;
-  font-family: 'AxLLCircular';
   padding: 5px 10px;
   font-weight: 500;
   cursor: pointer;
@@ -78,15 +76,4 @@ span#code {
 
 p#bullet {
   font-weight: bold;
-}
-
-@font-face {
-  src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Bold.woff');
-  font-family: 'AxLLCircular';
-  weight: 'bold';
-}
-@font-face {
-  src: url('https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2');
-  font-family: 'AxLLCircular';
-  weight: '400';
 }
