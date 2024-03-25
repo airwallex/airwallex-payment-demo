@@ -34,17 +34,6 @@ const redirectHppForCheckout = () => {
     currency,
     intent_id, // Required, must provide intent details
     client_secret, // Required
-    theme: {
-      // Must provide theme to display the checkout page properly
-      fonts: [
-        // Customizes the font for the payment elements
-        {
-          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-          family: 'AxLLCircular',
-          weight: 400,
-        },
-      ],
-    },
     successUrl: 'https://www.google.com', // Must be HTTPS sites
     failUrl: 'https://www.google.com', // Must be HTTPS sites
     // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
@@ -63,17 +52,6 @@ const redirectHppForRecurring = () => {
         merchant_trigger_reason: 'scheduled',
         currency,
       },
-    },
-    theme: {
-      // Must provide theme to display the checkout page properly
-      fonts: [
-        // Customizes the font for the payment elements
-        {
-          src: 'https://checkout.airwallex.com/fonts/CircularXXWeb/CircularXXWeb-Regular.woff2',
-          family: 'AxLLCircular',
-          weight: 400,
-        },
-      ],
     },
     successUrl: 'https://www.google.com', // Must be HTTPS sites
     failUrl: 'https://www.google.com', // Must be HTTPS sites
