@@ -15,7 +15,7 @@ This directory contains a simple example of a Node server integrated with the [A
 git clone https://github.com/airwallex/airwallex-payment-demo
 ```
 
-2. Navigate into the react directory with `cd node`
+2. Navigate into the node directory with `cd node`
 
 3. Install the package with `yarn install` or `npm install`
 
