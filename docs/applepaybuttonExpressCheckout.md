@@ -98,12 +98,20 @@ element.on('shippingAddressChange', async (event) => {
 	// get available shipping methods by shipping address
 	// update the shipping methods, amount, lintItems and totalPriceLabel
     element.update({
-		amount: {
-			value: orderInfo?.total?.amount || 0,
-		},
-		lineItems: getAppleFormattedLineItems(cart.orderInfo.displayItems),
-		shippingMethods: getAppleFormattedShippingOptions(shipping.shippingOptions),
-		totalPriceLabel: totalPriceLabel,
+		shippingMethods: [
+          {
+            label: 'Free Shipping',
+            detail: 'Arrives in 5 to 7 days',
+            amount: '0.00',
+            identifier: 'FreeShip',
+          },
+          {
+            label: '1 Shipping',
+            detail: 'Arrives in 2 to 5 days',
+            amount: '1.00',
+            identifier: '1ship',
+          },
+        ],
 	});
 });
 ```
@@ -116,10 +124,20 @@ This listener helps update the available shipping methods based on the user's sh
 	element.on('shippingMethodChange', async (event) => {
         element.update({
             amount: {
-                value: cart?.orderInfo?.total?.amount || 0,
+                value: '36',
             },
-            lineItems: getAppleFormattedLineItems(cart.orderInfo.displayItems),
-            totalPriceLabel: checkout.totalPriceLabel,
+            lineItems: [
+                {
+                    label: "Bag Subtotal",
+                    type: "final",
+                    amount: "35.00"
+                },
+                {
+                    label: "1 Shipping",
+                    amount: '1.00',
+                    type: "final"
+                },
+            ],
         });
 	});
 ```

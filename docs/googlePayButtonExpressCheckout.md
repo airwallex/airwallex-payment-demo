@@ -46,7 +46,7 @@ const element = Airwallex.createElement('googlePayButton', {
 	 shippingAddressParameters: {
 		 phoneNumberRequired: true,
 	 },
-	 callbackIntents: ["PAYMENT_AUTHORIZATION", "SHIPPING_ADDRESS", "SHIPPING_OPTION"]
+	 callbackIntents: ["PAYMENT_AUTHORIZATION", "SHIPPING_ADDRESS", "SHIPPING_OPTION"]// if you don't need listen to shippingAddressChange and shippingMethodChange, pass ["PAYMENT_AUTHORIZATION"] only
 });
 ```
 
@@ -94,10 +94,10 @@ element.on('shippingAddressChange', async (event) => {
 		paymentDataRequestUpdate.shippingOptionParameters = {
 			defaultSelectedOptionId: 'shipping-001',
 			shippingOptions: [{
-        id: "shipping-001",
-        label: "Free: Standard shipping",
-        description: "Free Shipping delivered in 5 business days."
-      }]
+                id: "shipping-001",
+                label: "Free: Standard shipping",
+                description: "Free Shipping delivered in 5 business days."
+            }]
 		};
 	} else {
 		paymentDataRequestUpdate.error = {
@@ -117,24 +117,22 @@ This listener helps update the available shipping methods based on the user's sh
 ```jsx
 	element.on('shippingMethodChange', async (event) => {
 			element.update({
-				amount: {
-					value: '10' || 0,
-					currency: 'USD'
-				},
-				  totalPrice: "12.00",
-			  totalPriceLabel: "Total"
+                amount: {
+                    value: '12',
+                },
+			    totalPriceLabel: "Total"
 				transactionId: "Optional, but highly encouraged for troubleshooting.",
 				displayItems: [
-		    {
-		      label: "Subtotal",
-		      type: "SUBTOTAL",
-		      price: "11.00",
-		    },
-		    {
-		      label: "Tax",
-		      type: "TAX",
-		      price: "1.00",
-		    }]
+                    {
+                    label: "Subtotal",
+                    type: "SUBTOTAL",
+                    price: "11.00",
+                    },
+                    {
+                    label: "Tax",
+                    type: "TAX",
+                    price: "1.00",
+                }]
 		});
 	});
 ```
