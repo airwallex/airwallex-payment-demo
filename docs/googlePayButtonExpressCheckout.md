@@ -1,0 +1,182 @@
+# Google pay express checkout
+
+**Airwallex Payment Elements - Google Pay Button express checkout Integration**
+
+**Guide**
+
+1. **At the start of your file, import `airwallex-payment-elements`.**
+
+`import Airwallex from 'airwallex-payment-elements';`
+
+or add the bundle as a script in your HTML head
+
+`<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>`
+
+2. **Initialize the Airwallex package with the appropriate environment**
+
+```jsx
+Airwallex.init({
+  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+  origin: window.location.origin, // Setup your event target to receive the browser events message
+});
+```
+
+3. **Add an empty container for the card element to be injected into and a submit button to trigger the payment request**
+    
+    ```jsx
+    <div id="googlePayButton"></div>
+    
+    ```
+    
+4.  **Create the applePayButton element**
+
+This creates the specified [Element](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs#Element) object. We specify the type as `googlePayButton`.
+
+```jsx
+const element = Airwallex.createElement('googlePayButton', {
+	 countryCode: "HK",
+	 billingAddressRequired: true,
+	 billingAddressParameters: {
+		 format: 'FULL',
+	 },
+	 shippingAddressRequired: true,
+	 shippingOptionRequired: true,
+	 shippingAddressParameters: {
+		 phoneNumberRequired: true,
+	 },
+	 callbackIntents: ["PAYMENT_AUTHORIZATION", "SHIPPING_ADDRESS", "SHIPPING_OPTION"]
+});
+```
+
+5.  **Mount the google pay button element**
+
+Next, we need to mount the card element to the DOM.
+
+```jsx
+const domElement = element.mount('googlePayButton');
+```
+
+This function will append the card element to your div with an id `googlePayButton` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
+
+The **element should only be mounted once** in a single payment flow.
+
+6. **Add an `ready` event listener to handle events when the element is mounted**
+
+```jsx
+element.on('ready', (event) => {
+  // set loading state false
+});
+```
+
+This can be used to set a loading state as the checkout screen is being prepared.
+
+7. **Add an `click` event listener to handle events when the element is clicked**
+
+```jsx
+element.on('click', (event) => {
+  // collect click event
+});
+```
+
+This can be used to collect click events or do other things when button is clicked
+
+8. **Add an** `shippingAddressChange` **event listener to handle events when the shipping address is changed**
+
+```jsx
+element.on('shippingAddressChange', async (event) => {
+	console.log(event?.detail?.shippingAddress)
+  let paymentDataRequestUpdate = {};
+	// get available shipping methods by shipping address
+  const response = await getShippingOptions(shippingAddress);
+	if (response && response.success) {
+		paymentDataRequestUpdate.shippingOptionParameters = {
+			defaultSelectedOptionId: 'shipping-001',
+			shippingOptions: [{
+        id: "shipping-001",
+        label: "Free: Standard shipping",
+        description: "Free Shipping delivered in 5 business days."
+      }]
+		};
+	} else {
+		paymentDataRequestUpdate.error = {
+			reason: 'SHIPPING_ADDRESS_UNSERVICEABLE',
+			message: response.message,
+			intent: 'SHIPPING_ADDRESS'
+		};
+	}
+  element.update(paymentDataRequestUpdate);
+});
+```
+
+This listener helps update the available shipping methods based on the user's shipping address.
+
+9. Add `shippingMethodChange` event listener to handle events when shipping method is changed
+
+```jsx
+	element.on('shippingMethodChange', async (event) => {
+			element.update({
+				amount: {
+					value: '10' || 0,
+					currency: 'USD'
+				},
+				  totalPrice: "12.00",
+			  totalPriceLabel: "Total"
+				transactionId: "Optional, but highly encouraged for troubleshooting.",
+				displayItems: [
+		    {
+		      label: "Subtotal",
+		      type: "SUBTOTAL",
+		      price: "11.00",
+		    },
+		    {
+		      label: "Tax",
+		      type: "TAX",
+		      price: "1.00",
+		    }]
+		});
+	});
+```
+
+Update the cart amount, line items, and total price label when the user changes the shipping method.
+
+10. Add `authorized` event listener to handle events when payment is authorized by apple pay
+
+```jsx
+element.on('authorized', async (event) => {
+		let payment = event?.detail?.paymentData || {};
+		payment['shippingMethods'] = shippingMethods;
+		// create order by your server
+		const order = await createOrder(payment, 'googlepay');
+
+		if (isRecurring) {
+					element.createPaymentConsent({
+						client_secret: order.clientSecret,
+					}).then(() => {
+						location.href = successUrl;
+					}).catch((error) => {
+						console.warn(error.message);
+					});
+				} else {
+					element.confirmIntent({
+						client_secret: clientSecret,
+					}).then(() => {
+						location.href = successUrl;
+					}).catch((error) => {
+						console.warn(error.message);
+					});
+				}
+	});
+```
+
+This listener will handle the event when Google Pay authorizes the payment, allowing you to create an order and confirm the intent.
+
+11. Add `error` event listener to handle events when payment is authorized by applepay
+
+```jsx
+
+element.on('error', (event) => {
+		console.error('There was an error', event);
+});
+```
+
+This listener helps handle any errors that occur during the payment process.
