@@ -14,7 +14,7 @@ or add the bundle as a script in your HTML head
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
-### 2. **Initialize the Airwallex package with the appropriate environment**
+### 2. Initialize the Airwallex package with the appropriate environment
 
 ```jsx
 Airwallex.init({
@@ -30,7 +30,7 @@ Airwallex.init({
     
     ```
     
-### 4.  **Create the applePayButton element**
+### 4. Create the applePayButton element
 
 This creates the specified [Element](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs#Element) object. We specify the type as **`applePayButton`**.
 
@@ -42,7 +42,7 @@ const element = Airwallex.createElement('applePayButton', {
 });
 ```
 
-### 5.  **Mount the card element**
+### 5. Mount the card element
 
 Next, we need to mount the card element to the DOM.
 
@@ -54,7 +54,7 @@ This function will append the card element to your div with an id `applePayButt
 
 The **element should only be mounted once** in a single payment flow.
 
-### 6. **Add an `ready` event listener to handle events when the element is mounted**
+### 6. Add an `ready` event listener to handle events when the element is mounted
 
 ```jsx
 element.on('ready', (event) => {
@@ -64,7 +64,7 @@ element.on('ready', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 7. **Add an `click` event listener to handle events when the element is clicked**
+### 7. Add an `click` event listener to handle events when the element is clicked
 
 ```jsx
 element.on('click', (event) => {
@@ -74,7 +74,7 @@ element.on('click', (event) => {
 
 This can be used to collect click events or do other things when button is clicked
 
-### 8. **Add an `validateMerchant` event listener to handle events when the apple pay need start session.**
+### 8. Add an `validateMerchant` event listener to handle events when the apple pay need start session.
 
 ```jsx
 element.on('validateMerchant', async (event) => {
@@ -90,7 +90,7 @@ element.on('validateMerchant', async (event) => {
 
 This is required to validate the merchant session with Apple Pay servers.
 
-### 9. **Add an** `shippingAddressChange` **event listener to handle events when the shipping address is changed**
+### 9. Add an `shippingAddressChange` event listener to handle events when the shipping address is changed
 
 ```jsx
 element.on('shippingAddressChange', async (event) => {

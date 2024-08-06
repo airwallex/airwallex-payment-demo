@@ -14,7 +14,7 @@ or add the bundle as a script in your HTML head
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
-### 2. **Initialize the Airwallex package with the appropriate environment**
+### 2. Initialize the Airwallex package with the appropriate environment
 
 ```jsx
 Airwallex.init({
@@ -23,14 +23,14 @@ Airwallex.init({
 });
 ```
 
-### 3. **Add an empty container for the card element to be injected into and a submit button to trigger the payment request**
+### 3. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
     
     ```jsx
     <div id="googlePayButton"></div>
     
     ```
     
-### 4.  **Create the applePayButton element**
+### 4.  Create the applePayButton element
 
 This creates the specified [Element](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs#Element) object. We specify the type as `googlePayButton`.
 
@@ -50,7 +50,7 @@ const element = Airwallex.createElement('googlePayButton', {
 });
 ```
 
-### 5.  **Mount the google pay button element**
+### 5.  Mount the google pay button element
 
 Next, we need to mount the card element to the DOM.
 
@@ -62,7 +62,7 @@ This function will append the card element to your div with an id `googlePayBut
 
 The **element should only be mounted once** in a single payment flow.
 
-### 6. **Add an `ready` event listener to handle events when the element is mounted**
+### 6. Add an `ready` event listener to handle events when the element is mounted
 
 ```jsx
 element.on('ready', (event) => {
@@ -72,7 +72,7 @@ element.on('ready', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 7. **Add an `click` event listener to handle events when the element is clicked**
+### 7. Add an `click` event listener to handle events when the element is clicked
 
 ```jsx
 element.on('click', (event) => {
