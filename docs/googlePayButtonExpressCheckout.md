@@ -56,13 +56,13 @@ const element = Airwallex.createElement('googlePayButton', {
 
 ### 5.  Mount the google pay button element
 
-Next, we need to mount the card element to the DOM.
+Next, we need to mount the google pay button element to the DOM.
 
 ```jsx
 const domElement = element.mount('googlePayButton');
 ```
 
-This function will append the card element to your div with an id `googlePayButton` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
+This function will append the google pay button element to your div with an id `googlePayButton` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
 
 The **element should only be mounted once** in a single payment flow.
 
