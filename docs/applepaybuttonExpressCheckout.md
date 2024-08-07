@@ -54,7 +54,7 @@ Next, we need to mount the apple pay button element to the DOM.
 const domElement = element.mount('applePayButton');
 ```
 
-This function will append the card element to your div with an id `applePayButton` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
+This function will append the apple pay button element to your div with an id `applePayButton` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
 
 The **element should only be mounted once** in a single payment flow.
 
@@ -103,7 +103,7 @@ This is required to validate the merchant session with Apple Pay servers.
 element.on('shippingAddressChange', async (event) => {
 	console.log(event?.detail?.shippingAddress)
 	// get available shipping methods by shipping address
-	// update the shipping methods, amount, lintItems and totalPriceLabel
+	// update the shipping methods
     element.update({
 		shippingMethods: [
           {
