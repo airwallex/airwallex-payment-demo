@@ -23,7 +23,7 @@ Airwallex.init({
 });
 ```
 
-### 3. **Add an empty container for the card element to be injected into and a submit button to trigger the payment request**
+### 3. **Add an empty container for the apple pay button element to be injected into**
     
     ```jsx
     <div id="applePayButton"></div>
@@ -37,14 +37,18 @@ This creates the specified [Element](https://github.com/airwallex/airwallex-pay
 ```jsx
 const element = Airwallex.createElement('applePayButton', {
 	 countryCode: "HK",
-	 requiredShippingContactFields: ["email", "name", "phone", "postalAddress"],
+     amount: {
+        value: '10',
+        currency: 'USD'
+     }
+	 requiredShippingContactFields: ["email", "name", "phone", "postalAddress"], // you can pass any combination of the four fields, if the order does not requires shipping, you can just pass the email and phone
 	 requiredBillingContactFields: ["postalAddress"]
 });
 ```
 
-### 5. Mount the card element
+### 5. Mount the apple pay button element
 
-Next, we need to mount the card element to the DOM.
+Next, we need to mount the apple pay button element to the DOM.
 
 ```jsx
 const domElement = element.mount('applePayButton');
@@ -75,11 +79,14 @@ element.on('click', (event) => {
 This can be used to collect click events or do other things when button is clicked
 
 ### 8. Add an `validateMerchant` event listener to handle events when the apple pay need start session.
-
+Endpoint: POST pci-api-demo.airwallex.com/api/v1/pa/payment_session/start
 ```jsx
 element.on('validateMerchant', async (event) => {
-	if (awxExpressCheckoutSettings.isProductPage) await addToCart();
-	const merchantSession = await startPaymentSession(event?.detail?.validationURL);
+
+	const merchantSession = await axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_session/start', {
+        "validation_url": event?.detail?.validationURL, //eg: https://cn-apple-pay-gateway.apple.com/paymentservices/startSession
+        "initiative_context": domain_name, //eg: www.your-store.com
+    });
 	const { paymentSession, error } = merchantSession;
 
 	if (paymentSession) {
@@ -148,14 +155,18 @@ Update the cart amount, line items, and total price label when the user changes 
 
 ```jsx
 element.on('authorized', async (event) => {
-		let payment = event?.detail?.paymentData || {};
-		payment['shippingMethods'] = shippingMethods;
-		// create order by your server
-		const order = await createOrder(payment, 'applepay');
+		console.log(event?.detail?.paymentData)
+		// create intent by payment data
+		const intent = axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_intents/create', {
+            merchant_order_id: 'order id',
+            request_id: 'uuid',
+            currency: 'USD',
+            amount: 36
+        })
 
 		if (isRecurring) {
             element.createPaymentConsent({
-                client_secret: order.clientSecret,
+                client_secret: intent.client_secret,
             }).then(() => {
                 location.href = successUrl;
             }).catch((error) => {
@@ -163,7 +174,7 @@ element.on('authorized', async (event) => {
             });
         } else {
             element.confirmIntent({
-                client_secret: clientSecret,
+                client_secret: intent.client_secret,
             }).then(() => {
                 location.href = successUrl;
             }).catch((error) => {

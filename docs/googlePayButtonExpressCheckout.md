@@ -23,14 +23,14 @@ Airwallex.init({
 });
 ```
 
-### 3. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
+### 3. Add an empty container for the google pay element to be injected into
     
     ```jsx
     <div id="googlePayButton"></div>
     
     ```
     
-### 4.  Create the applePayButton element
+### 4.  Create the google pay button element
 
 This creates the specified [Element](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs#Element) object. We specify the type as `googlePayButton`.
 
@@ -41,6 +41,10 @@ const element = Airwallex.createElement('googlePayButton', {
 	 billingAddressParameters: {
 		 format: 'FULL',
 	 },
+	 amount: {
+		value: '10',
+		currency: 'USD',
+	 }
 	 shippingAddressRequired: true,
 	 shippingOptionRequired: true,
 	 shippingAddressParameters: {
@@ -143,14 +147,19 @@ Update the cart amount, line items, and total price label when the user changes 
 
 ```jsx
 element.on('authorized', async (event) => {
-		let payment = event?.detail?.paymentData || {};
-		payment['shippingMethods'] = shippingMethods;
-		// create order by your server
-		const order = await createOrder(payment, 'googlepay');
+		console.log(event?.detail?.paymentData)
+		// create intent by payment data
+		const intent = axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_intents/create', {
+            merchant_order_id: 'order id',
+            request_id: 'uuid',
+            currency: 'USD',
+            amount: 36
+        })
+
 
 		if (isRecurring) {
 					element.createPaymentConsent({
-						client_secret: order.clientSecret,
+						client_secret: intent.client_secret,
 					}).then(() => {
 						location.href = successUrl;
 					}).catch((error) => {
@@ -158,7 +167,7 @@ element.on('authorized', async (event) => {
 					});
 				} else {
 					element.confirmIntent({
-						client_secret: clientSecret,
+						client_secret: intent.client_secret,
 					}).then(() => {
 						location.href = successUrl;
 					}).catch((error) => {
