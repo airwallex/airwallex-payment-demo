@@ -82,16 +82,16 @@ This can be used to collect click events or do other things when button is click
 Endpoint: POST pci-api-demo.airwallex.com/api/v1/pa/payment_session/start
 ```jsx
 element.on('validateMerchant', async (event) => {
-
+    try {
 	const merchantSession = await axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_session/start', {
         "validation_url": event?.detail?.validationURL, //eg: https://cn-apple-pay-gateway.apple.com/paymentservices/startSession
         "initiative_context": domain_name, //eg: www.your-store.com
     });
-	const { paymentSession, error } = merchantSession;
-
-	if (paymentSession) {
+	if (merchantSession) {
 		element.completeValidation(paymentSession);
-	}
+	}} catch (error) {
+        console.log(error)
+    }
 });
 ```
 
