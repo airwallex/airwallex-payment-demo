@@ -88,7 +88,7 @@ element.on('validateMerchant', async (event) => {
         "initiative_context": domain_name, //eg: www.your-store.com
     });
 	if (merchantSession) {
-		element.completeValidation(paymentSession);
+		element.completeValidation(merchantSession);
 	}} catch (error) {
         console.log(error)
     }
