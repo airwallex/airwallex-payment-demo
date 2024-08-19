@@ -82,10 +82,10 @@ This function will append the card element to your div with an id `full-featured
 
 The **element should only be mounted once** in a single payment flow.
 
-### 6. Add an `onReady` event listener to handle events when the element is mounted
+### 6. Add an `ready` event listener to handle events when the element is mounted
 
 ```js
-domElement.addEventListener('onReady', (event) => {
+element.on('ready', (event) => {
   /*
     ... Handle event
   */
@@ -95,10 +95,10 @@ domElement.addEventListener('onReady', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 7. Add an `onSuccess` event listener to handle events when the payment is successful.
+### 7. Add an `success` event listener to handle events when the payment is successful.
 
 ```js
-domElement.addEventListener('onSuccess', (event) => {
+element.on('success', (event) => {
   /*
     ... Handle event on success
   */
@@ -106,10 +106,10 @@ domElement.addEventListener('onSuccess', (event) => {
 });
 ```
 
-### 8. Add an `onError` event listener to handle events when the payment has failed.
+### 8. Add an `error` event listener to handle events when the payment has failed.
 
 ```js
-domElement.addEventListener('onError', (event) => {
+element.on('error', (event) => {
   /*
     ... Handle event on error
   */
@@ -161,7 +161,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       const domElement = element.mount('full-featured-card');
 
       // STEP #6: Add an event listener to handle events when the element is mounted
-      domElement.addEventListener('onReady', (event) => {
+      element.on('ready', (event) => {
         /*
           ... Handle event
         */
@@ -169,7 +169,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to handle events when the payment is successful.
-      domElement.addEventListener('onSuccess', (event) => {
+      element.on('success', (event) => {
         /*
           ... Handle event on success
         */
@@ -177,7 +177,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #8: Add an event listener to handle events when the payment has failed.
-      domElement.addEventListener('onError', (event) => {
+      element.on('error', (event) => {
         /*
           ... Handle event on error
         */

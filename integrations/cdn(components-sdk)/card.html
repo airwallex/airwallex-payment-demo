@@ -54,7 +54,7 @@
 
 
         // STEP #7: Add an event listener to ensure the element is mounted
-        domElement.addEventListener('onReady', (event) => {
+        card.on('ready', (event) => {
           /*
         ... Handle event
           */
@@ -64,12 +64,12 @@
         });
 
         // STEP #8: Add an event listener to validate element input
-        domElement.addEventListener('onChange', (event) => {
+        card.on('change', (event) => {
           const { complete } = event.detail;
           document.getElementById('submit').disabled = !complete; // Example: only enable button when element input is completed
         });
         // STEP #9: Add an event listener to get input focus status
-        domElement.addEventListener('onFocus', (event) => {
+        card.on('focus', (event) => {
           // Customize your input focus style by listen onFocus event
           const element = document.getElementById('input-error');
           if (element) {
@@ -78,7 +78,7 @@
         });
 
         // STEP #10: Add an event listener to show input error message when finish typing
-        domElement.addEventListener('onBlur', (event) => {
+        card.on('blur', (event) => {
           const { complete } = event.detail;
           const { error } = event.detail;
           const element = document.getElementById('input-error');
@@ -88,7 +88,7 @@
         });
 
         // STEP #11: Add an event listener to handle errors
-        domElement.addEventListener('onError', (event) => {
+        card.on('error', (event) => {
           const { error } = event.detail;
           document.getElementById('error').style.display = 'block'; // Example: show error
           document.getElementById('error').innerHTML = error.message; // Example: set error message

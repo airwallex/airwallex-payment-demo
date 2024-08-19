@@ -270,29 +270,29 @@ element.focus();
 
 ## Listen to Element Events
 
-Elements can post events to its parent container (your payment page) when a shopper interacts with the checkout Element. You can listen to events and register the event using the `addEventListener()` method. In this method, specify the name of the event you want to register this handler for, and the code that comprises the handler function you want to run in response to it. For example,
+Elements can post events to its parent container (your payment page) when a shopper interacts with the checkout Element. You can listen to events and register the event using the `o()` method. In this method, specify the name of the event you want to register this handler for, and the code that comprises the handler function you want to run in response to it. For example,
 
 ```ts
-const element = mount('airwallex-element');
-element.addEventListener('onReady', (event) => {
+const element = payment.createElement('airwallex-element');
+element.on('ready', (event) => {
   // handle event
 });
 ```
 
 | **Event**                     | **Purpose**                                                                                                                                                                                          |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onReady`                     | Triggered when the Element is fully rendered and can accept `element.focus` calls.                                                                                                                   |
-| `onSubmit`                    | Triggered when confirming the PaymentIntent either when the shopper clicks the Pay button or when you call `confirmPaymentIntent( )` method.                                                         |
-| `onSuccess`                   | Triggered when Airwallex confirms the PaymentIntent.                                                                                                                                                 |
-| `onError`                     | Triggered for various error events during shopper interaction. See [error codes](https://www.airwallex.com/docs/api?v=2019-09-09#/Errors 'https://www.airwallex.com/docs/api?v=2019-09-09#/Errors').         |
-| `onCancel`                    | Triggered when the shopper cancels payment during ApplePay or GooglePay.         |
-| `onFocus`                     | Triggered when the Element gains focus.                                                                                                                                                              |
-| `onBlur`                      | Triggered when the Element loses focus.                                                                                                                                                              |
-| `onChange`                    | Triggered when the Element’s value changes. For example, by clicking outside the input field or using the tab key to switch to a different input field.                                              |
-| `onClick`                     | Triggered when the shopper integrates ApplePay button or GooglePay button element and the button is clicked. |
-| `onClickConfirmButton`                     | Triggered when the shopper confirms a payment with card in full featured card, dropIn or hosted payment page (either through created consent or by typing the entire card information).                                                                                                                                                    |
-| `onDynamicCurrencyConversion` | Triggered when Dynamic Currency Conversion (DCC) is enabled and the shopper confirms the PaymentIntent with DCC.                                                                                     |
-| `onPendingVerifyAccount` | Triggered when the bank account needs to be verified | 
+| `read`                     | Triggered when the Element is fully rendered and can accept `element.focus` calls.                                                                                                                   |
+| `submit`                    | Triggered when confirming the PaymentIntent either when the shopper clicks the Pay button or when you call `confirm( )` method.                                                         |
+| `success`                   | Triggered when Airwallex confirms the PaymentIntent.                                                                                                                                                 |
+| `error`                     | Triggered for various error events during shopper interaction. See [error codes](https://www.airwallex.com/docs/api?v=2019-09-09#/Errors 'https://www.airwallex.com/docs/api?v=2019-09-09#/Errors').         |
+| `cancel`                    | Triggered when the shopper cancels payment during ApplePay or GooglePay.         |
+| `focus`                     | Triggered when the Element gains focus.                                                                                                                                                              |
+| `blur`                      | Triggered when the Element loses focus.                                                                                                                                                              |
+| `change`                    | Triggered when the Element’s value changes. For example, by clicking outside the input field or using the tab key to switch to a different input field.                                              |
+| `click`                     | Triggered when the shopper integrates ApplePay button or GooglePay button element and the button is clicked. |
+| `clickConfirmButton`                     | Triggered when the shopper confirms a payment with card in full featured card, dropIn or hosted payment page (either through created consent or by typing the entire card information).                                                                                                                                                    |
+| `dynamicCurrencyConversion` | Triggered when Dynamic Currency Conversion (DCC) is enabled and the shopper confirms the PaymentIntent with DCC.                                                                                     |
+| `pendingVerifyAccount` | Triggered when the bank account needs to be verified | 
 
 
 ## Process payments

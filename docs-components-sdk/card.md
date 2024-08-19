@@ -95,10 +95,10 @@ document.getElementById('submit').addEventListener('click', () => {
 `card.confirm` will take the card element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
 
 
-### 6. Add an `onReady` event listener to handle events when the element is mounted
+### 6. Add an `ready` event listener to handle events when the element is mounted
 
 ```js
-domElement.addEventListener('onReady', (event) => {
+card.on('ready', (event) => {
   /*
     ... Handle event
   */
@@ -174,7 +174,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to ensure the element is mounted
-      domElement.addEventListener('onReady', (event) => {
+      card.on('ready', (event) => {
         /*
         ... Handle event
          */
