@@ -52,7 +52,7 @@ This reference documents every object and method available in Airwallex’s brow
 
 <br>
 
-## Initialize Airwallex
+## Initialize Payment Object
 
 First, you will need to load airwallex js script and initialize the payment environment.
 
@@ -62,7 +62,7 @@ Make sure you update the SDK package version in the `package.json` file.
 ```ts
 // from the library
 import { init } from '@airwallex/components-sdk';
-await init({
+const { payment } = await init({
   env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
   origin: window.location.origin, // Set up your event target to receive the browser events message
 });
@@ -75,13 +75,13 @@ If you are initializing from the CDN, include the `@airwallex/components-sdk` sc
 // from CDN
 <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>;
 
-await window.AirwallexComponentsSDK.init({
+const { payment } = await window.AirwallexComponentsSDK.init({
   env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
   origin: window.location.origin, // Set up your event target to receive the browser events message
 });
 ```
 
-`init()` and `loadAirwallex()` support various options to set up the payment environment as shown in the following table.
+`init()` support various options to set up the payment environment as shown in the following table.
 
 ### `options` object properties
 
@@ -100,16 +100,8 @@ await window.AirwallexComponentsSDK.init({
 
 ### Create an Element
 
-This method creates an instance of an individual Element. It takes the `type` of Element to create and an optional `options` object. Elements are rendered as iframes.
-
 ```ts
-await window.AirwallexComponentsSDK.createElement(type, options);
-```
-
-```ts
-// If using NPM
-import { createElement } from '@airwallex/components-sdk';
-const element = await createElement(type, options);
+const element = await payment.createElement(type, options);
 ```
 
 #### Method parameters
@@ -178,7 +170,7 @@ const element = await createElement(type, options);
 This method looks up a previously created Element by its type.
 
 ```ts
-window.AirwallexComponentsSDK.payment.getElement(type);
+payment.getElement(type);
 ```
 
 #### Method parameters
@@ -189,7 +181,7 @@ window.AirwallexComponentsSDK.payment.getElement(type);
 
 #### Returns
 
-`window.AirwallexComponentsSDK.payment.` returns one of the following:
+`payment..getElement(type)` returns one of the following:
 
 - An instance of an Element with a matching type.
 
@@ -201,7 +193,7 @@ window.AirwallexComponentsSDK.payment.getElement(type);
 Destroys the created Element. The Element can no longer be accessed after this call.
 
 ```ts
-window.AirwallexComponentsSDK.payment.destroyElement(type);
+payment.destroyElement(type);
 ```
 
 #### Method parameters
@@ -212,7 +204,7 @@ window.AirwallexComponentsSDK.payment.destroyElement(type);
 
 #### Returns
 
-`window.AirwallexComponentsSDK.payment.destroyElement` returns true or false to indicate the success or failure of the call.
+`payment.destroyElement` returns true or false to indicate the success or failure of the call.
 
 
 ### Update an Element
@@ -314,7 +306,7 @@ This method confirms the PaymentIntent using payment details collected by the El
 When called, this method will attempt to complete any required actions, such as 3DS authentication. The shopper will be redirected to the `return_url` you provide once the confirmation is complete.
 
 ```ts
-window.AirwallexComponentsSDK.payment.confirmPaymentIntent(paymentMethod);
+payment.confirmPaymentIntent(paymentMethod);
 ```
 
 #### Method parameters
@@ -342,7 +334,7 @@ Airwallex allows you to create a PaymentConsent that represents the consent betw
 This method creates a PaymentConsent, which may be be used to confirm a PaymentIntent in subsequent payments.
 
 ```ts
-window.AirwallexComponentsSDK.payment.createPaymentConsent(options);
+payment.createPaymentConsent(options);
 ```
 
 #### `options` object properties
@@ -373,7 +365,7 @@ window.AirwallexComponentsSDK.payment.createPaymentConsent(options);
 Redirects shoppers to a payment page hosted by Airwallex to securely collect their payment information. When the shopper completes their purchase, they are redirected back to your website.
 
 ```ts
-window.AirwallexComponentsSDK.payment.redirectToCheckout(options);
+payment.redirectToCheckout(options);
 ```
 
 #### `options` object properties

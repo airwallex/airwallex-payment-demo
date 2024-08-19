@@ -25,18 +25,37 @@ or add the bundle as a script in your HTML head
 ```
 
 
-### 2. Initialize the Airwallex package with the appropriate environment
+### 2. Initialize Payment Object
+
+At the start of your file, initialize the Airwallex SDK. You can do this either by importing the SDK or adding it as a script in your HTML.
+
+#### Importing the SDK
 
 ```js
-await window.AirwallexComponentsSDK.init({
-  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-  origin: window.location.origin, // Setup your event target to receive the browser events message
+import { init } from '@airwallex/components-sdk';
+
+const { payment } = await init({
+  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
 
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs-components-sdk#init).
+#### Adding the SDK as a Script
 
-The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
+Add the following script in your HTML `<head>`:
+
+```html
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+```
+
+Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
+
+```js
+const { payment } = await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  origin: window.location.origin, // Set your event target to receive browser event messages
+});
+```
 
 ### 3. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
 
@@ -51,7 +70,7 @@ We will mount the card element into the empty div in step 5.
 This creates the specified [Element](/docs-components-sdk#Element) object. We specify the type as **`dropIn`**.
 
 ```js
-const element = await window.AirwallexComponentsSDK.createElement('dropIn', {
+const element = await payment.createElement('dropIn', {
   intent_id: 'replace-with-your-intent-id',
   client_secret: 'replace-with-your-client-secret',
   currency: 'replace-with-your-intent-currency',
@@ -164,12 +183,12 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <div id="dropIn"></div>
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      await window.AirwallexComponentsSDK.init({
+      const { payment } = await window.AirwallexComponentsSDK.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'dropIn' element
-      const dropIn = await window.AirwallexComponentsSDK.createElement('dropIn', {
+      const dropIn = await payment.createElement('dropIn', {
         // Required, dropIn use intent Id and client_secret to prepare checkout
         intent_id: 'replace-with-your-intent-id',
         client_secret: 'replace-with-your-client-secret',

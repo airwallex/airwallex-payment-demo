@@ -12,32 +12,38 @@ For CIT subsequent transaction, merchant need query and list available consents 
 
 For CIT consent, when shoppers trigger a transaction, they will need to select their saved payment consent and enter the respective cvc number to finish the payment. Merchants will only need to integrate the cvc element.
 
-### 1. At the start of your file, import `@airwallex/components-sdk`.
+### 1. Initialize Payment Object
+
+At the start of your file, initialize the Airwallex SDK. You can do this either by importing the SDK or adding it as a script in your HTML.
+
+#### Importing the SDK
 
 ```js
-import Airwallex from '@airwallex/components-sdk';
+import { init } from '@airwallex/components-sdk';
+
+const { payment } = await init({
+  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  origin: window.location.origin, // Set your event target to receive browser event messages
+});
 ```
 
-or add the bundle as a script in your HTML head
+#### Adding the SDK as a Script
+
+Add the following script in your HTML `<head>`:
 
 ```html
 <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
 ```
 
-### 2. Initialize the Airwallex package with the appropriate environment
+Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
 
 ```js
-await window.AirwallexComponentsSDK.init({
-  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-  origin: window.location.origin, // Setup your event target to receive the browser events message
+const { payment } = await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
-
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs-components-sdk#init).
-
-The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
-
-### 3. Add empty containers for cvc element to be injected into and a submit button to trigger the payment request
+### 2. Add empty containers for cvc element to be injected into and a submit button to trigger the payment request
 
 ```html
 <div>List of payment consents</div>
@@ -51,17 +57,17 @@ The Airwallex package only needs to be mounted once in an application (and every
 
 We will mount the cvc elements into the empty divs in step 5 and create a handler for the submit button in step 6.
 
-### 4. Create the split cvc elements
+### 3. Create the split cvc elements
 
 This creates the specified [Element](/docs-components-sdk#Element) objects. We specify the types as `cvc`.
 
 ```js
-const cvc = await window.AirwallexComponentsSDK.createElement('cvc');
+const cvc = await payment.createElement('cvc');
 ```
 
 There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs-components-sdk#createElement) for more details.
 
-### 5. Mount the cvc elements
+### 4. Mount the cvc elements
 
 Next, we need to mount the cvc element to the DOM.
 
@@ -73,14 +79,14 @@ This function will append the cvc element to your divs with ids `cvc`, as create
 
 Each **cvc element should only be mounted once** in a single payment flow.
 
-### 6. Add a button handler to trigger the payment request and listen to the request response.
+### 5. Add a button handler to trigger the payment request and listen to the request response.
 
 This handler is called when a customer is ready to make a payment according to the details documented in the Payment Intent, thereby confirming the Payment Intent.
 
 ```js
 // STEP #6a: Add a button handler
 document.getElementById('submit').addEventListener('click', () => {
-  window.AirwallexComponentsSDK.payment.confirmPaymentIntent({
+  payment.confirmPaymentIntent({
     element: cvc, // Provide the cvc element
     id: 'replace-with-your-intent-id', // Payment Intent ID
     client_secret: 'replace-with-your-client-secret', // Client Secret
@@ -93,11 +99,11 @@ document.getElementById('submit').addEventListener('click', () => {
 });
 ```
 
-`window.AirwallexComponentsSDK.payment.confirmPaymentIntent` will take the cvc element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
+`payment.confirmPaymentIntent` will take the cvc element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
 
 More details about the `confirmPaymentIntent` function can be found [here](/docs-components-sdk#confirmPaymentIntent).
 
-### 7. Add an `onReady` event listener to handle events when the element is mounted
+### 6. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
 domElement.addEventListener('onReady', (event) => {
@@ -110,7 +116,7 @@ domElement.addEventListener('onReady', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 8. Add an `onChange` event listener to listen to the changes in each of the input fields
+### 7. Add an `onChange` event listener to listen to the changes in each of the input fields
 
 ```js
 domElement.addEventListener('onChange', (event) => {
@@ -123,7 +129,7 @@ domElement.addEventListener('onChange', (event) => {
 
 `event` will return an object with the field name and whether this field is completed (valid). This can help with validating the fields before users can trigger the submit button to prevent any validation errors.
 
-### 9. Beautify and deploy!
+### 8. Beautify and deploy!
 
 ## Full Code Example
 
@@ -150,19 +156,19 @@ domElement.addEventListener('onChange', (event) => {
 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      await window.AirwallexComponentsSDK.init({
+      const  { payment} = await window.AirwallexComponentsSDK.init({
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create cvc element
-      const cvcElement = await window.AirwallexComponentsSDK.createElement('cvc');
+      const cvcElement = await payment.createElement('cvc');
 
       // STEP #5: Mount cvc element
       const domElement = cvcElement.mount('cvc');
 
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
-        const confirmRes = await window.AirwallexComponentsSDK.payment.confirmPaymentIntent({
+        const confirmRes = await payment.confirmPaymentIntent({
           id: intent.id,
           customerId: 'replace-with-your-customer-id', // customer id
           client_secret: 'replace-with-your-client-secret', // client secret
