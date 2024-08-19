@@ -98,7 +98,7 @@ This handler is called when a customer is ready to make a payment according to t
 ```js
 // STEP #6a: Add a button handler
 document.getElementById('submit').addEventListener('click', () => {
-  payment.confirmPaymentIntent({
+  cardNumber.confirm({
     element: cardNumber, // Provide the cardNumber element
     id: 'replace-with-your-intent-id', // Payment Intent ID
     client_secret: 'replace-with-your-client-secret', // Client Secret
@@ -110,9 +110,8 @@ document.getElementById('submit').addEventListener('click', () => {
 });
 ```
 
-`payment.confirmPaymentIntent` will take the cardNumber element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
+`cardNumber.confirm` will take the cardNumber element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
 
-More details about the `confirmPaymentIntent` function can be found [here](/docs-components-sdk#confirmPaymentIntent).
 
 ### 7. Add an `onReady` event listener to handle events when the element is mounted
 
@@ -202,7 +201,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
 
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
-        payment.confirmPaymentIntent({
+        cardNumber.confirm({
           element: cardNumber,
           id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
