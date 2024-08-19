@@ -67,8 +67,13 @@ Set it to `false` if you want to place a hold on the payment method and capture 
 |buttonType|string|- book: The "Book with Google Pay" payment button.buy: The "Buy with Google Pay" payment button (default).checkout: The "Checkout with Google Pay" payment button.donate: The "Donate with Google Pay" payment button.order: The "Order with Google Pay" payment button.pay: The "Pay with Google Pay" payment button.plain: The Google Pay payment button without the additional text.subscribe: The "Subscribe with Google Pay" payment button.||
 |buttonSizeMode|string|- static: Button has a static width and height (default).fill: Button size changes to fill the size of its container.|fill|
 ## **Code sample:**
-```
-await window.AirwallexComponentsSDK.createElement('googlePayButton', {
+``` ts 
+const { payment } = await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  origin: window.location.origin, // Set your event target to receive browser event messages
+});
+
+await payment.createElement('googlePayButton', {
 
       intent_id: intent.id,
 
@@ -101,8 +106,12 @@ await window.AirwallexComponentsSDK.createElement('googlePayButton', {
 ## **Use cases**
 ### **How to save shopper’s billing info in intent?**
 code sample:
-```
-await window.AirwallexComponentsSDK.createElement('googlePayButton', {
+```ts
+const { payment } = await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  origin: window.location.origin, // Set your event target to receive browser event messages
+});
+await payment.createElement('googlePayButton', {
 
       intent_id: intent.id,
 
@@ -138,8 +147,12 @@ await window.AirwallexComponentsSDK.createElement('googlePayButton', {
 currently, we only support save shipping info when creating the intent.
 ### **How to style your google pay button?**
 code sample:
-```
-await window.AirwallexComponentsSDK.createElement('googlePayButton', {
+```ts
+const { payment } = await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  origin: window.location.origin, // Set your event target to receive browser event messages
+});
+await payment.createElement('googlePayButton', {
 
       intent_id: intent.id,
 

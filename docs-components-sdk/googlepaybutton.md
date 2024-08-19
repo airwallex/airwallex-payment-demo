@@ -8,32 +8,38 @@ The Google Pay Button allows merchants to embed a google pay checkout option on 
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-### 1. At the start of your file, import `@airwallex/components-sdk`.
+### 1. Initialize Payment Object
+
+At the start of your file, initialize the Airwallex SDK. You can do this either by importing the SDK or adding it as a script in your HTML.
+
+#### Importing the SDK
 
 ```js
-import Airwallex from '@airwallex/components-sdk';
+import { init } from '@airwallex/components-sdk';
+
+const { payment } = await init({
+  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  origin: window.location.origin, // Set your event target to receive browser event messages
+});
 ```
 
-or add the bundle as a script in your HTML head
+#### Adding the SDK as a Script
+
+Add the following script in your HTML `<head>`:
 
 ```html
 <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
 ```
 
-### 2. Initialize the Airwallex package with the appropriate environment
+Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
 
 ```js
-await window.AirwallexComponentsSDK.init({
-  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-  origin: window.location.origin, // Setup your event target to receive the browser events message
+const { payment } = await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
-
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs-components-sdk#init).
-
-The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
-
-### 3. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
+### 2. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
 
 ```html
 <div id="googlePayButton"></div>
@@ -41,12 +47,12 @@ The Airwallex package only needs to be mounted once in an application (and every
 
 We will mount the card element into the empty div in step 5.
 
-### 4. Create the googlePayButton element
+### 3. Create the googlePayButton element
 
 This creates the specified [Element](/docs-components-sdk#Element) object. We specify the type as **`googlePayButton`**.
 
 ```js
-const element = await window.AirwallexComponentsSDK.createElement('googlePayButton', {
+const element = await payment.createElement('googlePayButton', {
   intent: {
     // Required, googlePayButton uses intent_id and client_secret to prepare checkout
     id: 'replace-with-your-intent-id',
@@ -134,12 +140,12 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <div id="googlePayButton"></div>
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      await window.AirwallexComponentsSDK.init({
+      const { payment } = await window.AirwallexComponentsSDK.init({
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'googlePayButton' element
-      const element = await window.AirwallexComponentsSDK.createElement('googlePayButton', {
+      const element = await payment.createElement('googlePayButton', {
           intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
           amount: {

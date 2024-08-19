@@ -42,13 +42,13 @@
     (async () => {
       try {
         // STEP #2: Initialize the Airwallex global context for event communication
-        await window.AirwallexComponentsSDK.init({
+        const { payment } = await window.AirwallexComponentsSDK.init({
           env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
           origin: window.location.origin, // Setup your event target to receive the browser events message
         });
 
         // STEP #4: Create 'card' element
-        const card = await window.AirwallexComponentsSDK.createElement('card');
+        const card = await payment.createElement('card');
         // STEP #5: Mount card element
         const domElement = card.mount('card');
 
@@ -94,7 +94,7 @@
           document.getElementById('error').innerHTML = error.message; // Example: set error message
           console.error('There was an error', error);
         });
-      } catch(error) {
+      } catch (error) {
         document.getElementById('error').style.display = 'block'; // Example: show error
         document.getElementById('error').innerHTML = error.message; // Example: set error message
         console.error('There was an error', error);
@@ -112,23 +112,23 @@
         id: 'replace-with-your-intent-id',
         client_secret: 'replace-with-your-client-secret',
       })
-      .then((response) => {
-        // STEP #6b: Listen to the request response
-        /* Handle confirm response */
-        document.getElementById('success').style.display = 'block'; // Example: show success message
-        document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
-        document.getElementById('submit').disabled = false; // Example: reset button state
-        window.alert(JSON.stringify(response));
-      })
-      .catch((response) => {
-        // STEP #6c: Listen to the error response
-        /* Handle error response */
-        document.getElementById('error').style.display = 'block'; // Example: show error message
-        document.getElementById('error').innerHTML = response.message; // Example: fill in error message
-        document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
-        document.getElementById('submit').disabled = false; // Example: reset button state
-        console.error(`There was an error, ${JSON.stringify(response)}`);
-      });
+        .then((response) => {
+          // STEP #6b: Listen to the request response
+          /* Handle confirm response */
+          document.getElementById('success').style.display = 'block'; // Example: show success message
+          document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
+          document.getElementById('submit').disabled = false; // Example: reset button state
+          window.alert(JSON.stringify(response));
+        })
+        .catch((response) => {
+          // STEP #6c: Listen to the error response
+          /* Handle error response */
+          document.getElementById('error').style.display = 'block'; // Example: show error message
+          document.getElementById('error').innerHTML = response.message; // Example: fill in error message
+          document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
+          document.getElementById('submit').disabled = false; // Example: reset button state
+          console.error(`There was an error, ${JSON.stringify(response)}`);
+        });
     });
 
 

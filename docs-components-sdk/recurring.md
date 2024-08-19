@@ -36,7 +36,7 @@ This handler is called when a customer is ready to create a consent along with t
 ```js
 // STEP #6a: Add a button handler
 document.getElementById('submit').addEventListener('click', () => {
-  await window.AirwallexComponentsSDK.payment.createPaymentConsent({
+  await payment.createPaymentConsent({
     intent_id: 'replace-with-your-intent-id', // intent id(Optional)
     customer_id: 'replace-with-your-customer-id', // customer id
     client_secret: 'replace-with-your-client-secret', // client secret (from creating intent or generating client secret)
@@ -51,7 +51,7 @@ document.getElementById('submit').addEventListener('click', () => {
 });
 ```
 
-`Airwallex.createPaymentConsent` will take the cardNumber element or card element you mounted and create payment consent.
+`payment.createPaymentConsent` will take the cardNumber element or card element you mounted and create payment consent.
 
 More details about the `createPaymentConsent` function can be found [here](/docs-components-sdk#createPaymentConsent).
 
@@ -97,14 +97,14 @@ More details about the `createPaymentConsent` function can be found [here](/docs
 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      await window.AirwallexComponentsSDK.init({
+      const { payment } = await window.AirwallexComponentsSDK.init({
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create split card elements
-      const cardNumber = await window.AirwallexComponentsSDK.createElement('cardNumber');
-      const expiry = await window.AirwallexComponentsSDK.createElement('expiry');
-      const cvc = await window.AirwallexComponentsSDK.createElement('cvc');
+      const cardNumber = await payment.createElement('cardNumber');
+      const expiry = await payment.createElement('expiry');
+      const cvc = await payment.createElement('cvc');
 
       // STEP #5: Mount split card elements
       const domElement = cardNumber.mount('cardNumber');
@@ -113,7 +113,7 @@ More details about the `createPaymentConsent` function can be found [here](/docs
 
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
-        window.AirwallexComponentsSDK.payment.createPaymentConsent({
+        payment.createPaymentConsent({
           intent_id: 'replace-with-your-intent-id', // intent id(Optional)
           customer_id: 'replace-with-your-customer-id', // customer id
           client_secret: 'replace-with-your-client-secret', // client secret
