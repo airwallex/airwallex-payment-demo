@@ -40,7 +40,9 @@ const element = Airwallex.createElement('applePayButton', {
      amount: {
         value: '10',
         currency: 'USD'
-     }
+     },
+     merchantCapabilities: ['supports3DS', 'supportsDebit', 'supportsCredit', 'supportsEMV'],
+    supportedNetworks: ['visa', 'masterCard', 'chinaUnionPay', 'amex', 'discover']
 	 requiredShippingContactFields: ["email", "name", "phone", "postalAddress"], // you can pass any combination of the four fields, if the order does not requires shipping, you can just pass the email and phone
 	 requiredBillingContactFields: ["postalAddress"]
 });
@@ -58,7 +60,7 @@ This function will append the apple pay button element to your div with an id `
 
 The **element should only be mounted once** in a single payment flow.
 
-### 6. Add an `ready` event listener to handle events when the element is mounted
+### 6. (Optional)Add an `ready` event listener to handle events when the element is mounted 
 
 ```jsx
 element.on('ready', (event) => {
@@ -68,7 +70,7 @@ element.on('ready', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 7. Add an `click` event listener to handle events when the element is clicked
+### 7. (Optional)Add an `click` event listener to handle events when the element is clicked
 
 ```jsx
 element.on('click', (event) => {
@@ -97,7 +99,7 @@ element.on('validateMerchant', async (event) => {
 
 This is required to validate the merchant session with Apple Pay servers.
 
-### 9. Add an `shippingAddressChange` event listener to handle events when the shipping address is changed
+### 9. (Optional)Add an `shippingAddressChange` event listener to handle events when the shipping address is changed
 
 ```jsx
 element.on('shippingAddressChange', async (event) => {
@@ -125,7 +127,7 @@ element.on('shippingAddressChange', async (event) => {
 
 This listener helps update the available shipping methods based on the user's shipping address.
 
-### 10. Add `shippingMethodChange` event listener to handle events when shipping method is changed
+### 10. (Optional)Add `shippingMethodChange` event listener to handle events when shipping method is changed
 
 ```jsx
 	element.on('shippingMethodChange', async (event) => {
