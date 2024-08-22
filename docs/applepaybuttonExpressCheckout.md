@@ -41,7 +41,7 @@ const element = Airwallex.createElement('applePayButton', {
         value: '10',
         currency: 'USD'
      },
-     merchantCapabilities: ['supports3DS', 'supportsDebit', 'supportsCredit', 'supportsEMV'],
+     merchantCapabilities: ['supports3DS', 'supportsDebit', 'supportsCredit', 'supportsEMV'], // remove supportsEMV if you don't need chinaUnionPay 
     supportedNetworks: ['visa', 'masterCard', 'chinaUnionPay', 'amex', 'discover']
 	 requiredShippingContactFields: ["email", "name", "phone", "postalAddress"], // you can pass any combination of the four fields, if the order does not requires shipping, you can just pass the email and phone
 	 requiredBillingContactFields: ["postalAddress"]
