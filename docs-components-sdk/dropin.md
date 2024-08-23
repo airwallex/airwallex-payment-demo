@@ -107,10 +107,10 @@ This function will append the card element to your div with an id `drop-in` as c
 
 The **element should only be mounted once** in a single payment flow.
 
-### 6. Add an `onReady` event listener to handle events when the element is mounted
+### 6. Add an `ready` event listener to handle events when the element is mounted
 
 ```js
-domElement.addEventListener('onReady', (event) => {
+element.on('ready', (event) => {
   /*
     ... Handle event
   */
@@ -120,10 +120,10 @@ domElement.addEventListener('onReady', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 7. Add an `onSuccess` event listener to handle events when the payment is successful.
+### 7. Add an `success` event listener to handle events when the payment is successful.
 
 ```js
-domElement.addEventListener('onSuccess', (event) => {
+element.on('success', (event) => {
   /*
     ... Handle event on success
   */
@@ -131,10 +131,10 @@ domElement.addEventListener('onSuccess', (event) => {
 });
 ```
 
-### 8. Add an `onError` event listener to handle events when the payment has failed.
+### 8. Add an `error` event listener to handle events when the payment has failed.
 
 ```js
-domElement.addEventListener('onError', (event) => {
+element.on('error', (event) => {
   /*
     ... Handle event on error
   */
@@ -142,12 +142,12 @@ domElement.addEventListener('onError', (event) => {
 });
 ```
 
-### 9. Add an `onPendingVerifyAccount` event listener if you want to integrate with `ach_direct_debit` or `becs_direct_debit` payment method.
+### 9. Add an `pendingVerifyAccount` event listener if you want to integrate with `ach_direct_debit` or `becs_direct_debit` payment method.
 
 When the event triggers, it means the shopper needs to verify the bank account before proceeding the payment. We have a pre-defined page to tell the shoppers what they should do next, and of course you can use your own customized page too.
 
 ```js
-domElement.addEventListener('onPendingVerifyAccount', (event) => {
+element.on('pendingVerifyAccount', (event) => {
   /*
    ** handle event on pending verify bank account
    */
@@ -206,7 +206,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       const domElement = dropIn.mount('dropIn');
 
       // STEP #6: Add an event listener to handle events when the element is mounted
-      domElement.addEventListener('onReady', (event) => {
+      dropIn.on('ready', (event) => {
         /*
           ... Handle event
         */
@@ -214,7 +214,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to handle events when the payment is successful.
-      domElement.addEventListener('onSuccess', (event) => {
+      dropIn.on('success', (event) => {
         /*
           ... Handle event on success
         */
@@ -222,7 +222,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #8: Add an event listener to handle events when the payment has failed.
-      domElement.addEventListener('onError', (event) => {
+      dropIn.on('error', (event) => {
         /*
           ... Handle event on error
         */

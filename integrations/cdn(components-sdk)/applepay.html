@@ -66,7 +66,7 @@
         const domElement = applepay.mount('applepay');
 
         // STEP #6: Add an event listener to ensure the element is mounted
-        domElement.addEventListener('onReady', (event) => {
+        applepay.on('onReady', (event) => {
           /*
          ... Handle event
           */
@@ -78,7 +78,7 @@
 
 
         // STEP #7: Add an event listener to handle errors
-        domElement.addEventListener('onError', (event) => {
+        applepay.on('error', (event) => {
           const { error } = event.detail;
           document.getElementById('error').style.display = 'block'; // Example: show error
           document.getElementById('error').innerHTML = error.message; // Example: set error message
@@ -87,7 +87,7 @@
 
 
         // STEP #8: Add an event listener to handle errors
-        domElement.addEventListener('onSuccess', (event) => {
+        applepay.on('success', (event) => {
           // handle your success event
         });
       } catch (error) {
