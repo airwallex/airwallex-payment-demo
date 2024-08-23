@@ -80,12 +80,12 @@ element.on('click', (event) => {
 
 This can be used to collect click events or do other things when button is clicked
 
-### 8. Add an `validateMerchant` event listener to handle events when the apple pay need start session.
+### 8. Add an `validateMerchant` event listener to handle events when the apple pay need start session. Your server need to call this below endpoint and expose this api to the client
 Endpoint: POST pci-api-demo.airwallex.com/api/v1/pa/payment_session/start
 ```jsx
 element.on('validateMerchant', async (event) => {
     try {
-	const merchantSession = await axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_session/start', {
+	const merchantSession = await axios.post('your server start session api', {
         "validation_url": event?.detail?.validationURL, //eg: https://cn-apple-pay-gateway.apple.com/paymentservices/startSession
         "initiative_context": domain_name, //eg: www.your-store.com
     });
