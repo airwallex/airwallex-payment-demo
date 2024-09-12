@@ -1,200 +1,323 @@
-# Apple pay / Google pay express checkout
+# Apple Pay Express Checkout Integration Guide - Airwallex Payment Elements
 
-**Airwallex Payment Elements - Apple Pay Button express checkout Integration**
+This comprehensive guide outlines the process of integrating Apple Pay express checkout using Airwallex Payment Elements, enabling a seamless payment experience for your users.
 
-**Guide**
+## Step 1: Import Airwallex Payment Elements
 
-### 1. At the start of your file, import `airwallex-payment-elements`.
+Start by importing `airwallex-payment-elements` at the beginning of your file:
+
 ```js
 import Airwallex from 'airwallex-payment-elements';
 ```
 
-or add the bundle as a script in your HTML head
-```js
+Alternatively, include the bundle as a script in your HTML head:
+
+```html
 <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
-### 2. Initialize the Airwallex package with the appropriate environment
+## Step 2: Initialize the Airwallex Package
+
+Configure the Airwallex package with the appropriate environment:
 
 ```jsx
 Airwallex.init({
-  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-  origin: window.location.origin, // Setup your event target to receive the browser events message
+  env: 'demo', // Choose Airwallex environment ('staging' | 'demo' | 'prod')
+  origin: window.location.origin, // Specify your event target for receiving browser events
 });
 ```
 
-### 3. **Add an empty container for the apple pay button element to be injected into**
-    
-    ```jsx
-    <div id="applePayButton"></div>
-    
-    ```
-    
-### 4. Create the applePayButton element
+## Step 3: Create a Container Element
 
-This creates the specified [Element](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs#Element) object. We specify the type as **`applePayButton`**.
+Add an empty container to house the Apple Pay button:
+
+```jsx
+<div id="applePayButton"></div>
+```
+
+## Step 4: Create the Apple Pay Button Element
+
+Generate the Apple Pay button element with the desired configuration:
 
 ```jsx
 const element = Airwallex.createElement('applePayButton', {
-	 countryCode: "HK",
-     amount: {
-        value: '10',
-        currency: 'USD'
-     },
-     merchantCapabilities: ['supports3DS', 'supportsDebit', 'supportsCredit', 'supportsEMV'], // remove supportsEMV if you don't need chinaUnionPay 
-    supportedNetworks: ['visa', 'masterCard', 'chinaUnionPay', 'amex', 'discover']
-	 requiredShippingContactFields: ["email", "name", "phone", "postalAddress"], // you can pass any combination of the four fields, if the order does not requires shipping, you can just pass the email and phone
-	 requiredBillingContactFields: ["postalAddress"]
+  countryCode: "HK", // You business's registration country
+  amount: {
+    value: '10',
+    currency: 'USD'
+  },
+  merchantCapabilities: ['supports3DS', 'supportsDebit', 'supportsCredit', 'supportsEMV'], // Remove supportsEMV if China UnionPay is not needed
+  supportedNetworks: ['visa', 'masterCard', 'chinaUnionPay', 'amex', 'discover'],
+  requiredShippingContactFields: ["email", "name", "phone", "postalAddress"], // Customize field combination as necessary
+  requiredBillingContactFields: ["postalAddress"]
 });
 ```
 
-### 5. Mount the apple pay button element
+## Step 5: Mount the Apple Pay Button Element
 
-Next, we need to mount the apple pay button element to the DOM.
+Attach the Apple Pay button element to the DOM:
 
 ```jsx
 const domElement = element.mount('applePayButton');
 ```
 
-This function will append the apple pay button element to your div with an id `applePayButton` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
+Note: Ensure unique IDs across your document. Mount the element only once per payment flow.
 
-The **element should only be mounted once** in a single payment flow.
+## Step 6: Implement a `validateMerchant` Event Listener
 
-### 6. (Optional)Add an `ready` event listener to handle events when the element is mounted 
+Handle merchant validation when Apple Pay initiates a session:
 
-```jsx
-element.on('ready', (event) => {
-  // set loading state false
-});
-```
-
-This can be used to set a loading state as the checkout screen is being prepared.
-
-### 7. (Optional)Add an `click` event listener to handle events when the element is clicked
-
-```jsx
-element.on('click', (event) => {
-  // collect click event
-});
-```
-
-This can be used to collect click events or do other things when button is clicked
-
-### 8. Add an `validateMerchant` event listener to handle events when the apple pay need start session. Your server need to call this below endpoint and expose this api to the client
-Endpoint: POST pci-api-demo.airwallex.com/api/v1/pa/payment_session/start
 ```jsx
 element.on('validateMerchant', async (event) => {
-    try {
-	const merchantSession = await axios.post('your server start session api', {
-        "validation_url": event?.detail?.validationURL, //eg: https://cn-apple-pay-gateway.apple.com/paymentservices/startSession
-        "initiative_context": domain_name, //eg: www.your-store.com
+  try {
+    const merchantSession = await axios.post('your_backend_server_url_for_payment_session', {
+      "validation_url": event?.detail?.validationURL,
+      "initiative_context": domain_name,
     });
-	if (merchantSession) {
-		element.completeValidation(merchantSession);
-	}} catch (error) {
-        console.log(error)
+
+    if (merchantSession) {
+      element.completeValidation(merchantSession);
     }
+  } catch (error) {
+    console.error('Merchant validation error:', error);
+  }
 });
 ```
 
-This is required to validate the merchant session with Apple Pay servers.
+Important: 
+* Your backend server must invoke the following API and return its response directly:
 
-### 9. (Optional)Add an `shippingAddressChange` event listener to handle events when the shipping address is changed
+```
+Production Domain: https://api.airwallex.com
+Development Domain: https://api-demo.airwallex.com
 
-```jsx
-element.on('shippingAddressChange', async (event) => {
-	console.log(event?.detail?.shippingAddress)
-	// get available shipping methods by shipping address
-	// update the shipping methods
-    element.update({
-		shippingMethods: [
-          {
-            label: 'Free Shipping',
-            detail: 'Arrives in 5 to 7 days',
-            amount: '0.00',
-            identifier: 'FreeShip',
-          },
-          {
-            label: '1 Shipping',
-            detail: 'Arrives in 2 to 5 days',
-            amount: '1.00',
-            identifier: '1ship',
-          },
-        ],
-	});
-});
+Endpoint: /api/v1/pa/payment_session/start
+Method: POST
+Request Body:
+{
+    "validation_url": "<provided by frontend>",
+    "initiative_context": "<your current domain>"
+}
 ```
 
-This listener helps update the available shipping methods based on the user's shipping address.
+## Step 7: Implement an `authorized` Event Listener
 
-### 10. (Optional)Add `shippingMethodChange` event listener to handle events when shipping method is changed
-
-```jsx
-	element.on('shippingMethodChange', async (event) => {
-        element.update({
-            amount: {
-                value: '36',
-            },
-            lineItems: [
-                {
-                    label: "Bag Subtotal",
-                    type: "final",
-                    amount: "35.00"
-                },
-                {
-                    label: "1 Shipping",
-                    amount: '1.00',
-                    type: "final"
-                },
-            ],
-        });
-	});
-```
-
-Update the cart amount, line items, and total price label when the user changes the shipping method.
-
-### 11. Add `authorized` event listener to handle events when payment is authorized by apple pay
+Manage the flow when a payment is authorized:
 
 ```jsx
 element.on('authorized', async (event) => {
-		console.log(event?.detail?.paymentData)
-		// create intent by payment data
-		const intent = axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_intents/create', {
-            merchant_order_id: 'order id',
-            request_id: 'uuid',
-            currency: 'USD',
-            amount: 36
-        })
 
-		if (isRecurring) {
-            element.createPaymentConsent({
-                client_secret: intent.client_secret,
-            }).then(() => {
-                location.href = successUrl;
-            }).catch((error) => {
-                console.warn(error.message);
-            });
-        } else {
-            element.confirmIntent({
-                client_secret: intent.client_secret,
-            }).then(() => {
-                location.href = successUrl;
-            }).catch((error) => {
-                console.warn(error.message);
-            });
-        }
-	});
-```
+  const intent = axios.post('your_backend_server_url_for_payment_intent', {
+    // Include necessary data for creating a payment intent
+  });
 
-This listener will handle the event when Apple Pay authorizes the payment, allowing you to create an order and confirm the intent.
+  element.confirmIntent( {
+    client_secret: intent.client_secret,
+  } ).then(() => {
+    window.location.href = successUrl;
+  } ).catch( (error) => {
+    console.warn(error.message);
+  });
 
-### 12. Add `error` event listener to handle events when payment is authorized by applepay
-
-```jsx
-
-element.on('error', (event) => {
-	console.error('There was an error', event);
+  // For recurring payments, use `createPaymentConsent`:
+  /*
+  element.createPaymentConsent({
+      client_secret: intent.client_secret,
+  }).then(() => {
+      window.location.href = successUrl;
+  }).catch((error) => {
+      console.warn(error.message);
+  });
+  */
 });
 ```
 
-This listener helps handle any errors that occur during the payment process.
+Note: 
+* Your backend should create a payment intent by calling: `POST /api/v1/pa/payment_intents/create`
+* For comprehensive API documentation, visit: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post
+
+## Step 8: Implement an `error` Event Listener
+
+Handle any errors that occur during the payment process:
+
+```jsx
+element.on('error', (event) => {
+  // console.error('Payment process error:', event);
+  // Implement appropriate error handling and user feedback
+});
+```
+
+## Step 9: (Optional) Implement a `ready` Event Listener
+
+Manage actions when the element is successfully mounted:
+
+```jsx
+element.on('ready', (event) => {
+  // Update UI to reflect the ready state, e.g., hide loading indicators, enable interactions
+});
+```
+
+## Step 10: (Optional) Implement a `click` Event Listener
+
+Handle events when the Apple Pay button is clicked:
+
+```jsx
+element.on('click', (event) => {
+  // Process click event data, e.g., for analytics or user interaction tracking
+});
+```
+
+Note: Updating amount and currency is not permitted when the Apple Pay button is clicked.
+
+## Step 11: (Optional) Implement a `shippingAddressChange` Event Listener
+
+Manage updates when the shipping address is modified:
+
+```jsx
+element.on('shippingAddressChange', async (event) => {
+
+  // Uncomment to log the new shipping address for debugging
+  // console.log('Updated shipping address:', event?.detail?.shippingAddress);
+
+  // Allowed shipping address validation
+  if (event?.detail?.shippingAddress?.countryCode === 'US') {
+    element?.update({
+      errors: [
+        {
+          code: 'shippingContactInvalid',
+          contactField: 'countryCode',
+          message: 'US shipping is currently unavailable',
+        },
+      ],
+    });
+  } else {
+    element.update({
+      shippingMethods: [
+        {
+          label: 'Standard Shipping',
+          detail: 'Delivery in 5-7 business days',
+          amount: '0.00',
+          identifier: 'standard',
+        },
+        {
+          label: 'Express Shipping',
+          detail: 'Delivery in 2-3 business days',
+          amount: '10.00',
+          identifier: 'express',
+        },
+      ],
+    });
+  }
+});
+```
+
+Note:
+
+* The available `contactFields` for `shippingContactInvalid` code:
+
+```
+phoneNumber
+emailAddress
+name
+phoneticName
+postalAddress
+addressLines
+locality
+subLocality
+postalCode
+administrativeArea
+subAdministrativeArea
+country
+countryCode
+```
+
+* The available error codes:
+
+```
+shippingContactInvalid
+billingContactInvalid
+addressUnserviceable
+unkown
+```
+
+## Step 12: (Optional) Implement a `shippingMethodChange` Event Listener
+
+Handle updates when the shipping method is altered:
+
+```jsx
+element.on('shippingMethodChange', async (event) => {
+
+  // Uncomment to log the payment data for debugging
+  // console.log(event?.detail?.paymentData);
+
+  // Update total amount and line items based on the selected shipping method
+  element.update({
+    amount: {
+      value: '50.00', // Updated total amount
+    },
+    lineItems: [
+      {
+        label: "Product Subtotal",
+        type: "final",
+        amount: "40.00"
+      },
+      {
+        label: "Express Shipping",
+        amount: '10.00',
+        type: "final"
+      },
+    ],
+  });
+});
+```
+
+## Step 13: (Optional) Update Amount and Currency Before Button Click
+
+To modify the amount and currency before the Apple Pay button is clicked:
+
+* Ensure the Apple Pay `element` is in the `ready` state before updating.
+* Remember that updating amount and currency within the `click` event is not allowed.
+
+```jsx
+element.update({ 
+   amount: { 
+       value: '36', 
+       currency: 'USD' 
+   } 
+});
+```
+
+## Step 14: (Optional) Canceling an Authorized Payment
+
+In some scenarios, you may need to halt the payment process even after the user has authorized it. This step demonstrates how to cancel an authorization and stop the payment from proceeding.
+
+```jsx
+element.on('authorized', async (event) => {
+  // Uncomment the following line for debugging purposes
+  // console.log('Payment data:', event?.detail?.paymentData);
+
+  // Example: Cancel payment for Visa cards
+  if (event?.detail?.paymentData?.token?.paymentMethod?.network === 'Visa') {
+    element?.update({
+      errors: [
+        {
+          code: 'unknown',
+          message: 'Visa payments are currently not supported',
+        },
+      ],
+    });
+
+    // Alternative: Fail the payment without displaying an error message
+    /*
+    element?.update({
+      errors: []
+    });
+    */
+  }
+});
+```
+
+Note: Use this feature judiciously, as canceling payments after authorization may lead to user frustration. Always provide clear communication to the user about why a payment cannot be processed.
+
+
+By following these steps, you'll successfully integrate Apple Pay express checkout using Airwallex Payment Elements, providing a smooth and efficient payment experience for your users.
