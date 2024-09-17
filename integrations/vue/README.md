@@ -13,7 +13,7 @@ This directory contains the Vue.js implementation of [Airwallex Payment Element]
 
 `git clone https://github.com/airwallex/airwallex-payment-demo`
 
-2. Navigate into the react directory with `cd vue`
+2. Navigate into the vue directory with `cd vue`
 
 3. Install the package with `yarn` or `npm install`
 
