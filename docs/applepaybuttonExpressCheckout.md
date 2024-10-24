@@ -72,7 +72,7 @@ element.on('validateMerchant', async (event) => {
   try {
     const merchantSession = await axios.post('your_backend_server_url_for_payment_session', {
       "validation_url": event?.detail?.validationURL,
-      "initiative_context": domain_name,
+      "initiative_context": domain_name_without_https_prefix,
     });
 
     if (merchantSession) {
@@ -85,6 +85,7 @@ element.on('validateMerchant', async (event) => {
 ```
 
 Important: 
+* The `initiative_context` accepts a domain name without the `https://` or `http://` protocol prefix.
 * Your backend server must invoke the following API and return its response directly:
 
 ```
@@ -318,6 +319,23 @@ element.on('authorized', async (event) => {
 ```
 
 Note: Use this feature judiciously, as canceling payments after authorization may lead to user frustration. Always provide clear communication to the user about why a payment cannot be processed.
+
+
+## To determine whether the current browser supports Apple Pay
+
+
+```jsx
+function isApplePaySupported() {  
+    return window.ApplePaySession && ApplePaySession.canMakePayments();  
+}  
+
+// Testing
+if (isApplePaySupported()) {  
+    console.log("This browser supports Apple Pay.");  
+} else {  
+    console.log("This browser does not support Apple Pay.");  
+}
+```
 
 
 By following these steps, you'll successfully integrate Apple Pay express checkout using Airwallex Payment Elements, providing a smooth and efficient payment experience for your users.
