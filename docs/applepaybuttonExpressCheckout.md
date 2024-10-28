@@ -88,17 +88,23 @@ Important:
 * The `initiative_context` accepts a domain name without the `https://` or `http://` protocol prefix.
 * Your backend server must invoke the following API and return its response directly:
 
+**Production Domain**: https://api.airwallex.com
+**Development Domain**: https://api-demo.airwallex.com
+**Endpoint**: /api/v1/pa/payment_session/start
+**Method**: POST
+**Sample request**:
 ```
-Production Domain: https://api.airwallex.com
-Development Domain: https://api-demo.airwallex.com
 
-Endpoint: /api/v1/pa/payment_session/start
-Method: POST
-Request Body:
-{
-    "validation_url": "<provided by frontend>",
-    "initiative_context": "<your current domain>"
-}
+curl --request POST \
+--url 'https://api-demo.airwallex.com/api/v1/pa/payment_session/start' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b20iLCJyb2xlcyI6WyJ1c2VyIl0sImlhdCI6MTQ4ODQxNTI1NywiZXhwIjoxNDg4NDE1MjY3fQ.UHqau03y5kEk5lFbTp7J4a-U6LXsfxIVNEsux85hj-Q' \
+--header 'x-on-behalf-of: acct_JD0UmuRLNcytX7sBj0lfWA' \
+--data-raw '{
+  "validation_url" : "<provided by frontend>",
+  "initiative_context" : "<your current domain>",
+  "request_id" : "<request uuid>"
+}'
 ```
 
 ## Step 7: Implement an `authorized` Event Listener
@@ -326,7 +332,7 @@ Note: Use this feature judiciously, as canceling payments after authorization ma
 
 ```jsx
 function isApplePaySupported() {  
-    return window.ApplePaySession && ApplePaySession.canMakePayments();  
+    return window.ApplePaySession && ApplePaySession.canMakePayments() && ApplePaySession?.supportsVersion(4);  
 }  
 
 // Testing
