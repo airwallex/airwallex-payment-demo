@@ -167,7 +167,6 @@ Update the cart amount, line items, and total price label when the user changes 
 
 ```jsx
 element.on('authorized', async (event) => {
-		console.log(event?.detail?.paymentData)
 		// create intent by payment data
 		const intent = axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_intents/create', {
             merchant_order_id: 'order id',
@@ -198,6 +197,10 @@ element.on('authorized', async (event) => {
 ```
 
 This listener will handle the event when Google Pay authorizes the payment, allowing you to create an order and confirm the intent.
+
+Note: 
+* Your backend should create a payment intent by calling: `POST /api/v1/pa/payment_intents/create`
+* For comprehensive API documentation, visit: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post
 
 ### 11. Add `error` event listener to handle events when payment is authorized by applepay
 
