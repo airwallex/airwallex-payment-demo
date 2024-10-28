@@ -25,10 +25,10 @@ Airwallex.init({
 
 ### 3. Add an empty container for the google pay element to be injected into
     
-    ```jsx
+ ```jsx
     <div id="googlePayButton"></div>
     
-    ```
+ ```
     
 ### 4.  Create the google pay button element
 
