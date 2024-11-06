@@ -202,7 +202,7 @@ Note:
 * Your backend should create a payment intent by calling: `POST /api/v1/pa/payment_intents/create`
 * For comprehensive API documentation, visit: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post
 
-### 11. Add `error` event listener to handle events when payment is authorized by applepay
+### 11. Add `error` event listener to handle events when payment is authorized by googlepay
 
 ```jsx
 
@@ -212,3 +212,29 @@ element.on('error', (event) => {
 ```
 
 This listener helps handle any errors that occur during the payment process.
+
+
+
+## Step 12: (Optional) Canceling an Authorized Payment
+
+In some scenarios, you may need to halt the payment process even after the user has authorized it. This step demonstrates how to cancel an authorization and stop the payment from proceeding.
+
+```jsx
+element.on('authorized', async (event) => {
+  // Uncomment the following line for debugging purposes
+  // console.log('Payment data:', event?.detail?.paymentData);
+
+  // Example: Cancel payment for Visa cards
+  if (event?.detail?.paymentData?.token?.paymentMethod?.network === 'Visa') {
+    element?.update({
+       error: {
+            intent: 'PAYMENT_AUTHORIZATION',
+            reason: 'PAYMENT_DATA_INVALID',
+            message: 'MASTERCARD is unserviceable',
+          }
+    });
+  }
+});
+```
+
+Note: Use this feature judiciously, as canceling payments after authorization may lead to user frustration. Always provide clear communication to the user about why a payment cannot be processed.
