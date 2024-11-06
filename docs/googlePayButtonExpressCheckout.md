@@ -215,7 +215,7 @@ This listener helps handle any errors that occur during the payment process.
 
 
 
-## Step 12: (Optional) Canceling an Authorized Payment
+### 12: (Optional) Canceling an Authorized Payment
 
 In some scenarios, you may need to halt the payment process even after the user has authorized it. This step demonstrates how to cancel an authorization and stop the payment from proceeding.
 
