@@ -166,9 +166,10 @@ Update the cart amount, line items, and total price label when the user changes 
 ### 10. Add `authorized` event listener to handle events when payment is authorized by apple pay
 
 ```jsx
-element.on('authorized', async (event) => {
-		// create intent by payment data
-		const intent = axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_intents/create', {
+element.on('authorized', async (event) => {	
+try {
+// create intent by payment data
+const intent = axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_intents/create', {
             merchant_order_id: 'order id',
             request_id: 'uuid',
             currency: 'USD',
@@ -194,6 +195,17 @@ element.on('authorized', async (event) => {
 					});
 				}
 	});
+} catch {
+
+ element?.update({
+       error: {
+            intent: 'PAYMENT_AUTHORIZATION',
+            reason: 'PAYMENT_DATA_INVALID',
+            message: 'MASTERCARD is unserviceable',
+          }
+    });
+}
+		
 ```
 
 This listener will handle the event when Google Pay authorizes the payment, allowing you to create an order and confirm the intent.
