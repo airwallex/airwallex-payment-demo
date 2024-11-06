@@ -113,30 +113,41 @@ Manage the flow when a payment is authorized:
 
 ```jsx
 element.on('authorized', async (event) => {
-
-  const intent = axios.post('your_backend_server_url_for_payment_intent', {
-    // Include necessary data for creating a payment intent
-  });
-
-  element.confirmIntent( {
-    client_secret: intent.client_secret,
-  } ).then(() => {
-    window.location.href = successUrl;
-  } ).catch( (error) => {
-    console.warn(error.message);
-  });
-
-  // For recurring payments, use `createPaymentConsent`:
-  /*
-  element.createPaymentConsent({
-      client_secret: intent.client_secret,
-  }).then(() => {
-      window.location.href = successUrl;
-  }).catch((error) => {
-      console.warn(error.message);
-  });
-  */
-});
+  try {
+    const intent = axios.post('your_backend_server_url_for_payment_intent', {
+        // Include necessary data for creating a payment intent
+      });
+    
+      element.confirmIntent( {
+        client_secret: intent.client_secret,
+      } ).then(() => {
+        window.location.href = successUrl;
+      } ).catch( (error) => {
+        console.warn(error.message);
+      });
+    
+      // For recurring payments, use `createPaymentConsent`:
+      /*
+      element.createPaymentConsent({
+          client_secret: intent.client_secret,
+      }).then(() => {
+          window.location.href = successUrl;
+      }).catch((error) => {
+          console.warn(error.message);
+      });
+      */
+    });
+  } catch {
+    element?.update({
+      errors: [
+        {
+          code: 'unknown',
+          message: 'create order failed',
+        },
+      ],
+    });
+}
+  
 ```
 
 Note: 
