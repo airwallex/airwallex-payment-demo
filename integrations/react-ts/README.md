@@ -13,7 +13,7 @@ This directory contains the React and Typescript implementation of [Airwallex Pa
 
 `git clone https://github.com/airwallex/airwallex-payment-demo`
 
-2. Navigate into the react directory with `cd integrations/react-ts`
+2. Navigate into the react-ts directory with `cd integrations/react-ts`
 
 3. Install the package with `yarn` or `npm install`
 
