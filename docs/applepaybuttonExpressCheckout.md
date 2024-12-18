@@ -65,16 +65,24 @@ Note: Ensure unique IDs across your document. Mount the element only once per pa
 
 ## Step 6: Implement a `validateMerchant` Event Listener
 
-Handle merchant validation when Apple Pay initiates a session:
+To handle merchant validation, send an asynchronous request to your backend server. Your server should call Airwallex's API to obtain the validation response. Once received, pass the JSON response back **unchanged** to complete the validation process.
 
 ```jsx
 element.on('validateMerchant', async (event) => {
   try {
-    const merchantSession = await axios.post('your_backend_server_url_for_payment_session', {
-      "validation_url": event?.detail?.validationURL,
-      "initiative_context": domain_name_without_https_prefix,
+    const response = await fetch('your_backend_server_url_for_payment_session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "validation_url": event?.detail?.validationURL,
+        "initiative_context": the_current_pages_domain_name_without_http_or_https_prefix,
+      })
     });
 
+    const merchantSession = await response.json();
+    
     if (merchantSession) {
       element.completeValidation(merchantSession);
     }
@@ -85,24 +93,24 @@ element.on('validateMerchant', async (event) => {
 ```
 
 Important: 
+* The `validation_url` accepts the value of `event?.detail?.validationURL`.
 * The `initiative_context` accepts a domain name without the `https://` or `http://` protocol prefix.
 * Your backend server must invoke the following API and return its response directly:
 
-**Production Domain**: https://api.airwallex.com
-**Development Domain**: https://api-demo.airwallex.com
-**Endpoint**: /api/v1/pa/payment_session/start
-**Method**: POST
-**Sample request**:
-```
+- **Production Domain**: https://api.airwallex.com
+- **Development Domain**: https://api-demo.airwallex.com
+- **Endpoint**: /api/v1/pa/payment_session/start
+- **Method**: POST
+- **Sample request**:
 
+```
 curl --request POST \
 --url 'https://api-demo.airwallex.com/api/v1/pa/payment_session/start' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b20iLCJyb2xlcyI6WyJ1c2VyIl0sImlhdCI6MTQ4ODQxNTI1NywiZXhwIjoxNDg4NDE1MjY3fQ.UHqau03y5kEk5lFbTp7J4a-U6LXsfxIVNEsux85hj-Q' \
---header 'x-on-behalf-of: acct_JD0UmuRLNcytX7sBj0lfWA' \
+--header 'Authorization: Bearer your_access_token' \
 --data-raw '{
   "validation_url" : "<provided by frontend>",
-  "initiative_context" : "<your current domain>",
+  "initiative_context" : "<the current page's domain name without the HTTP/HTTPS prefix>",
   "request_id" : "<request uuid>"
 }'
 ```
@@ -114,10 +122,17 @@ Manage the flow when a payment is authorized:
 ```jsx
 element.on('authorized', async (event) => {
   try {
-    const intent = axios.post('your_backend_server_url_for_payment_intent', {
-        // Include necessary data for creating a payment intent
+      const response = await fetch('your_backend_server_url_for_payment_intent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          // Include necessary data for creating a payment intent
+        })
       });
-    
+      const intent = await response.json();
+
       element.confirmIntent( {
         client_secret: intent.client_secret,
       } ).then(() => {
