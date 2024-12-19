@@ -44,7 +44,6 @@ const { payment } = await window.AirwallexComponentsSDK.init({
 });
 ```
 
-
 ### 2. Add a checkout button
 
 ```html
@@ -71,7 +70,7 @@ Merchants can add more features to the checkout including the success or failure
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here](/docs).
+See the full documentation for `@airwallex/components-sdk` [here]([/docs](https://airwallex.com/docs/js/payments/host-payment-page/)).
 
 ## Integration Examples
 
