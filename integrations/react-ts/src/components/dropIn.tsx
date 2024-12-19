@@ -11,20 +11,20 @@
 
 import React, { useEffect } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import { createElement, loadAirwallex } from 'airwallex-payment-elements';
 import { v4 as uuid } from 'uuid';
 import { createPaymentIntent } from '../util';
-import { useHistory } from 'react-router-dom';
+import { createElement, init } from '@airwallex/components-sdk';
+import { useNavigate } from 'react-router-dom';
 
 const Index: React.FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   useEffect(() => {
     const loadDropInElement = async () => {
       try {
         // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
-        await loadAirwallex({
+        await init({
           env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
-          origin: window.location.origin, // Setup your event target to receive the browser events message
+          enabledElements: ['payments'],
           // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
         });
         // STEP #3: Create payment intent
@@ -48,7 +48,7 @@ const Index: React.FC = () => {
         });
         const { id, client_secret, currency } = intent;
         // STEP #4: Create the drop-in element
-        const element = createElement('dropIn', {
+        const element = await createElement('dropIn', {
           // Required, dropIn use intent Id, client_secret and currency to prepare checkout
           intent_id: id,
           client_secret,
@@ -80,7 +80,7 @@ const Index: React.FC = () => {
        * Handle events on success
        */
       console.log(`Confirm success with ${JSON.stringify(event.detail)}`);
-      history.push('/checkout-success');
+      navigate('/checkout-success');
     };
 
     // STEP #8: Add an event listener to handle events when the payment has failed.
@@ -100,7 +100,7 @@ const Index: React.FC = () => {
       domElement?.removeEventListener('onSuccess', onSuccess as EventListener);
       domElement?.removeEventListener('onError', onError as EventListener);
     };
-  }, [history]); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
+  }, [navigate]); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
   // Example: Custom styling for the dropIn container, can be placed in css
   const containerStyle = {

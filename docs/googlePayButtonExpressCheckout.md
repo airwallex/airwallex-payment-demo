@@ -4,38 +4,45 @@
 
 **Guide**
 
-### 1. At the start of your file, import `airwallex-payment-elements`.
+### 1 & 2: Import and Initialize Payment Elements
+
+Start by importing `@airwallex/components-sdk` at the beginning of your file:
+
 ```js
-import Airwallex from 'airwallex-payment-elements';
+import { init } from '@airwallex/components-sdk';
+
+await init({
+  env: 'demo', // Choose the Airwallex environment ('demo' | 'prod')
+  enabledElements: ['payments'],
+});
+
 ```
 
-or add the bundle as a script in your HTML head
-```js
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
-```
+Alternatively, include the bundle as a script in your HTML head:
 
-### 2. Initialize the Airwallex package with the appropriate environment
-
-```jsx
-Airwallex.init({
-  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-  origin: window.location.origin, // Setup your event target to receive the browser events message
+```html
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose the Airwallex environment ('demo' | 'prod')
+  enabledElements: ['payments'],
 });
 ```
 
 ### 3. Add an empty container for the google pay element to be injected into
-    
-    ```jsx
+
+```jsx
     <div id="googlePayButton"></div>
-    
-    ```
-    
+  
+```
+
 ### 4.  Create the google pay button element
 
 This creates the specified [Element](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs#Element) object. We specify the type as `googlePayButton`.
 
 ```jsx
-const element = Airwallex.createElement('googlePayButton', {
+import {createElement } from '@airwallex/components-sdk';
+
+const element = createElement('googlePayButton', {
 	 countryCode: "HK",
 	 billingAddressRequired: true,
 	 billingAddressParameters: {
@@ -44,7 +51,27 @@ const element = Airwallex.createElement('googlePayButton', {
 	 amount: {
 		value: '10',
 		currency: 'USD',
-	 }
+	 },
+        shippingOptionParameters: {
+          defaultSelectedOptionId: 'shipping-001',
+          shippingOptions: [
+            {
+              id: 'shipping-001',
+              label: '$0.00: Free shipping',
+              description: 'Free Shipping delivered in 5 business days.',
+            },
+            {
+              id: 'shipping-002',
+              label: '$1.99: Standard shipping',
+              description: 'Standard shipping delivered in 3 business days.',
+            },
+            {
+              id: 'shipping-003',
+              label: '$1000: Express shipping',
+              description: 'Express shipping delivered in 1 business day.',
+            },
+          ],
+        },
 	 shippingAddressRequired: true,
 	 shippingOptionRequired: true,
 	 shippingAddressParameters: {
@@ -147,9 +174,9 @@ Update the cart amount, line items, and total price label when the user changes 
 
 ```jsx
 element.on('authorized', async (event) => {
-		console.log(event?.detail?.paymentData)
-		// create intent by payment data
-		const intent = axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_intents/create', {
+try {
+// create intent by payment data
+const intent = axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_intents/create', {
             merchant_order_id: 'order id',
             request_id: 'uuid',
             currency: 'USD',
@@ -175,11 +202,27 @@ element.on('authorized', async (event) => {
 					});
 				}
 	});
+} catch {
+
+ element?.update({
+       error: {
+            intent: 'PAYMENT_AUTHORIZATION',
+            reason: 'PAYMENT_DATA_INVALID',
+            message: 'MASTERCARD is unserviceable',
+          }
+    });
+}
+	
 ```
 
 This listener will handle the event when Google Pay authorizes the payment, allowing you to create an order and confirm the intent.
 
-### 11. Add `error` event listener to handle events when payment is authorized by applepay
+Note:
+
+* Your backend should create a payment intent by calling: `POST /api/v1/pa/payment_intents/create`
+* For comprehensive API documentation, visit: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post
+
+### 11. Add `error` event listener to handle events when payment is authorized by googlepay
 
 ```jsx
 
@@ -189,3 +232,27 @@ element.on('error', (event) => {
 ```
 
 This listener helps handle any errors that occur during the payment process.
+
+### 12: (Optional) Canceling an Authorized Payment
+
+In some scenarios, you may need to halt the payment process even after the user has authorized it. This step demonstrates how to cancel an authorization and stop the payment from proceeding.
+
+```jsx
+element.on('authorized', async (event) => {
+  // Uncomment the following line for debugging purposes
+  // console.log('Payment data:', event?.detail?.paymentData);
+
+  // Example: Cancel payment for Visa cards
+  if (event?.detail?.paymentData?.token?.paymentMethod?.network === 'Visa') {
+    element?.update({
+       error: {
+            intent: 'PAYMENT_AUTHORIZATION',
+            reason: 'PAYMENT_DATA_INVALID',
+            message: 'MASTERCARD is unserviceable',
+          }
+    });
+  }
+});
+```
+
+Note: Use this feature judiciously, as canceling payments after authorization may lead to user frustration. Always provide clear communication to the user about why a payment cannot be processed.
