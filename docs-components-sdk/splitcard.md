@@ -21,7 +21,7 @@ At the start of your file, initialize the Airwallex SDK. You can do this either 
 ```js
 import { init } from '@airwallex/components-sdk';
 
-const { payment } = await init({
+await init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
   origin: window.location.origin, // Set your event target to receive browser event messages
 });
@@ -38,7 +38,7 @@ Add the following script in your HTML `<head>`:
 Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
 
 ```js
-const { payment } = await window.AirwallexComponentsSDK.init({
+await window.AirwallexComponentsSDK.init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
   origin: window.location.origin, // Set your event target to receive browser event messages
 });
@@ -111,7 +111,6 @@ document.getElementById('submit').addEventListener('click', () => {
 ```
 
 `cardNumber.confirm` will take the cardNumber element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
-
 
 ### 7. Add an `ready` event listener to handle events when the element is mounted
 

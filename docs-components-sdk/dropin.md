@@ -12,20 +12,7 @@ The following steps demonstrates the best practices to integrating with our paym
 
 Want more details? See the integration in [React](/integrations/cdn (components-sdk)/dropin.html).
 
-### 1. At the start of your file, import `@airwallex/components-sdk`.
-
-```js
-import Airwallex from '@airwallex/components-sdk';
-```
-
-or add the bundle as a script in your HTML head
-
-```html
-<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
-```
-
-
-### 2. Initialize Payment Object
+### 1. Initialize SDK
 
 At the start of your file, initialize the Airwallex SDK. You can do this either by importing the SDK or adding it as a script in your HTML.
 
@@ -34,9 +21,8 @@ At the start of your file, initialize the Airwallex SDK. You can do this either 
 ```js
 import { init } from '@airwallex/components-sdk';
 
-const { payment } = await init({
+await init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
-  origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
 
@@ -51,13 +37,13 @@ Add the following script in your HTML `<head>`:
 Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
 
 ```js
-const { payment } = await window.AirwallexComponentsSDK.init({
+await window.AirwallexComponentsSDK.init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
-  origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
 
-### 3. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
+
+### 2. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
 
 ```html
 <div id="drop-in"></div>
@@ -65,12 +51,13 @@ const { payment } = await window.AirwallexComponentsSDK.init({
 
 We will mount the card element into the empty div in step 5.
 
-### 4. Create the dropIn element
+### 3. Create the dropIn element
 
 This creates the specified [Element](/docs-components-sdk#Element) object. We specify the type as **`dropIn`**.
 
 ```js
-const element = await payment.createElement('dropIn', {
+import {createElement} from '@airwallex/components-sdk';
+const element = await createElement('dropIn', {
   intent_id: 'replace-with-your-intent-id',
   client_secret: 'replace-with-your-client-secret',
   currency: 'replace-with-your-intent-currency',
@@ -95,7 +82,7 @@ You **must provide intent details** to create the dropIn element.
 
 There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs-components-sdk#createElement) for more details.
 
-### 5. Mount the card element
+### 4. Mount the card element
 
 Next, we need to mount the card element to the DOM.
 
@@ -107,7 +94,7 @@ This function will append the card element to your div with an id `drop-in` as c
 
 The **element should only be mounted once** in a single payment flow.
 
-### 6. Add an `ready` event listener to handle events when the element is mounted
+### 5. Add an `ready` event listener to handle events when the element is mounted
 
 ```js
 element.on('ready', (event) => {
@@ -120,7 +107,7 @@ element.on('ready', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 7. Add an `success` event listener to handle events when the payment is successful.
+### 6. Add an `success` event listener to handle events when the payment is successful.
 
 ```js
 element.on('success', (event) => {
@@ -131,7 +118,7 @@ element.on('success', (event) => {
 });
 ```
 
-### 8. Add an `error` event listener to handle events when the payment has failed.
+### 7. Add an `error` event listener to handle events when the payment has failed.
 
 ```js
 element.on('error', (event) => {
@@ -142,7 +129,7 @@ element.on('error', (event) => {
 });
 ```
 
-### 9. Add an `pendingVerifyAccount` event listener if you want to integrate with `ach_direct_debit` or `becs_direct_debit` payment method.
+### 8. Add an `pendingVerifyAccount` event listener if you want to integrate with `ach_direct_debit` or `becs_direct_debit` payment method.
 
 When the event triggers, it means the shopper needs to verify the bank account before proceeding the payment. We have a pre-defined page to tell the shoppers what they should do next, and of course you can use your own customized page too.
 
@@ -159,7 +146,7 @@ element.on('pendingVerifyAccount', (event) => {
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here](/docs).
+See the full documentation for `@airwallex/components-sdk` [here]([/docs](https://airwallex.com/docs/js/payments/dropin/)).
 
 ## Integration Examples
 
@@ -183,12 +170,12 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <div id="dropIn"></div>
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      const { payment } = await window.AirwallexComponentsSDK.init({
+      await window.AirwallexComponentsSDK.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'dropIn' element
-      const dropIn = await payment.createElement('dropIn', {
+     window.AirwallexComponentsSDK.createElement('dropIn', {
         // Required, dropIn use intent Id and client_secret to prepare checkout
         intent_id: 'replace-with-your-intent-id',
         client_secret: 'replace-with-your-client-secret',

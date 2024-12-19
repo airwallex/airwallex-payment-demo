@@ -34,11 +34,12 @@ Add the following script in your HTML `<head>`:
 Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
 
 ```js
-const { payment } = await window.AirwallexComponentsSDK.init({
+await window.AirwallexComponentsSDK.init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
   origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
+
 ### 2. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
 
 ```html
@@ -52,7 +53,8 @@ We will mount the card element into the empty div in step 5.
 This creates the specified [Element](/docs-components-sdk#Element) object. We specify the type as **`googlePayButton`**.
 
 ```js
-const element = await payment.createElement('googlePayButton', {
+import {createElement } from '@airwallex/components-sdk';
+const element = await createElement('googlePayButton', {
   intent: {
     // Required, googlePayButton uses intent_id and client_secret to prepare checkout
     id: 'replace-with-your-intent-id',
@@ -116,7 +118,7 @@ element.on('error', (event) => {
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here](/docs).
+See the full documentation for `@airwallex/components-sdk` [here](https://airwallex.com/docs/js/payments/googlepaybutton/).
 
 ## Integration Examples
 
@@ -145,7 +147,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'googlePayButton' element
-      const element = await payment.createElement('googlePayButton', {
+      const element = window.AirwallexComponentsSDK.createElement('googlePayButton', {
           intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
           amount: {
@@ -158,7 +160,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           },
           origin: window.location.origin,
           countryCode: 'replace-with-your-country-code', // merchant country code
-      
+  
       });
       // STEP #5: Mount 'googlePayButton' element
       const domElement = element.mount('googlePayButton');

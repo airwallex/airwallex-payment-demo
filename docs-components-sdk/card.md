@@ -10,7 +10,7 @@ The following steps demonstrates the best practices to integrating with our paym
 
 Want more details? See the integration in [React](/integrations/cdn (components-sdk)/card.html).
 
-### 1. Initialize Payment Object
+### 1. Initialize SDK
 
 At the start of your file, initialize the Airwallex SDK. You can do this either by importing the SDK or adding it as a script in your HTML.
 
@@ -19,9 +19,8 @@ At the start of your file, initialize the Airwallex SDK. You can do this either 
 ```js
 import { init } from '@airwallex/components-sdk';
 
-const { payment } = await init({
+await init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
-  origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
 
@@ -36,9 +35,8 @@ Add the following script in your HTML `<head>`:
 Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
 
 ```js
-const { payment } = await window.AirwallexComponentsSDK.init({
+await window.AirwallexComponentsSDK.init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
-  origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
 
@@ -56,7 +54,8 @@ We will mount the card element into the empty div in step 5 and create a handler
 This creates the specified [Element](/docs-components-sdk#Element) object. We specify the type as `card`.
 
 ```js
-const card = await payment.createElement('card');
+import {createElement } from '@airwallex/components-sdk';
+const card = await createElement('card');
 ```
 
 You can also add additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs-components-sdk#createElement) for more details.
@@ -94,7 +93,6 @@ document.getElementById('submit').addEventListener('click', () => {
 
 `card.confirm` will take the card element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
 
-
 ### 6. Add an `ready` event listener to handle events when the element is mounted
 
 ```js
@@ -112,7 +110,7 @@ This can be used to set a loading state as the checkout screen is being prepared
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here](/docs).
+See the full documentation for `@airwallex/components-sdk` [here]([/docs](https://airwallex.com/docs/js/payments/card/)).
 
 ## Integration Examples
 
@@ -144,12 +142,12 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      const { payment } = await window.AirwallexComponentsSDK.init({
+      await window.AirwallexComponentsSDK.init({
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'card' element
-      const card = await payment.createElement('card');
+      const card = await window.AirwallexComponentsSDK.createElement('card');
 
       // STEP #5: Mount card element
       const domElement = card.mount('card');

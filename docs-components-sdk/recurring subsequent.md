@@ -21,9 +21,8 @@ At the start of your file, initialize the Airwallex SDK. You can do this either 
 ```js
 import { init } from '@airwallex/components-sdk';
 
-const { payment } = await init({
+await init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
-  origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
 
@@ -38,11 +37,12 @@ Add the following script in your HTML `<head>`:
 Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
 
 ```js
-const { payment } = await window.AirwallexComponentsSDK.init({
+await window.AirwallexComponentsSDK.init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
   origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
+
 ### 2. Add empty containers for cvc element to be injected into and a submit button to trigger the payment request
 
 ```html
@@ -154,12 +154,12 @@ cvc.on('change', (event) => {
 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      const  { payment} = await window.AirwallexComponentsSDK.init({
+      await window.AirwallexComponentsSDK.init({
         env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create cvc element
-      const cvcElement = await payment.createElement('cvc');
+      const cvcElement = window.AirwallexComponentsSDK.createElement('cvc');
 
       // STEP #5: Mount cvc element
       const domElement = cvcElement.mount('cvc');

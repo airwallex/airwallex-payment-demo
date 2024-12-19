@@ -17,9 +17,8 @@ At the start of your file, initialize the Airwallex SDK. You can do this either 
 ```js
 import { init } from '@airwallex/components-sdk';
 
-const { payment } = await init({
+await init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
-  origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
 
@@ -34,9 +33,8 @@ Add the following script in your HTML `<head>`:
 Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
 
 ```js
-const { payment } = await window.AirwallexComponentsSDK.init({
+ await window.AirwallexComponentsSDK.init({
   env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
-  origin: window.location.origin, // Set your event target to receive browser event messages
 });
 ```
 
@@ -54,16 +52,14 @@ This container will be used to mount the Apple Pay Button element in a later ste
 
 Create the `applePayButton` element using payment object. This element is created with intent details, which are required for preparing the checkout.
 
-
 ```js
 
-const element = await payment.createElement('applePayButton', {
+import { createElement } from '@airwallex/components-sdk';
+const element = createElement('applePayButton', {
   intent_id: 'replace-with-your-intent-id', // Replace with your intent ID
   client_secret: 'replace-with-your-client-secret', // Replace with your client secret
 });
 ```
-
-
 
 Additional options can be provided as a second parameter to the `createElement` function for overwriting styles and other functionalities. Refer to the [SDK documentation](https://docs.airwallex.com/components-sdk#createElement) for more details.
 
@@ -155,7 +151,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'fullFeaturedCard' element
-      const element = await payment.createElement('applePayButton', {
+      const element = window.AirwallexComponentsSDK.createElement('applePayButton', {
         // Required, fullFeaturedCard use intent Id and client_secret to prepare checkout
         intent_id: 'replace-with-your-intent-id',
         client_secret: 'replace-with-your-client-secret',
