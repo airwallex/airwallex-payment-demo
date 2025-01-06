@@ -29,12 +29,12 @@ await window.AirwallexComponentsSDK.init({
 ```
 
 ### 3. Add an empty container for the google pay element to be injected into
-
-```jsx
+    
+ ```jsx
     <div id="googlePayButton"></div>
-  
-```
-
+    
+ ```
+    
 ### 4.  Create the google pay button element
 
 This creates the specified [Element](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs#Element) object. We specify the type as `googlePayButton`.
@@ -173,7 +173,7 @@ Update the cart amount, line items, and total price label when the user changes 
 ### 10. Add `authorized` event listener to handle events when payment is authorized by apple pay
 
 ```jsx
-element.on('authorized', async (event) => {
+element.on('authorized', async (event) => {	
 try {
 // create intent by payment data
 const intent = axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_intents/create', {
@@ -212,13 +212,12 @@ const intent = axios.post('https://pci-api-demo.airwallex.com/api/v1/pa/payment_
           }
     });
 }
-	
+		
 ```
 
 This listener will handle the event when Google Pay authorizes the payment, allowing you to create an order and confirm the intent.
 
-Note:
-
+Note: 
 * Your backend should create a payment intent by calling: `POST /api/v1/pa/payment_intents/create`
 * For comprehensive API documentation, visit: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post
 
@@ -232,6 +231,8 @@ element.on('error', (event) => {
 ```
 
 This listener helps handle any errors that occur during the payment process.
+
+
 
 ### 12: (Optional) Canceling an Authorized Payment
 

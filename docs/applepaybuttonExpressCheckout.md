@@ -2,9 +2,9 @@
 
 This comprehensive guide outlines the process of integrating Apple Pay express checkout using Airwallex Payment Elements, enabling a seamless payment experience for your users.
 
-## Step 1,2 : Import and Initialize Payment Elements
+## Step 1: Import Airwallex Payment Elements
 
-Start by importing `@airwallex/components-sdk` at the beginning of your file:
+Start by importing `airwallex-payment-elements` at the beginning of your file:
 
 ```js
 import { init } from '@airwallex/components-sdk';
@@ -19,10 +19,17 @@ await init({
 Alternatively, include the bundle as a script in your HTML head:
 
 ```html
-<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
-await window.AirwallexComponentsSDK.init({
-  env: 'demo', // Choose the Airwallex environment ('demo' | 'prod')
-  enabledElements: ['payments'],
+<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+```
+
+## Step 2: Initialize the Airwallex Package
+
+Configure the Airwallex package with the appropriate environment:
+
+```jsx
+Airwallex.init({
+  env: 'demo', // Choose Airwallex environment ('staging' | 'demo' | 'prod')
+  origin: window.location.origin, // Specify your event target for receiving browser events
 });
 ```
 
@@ -39,8 +46,7 @@ Add an empty container to house the Apple Pay button:
 Generate the Apple Pay button element with the desired configuration:
 
 ```jsx
-import {createElement } from '@airwallex/components-sdk';
-const element = createElement('applePayButton', {
+const element = Airwallex.createElement('applePayButton', {
   countryCode: "HK", // You business's registration country
   amount: {
     value: '10',
@@ -82,7 +88,7 @@ element.on('validateMerchant', async (event) => {
     });
 
     const merchantSession = await response.json();
-  
+    
     if (merchantSession) {
       element.completeValidation(merchantSession);
     }
@@ -92,8 +98,7 @@ element.on('validateMerchant', async (event) => {
 });
 ```
 
-Important:
-
+Important: 
 * The `validation_url` accepts the value of `event?.detail?.validationURL`.
 * The `initiative_context` accepts a domain name without the `https://` or `http://` protocol prefix.
 * Your backend server must invoke the following API and return its response directly:
@@ -141,7 +146,7 @@ element.on('authorized', async (event) => {
       } ).catch( (error) => {
         console.warn(error.message);
       });
-  
+    
       // For recurring payments, use `createPaymentConsent`:
       /*
       element.createPaymentConsent({
@@ -166,8 +171,7 @@ element.on('authorized', async (event) => {
   
 ```
 
-Note:
-
+Note: 
 * Your backend should create a payment intent by calling: `POST /api/v1/pa/payment_intents/create`
 * For comprehensive API documentation, visit: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post
 
@@ -354,7 +358,9 @@ element.on('authorized', async (event) => {
 
 Note: Use this feature judiciously, as canceling payments after authorization may lead to user frustration. Always provide clear communication to the user about why a payment cannot be processed.
 
+
 ## To determine whether the current browser supports Apple Pay
+
 
 ```jsx
 function isApplePaySupported() {  
