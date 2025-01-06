@@ -2,11 +2,11 @@
   applepay.html
   Airwallex Payment Demo - Static HTML.  Created by Shirly Chen and Josie Ku.
 
-  airwallex-payment-elements Apple Pay element integration in Static HTML
+  @airwallex/components-sdk Apple Pay element integration in Static HTML
   Comments with "Example" demonstrate how states can be integrated
   with the element, they can be removed.
 
-  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/applepaybutton.md
+  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/components-sdk/applepaybutton.md
  -->
 
 <!DOCTYPE html>
@@ -18,15 +18,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Airwallex Checkout Playground</title>
   <!-- 
-      STEP #1: Import airwallex-payment-elements bundle 
+      STEP #1: Import @airwallex/components-sdk bundle 
                 - You MUST replace the bundle version to the latest NPM version
                   in order to import the package properly!
     -->
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+  <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
 </head>
 
 <body>
   <h1>Apple Pay integration</h1>
+  <p>This integration requires HTTPS. Please ensure your server is running over HTTPS.</p>
+  <p>Please note that Apple Pay is only supported on iOS devices.</p>
   <!-- Styling example below: Setting container to display nothing when element is not mounted -->
   <div id="applepay-container" style="display: none">
     <!-- STEP #3a: Add an empty container for the applepay element to be injected into -->
@@ -39,63 +41,63 @@
   <p id="error"></p>
   <p id="success">Payment successful!</p>
   <script>
-    try {
-      // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
-        env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-        origin: window.location.origin, // Setup your event target to receive the browser events message
-      });
+    (async () => {
+      try {
+        // STEP #2: Initialize the Airwallex global context for event communication
+        await window.AirwallexComponentsSDK.init({
+          env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+          enabledElements: ['payments'],
+        });
 
-      // STEP #4: Create 'applepay' element
-      const applepay = Airwallex.createElement('applePayButton', {
-        mode: 'payment', // 'payment' or 'recurring'
-        intent_id: 'replace with intent id',
-        origin: window.location.origin,
-        client_secret: 'replace with intent id',
-        countryCode: 'HK',
-        amount: {
-          value: 1,
-          currency: 'HKD',
-        },
-        customer_id: 'replace with customer id',
-        requiredBillingContactFields: ['postalAddress', 'name', 'phoneticName'],
-      });
+        // STEP #4: Create 'applepay' element
+        const applepay = await window.AirwallexComponentsSDK.createElement('applePayButton', {
+          mode: 'payment', // 'payment' or 'recurring'
+          intent_id: 'replace with intent id',
+          origin: window.location.origin,
+          client_secret: 'replace with intent id',
+          countryCode: 'HK',
+          amount: {
+            value: 1,
+            currency: 'HKD',
+          },
+          customer_id: 'replace with customer id',
+          requiredBillingContactFields: ['postalAddress', 'name', 'phoneticName'],
+        });
 
-      // STEP #5: Mount applepay element
-      const domElement = applepay.mount('applepay');
+        // STEP #5: Mount applepay element
+        const domElement = applepay.mount('applepay');
 
-      // STEP #6: Add an event listener to ensure the element is mounted
-      domElement.addEventListener('onReady', (event) => {
-        /*
-       ... Handle event
-        */
-        document.getElementById('applepay-container').style.display = 'block'; // Example: show element when it is mounted
-        document.getElementById('submit').style.display = 'block'; // Example: show element when it is mounted
-        console.log('Element is ready', event.detail);
-      });
+        // STEP #6: Add an event listener to ensure the element is mounted
+        applepay.on('onReady', (event) => {
+          /*
+         ... Handle event
+          */
+          document.getElementById('applepay-container').style.display = 'block'; // Example: show element when it is mounted
+          document.getElementById('submit').style.display = 'block'; // Example: show element when it is mounted
+          console.log('Element is ready', event.detail);
+        });
 
 
 
-      // STEP #7: Add an event listener to handle errors
-      domElement.addEventListener('onError', (event) => {
-        const { error } = event.detail;
+        // STEP #7: Add an event listener to handle errors
+        applepay.on('error', (event) => {
+          const { error } = event.detail;
+          document.getElementById('error').style.display = 'block'; // Example: show error
+          document.getElementById('error').innerHTML = error.message; // Example: set error message
+          console.error('There was an error', error);
+        });
+
+
+        // STEP #8: Add an event listener to handle errors
+        applepay.on('success', (event) => {
+          // handle your success event
+        });
+      } catch (error) {
         document.getElementById('error').style.display = 'block'; // Example: show error
         document.getElementById('error').innerHTML = error.message; // Example: set error message
         console.error('There was an error', error);
-      });
-
-
-      // STEP #8: Add an event listener to handle errors
-      domElement.addEventListener('onSuccess', (event) => {
-        // handle your success event
-      });
-    } catch (error) {
-      document.getElementById('error').style.display = 'block'; // Example: show error
-      document.getElementById('error').innerHTML = error.message; // Example: set error message
-      console.error('There was an error', error);
-    }
-
-
+      }
+    })();
   </script>
 </body>
 

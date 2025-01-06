@@ -2,48 +2,51 @@
   hpp.html
   Airwallex Payment Demo - Static HTML.  Created by Charlie Lang and Josie Ku.
 
-  airwallex-payment-elements Hosted Payment Page integration in Static HTML
+  @airwallex/components-sdk Hosted Payment Page integration in Static HTML
   Comments with "Example" demonstrate how states can be integrated
   with the element, they can be removed.
 
-  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/hpp.md
+  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/components-sdk/hpp.md
  -->
 
 <!DOCTYPE html>
 <html>
-  <head lang="en">
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Airwallex Checkout Playground</title>
-    <!-- 
-      STEP #1: Import airwallex-payment-elements bundle 
+
+<head lang="en">
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Airwallex Checkout Playground</title>
+  <!-- 
+      STEP #1: Import @airwallex/components-sdk bundle 
                - You MUST replace the bundle version to the latest NPM version
                  in order to import the package properly!
     -->
-    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
-  </head>
-  <body>
-    <h1>Hosted payment page (HPP) integration</h1>
-    <p>
-      The following button redirects the customer to an Airwallex payment page.
-    </p>
-    <!-- STEP #3: Add a checkout button -->
-    <button id="hpp">Pay Now</button>
-    <script>
-      const intent_id = 'replace-with-your-intent-id';
-      const client_secret = 'replace-with-your-client-secret';
-      const currency = 'replace-with-your-currency';
-      const mode = 'payment'; // Should be one of ['payment', 'recurring']
+  <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+</head>
 
+<body>
+  <h1>Hosted payment page (HPP) integration</h1>
+  <p>
+    The following button redirects the customer to an Airwallex payment page.
+  </p>
+  <!-- STEP #3: Add a checkout button -->
+  <button id="hpp">Pay Now</button>
+  <script async>
+    const intent_id = 'replace-with-your-intent-id';
+    const client_secret = 'replace-with-your-client-secret';
+    const currency = 'replace-with-your-currency';
+    const mode = 'payment'; // Should be one of ['payment', 'recurring']
+
+
+    (async () => {
       // STEP #2: Initialize the Airwallex package with the appropriate environment
-      Airwallex.init({
+      const { payments } = await window.AirwallexComponentsSDK.init({
         env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-        origin: window.location.origin, // Setup your event target to receive the browser events message
-      });
-
+        enabledElements: ['payments'],
+      })
       const redirectHppForCheckout = () => {
-        Airwallex.redirectToCheckout({
+        payments.redirectToCheckout({
           env: 'demo',
           mode: 'payment',
           currency,
@@ -56,7 +59,7 @@
       }
 
       const redirectHppForRecurring = () => {
-        Airwallex.redirectToCheckout({
+        payments.redirectToCheckout({
           env: 'demo',
           mode: 'recurring',
           currency,
@@ -82,6 +85,10 @@
           redirectHppForRecurring();
         }
       });
-    </script>
-  </body>
+
+    })();
+
+  </script>
+</body>
+
 </html>

@@ -13,6 +13,7 @@ prerequisite:
 
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
   <meta charset="utf-8" />
   <link rel="stylesheet" href="style.css" />
@@ -36,14 +37,14 @@ prerequisite:
       <input id="cvc" value="162" />
     </div>
     <button id="submit">Submit</button>
- 
+
   </div>
   <p id="error">Payment Failed</p>
   <p id="success">Payment Successful!</p>
   <script>
     (async function () {
       let frictionlessIframe, challengeIframe;
-    
+
       document.getElementById("submit").addEventListener("click", async () => {
         document.getElementById('submit').innerText = "Loading...";
         const serverCreateUrl = "http://localhost:3002/api/v1/intent/create";
@@ -198,6 +199,7 @@ prerequisite:
     align-items: center;
     margin-top: 5px;
   }
+
   #submitting {
     display: none;
   }

@@ -1,6 +1,6 @@
-# Airwallex Payment Elements - CDN Demo
+# Components SDK - CDN Demo
 
-This directory contains an implementation of [Airwallex Payment Element](https://www.npmjs.com/package/airwallex-payment-elements) using static html files. The HTML files are served using [Serve](https://www.npmjs.com/package/serve).
+This directory contains an implementation of [Airwallex Payment Element](https://www.npmjs.com/package/@airwallex/components-sdk) using static html files. The HTML files are served using [Serve](https://www.npmjs.com/package/serve).
 
 ## Requirements
 
@@ -13,7 +13,7 @@ This directory contains an implementation of [Airwallex Payment Element](https:/
 
 `git clone https://github.com/airwallex/airwallex-payment-demo`
 
-2. Navigate into the react directory with `cd integrations/cdn`
+2. Navigate into the react directory with `cd integrations/cdn\(components-sdk\)/`
 
 3. Install the package with `yarn` or `npm install`
 
@@ -21,11 +21,11 @@ This directory contains an implementation of [Airwallex Payment Element](https:/
 
 ## Usage
 
-Each of the payment methods are written as a separate html file found in [/integrations/cdn](/integrations/cdn) folder.
+Each of the payment methods are written as a separate html file found in [/integrations/cdn](/integrations/cdn(components-sdk)/) folder.
 
 ```html
-<!-- STEP #1: Import airwallex-payment-elements bundle -->
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+<!-- STEP #1: Import @airwallex/components-sdk bundle -->
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
 ```
 
 Also, to test each of the payment methods, be sure to replace the `intent_id` and `client_secret` variables in the file with your own unique keys. These values can be created with the backend API integration with [PaymentIntent](https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/Intro).
@@ -34,7 +34,3 @@ Also, to test each of the payment methods, be sure to replace the `intent_id` an
 const intent_id = 'replace-with-your-intent-id';
 const client_secret = 'replace-with-your-client-secret';
 ```
-
-## Authors
-
-Charlie Lang, Josie Ku, and Shirly Chen
