@@ -2,6 +2,20 @@
 # yarn lockfile v1
 
 
+"@airwallex/airtracker@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@airwallex/airtracker/-/airtracker-1.2.0.tgz#5ba62b2eabc76088564bfbc9e217f52dcd4f3b1a"
+  integrity sha512-T6u4QnWEhT9jomVwo6FCVK63AOxRVjonUOn1mj16L/xbqhNCnl/kTBP2khFjFJBJ7wKcb7Yb2KrUg803Uu5zcw==
+  dependencies:
+    web-vitals "^3.5.1"
+
+"@airwallex/components-sdk@^1.17.0":
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/@airwallex/components-sdk/-/components-sdk-1.17.0.tgz#075f372551c099174c7a199cb452fcfd7ddfbd74"
+  integrity sha512-ze5ESUZi182d96ldgrzRilcl6YTipl2CS9jWgdtT4KXeqeu/xoLZOF3degQLLub2zbPVrF9TOQGG6ISjSTcghQ==
+  dependencies:
+    "@airwallex/airtracker" "1.2.0"
+
 "@zeit/schemas@2.6.0":
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/@zeit/schemas/-/schemas-2.6.0.tgz#004e8e553b4cd53d538bd38eac7bcbf58a867fe3"
@@ -512,6 +526,11 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+web-vitals@^3.5.1:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-3.5.2.tgz#5bb58461bbc173c3f00c2ddff8bfe6e680999ca9"
+  integrity sha512-c0rhqNcHXRkY/ogGDJQxZ9Im9D19hDihbzSQJrsioex+KnFgmMzBiy57Z1EjkhX/+OjyBpclDCzz2ITtjokFmg==
 
 which@^1.2.9:
   version "1.3.1"

@@ -4,22 +4,27 @@
 
 **Guide**
 
-### 1. At the start of your file, import `airwallex-payment-elements`.
+### 1 & 2: Import and Initialize Payment Elements
+
+Start by importing `@airwallex/components-sdk` at the beginning of your file:
+
 ```js
-import Airwallex from 'airwallex-payment-elements';
+import { init } from '@airwallex/components-sdk';
+
+await init({
+  env: 'demo', // Choose the Airwallex environment ('demo' | 'prod')
+  enabledElements: ['payments'],
+});
+
 ```
 
-or add the bundle as a script in your HTML head
-```js
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
-```
+Alternatively, include the bundle as a script in your HTML head:
 
-### 2. Initialize the Airwallex package with the appropriate environment
-
-```jsx
-Airwallex.init({
-  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-  origin: window.location.origin, // Setup your event target to receive the browser events message
+```html
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose the Airwallex environment ('demo' | 'prod')
+  enabledElements: ['payments'],
 });
 ```
 
@@ -35,7 +40,9 @@ Airwallex.init({
 This creates the specified [Element](https://github.com/airwallex/airwallex-payment-demo/blob/master/docs#Element) object. We specify the type as `googlePayButton`.
 
 ```jsx
-const element = Airwallex.createElement('googlePayButton', {
+import {createElement } from '@airwallex/components-sdk';
+
+const element = createElement('googlePayButton', {
 	 countryCode: "HK",
 	 billingAddressRequired: true,
 	 billingAddressParameters: {

@@ -19,8 +19,8 @@ const Instructions: React.FC = () => {
           Here is the documentation to all our airwallex-payment-elements functions. You will find detailed guides to
           implementing each payment method with different web frameworks as well as common errors.
         </p>
-        <a href="https://github.com/airwallex/airwallex-payment-demo/tree/master/docs" target="_blank" rel="noreferrer">
-          https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
+        <a href="https://airwallex.com/docs/js/" target="_blank" rel="noreferrer">
+          Airwallex SDK Documentation
         </a>
         <p id="bullet">2. If you run into the following error:</p>
         <p id="error">Access denied, authentication failed</p>
