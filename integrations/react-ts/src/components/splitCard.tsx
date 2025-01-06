@@ -9,12 +9,18 @@
  * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/splitcard.md
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import { init, createElement } from '@airwallex/components-sdk';
+import {
+  createElement,
+  loadAirwallex,
+  getElement,
+  confirmPaymentIntent,
+  EventDetail,
+} from 'airwallex-payment-elements';
 import { v4 as uuid } from 'uuid';
 import { createPaymentIntent } from '../util';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Index: React.FC = () => {
   // Example: element ready states, controls the display for when elements are successfully mounted
@@ -34,31 +40,27 @@ const Index: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   // Example: set error state
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
-  const CardNumberRef = useRef<any>(null);
-  const CvcRef = useRef<any>(null);
-  const ExpiryRef = useRef<any>(null);
+  const history = useHistory();
 
-  async function initAirwallex() {
+  useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
-    await init({
-      enabledElements: ['payments'],
-      env: 'demo',
-    });
-
-    // STEP #4, 5: Create and mount the individual card elements
-    const cardNumber = await createElement('cardNumber');
-    const cvc = await createElement('cvc');
-    const expiry = await createElement('expiry');
-    cardNumber?.mount('cardNumber');
-    cvc?.mount('cvc');
-    expiry?.mount('expiry');
-    CardNumberRef.current = cardNumber;
-    CvcRef.current = cvc;
-    ExpiryRef.current = expiry;
+    loadAirwallex({
+      env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
+      origin: window.location.origin, // Setup your event target to receive the browser events message
+      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#loadAirwallex
+    })
+      .then(() => {
+        // STEP #4, 5: Create and mount the individual card elements
+        createElement('cardNumber')?.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
+        createElement('cvc')?.mount('cvc'); // Same as above
+        createElement('expiry')?.mount('expiry'); // Same as above
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     // STEP #7: Add an event handler to ensure the element is mounted
     const onReady = (event: CustomEvent): void => {
-      const { type } = event.detail;
+      const { type } = event.detail as EventDetail;
       if (type === 'cardNumber') {
         setCardNumberReady(true);
       }
@@ -72,7 +74,7 @@ const Index: React.FC = () => {
 
     // STEP #8: Add an event listener to listen to the changes in each of the input fields
     const onChange = (event: CustomEvent) => {
-      const { type, complete } = event.detail;
+      const { type, complete } = event.detail as EventDetail;
       if (type === 'cardNumber') {
         setCardNumberComplete(complete);
       }
@@ -111,18 +113,24 @@ const Index: React.FC = () => {
       element?.addEventListener('onFocus', onFocus as EventListener);
       element?.addEventListener('onBlur', onBlur as EventListener);
     });
-  }
-
-  // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
-  useEffect(() => {
-    initAirwallex();
+    return () => {
+      domElementArray.forEach((element) => {
+        element?.removeEventListener('onReady', onReady as EventListener);
+        element?.removeEventListener('onChange', onChange as EventListener);
+        element?.removeEventListener('onFocus', onFocus as EventListener);
+        element?.removeEventListener('onBlur', onBlur as EventListener);
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
   // STEP #6a: Add a button handler to trigger the payment request
   const handleConfirm = async () => {
     setIsSubmitting(true); // Example: set loading state
     setErrorMessage(''); // Example: reset error message
-    if (CardNumberRef.current) {
+    const cardNumber = getElement('cardNumber');
+    if (cardNumber) {
       try {
         // STEP #3: Create payment intent
         const intent = await createPaymentIntent({
@@ -144,7 +152,8 @@ const Index: React.FC = () => {
           },
         });
         const { id, client_secret } = intent;
-        const response = await CardNumberRef.current?.confirmPaymentIntent({
+        const response = await confirmPaymentIntent({
+          element: cardNumber, // Only need to submit CardNumber element
           id,
           client_secret,
           // Add other payment confirmation details, see docs here: https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
@@ -157,7 +166,7 @@ const Index: React.FC = () => {
         // STEP #6b: Listen to the request response
         setIsSubmitting(false); // Example: reset loading state
         console.log(`Confirm success with ${JSON.stringify(response)}`);
-        navigate('/checkout-success');
+        history.push('/checkout-success');
       } catch (error) {
         // STEP #6c: Listen to error
         /**

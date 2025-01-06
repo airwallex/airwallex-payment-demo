@@ -9,36 +9,37 @@
  * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/card.md
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import { createElement, init } from '@airwallex/components-sdk';
+import { createElement, loadAirwallex, getElement, confirmPaymentIntent } from 'airwallex-payment-elements';
 import { v4 as uuid } from 'uuid';
 import { createPaymentIntent } from '../util';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Index: React.FC = () => {
   const [elementShow, setElementShow] = useState(false); // Example: show element state
   const [isSubmitting, setIsSubmitting] = useState(false); // Example: show submission processing state
   const [errorMessage, setErrorMessage] = useState(''); // Example: set error state
   const [inputErrorMessage, setInputErrorMessage] = useState(''); //  Example: set input error state
-  const elementRef = useRef<any>(null);
-  const navigate = useNavigate();
+  const history = useHistory();
 
-  async function initAirwallex() {
+  useEffect(() => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
-    await init({
-      env: 'demo',
-      enabledElements: ['payments'],
+    loadAirwallex({
+      env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
+      origin: window.location.origin, // Setup your event target to receive the browser events message
+      // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
+    }).then(() => {
+      // STEP #4, 5: Create and mount the card element
+      createElement('card', {
+        style: {
+          // the 3ds popup window dimension
+          popupWidth: 400,
+          popupHeight: 549,
+        },
+      })?.mount('card'); // This 'card' id MUST MATCH the id on your empty container created in Step 3
     });
-    // STEP #4, 5: Create and mount the card element
-    const element = await createElement('card', {
-      style: {
-        popupWidth: 400,
-        popupHeight: 549,
-      },
-    });
-    elementRef.current = element;
-    element?.mount('card');
+
     // STEP ##7: Add an event listener to ensure the element is mounted
     const onReady = (event: CustomEvent): void => {
       /**
@@ -80,17 +81,14 @@ const Index: React.FC = () => {
       domElement?.removeEventListener('onFocus', onFocus as EventListener);
       domElement?.removeEventListener('onBlur', onBlur as EventListener);
     };
-  }
-
-  useEffect(() => {
-    initAirwallex();
   }, []); // This effect should ONLY RUN ONCE as we do not want to reload Airwallex and remount the elements
 
   // STEP ##6a: Add a button handler to trigger the payment request
   const triggerConfirm = async () => {
     setIsSubmitting(true); // Example: set loading state
     setErrorMessage(''); // Example: reset error message
-    if (elementRef.current) {
+    const card = getElement('card');
+    if (card) {
       const intent = await createPaymentIntent({
         request_id: uuid(),
         merchant_order_id: uuid(),
@@ -110,28 +108,28 @@ const Index: React.FC = () => {
         },
       });
       const { id, client_secret } = intent;
-      elementRef.current
-        .confirm({
-          id,
-          client_secret,
-          // Add other payment confirmation details, see docs here: https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
-          payment_method_options: {
-            card: {
-              auto_capture: true,
-            },
+      confirmPaymentIntent({
+        element: card,
+        id,
+        client_secret,
+        // Add other payment confirmation details, see docs here: https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
+        payment_method_options: {
+          card: {
+            auto_capture: true,
           },
-        })
+        },
+      })
         // STEP ##6b: Listen to the request success response
-        .then((response: any) => {
+        .then((response) => {
           /**
            * ...Handle confirm response
            */
           setIsSubmitting(false); // Example: sets loading state
           console.log(`Payment Intent confirmation was successful: ${JSON.stringify(response)}`);
-          navigate('/checkout-success');
+          history.push('/checkout-success');
         })
         // STEP ##6c: Listen to the request failure response
-        .catch((error: any) => {
+        .catch((error) => {
           /**
            * ... Handle error response
            */

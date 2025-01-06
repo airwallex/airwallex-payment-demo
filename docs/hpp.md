@@ -1,4 +1,4 @@
-# Components SDK - Hosted Payment Page Integration
+# Airwallex Payment Elements - Hosted Payment Page Integration
 
 The HPP checkout option redirects customers to an Airwallex checkout page, allowing merchants to accept payments without the full responsibility of handling payment acceptance and displaying payment options.
 
@@ -10,41 +10,34 @@ The HPP checkout option redirects customers to an Airwallex checkout page, allow
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/cdn (components-sdk)/hpp.html).
+Want more details? See the integration in [React](/integrations/react/src/components/Hpp.jsx).
 
-### 1. Initialize Payment Object
-
-At the start of your file, initialize the Airwallex SDK. You can do this either by importing the SDK or adding it as a script in your HTML.
-
-#### Importing the SDK
+### 1. At the start of your file, import `airwallex-payment-elements`.
 
 ```js
-import { init } from '@airwallex/components-sdk';
-
-const { payments } = await init({
-  env: 'demo', // Choose the Airwallex environment ('demo' | 'prod')
-  enabledElements: ['payments'],
-});
+import Airwallex from 'airwallex-payment-elements';
 ```
 
-#### Adding the SDK as a Script
-
-Add the following script in your HTML `<head>`:
+or add the bundle as a script in your HTML head
 
 ```html
-<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
-Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
+### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
-const { payments } = await window.AirwallexComponentsSDK.init({
-  env: 'demo', // Choose the Airwallex environment ('demo' | 'prod')
-  enabledElements: ['payments'],
+Airwallex.init({
+  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+  origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
 
-### 2. Add a checkout button
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
+
+The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
+
+### 3. Add a checkout button
 
 ```html
 <button id="hpp">Checkout</button>
@@ -52,10 +45,11 @@ const { payments } = await window.AirwallexComponentsSDK.init({
 
 We will add the button listener in the next step.
 
-### 3. Add a button handler to trigger the redirect
+### 4. Add a button handler to trigger the redirect
 
 ```js
-payment.redirectToCheckout({
+Airwallex.redirectToCheckout({
+  env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
   intent_id: 'replace-with-your-intent-id',
   client_secret: 'replace-with-your-client-secret',
   currency: 'replace-with-your-currency',
@@ -65,11 +59,11 @@ payment.redirectToCheckout({
 
 `redirectToCheckout` will redirect customers to an Airwallex checkout page that matches the payment intent details (provided by Payment Intent `id` prop). Customers will do their payment transaction there.
 
-Merchants can add more features to the checkout including the success or failure url to redirect customers back to the merchant site. More details about the `redirectToCheckout` function can be found [here](/docs-components-sdk#redirectToCheckout).
+Merchants can add more features to the checkout including the success or failure url to redirect customers back to the merchant site. More details about the `redirectToCheckout` function can be found [here](/docs#redirectToCheckout).
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here]([/docs](https://airwallex.com/docs/js/payments/host-payment-page/)).
+See the full documentation for `airwallex-payment-elements` [here](/docs).
 
 ## Integration Examples
 
@@ -86,8 +80,8 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- STEP #1: Import @airwallex/components-sdk bundle -->
-    <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+    <!-- STEP #1: Import airwallex-payment-elements bundle -->
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
   <body>
     <h1>Hosted payment page (HPP) integration</h1>
@@ -95,14 +89,14 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <button id="hpp">Redirect to HPP for checkout</button>
     <script>
       // STEP #2: Initialize the Airwallex package with the appropriate environment
-      const { payments } = await window.AirwallexComponentsSDK.init({
-        env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
-        enabledElements: ['payments'],
+      Airwallex.init({
+        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       document.getElementById('hpp').addEventListener('click', () => {
         // STEP #4: Add a button handler to trigger the redirect to HPP
-        payments.redirectToCheckout({
-          env: 'demo', // Which env( 'demo' | 'prod') you would like to integrate with
+        Airwallex.redirectToCheckout({
+          env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
           mode: 'payment',
           intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
@@ -124,8 +118,8 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- STEP #1: Import @airwallex/components-sdk bundle -->
-    <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+    <!-- STEP #1: Import airwallex-payment-elements bundle -->
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
   <body>
     <h1>Hosted payment page (HPP) integration</h1>
@@ -133,14 +127,14 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <button id="hpp">Redirect to HPP for recurring</button>
     <script>
       // STEP #2: Initialize the Airwallex package with the appropriate environment
-      const { payments } = await window.AirwallexComponentsSDK.init({
-        env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
-        enabledElements: ['payments'],
+      Airwallex.init({
+        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       document.getElementById('hpp').addEventListener('click', () => {
         // STEP #4: Add a button handler to trigger the redirect to HPP
-        payments.redirectToCheckout({
-          env: 'demo', // Which env( 'demo' | 'prod') you would like to integrate with
+        Airwallex.redirectToCheckout({
+          env: 'demo', // Which env('staging' | 'demo' | 'prod') you would like to integrate with
           mode: 'recurring',
           client_secret: 'replace-with-your-client-secret',
           customer_id: 'replace-with-your-customer-id',

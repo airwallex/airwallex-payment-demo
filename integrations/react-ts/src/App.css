@@ -5,7 +5,7 @@
  * This file provides styling to the demo site.  This is not required for the integration.
  */
 
- .App {
+.App {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

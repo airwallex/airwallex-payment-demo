@@ -2,11 +2,11 @@
   googlepay.html
   Airwallex Payment Demo - Static HTML.  Created by Shirly Chen and Josie Ku.
 
-  @airwallex/components-sdk Google Pay element integration in Static HTML
+  airwallex-payment-elements Google Pay element integration in Static HTML
   Comments with "Example" demonstrate how states can be integrated
   with the element, they can be removed.
 
-  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/components-sdk/googlepaybutton.md
+  Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/googlepaybutton.md
  -->
 
 <!DOCTYPE html>
@@ -18,17 +18,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Airwallex Checkout Playground</title>
   <!-- 
-      STEP #1: Import @airwallex/components-sdk bundle 
+      STEP #1: Import airwallex-payment-elements bundle 
                 - You MUST replace the bundle version to the latest NPM version
                   in order to import the package properly!
     -->
-  <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 </head>
 
 <body>
   <h1>Google Pay integration</h1>
-  <p>This integration requires HTTPS. Please ensure your server is running over HTTPS.</p>
-
   <!-- Styling example below: Setting container to display nothing when element is not mounted -->
   <div id="googlepay-container" style="display: none">
     <!-- STEP #3a: Add an empty container for the googlepay element to be injected into -->
@@ -41,49 +39,50 @@
   <p id="error"></p>
   <p id="success">Payment successful!</p>
   <script>
-    (async () => {
-      try {
-        // STEP #2: Initialize the Airwallex global context for event communication
-        await window.AirwallexComponentsSDK.init({
-          env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
-          enabledElements: ['payments'],
-        });
+    try {
+      // STEP #2: Initialize the Airwallex global context for event communication
+      Airwallex.init({
+        env: 'prod', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        origin: window.location.origin, // Setup your event target to receive the browser events message
+      });
 
-        // STEP #4: Create 'googlepay' element
-        const googlepay = await window.AirwallexComponentsSDK.createElement('googlePayButton', {
-          mode: 'payment', // 'payment' or 'recurring'
-          intent_id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret',
-          countryCode: 'HK',
-          amount: {
-            value: 20,
-            currency: 'HKD',
-          },
-          // customer_id: 'replace-with-customer-id',
-          requiredBillingContactFields: ['postalAddress', 'name', 'phoneticName'],
-        });
+      // STEP #4: Create 'googlepay' element
+      const googlepay = Airwallex.createElement('googlePayButton', {
+        mode: 'payment', // 'payment' or 'recurring'
+        intent_id: 'replace with intent id',
+        origin: window.location.origin,
+        client_secret: 'replace with intent id',
+        countryCode: 'HK',
+        amount: {
+          value: 1,
+          currency: 'HKD',
+        },
+        customer_id: 'replace with customer id',
+        requiredBillingContactFields: ['postalAddress', 'name', 'phoneticName'],
+      });
 
-        // STEP #5: Mount googlepay element
-        const domElement = googlepay.mount('googlepay');
-        // STEP #6: Add an event listener to handle errors
-        googlepay.on('error', (event) => {
-          const { error } = event.detail;
-          document.getElementById('error').style.display = 'block'; // Example: show error
-          document.getElementById('error').innerHTML = error.message; // Example: set error message
-          console.error('There was an error', error);
-        });
-
-
-        // STEP #7: Add an event listener to handle errors
-        googlepay.on('success', (event) => {
-          // handle your success event
-        });
-      } catch (error) {
+      // STEP #5: Mount googlepay element
+      const domElement = googlepay.mount('googlepay');
+      // STEP #6: Add an event listener to handle errors
+      domElement.addEventListener('onError', (event) => {
+        const { error } = event.detail;
         document.getElementById('error').style.display = 'block'; // Example: show error
         document.getElementById('error').innerHTML = error.message; // Example: set error message
         console.error('There was an error', error);
-      }
-    })();
+      });
+
+
+      // STEP #7: Add an event listener to handle errors
+      domElement.addEventListener('onSuccess', (event) => {
+        // handle your success event
+      });
+    } catch (error) {
+      document.getElementById('error').style.display = 'block'; // Example: show error
+      document.getElementById('error').innerHTML = error.message; // Example: set error message
+      console.error('There was an error', error);
+    }
+
+
   </script>
 </body>
 
