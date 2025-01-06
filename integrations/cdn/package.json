@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@airwallex/components-sdk": "^1.17.0",
     "serve": "^11.3.2"
   }
 }

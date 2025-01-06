@@ -1,4 +1,4 @@
-# Components SDK - Card Element Integration
+# Airwallex Payment Elements - Card Element Integration
 
 The Card element allows merchants to embed a card element checkout option on their website. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex. The Card element is a single-line element with card number, expiry date, and card CVC embedded together.
 
@@ -8,41 +8,34 @@ The Card element allows merchants to embed a card element checkout option on the
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-Want more details? See the integration in [React](/integrations/cdn (components-sdk)/card.html).
+Want more details? See the integration in [React](/integrations/react/src/components/Card.jsx).
 
-### 1. Initialize SDK
-
-At the start of your file, initialize the Airwallex SDK. You can do this either by importing the SDK or adding it as a script in your HTML.
-
-#### Importing the SDK
+### 1. At the start of your file, import `airwallex-payment-elements`.
 
 ```js
-import { init } from '@airwallex/components-sdk';
-
-await init({
-  env: 'demo', // Choose the Airwallex environment ('demo' | 'prod')
-  enabledElements: ['payments'],
-});
+import Airwallex from 'airwallex-payment-elements';
 ```
 
-#### Adding the SDK as a Script
-
-Add the following script in your HTML `<head>`:
+or add the bundle as a script in your HTML head
 
 ```html
-<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
 ```
 
-Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
+### 2. Initialize the Airwallex package with the appropriate environment
 
 ```js
-await window.AirwallexComponentsSDK.init({
-  env: 'demo', // Choose the Airwallex environment ('demo' | 'prod')
-  enabledElements: ['payments'],
+Airwallex.init({
+  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+  origin: window.location.origin, // Setup your event target to receive the browser events message
 });
 ```
 
-### 2. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
+`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
+
+The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
+
+### 3. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
 
 ```html
 <div id="card"></div>
@@ -51,18 +44,17 @@ await window.AirwallexComponentsSDK.init({
 
 We will mount the card element into the empty div in step 5 and create a handler for the submit button in step 6.
 
-### 3. Create the card element
+### 4. Create the card element
 
-This creates the specified [Element](/docs-components-sdk#Element) object. We specify the type as `card`.
+This creates the specified [Element](/docs#Element) object. We specify the type as `card`.
 
 ```js
-import {createElement } from '@airwallex/components-sdk';
-const card = await createElement('card');
+const card = Airwallex.createElement('card');
 ```
 
-You can also add additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs-components-sdk#createElement) for more details.
+You can also add additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
 
-### 4. Mount the card element
+### 5. Mount the card element
 
 Next, we need to mount the card element to the DOM.
 
@@ -74,14 +66,14 @@ This function will append the card element to your div with an id `card` as crea
 
 The **element should only be mounted once** in a single payment flow.
 
-### 5. Add a button handler to trigger the payment request and listen to the request response.
+### 6. Add a button handler to trigger the payment request and listen to the request response.
 
 This handler is called when a customer is ready to make a payment according to the details documented in the Payment Intent, thereby confirming the Payment Intent.
 
 ```js
 // STEP #6a: Add a button handler
 document.getElementById('submit').addEventListener('click', () => {
-  card.confirm({
+  Airwallex.confirmPaymentIntent({
     element: card, // Provide Card element
     intent_id: 'replace-with-your-intent-id', // Payment Intent ID
     client_secret: 'replace-with-your-client-secret', // Client Secret
@@ -93,12 +85,14 @@ document.getElementById('submit').addEventListener('click', () => {
 });
 ```
 
-`card.confirm` will take the card element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
+`Airwallex.confirmPaymentIntent` will take the card element you mounted and confirm the payment details entered to the payment intent (provided by the `id` prop). A `client_secret` must be provided to authenticate the checkout process.
 
-### 6. Add an `ready` event listener to handle events when the element is mounted
+More details about the `confirmPaymentIntent` function can be found [here](/docs#confirmPaymentIntent).
+
+### 7. Add an `onReady` event listener to handle events when the element is mounted
 
 ```js
-card.on('ready', (event) => {
+domElement.addEventListener('onReady', (event) => {
   /*
     ... Handle event
   */
@@ -112,7 +106,7 @@ This can be used to set a loading state as the checkout screen is being prepared
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here]([/docs](https://airwallex.com/docs/js/payments/card/)).
+See the full documentation for `airwallex-payment-elements` [here](/docs).
 
 ## Integration Examples
 
@@ -127,8 +121,8 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- STEP #1: Import @airwallex/components-sdk bundle -->
-    <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+    <!-- STEP #1: Import airwallex-payment-elements bundle -->
+    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
   </head>
 
   <body>
@@ -144,19 +138,19 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      await window.AirwallexComponentsSDK.init({
-        env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
-        enabledElements: ['payments'],
+      Airwallex.init({
+        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        origin: window.location.origin, // Setup your event target to receive the browser events message
       });
       // STEP #4: Create 'card' element
-      const card = await window.AirwallexComponentsSDK.createElement('card');
+      const card = Airwallex.createElement('card');
 
       // STEP #5: Mount card element
       const domElement = card.mount('card');
 
       // STEP #6a: Add a button handler to trigger the payment request
       document.getElementById('submit').addEventListener('click', () => {
-        card.confirm({
+        Airwallex.confirmPaymentIntent({
           element: card,
           intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
@@ -174,7 +168,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to ensure the element is mounted
-      card.on('ready', (event) => {
+      domElement.addEventListener('onReady', (event) => {
         /*
         ... Handle event
          */

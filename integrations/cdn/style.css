@@ -5,229 +5,75 @@
  * This file provides styling to the demo site.  This is not required for the integration.
  */
 
-/* Base styles and variables */
-:root {
-  --primary-color: #612fff;
-  --error-color: #ffebee;
-  --success-color: #90ee90;
-  --border-radius: 8px;
-  --spacing-sm: 15px;
-  --spacing-md: 25px;
-  --spacing-lg: 50px;
-}
-
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
+  padding: 15px 25px;
 }
 
-/* Container and layout */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-md);
-}
-
-/* Header styles */
-header {
-  text-align: center;
-  margin-bottom: var(--spacing-lg);
-}
-
-h1 {
-  color: var(--primary-color);
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: var(--spacing-md);
-}
-
-.important-note {
-  background-color: #fff3cd;
-  border-radius: var(--border-radius);
-  padding: var(--spacing-sm);
-  margin-bottom: var(--spacing-md);
-}
-
-/* Navigation */
-.demo-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
-}
-
-.demo-button {
-  display: block;
-  padding: var(--spacing-sm);
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  border-radius: var(--border-radius);
-  text-align: center;
-  transition: transform 0.2s, background-color 0.2s;
-}
-
-.demo-button:hover {
-  transform: translateY(-2px);
-  background-color: #4f25cc;
-}
-
-/* Tips section */
-.tips {
-  margin-bottom: var(--spacing-lg);
-}
-
-.tips h2 {
-  text-align: center;
-  margin-bottom: var(--spacing-md);
-}
-
-.tip-card {
-  background: white;
-  border-radius: var(--border-radius);
-  padding: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.tip-card h3 {
-  color: var(--primary-color);
-  margin-top: 0;
-}
-
-.error-message {
-  background: var(--error-color);
-  padding: var(--spacing-sm);
-  border-radius: var(--border-radius);
-  margin: var(--spacing-sm) 0;
-}
-
-/* Code elements */
-code {
-  background-color: #f1f1f1;
-  padding: 2px 6px;
-  border-radius: 4px;
+span#code {
   font-family: monospace;
-  font-size: 0.9em;
+  background-color: lightgrey;
+  font-size: 16px;
 }
 
-/* Links */
-a {
-  color: var(--primary-color);
-  text-decoration: none;
+div#links {
+  display: flex;
+  flex-direction: column;
 }
 
-a:hover {
-  text-decoration: underline;
+button {
+  margin-top: 15px;
+  padding: 5px 10px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #612fff;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  min-width: 40px;
+  min-height: 40px;
 }
 
-.docs-link {
-  display: inline-block;
-  margin-top: var(--spacing-sm);
-  font-weight: 600;
+button:disabled {
+  opacity: 0.75;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: var(--spacing-lg);
-  padding: var(--spacing-md);
-  color: #666;
+p#error {
+  background: #ffebee;
+  border-radius: 5px;
+  padding: 5px 10px;
+  max-width: 400px;
+  display: none;
 }
-
-/* Success and Error messages */
-#success, #error {
-  padding: var(--spacing-sm);
-  border-radius: var(--border-radius);
+p#success {
+  background: lightgreen;
+  border-radius: 5px;
+  padding: 5px 10px;
   max-width: 400px;
   display: none;
 }
 
-#success {
-  background: var(--success-color);
+p#author {
+  position: absolute;
+  bottom: 0;
 }
 
-#error {
-  background: var(--error-color);
+.field-container {
+  margin: 15px 0px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .container {
-    padding: var(--spacing-sm);
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
-  
-  .demo-links {
-    grid-template-columns: 1fr;
-  }
+div.instruction-container {
+  padding: 10px 50px;
+  text-align: left;
 }
 
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+span#code {
+  font-family: monospace;
+  background-color: lightgrey;
+  font-size: 16px;
+  margin: 0px 5px;
 }
 
-body {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #f8f9fa;
-  color: #2d3748;
-  line-height: 1.6;
-}
-
-/* Typography */
-h1 {
-  color: #1a202c;
-  margin-bottom: 2rem;
-  font-size: 2.5rem;
-  font-weight: 600;
-}
-
-p {
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-}
-
-/* Button Styling */
-button {
-  background-color: #612fff;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 120px;
-}
-
-button:hover {
-  background-color: #4f25cc;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px rgba(97, 47, 255, 0.1);
-}
-
-button:disabled {
-  background-color: #a8a8a8;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+p#bullet {
+  font-weight: bold;
 }

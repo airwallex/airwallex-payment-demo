@@ -11,19 +11,16 @@
 
 import React, { useCallback, useEffect } from 'react';
 // STEP #1: At the start of your file, import airwallex-payment-elements package
-import { init } from '@airwallex/components-sdk';
+import { loadAirwallex, redirectToCheckout } from 'airwallex-payment-elements';
 import { v4 as uuid } from 'uuid';
 import { createPaymentIntent } from '../util';
 
 export const Index: React.FC = () => {
   const mode = 'payment'; // Should be one of ['payment', 'recurring']
 
-  const redirectHppForCheckout = useCallback(async (intentId: string, clientSecret: string, currency: string) => {
-    const { payments } = await init({
+  const redirectHppForCheckout = useCallback((intentId: string, clientSecret: string, currency: string) => {
+    redirectToCheckout({
       env: 'demo',
-      enabledElements: ['payments'],
-    });
-    payments?.redirectToCheckout({
       mode: 'payment',
       currency,
       intent_id: intentId, // Required, must provide intent details
@@ -44,12 +41,9 @@ export const Index: React.FC = () => {
     });
   }, []);
 
-  const redirectHppForRecurring = useCallback(async (intentId: string, clientSecret: string, currency: string) => {
-    const { payments } = await init({
+  const redirectHppForRecurring = useCallback((intentId: string, clientSecret: string, currency: string) => {
+    redirectToCheckout({
       env: 'demo',
-      enabledElements: ['payments'],
-    });
-    payments?.redirectToCheckout({
       mode: 'recurring',
       currency,
       intent_id: intentId,
@@ -88,9 +82,8 @@ export const Index: React.FC = () => {
     async (product: { url: string; name: string; desc: string; unit_price: number; currency: string; quantity: 1 }) => {
       try {
         // STEP #3: Initialize Airwallex on click with appropriate production environment and other configurations
-        await init({
+        await loadAirwallex({
           env: 'demo', // Can choose other production environments, 'staging | 'demo' | 'prod'
-          enabledElements: ['payments'],
         });
         // STEP #4: create payment intent
         const intent = await createPaymentIntent({

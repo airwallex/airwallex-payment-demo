@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Instructions from './instructions';
 
 const Index: React.FC = () => {
   return (
@@ -20,11 +19,19 @@ const Index: React.FC = () => {
           <Link to="/drop-in">
             <button>DropIn</button>
           </Link>
+          <Link to="/full-featured-card">
+            <button>Full Featured Card</button>
+          </Link>
           <Link to="/split-card">
             <button>Split Card element</button>
           </Link>
+          <Link to="/wechat">
+            <button>Wechat element</button>
+          </Link>
+          <Link to="/redirect">
+            <button>Redirect element</button>
+          </Link>
         </nav>
-        <Instructions />
       </div>
     </div>
   );

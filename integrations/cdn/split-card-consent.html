@@ -8,76 +8,82 @@
 
   Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/splitcard.md
  -->
-<!DOCTYPE html>
-<html>
-
-<head lang="en">
-  <meta charset="utf-8" />
-  <link rel="stylesheet" href="style.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Airwallex Checkout Playground</title>
-  <!-- 
+ <!DOCTYPE html>
+ <html>
+ 
+   <head lang="en">
+     <meta charset="utf-8" />
+     <link rel="stylesheet" href="style.css" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <title>Airwallex Checkout Playground</title>
+     <!-- 
          STEP #1: Import airwallex-payment-elements bundle 
                    - You MUST replace the bundle version to the latest NPM version
                      in order to import the package properly!
        -->
-  <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
-</head>
-
-<body>
-  <h1>Split Card integration</h1>
-  <!-- Example: loading state when element is not yet mounted -->
-  <p id="loading">Loading...</p>
-  <!-- Example: Hide all elements before they are all mounted -->
-  <div id="element">
-    <!-- 
+     <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+   </head>
+ 
+   <body>
+     <h1>Split Card integration</h1>
+     <!-- Example: loading state when element is not yet mounted -->
+     <p id="loading">Loading...</p>
+     <!-- Example: Hide all elements before they are all mounted -->
+     <div id="element">
+       <!-- 
            STEP 3a: Add empty containers for the split card elements to be placed into
            - Ensure these are the only elements in your document with these id, otherwise 
              the elements may fail to mount.  
          -->
-    <div class="field-container">
-      <div>Card number</div>
-      <div id="cardNumber"></div>
-      <p id="cardNumber-error" style="color: red"></p>
-    </div>
-    <div class="field-container">
-      <div>Expiry</div>
-      <div id="expiry"></div>
-      <p id="expiry-error" style="color: red"></p>
-    </div>
-    <div class="field-container">
-      <div>Cvc</div>
-      <div id="cvc"></div>
-      <p id="cvc-error" style="color: red"></p>
-    </div>
-    <!-- STEP #3b: Add a submit button to trigger the payment request -->
-    <button id="submit">Submit</button>
-  </div>
-  <!-- Example: Response message containers -->
-  <p id="error"></p>
-  <p id="success">Payment Successful!</p>
-  <script>
-    try {
-      // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
-        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-        origin: window.location.origin, // Setup your event target to receive the browser events message
-        locale: 'en',
-      });
+       <div class="field-container">
+         <div>Card number</div>
+         <div id="cardNumber"></div>
+        <p id="cardNumber-error" style="color: red"></p>
+       </div>
+       <div class="field-container">
+         <div>Expiry</div>
+         <div id="expiry"></div>
+         <p id="expiry-error" style="color: red"></p>
+       </div>
+       <div class="field-container">
+         <div>Cvc</div>
+         <div id="cvc"></div>
+         <p id="cvc-error" style="color: red"></p>
+       </div>
+       <!-- STEP #3b: Add a submit button to trigger the payment request -->
+       <button id="submit">Submit</button>
+     </div>
+     <!-- Example: Response message containers -->
+     <p id="error"></p>
+     <p id="success">Payment Successful!</p>
+     <script>
+       try {
+         // STEP #2: Initialize the Airwallex global context for event communication
+         Airwallex.init({
+           env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+           origin: window.location.origin, // Setup your event target to receive the browser events message
+           locale:'en',
+         });
+ 
+         // STEP #4: Create split card elements
+         const cardNumber = Airwallex.createElement('cardNumber',{
+            allowedCardNetworks:['visa','maestro','mastercard','amex','unionpay','jcb','discover','diners']
+        });
+         const expiry = Airwallex.createElement('expiry');
+         const cvc = Airwallex.createElement('cvc');
+ 
+         // STEP #5: Mount split card elements
+         cardNumber.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
+         expiry.mount('expiry'); // Same as above
+         cvc.mount('cvc'); // Same as above
+       } catch (error) {
+         document.getElementById('loading').style.display = 'none'; // Example: hide loading state
+        document.getElementById('error').style.display = 'block'; // Example: show error
+         document.getElementById('error').innerHTML = error.message; // Example: set error message
+         console.error('There was an error', error);
+       }
 
-      // STEP #4: Create split card elements
-      const cardNumber = Airwallex.createElement('cardNumber', {
-        allowedCardNetworks: ['visa', 'maestro', 'mastercard', 'amex', 'unionpay', 'jcb', 'discover', 'diners']
-      });
-      const expiry = Airwallex.createElement('expiry');
-      const cvc = Airwallex.createElement('cvc');
-
-      // STEP #5: Mount split card elements
-      cardNumber.mount('cardNumber'); // This 'cardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 3
-      expiry.mount('expiry'); // Same as above
-      cvc.mount('cvc'); // Same as above
-
-      document.getElementById('submit').addEventListener('click', () => {
+       document.getElementById('submit').addEventListener('click', () => {
         Airwallex.createPaymentConsent({
           intent_id: 'int_hkdm9gkcmguhynvskzz', // intent id(Optional)
           customer_id: 'cus_hkdm9gkcmguhxeghwlg', // customer id
@@ -85,8 +91,8 @@
             id:'mtd_hkdm9gkcmguhxp04t4g',
             type:'card'
           },*/
-          payment_menthod_id: 'mtd_hkdm9gkcmguhxp04t4g',
-          type: 'cardNumber',
+          payment_menthod_id:'mtd_hkdm9gkcmguhxp04t4g',
+          type:'cardNumber',
           client_secret: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTEwMDAyNDksImV4cCI6MTcxMTAwMzg0OSwidHlwZSI6ImNsaWVudC1zZWNyZXQiLCJwYWRjIjoiSEsiLCJhY2NvdW50X2lkIjoiMmRlNDY5MTYtYWZhZC00NmUwLTg4MDgtZDYyYjBiOTY5OTlkIiwiaW50ZW50X2lkIjoiaW50X2hrZG05Z2tjbWd1aHludnNrenoiLCJjdXN0b21lcl9pZCI6ImN1c19oa2RtOWdrY21ndWh4ZWdod2xnIiwiYnVzaW5lc3NfbmFtZSI6IkRlbW8gWUxYIn0.e8I8hPTgA1c1o0qHAxwnzUWXt71QHSuoHXIjklV4QHc', // client secret
           currency: 'CNY', // currency
           element: Airwallex.getElement('cardNumber'), // either the card element or card number element depends on the element you integrate,
@@ -97,84 +103,78 @@
           window.alert(JSON.stringify(response));
         });
       });
+ 
+       // STEP #6a: Add a button handler to trigger the payment request
+//       document.getElementById('submit').addEventListener('click', () => {
+//         Airwallex.confirmPaymentIntent({
+//           element: Airwallex.getElement('cardNumber'), // Only need to submit CardNumber element
+//           paymen_consent_id:'cst_hkdmf2ggqgrfxxdey4z',
+//           id: 'int_hkdmm6qxxgrgn1so0dx',
+//           client_secret: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MDI0MzQ1MDksImV4cCI6MTcwMjQzODEwOSwidHlwZSI6ImNsaWVudC1zZWNyZXQiLCJwYWRjIjoiSEsiLCJhY2NvdW50X2lkIjoiNTYxZjE2MjctMDY1MC00MDYxLTlkMzYtNzE5OGNjYmFjMzQyIiwiaW50ZW50X2lkIjoiaW50X2hrZG1tNnF4eGdyZ24xc28wZHgiLCJjdXN0b21lcl9pZCI6ImN1c19oa2Rtc2ZyOGRncmE4dGZ6azF3IiwiYnVzaW5lc3NfbmFtZSI6ImRlbW8gZm9yIGFyaWVzIn0.sh7WrTMOczQRTdD8rOOSBkUitVA8_QYT7D5tuU_RC5M',
+//         })
+//           .then((response) => {
+             // STEP #6b: Listen to the request response
+             /* handle confirm response */
+//             document.getElementById('success').style.display = 'block'; // Example: show success block
+//            window.alert(JSON.stringify(response));
+//           })
+//           .catch((response) => {
+             // STEP #6c: Listen to the error response
+             /* handle error response */
+//             document.getElementById('error').style.display = 'block'; // Example: show error block
+//             document.getElementById('error').innerHTML = response.message; // Example: set error message
+//             console.error('There was an error', response);
+//           });
+//       });
+ 
+       // Set up local variable to check all elements are mounted
+       const elementsReady = {
+         cardNumber: false,
+         expiry: false,
+         cvc: false,
+       };
+ 
+       // STEP #7: Add an event listener to ensure the element is mounted
+       window.addEventListener('onReady', (event) => {
+         /*
+         ... Handle event
+           */
 
-      // STEP #6a: Add a button handler to trigger the payment request
-      //       document.getElementById('submit').addEventListener('click', () => {
-      //         Airwallex.confirmPaymentIntent({
-      //           element: Airwallex.getElement('cardNumber'), // Only need to submit CardNumber element
-      //           paymen_consent_id:'cst_hkdmf2ggqgrfxxdey4z',
-      //           id: 'int_hkdmm6qxxgrgn1so0dx',
-      //           client_secret: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MDI0MzQ1MDksImV4cCI6MTcwMjQzODEwOSwidHlwZSI6ImNsaWVudC1zZWNyZXQiLCJwYWRjIjoiSEsiLCJhY2NvdW50X2lkIjoiNTYxZjE2MjctMDY1MC00MDYxLTlkMzYtNzE5OGNjYmFjMzQyIiwiaW50ZW50X2lkIjoiaW50X2hrZG1tNnF4eGdyZ24xc28wZHgiLCJjdXN0b21lcl9pZCI6ImN1c19oa2Rtc2ZyOGRncmE4dGZ6azF3IiwiYnVzaW5lc3NfbmFtZSI6ImRlbW8gZm9yIGFyaWVzIn0.sh7WrTMOczQRTdD8rOOSBkUitVA8_QYT7D5tuU_RC5M',
-      //         })
-      //           .then((response) => {
-      // STEP #6b: Listen to the request response
-      /* handle confirm response */
-      //             document.getElementById('success').style.display = 'block'; // Example: show success block
-      //            window.alert(JSON.stringify(response));
-      //           })
-      //           .catch((response) => {
-      // STEP #6c: Listen to the error response
-      /* handle error response */
-      //             document.getElementById('error').style.display = 'block'; // Example: show error block
-      //             document.getElementById('error').innerHTML = response.message; // Example: set error message
-      //             console.error('There was an error', response);
-      //           });
-      //       });
+       });
+ 
+       // Set up local variable to validate element inputs
+       const elementsCompleted = {
+         cardNumber: false,
+         expiry: false,
+         cvc: false,
+       };
 
-      // Set up local variable to check all elements are mounted
-      const elementsReady = {
-        cardNumber: false,
-        expiry: false,
-        cvc: false,
-      };
-
-      // STEP #7: Add an event listener to ensure the element is mounted
-      window.addEventListener('onReady', (event) => {
-        /*
-        ... Handle event
-          */
-
-      });
-
-      // Set up local variable to validate element inputs
-      const elementsCompleted = {
-        cardNumber: false,
-        expiry: false,
-        cvc: false,
-      };
-
-      // STEP #9: Add an event listener to handle events when there is an error
-      window.addEventListener('onError', (event) => {
-        /*
-          ... Handle event on error
-        */
-        const { error } = event.detail;
-        document.getElementById('error').style.display = 'block'; // Example: show error block
-        document.getElementById('error').innerHTML = error.message; // Example: set error message
-        console.error('There was an error', event.detail.error);
-      });
-    } catch (error) {
-      document.getElementById('loading').style.display = 'none'; // Example: hide loading state
-      document.getElementById('error').style.display = 'block'; // Example: show error
-      document.getElementById('error').innerHTML = error.message; // Example: set error message
-      console.error('There was an error', error);
-    }
-  </script>
-</body>
-<style>
-  #cardNumber,
-  #expiry,
-  #cvc {
-    border: 1px solid #612fff;
-    border-radius: 5px;
-    padding: 5px 10px;
-    width: 400px;
-    box-shadow: #612fff 0px 0px 0px 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5px;
-  }
-</style>
-
-</html>
+       // STEP #9: Add an event listener to handle events when there is an error
+       window.addEventListener('onError', (event) => {
+         /*
+           ... Handle event on error
+         */
+         const { error } = event.detail;
+         document.getElementById('error').style.display = 'block'; // Example: show error block
+         document.getElementById('error').innerHTML = error.message; // Example: set error message
+         console.error('There was an error', event.detail.error);
+       });
+     </script>
+   </body>
+   <style>
+     #cardNumber,
+     #expiry,
+     #cvc {
+       border: 1px solid #612fff;
+       border-radius: 5px;
+       padding: 5px 10px;
+       width: 400px;
+       box-shadow: #612fff 0px 0px 0px 1px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       margin-top: 5px;
+     }
+   </style>
+ 
+ </html>
