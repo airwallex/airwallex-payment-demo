@@ -63,7 +63,7 @@
 import { init } from "@airwallex/components-sdk";
 
 const { payments } = await init({
-  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  env: 'demo', // Choose the Airwallex environment ( 'demo', or 'prod')
   enabledElements: ['payments'],
 });
 payments.redirectToCheckout({
@@ -93,7 +93,7 @@ code sample:
 
 ```ts
 const { payments } = await window.AirwallexComponentsSDK.init({
-  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  env: 'demo', // Choose the Airwallex environment ( 'demo', or 'prod')
   enabledElements: ['payments'],
 });
 

@@ -173,7 +173,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
       await window.AirwallexComponentsSDK.init({
-        env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
+        env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
         enabledElements: ['payments'],
       });
       // STEP #4: Create 'dropIn' element

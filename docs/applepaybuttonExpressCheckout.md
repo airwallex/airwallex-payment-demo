@@ -4,7 +4,7 @@ This comprehensive guide outlines the process of integrating Apple Pay express c
 
 ## Step 1: Import Airwallex Payment Elements
 
-Start by importing `airwallex-payment-elements` at the beginning of your file:
+Start by importing `@airwallex/components-sdk` at the beginning of your file:
 
 ```js
 import { init } from '@airwallex/components-sdk';
@@ -19,7 +19,7 @@ await init({
 Alternatively, include the bundle as a script in your HTML head:
 
 ```html
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
 ```
 
 ## Step 2: Initialize the Airwallex Package
@@ -28,7 +28,7 @@ Configure the Airwallex package with the appropriate environment:
 
 ```jsx
 Airwallex.init({
-  env: 'demo', // Choose Airwallex environment ('staging' | 'demo' | 'prod')
+  env: 'demo', // Choose Airwallex environment ( 'demo' | 'prod')
   origin: window.location.origin, // Specify your event target for receiving browser events
 });
 ```

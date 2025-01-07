@@ -18,7 +18,7 @@ At the start of your file, initialize the Airwallex SDK. You can do this either 
 import { init } from '@airwallex/components-sdk';
 
 await init({
-  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  env: 'demo', // Choose the Airwallex environment ( 'demo', or 'prod')
   enabledElements: ['payments'],
 });
 ```
@@ -35,7 +35,7 @@ Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
 
 ```js
  await window.AirwallexComponentsSDK.init({
-  env: 'demo', // Choose the Airwallex environment ('staging', 'demo', or 'prod')
+  env: 'demo', // Choose the Airwallex environment ( 'demo', or 'prod')
 });
 ```
 
@@ -127,7 +127,7 @@ See the full documentation for `@airwallex/components-sdk` [here](/docs-componen
 
 ## Integration Examples
 
-Check out [airwallex-payment-demo](/../../tree/master) for integration examples with different web frameworks!
+Check out [airwallex-payment-demo](../integrations/) for integration examples with different web frameworks!
 
 ## Full Code Example
 
