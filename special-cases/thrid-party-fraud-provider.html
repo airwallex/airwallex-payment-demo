@@ -113,7 +113,7 @@
         const customerClientSecret = 'MOCK_CUSTOMER_CLIENT_SECRET';
 
         // STEP #6: call createPaymentMethod function with customer id and customer client secret
-        Airwallex.createPaymentMethod(customerClientSecret, {
+        cardNumberElement.createPaymentMethod(customerClientSecret, {
           element: cardNumberElementInstance,
           customer_id: customerId
         })
@@ -128,7 +128,7 @@
             const intentClientSecret = "MOCK_INTENT_CLIENT_SECRET";
 
             // STEP #9: Call createPaymentConsent function with intent_id and payment_method_id
-            return Airwallex.createPaymentConsent({
+            return cardNumberElement.createPaymentConsent({
               element: cardNumberElementInstance,
               intent_id: intentId,
               client_secret: intentClientSecret,
