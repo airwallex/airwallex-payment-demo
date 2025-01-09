@@ -160,7 +160,6 @@ Check out [airwallex-payment-demo](../integrations/) for integration examples wi
           value: 'replace-with-your-intent-amount',
           currency: 'replace-with-your-intent-currency',
         },
-        origin: window.location.origin,
         countryCode: 'replace-with-your-country-code', // merchant country code
       });
       // STEP #5: Mount 'fullFeaturedCard' element

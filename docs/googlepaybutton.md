@@ -158,7 +158,6 @@ Check out [airwallex-payment-demo](../integrations/) for integration examples wi
           merchantInfo: {
             merchantName: 'replace-with-your-merchant-name',
           },
-          origin: window.location.origin,
           countryCode: 'replace-with-your-country-code', // merchant country code
   
       });

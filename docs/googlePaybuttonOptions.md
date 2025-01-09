@@ -35,7 +35,6 @@
 | authorizationType                                                                                                                                                                                                       | enum                     | The authorization type of the card payment. Options include:`pre_auth`, `final_auth`. Default to `final_auth`. Set it to `pre_auth` if you want to place a hold on your customer’s card for more than 7 days. Currently it's only available when the card brand is visa or mastercard. You should also set `auto_capture` to be `false` if you want to enable pre-auth. |
 | autoCapture                                                                                                                                                                                                             | boolean                  | Indicates whether the funds should be requested automatically after the payment is authorized.  Default to `true`.                                                                                                                                                                                                                                                                 |
 | Set it to `false` if you want to place a hold on the payment method and capture the funds sometime later. If you want to use pre-authorization to extend the authorization time window, you must set it to `false`. |                          |                                                                                                                                                                                                                                                                                                                                                                                      |
-| origin                                                                                                                                                                                                                  | string                   | Your checkout website origin url, aka merchant checkout page's 'window.location.origin' field                                                                                                                                                                                                                                                                                        |
 | style                                                                                                                                                                                                                   | PopUpStyle & Properties; | Element css style camelcase option, default style by Chrome browser default                                                                                                                                                                                                                                                                                                          |
 
 ### **TransactionInfo**
@@ -96,8 +95,6 @@ await createElement('googlePayButton', {
 
       }
 
-      origin: window.location.origin,
-
       autoCapture: true,
 
       countryCode: currency2countryCode(currency),
@@ -140,8 +137,6 @@ await createElement('googlePayButton', {
       currency: 'CNY',
 
       }
-
-      origin: window.location.origin,
 
       autoCapture: true,
 
@@ -187,8 +182,6 @@ await createElement('googlePayButton', {
       currency: 'CNY',
 
       }
-
-      origin: window.location.origin,
 
       autoCapture: true,
 

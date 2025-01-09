@@ -77,8 +77,6 @@
 
       customer_id: intent.customer_id,
 
-      origin: window.location.origin,
-
       autoCapture: true,
 
       withBilling: true,
@@ -125,8 +123,6 @@ await window.AirwallexComponentsSDK..createElement('dropIn', {
       currency: intent.currency ?? '',
 
       customer_id: intent.customer_id,
-
-      origin: window.location.origin,
 
       autoCapture: true,
 
@@ -188,7 +184,6 @@ await payment.createElement('dropIn', {
 
       customer_id: intent.customer_id,
 
-      origin: window.location.origin,
 
       autoCapture: true,
 
