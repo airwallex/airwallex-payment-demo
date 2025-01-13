@@ -44,8 +44,8 @@ For those using [Next.js](https://nextjs.org/) as their web framework, feel free
 
 You also can play around with the different web integrations with the sandboxes below:
 
-- [React-Typescript](https://codesandbox.io/p/sandbox/laughing-surf-4qgmhq)
-- [Static HTML](https://codesandbox.io/p/sandbox/nervous-hofstadter-qhjcn9)
+- [React-Typescript](https://codesandbox.io/p/sandbox/github/airwallex/airwallex-payment-demo/tree/master/integrations/react-ts)
+- [Static HTML](https://codesandbox.io/p/sandbox/github/airwallex/airwallex-payment-demo/tree/master/integrations/cdn)
 
 ## @Deprecated ways of integrating Airwallex
 
