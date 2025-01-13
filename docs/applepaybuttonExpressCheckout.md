@@ -2,32 +2,34 @@
 
 This comprehensive guide outlines the process of integrating Apple Pay express checkout using Airwallex Payment Elements, enabling a seamless payment experience for your users.
 
-## Step 1: Import Airwallex Payment Elements
+## Step 1: Import @airwallex/components-sdk
 
-Start by importing `airwallex-payment-elements` at the beginning of your file:
+Start by importing `@airwallex/components-sdk` at the beginning of your file:
 
 ```js
-import Airwallex from 'airwallex-payment-elements';
+import { init } from '@airwallex/components-sdk';
+
+await init({
+  env: 'demo', // Choose the Airwallex environment ('demo' | 'prod')
+  enabledElements: ['payments'],
+});
+
 ```
 
 Alternatively, include the bundle as a script in your HTML head:
 
 ```html
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
 ```
 
-## Step 2: Initialize the Airwallex Package
-
-Configure the Airwallex package with the appropriate environment:
-
 ```jsx
-Airwallex.init({
-  env: 'demo', // Choose Airwallex environment ('staging' | 'demo' | 'prod')
-  origin: window.location.origin, // Specify your event target for receiving browser events
+await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose Airwallex environment ( 'demo' | 'prod')
+  enabledElements: ['payments'],
 });
 ```
 
-## Step 3: Create a Container Element
+## Step 2: Create a Container Element
 
 Add an empty container to house the Apple Pay button:
 
@@ -35,12 +37,12 @@ Add an empty container to house the Apple Pay button:
 <div id="applePayButton"></div>
 ```
 
-## Step 4: Create the Apple Pay Button Element
+## Step 3: Create the Apple Pay Button Element
 
 Generate the Apple Pay button element with the desired configuration:
 
 ```jsx
-const element = Airwallex.createElement('applePayButton', {
+const element = window.AirwallexComponentsSDK.createElement('applePayButton', {
   countryCode: "HK", // You business's registration country
   amount: {
     value: '10',
@@ -53,7 +55,7 @@ const element = Airwallex.createElement('applePayButton', {
 });
 ```
 
-## Step 5: Mount the Apple Pay Button Element
+## Step 4: Mount the Apple Pay Button Element
 
 Attach the Apple Pay button element to the DOM:
 
@@ -63,7 +65,7 @@ const domElement = element.mount('applePayButton');
 
 Note: Ensure unique IDs across your document. Mount the element only once per payment flow.
 
-## Step 6: Implement a `validateMerchant` Event Listener
+## Step 5: Implement a `validateMerchant` Event Listener
 
 To handle merchant validation, send an asynchronous request to your backend server. Your server should call Airwallex's API to obtain the validation response. Once received, pass the JSON response back **unchanged** to complete the validation process.
 
@@ -115,7 +117,7 @@ curl --request POST \
 }'
 ```
 
-## Step 7: Implement an `authorized` Event Listener
+## Step 6: Implement an `authorized` Event Listener
 
 Manage the flow when a payment is authorized:
 
@@ -169,7 +171,7 @@ Note:
 * Your backend should create a payment intent by calling: `POST /api/v1/pa/payment_intents/create`
 * For comprehensive API documentation, visit: https://www.airwallex.com/docs/api#/Payment_Acceptance/Payment_Intents/_api_v1_pa_payment_intents_create/post
 
-## Step 8: Implement an `error` Event Listener
+## Step 7: Implement an `error` Event Listener
 
 Handle any errors that occur during the payment process:
 
@@ -180,7 +182,7 @@ element.on('error', (event) => {
 });
 ```
 
-## Step 9: (Optional) Implement a `ready` Event Listener
+## Step 8: (Optional) Implement a `ready` Event Listener
 
 Manage actions when the element is successfully mounted:
 
@@ -190,7 +192,7 @@ element.on('ready', (event) => {
 });
 ```
 
-## Step 10: (Optional) Implement a `click` Event Listener
+## Step 9: (Optional) Implement a `click` Event Listener
 
 Handle events when the Apple Pay button is clicked:
 
@@ -202,7 +204,7 @@ element.on('click', (event) => {
 
 Note: Updating amount and currency is not permitted when the Apple Pay button is clicked.
 
-## Step 11: (Optional) Implement a `shippingAddressChange` Event Listener
+## Step 10: (Optional) Implement a `shippingAddressChange` Event Listener
 
 Manage updates when the shipping address is modified:
 
@@ -273,7 +275,7 @@ addressUnserviceable
 unkown
 ```
 
-## Step 12: (Optional) Implement a `shippingMethodChange` Event Listener
+## Step 11: (Optional) Implement a `shippingMethodChange` Event Listener
 
 Handle updates when the shipping method is altered:
 
@@ -304,7 +306,7 @@ element.on('shippingMethodChange', async (event) => {
 });
 ```
 
-## Step 13: (Optional) Update Amount and Currency Before Button Click
+## Step 12: (Optional) Update Amount and Currency Before Button Click
 
 To modify the amount and currency before the Apple Pay button is clicked:
 
@@ -320,7 +322,7 @@ element.update({
 });
 ```
 
-## Step 14: (Optional) Canceling an Authorized Payment
+## Step 13: (Optional) Canceling an Authorized Payment
 
 In some scenarios, you may need to halt the payment process even after the user has authorized it. This step demonstrates how to cancel an authorization and stop the payment from proceeding.
 
@@ -368,6 +370,5 @@ if (isApplePaySupported()) {
     console.log("This browser does not support Apple Pay.");  
 }
 ```
-
 
 By following these steps, you'll successfully integrate Apple Pay express checkout using Airwallex Payment Elements, providing a smooth and efficient payment experience for your users.

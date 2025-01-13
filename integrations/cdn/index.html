@@ -6,60 +6,76 @@
  -->
 <!DOCTYPE html>
 <html>
-  <head lang="en">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Airwallex Payment Elements Playground</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Airwallex Payment Elements Playground</h1>
-    <p>See the below pages for a live demo!</p>
-    <p>
-      Be sure to update the <span id="code">intent_id</span> and
-      <span id="code">client_secret</span> to see the elements work ~
-    </p>
-    <div id="links">
-      <a href="/card.html">Card</a>
-      <a href="/hpp.html">Hosted Payment Page (HPP)</a>
-      <a href="/dropin.html">Dropin</a>
-      <a href="/full-featured-card.html">Full Feature Card</a>
-      <a href="/split-card.html">Split Card</a>
-      <a href="/wechat.html">Wechat</a>
-      <a href="/redirect.html">Redirect</a>
-      <a href="/3dsForNativeApi.html">3dsForNativeApi</a>
-    </div>
-    <h3>Here are some tips to help you navigate this project:</h3>
-    <div className="instruction-container">
-      <p id="bullet">1. Feeling confused about these Airwallex functions?</p>
-      <p>
-        Here is the documentation to all our airwallex-payment-elements
-        functions. You will find detailed guides to implementing each payment
-        method with different web frameworks as well as common errors.
+
+<head lang="en">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Components SDK Playground</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Add modern font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <h1>Airwallex payment element Playground</h1>
+      <p class="subtitle">See the below pages for a live demo!</p>
+      <p class="important-note">
+        Be sure to update the <code>intent_id</code> and
+        <code>client_secret</code> to see the elements work ~
       </p>
-      <a
-        href="https://github.com/airwallex/airwallex-payment-demo/tree/master/docs"
-        target="_blank"
-        rel="noreferrer"
-      >
-        https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
-      </a>
-      <p id="bullet">2. If you run into the following error:</p>
-      <p id="error" style="display: block">
-        Access denied, authentication failed
-      </p>
-      <p>
-        Remember to change the<span id="code">intent_id</span>and
-        <span id="code">client_secret</span>in your component file!
-      </p>
-      <p id="bullet">3. Send us your suggestions!</p>
-      <p>
-        Have some ideas on other ways to integrate
-        airwallex-payment-elements?&nbsp;
-        <a href="https://www.airwallex.com/contact-sales">Let us know!</a> We
-        want to build the best product for you.
-      </p>
-    </div>
-    <p id="author">Delivered by Airwallex</p>
-  </body>
+    </header>
+
+    <nav class="demo-links">
+      <a href="/card.html" class="demo-button">Card</a>
+      <a href="/hpp.html" class="demo-button">Hosted Payment Page (HPP)</a>
+      <a href="/dropin.html" class="demo-button">Dropin</a>
+      <a href="/split-card.html" class="demo-button">Split Card</a>
+      <a href="/3dsForNativeApi.html" class="demo-button">3DS For Native API</a>
+      <a href="/googlepay.html" class="demo-button">Google Pay</a>
+      <a href="/applepay.html" class="demo-button">Apple Pay</a>
+    </nav>
+
+    <section class="tips">
+      <h2>Here are some tips to help you navigate this project:</h2>
+      
+      <div class="tip-card">
+        <h3>1. Feeling confused about these Airwallex functions?</h3>
+        <p>
+          Here is the documentation to all our @airwallex/components-sdk
+          functions. You will find detailed guides to implementing each payment
+          method with different web frameworks as well as common errors.
+        </p>
+        <a href="https://airwallex.com/docs/js/" target="_blank" rel="noreferrer" class="docs-link">
+          Components-SDK Docs →
+        </a>
+      </div>
+
+      <div class="tip-card">
+        <h3>2. If you run into the following error:</h3>
+        <p class="error-message">Access denied, authentication failed</p>
+        <p>
+          Remember to change the <code>intent_id</code> and
+          <code>client_secret</code> in your component file!
+        </p>
+      </div>
+
+      <div class="tip-card">
+        <h3>3. Send us your suggestions!</h3>
+        <p>
+          Have some ideas on other ways to integrate
+          @airwallex/components-sdk?&nbsp;
+          <a href="https://www.airwallex.com/contact-sales">Let us know!</a> We
+          want to build the best product for you.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Delivered by Airwallex</p>
+    </footer>
+  </main>
+</body>
+
 </html>

@@ -1,4 +1,4 @@
-# Airwallex Payment Elements - Google Pay Button Integration
+# Components SDK - Google Pay Button Integration
 
 The Google Pay Button allows merchants to embed a google pay checkout option on their website. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex.
 
@@ -8,32 +8,39 @@ The Google Pay Button allows merchants to embed a google pay checkout option on 
 
 The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
 
-### 1. At the start of your file, import `airwallex-payment-elements`.
+### 1. Initialize Payment Object
+
+At the start of your file, initialize the Airwallex SDK. You can do this either by importing the SDK or adding it as a script in your HTML.
+
+#### Importing the SDK
 
 ```js
-import Airwallex from 'airwallex-payment-elements';
-```
+import { init } from '@airwallex/components-sdk';
 
-or add the bundle as a script in your HTML head
-
-```html
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
-```
-
-### 2. Initialize the Airwallex package with the appropriate environment
-
-```js
-Airwallex.init({
-  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-  origin: window.location.origin, // Setup your event target to receive the browser events message
+const { payments } = await init({
+  env: 'demo', // Choose the Airwallex environment ( 'demo', or 'prod')
+  enabledElements: ['payments'],
 });
 ```
 
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
+#### Adding the SDK as a Script
 
-The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
+Add the following script in your HTML `<head>`:
 
-### 3. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
+```html
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+```
+
+Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
+
+```js
+await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose the Airwallex environment ( 'demo', or 'prod')
+  enabledElements: ['payments'],
+});
+```
+
+### 2. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
 
 ```html
 <div id="googlePayButton"></div>
@@ -41,12 +48,13 @@ The Airwallex package only needs to be mounted once in an application (and every
 
 We will mount the card element into the empty div in step 5.
 
-### 4. Create the googlePayButton element
+### 3. Create the googlePayButton element
 
-This creates the specified [Element](/docs#Element) object. We specify the type as **`googlePayButton`**.
+This creates the specified [Element](/docs-components-sdk#Element) object. We specify the type as **`googlePayButton`**.
 
 ```js
-const element = Airwallex.createElement('googlePayButton', {
+import {createElement } from '@airwallex/components-sdk';
+const element = await createElement('googlePayButton', {
   intent: {
     // Required, googlePayButton uses intent_id and client_secret to prepare checkout
     id: 'replace-with-your-intent-id',
@@ -57,7 +65,7 @@ const element = Airwallex.createElement('googlePayButton', {
 
 You **must provide intent details** to create the googlePayButton element.
 
-There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
+There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs-components-sdk#createElement) for more details.
 
 ### 5. Mount the card element
 
@@ -71,10 +79,10 @@ This function will append the card element to your div with an id `googlePayButt
 
 The **element should only be mounted once** in a single payment flow.
 
-### 6. Add an `onReady` event listener to handle events when the element is mounted
+### 6. Add an `ready` event listener to handle events when the element is mounted
 
 ```js
-domElement.addEventListener('onReady', (event) => {
+element.on('ready', (event) => {
   /*
     ... Handle event
   */
@@ -84,10 +92,10 @@ domElement.addEventListener('onReady', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 7. Add an `onSuccess` event listener to handle events when the payment is successful.
+### 7. Add an `success` event listener to handle events when the payment is successful.
 
 ```js
-domElement.addEventListener('onSuccess', (event) => {
+element.on('success', (event) => {
   /*
     ... Handle event on success
   */
@@ -95,10 +103,10 @@ domElement.addEventListener('onSuccess', (event) => {
 });
 ```
 
-### 8. Add an `onError` event listener to handle events when the payment has failed.
+### 8. Add an `error` event listener to handle events when the payment has failed.
 
 ```js
-domElement.addEventListener('onError', (event) => {
+element.on('error', (event) => {
   /*
     ... Handle event on error
   */
@@ -110,11 +118,11 @@ domElement.addEventListener('onError', (event) => {
 
 ## Documentation
 
-See the full documentation for `airwallex-payment-elements` [here](/docs).
+See the full documentation for `@airwallex/components-sdk` [here](https://airwallex.com/docs/js/payments/googlepaybutton/).
 
 ## Integration Examples
 
-Check out [airwallex-payment-demo](/../../tree/master) for integration examples with different web frameworks!
+Check out [airwallex-payment-demo](../integrations/) for integration examples with different web frameworks!
 
 ## Full Code Example
 
@@ -125,8 +133,8 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- STEP #1: Import airwallex-payment-elements bundle -->
-    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+    <!-- STEP #1: Import @airwallex/components-sdk bundle -->
+    <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
   </head>
   <body>
     <h1>GooglePayButton integration</h1>
@@ -134,12 +142,12 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <div id="googlePayButton"></div>
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
-        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-        origin: window.location.origin, // Setup your event target to receive the browser events message
+      await window.AirwallexComponentsSDK.init({
+        env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
+        enabledElements: ['payments'],
       });
       // STEP #4: Create 'googlePayButton' element
-      const element = Airwallex.createElement('googlePayButton', {
+      const element = await window.AirwallexComponentsSDK.createElement('googlePayButton', {
           intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
           amount: {
@@ -150,15 +158,14 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           merchantInfo: {
             merchantName: 'replace-with-your-merchant-name',
           },
-          origin: window.location.origin,
           countryCode: 'replace-with-your-country-code', // merchant country code
-      
+  
       });
       // STEP #5: Mount 'googlePayButton' element
       const domElement = element.mount('googlePayButton');
 
       // STEP #6: Add an event listener to handle events when the element is mounted
-      domElement.addEventListener('onReady', (event) => {
+      element.on('ready', (event) => {
         /*
           ... Handle event
         */
@@ -166,7 +173,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to handle events when the payment is successful.
-      domElement.addEventListener('onSuccess', (event) => {
+      element.on('success', (event) => {
         /*
           ... Handle event on success
         */
@@ -174,7 +181,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #8: Add an event listener to handle events when the payment has failed.
-      domElement.addEventListener('onError', (event) => {
+      element.on('error', (event) => {
         /*
           ... Handle event on error
         */

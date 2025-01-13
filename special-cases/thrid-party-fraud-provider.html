@@ -2,179 +2,182 @@
   This is a sample Airwallex checkout page.
   This demos how to integrate with Airwallex Split Card to do recurring with third party fraud providers
  -->
- <!DOCTYPE html>
- <html>
-   <head lang="en">
-     <meta charset="utf-8" />
-     <link rel="stylesheet" href="style.css" />
-     <meta name="viewport" content="width=device-width, initial-scale=1" />
-     <title>Airwallex Checkout with third party fraud provider</title>
-     <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
-   </head>
- 
-   <body>
-     <h1>Split Card with third party fraud provider</h1>
-     <p id="loading">Loading...</p>
-     <div id="element" style="display: none;">
-       <div class="field-container">
-         <div>Card number</div>
-         <div id="cardNumber"></div>
-         <p id="cardNumber-error" style="color: red;"></p>
-       </div>
-       <div class="field-container">
-         <div>Expiry</div>
-         <div id="expiry"></div>
-         <p id="expiry-error" style="color: red;"></p>
-       </div>
-       <div class="field-container">
-         <div>Cvc</div>
-         <div id="cvc"></div>
-         <p id="cvc-error" style="color: red;"></p>
-       </div>
-       <button id="submit" disabled="true">Submit</button>
-     </div>
-     <p id="error"></p>
-     <p id="success">Payment Successful!</p>
-     <script>
-       let cardNumberElementInstance = null;
-       try {
-         Airwallex.init({
-           env: "staging",
-           origin: window.location.origin
-         });
- 
-         // STEP #1: Create split card elements and mount them to html
-         const cardNumber = Airwallex.createElement("cardNumber");
-         const expiry = Airwallex.createElement("expiry");
-         const cvc = Airwallex.createElement("cvc");
-         cardNumberElementInstance = cardNumber;
- 
-         // STEP #2a: mount cardNumberElement, expriyElement,cvcElement into the doms in web
-         cardNumber.mount("cardNumber");
-         expiry.mount("expiry");
-         cvc.mount("cvc");
-       } catch (error) {
-         document.getElementById("loading").style.display = "none";
-         document.getElementById("error").style.display = "block";
-         document.getElementById("error").innerHTML = error.message;
-         console.error("There was an error", error);
-       }
- 
-       const elementsReady = {
-         cardNumber: false,
-         expiry: false,
-         cvc: false
-       };
-       // STEP #2b: Add an event listener to ensure the element is mounted
-       const cardNumberElement = document.getElementById("cardNumber");
-       const expiryElement = document.getElementById("expiry");
-       const cvcElement = document.getElementById("cvc");
-       const domElementArray = [cardNumberElement, expiryElement, cvcElement];
- 
-       domElementArray.forEach((element) => {
-         element.addEventListener("onReady", (event) => {
-           const { type } = event.detail;
-           if (elementsReady.hasOwnProperty(type)) {
-             elementsReady[type] = true;
-           }
- 
-           if (!Object.values(elementsReady).includes(false)) {
-             document.getElementById("loading").style.display = "none";
-             document.getElementById("element").style.display = "block";
-           }
-         });
-       });
- 
-       const elementsCompleted = {
-         cardNumber: false,
-         expiry: false,
-         cvc: false
-       };
- 
-       // Step #2c: Add an event listener to ensure all element is completed
-       domElementArray.forEach((element) => {
-         element.addEventListener("onChange", (event) => {
-           const { type, complete } = event.detail;
-           if (elementsCompleted.hasOwnProperty(type)) {
-             elementsCompleted[type] = complete;
-           }
- 
-           const allElementsCompleted = !Object.values(
-             elementsCompleted
-           ).includes(false);
-           document.getElementById("submit").disabled = !allElementsCompleted;
-         });
-       });
- 
-       // STEP #3: Provide payment details and click pay
-       document.getElementById("submit").addEventListener("click", () => {
-         // STEP #4: Froze the page in case shopper change again
-         document.getElementById("loading").style.display = "block";
-         document.getElementById("submit").disabled = true;
- 
-         // STEP #5: Send request to your backend to get customer id and customer client secret
-         const customerId = 'MOCK_CUSTOMER_ID';
-         const customerClientSecret = 'MOCK_CUSTOMER_CLIENT_SECRET';
- 
-         // STEP #6: call createPaymentMethod function with customer id and customer client secret
-         Airwallex.createPaymentMethod(customerClientSecret, {
-           element: cardNumberElementInstance,
-           customer_id: customerId
-         })
-           .then((response) => {
-             // STEP #7: Get card info and call third party fraud provider
-             console.log("Call fraud provider with card info", response);
- 
-             // STEP #8a: If it is a fraud checkout show fraud popup
- 
-             // STEP #8b: If no fraud, continue to create intent
-             const intentId = "MOCK_INTENT_ID";
-             const intentClientSecret = "MOCK_INTENT_CLIENT_SECRET";
- 
-             // STEP #9: Call createPaymentConsent function with intent_id and payment_method_id
-             return Airwallex.createPaymentConsent({
-               element: cardNumberElementInstance,
-               intent_id: intentId,
-               client_secret: intentClientSecret,
-               customer_id: customerId,
-               next_triggered_by: "customer",
-               payment_method_id: response.id
-             });
-           })
-           .then((response) => {
-             //STEP10: Display payment status
-             console.log("create consent with intent success", response);
-             document.getElementById("error").style.display = "none";
-             document.getElementById("success").style.display = "block";
-             document.getElementById("loading").style.display = "none";
-             document.getElementById("submit").disabled = false;
-           })
-           .catch((response) => {
-             document.getElementById("error").style.display = "block"; // Example: show error block
-             document.getElementById("error").innerHTML = response.message; // Example: set error message
-             document.getElementById("loading").style.display = "none";
-             document.getElementById("submit").disabled = false;
-           });
-       });
-     </script>
-   </body>
-   <style>
-     #cardNumber,
-     #expiry,
-     #cvc {
-       border: 1px solid #612fff;
-       border-radius: 5px;
-       padding: 5px 10px;
-       width: 400px;
-       box-shadow: #612fff 0px 0px 0px 1px;
-       display: flex;
-       justify-content: center;
-       align-items: center;
-       margin-top: 5px;
-     }
-     #success {
-       display: none;
-     }
-   </style>
- </html>
- 
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Airwallex Checkout with third party fraud provider</title>
+  <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+</head>
+
+<body>
+  <h1>Split Card with third party fraud provider</h1>
+  <p id="loading">Loading...</p>
+  <div id="element" style="display: none;">
+    <div class="field-container">
+      <div>Card number</div>
+      <div id="cardNumber"></div>
+      <p id="cardNumber-error" style="color: red;"></p>
+    </div>
+    <div class="field-container">
+      <div>Expiry</div>
+      <div id="expiry"></div>
+      <p id="expiry-error" style="color: red;"></p>
+    </div>
+    <div class="field-container">
+      <div>Cvc</div>
+      <div id="cvc"></div>
+      <p id="cvc-error" style="color: red;"></p>
+    </div>
+    <button id="submit" disabled="true">Submit</button>
+  </div>
+  <p id="error"></p>
+  <p id="success">Payment Successful!</p>
+  <script>
+    let cardNumberElementInstance = null;
+    try {
+      await window.AirwallexComponentsSDK.init({
+        env: "staging",
+        enabledElements: ['payments'],
+      });
+
+      // STEP #1: Create split card elements and mount them to html
+      const cardNumber = window.AirwallexComponentsSDK.createElement("cardNumber");
+      const expiry = window.AirwallexComponentsSDK.createElement("expiry");
+      const cvc = window.AirwallexComponentsSDK.createElement("cvc");
+      cardNumberElementInstance = cardNumber;
+
+      // STEP #2a: mount cardNumberElement, expriyElement,cvcElement into the doms in web
+      cardNumber.mount("cardNumber");
+      expiry.mount("expiry");
+      cvc.mount("cvc");
+
+
+      const elementsReady = {
+        cardNumber: false,
+        expiry: false,
+        cvc: false
+      };
+      // STEP #2b: Add an event listener to ensure the element is mounted
+      const cardNumberElement = document.getElementById("cardNumber");
+      const expiryElement = document.getElementById("expiry");
+      const cvcElement = document.getElementById("cvc");
+      const domElementArray = [cardNumberElement, expiryElement, cvcElement];
+
+      domElementArray.forEach((element) => {
+        element.addEventListener("onReady", (event) => {
+          const { type } = event.detail;
+          if (elementsReady.hasOwnProperty(type)) {
+            elementsReady[type] = true;
+          }
+
+          if (!Object.values(elementsReady).includes(false)) {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("element").style.display = "block";
+          }
+        });
+      });
+
+      const elementsCompleted = {
+        cardNumber: false,
+        expiry: false,
+        cvc: false
+      };
+
+      // Step #2c: Add an event listener to ensure all element is completed
+      domElementArray.forEach((element) => {
+        element.addEventListener("onChange", (event) => {
+          const { type, complete } = event.detail;
+          if (elementsCompleted.hasOwnProperty(type)) {
+            elementsCompleted[type] = complete;
+          }
+
+          const allElementsCompleted = !Object.values(
+            elementsCompleted
+          ).includes(false);
+          document.getElementById("submit").disabled = !allElementsCompleted;
+        });
+      });
+
+      // STEP #3: Provide payment details and click pay
+      document.getElementById("submit").addEventListener("click", () => {
+        // STEP #4: Froze the page in case shopper change again
+        document.getElementById("loading").style.display = "block";
+        document.getElementById("submit").disabled = true;
+
+        // STEP #5: Send request to your backend to get customer id and customer client secret
+        const customerId = 'MOCK_CUSTOMER_ID';
+        const customerClientSecret = 'MOCK_CUSTOMER_CLIENT_SECRET';
+
+        // STEP #6: call createPaymentMethod function with customer id and customer client secret
+        cardNumberElement.createPaymentMethod(customerClientSecret, {
+          element: cardNumberElementInstance,
+          customer_id: customerId
+        })
+          .then((response) => {
+            // STEP #7: Get card info and call third party fraud provider
+            console.log("Call fraud provider with card info", response);
+
+            // STEP #8a: If it is a fraud checkout show fraud popup
+
+            // STEP #8b: If no fraud, continue to create intent
+            const intentId = "MOCK_INTENT_ID";
+            const intentClientSecret = "MOCK_INTENT_CLIENT_SECRET";
+
+            // STEP #9: Call createPaymentConsent function with intent_id and payment_method_id
+            return cardNumberElement.createPaymentConsent({
+              element: cardNumberElementInstance,
+              intent_id: intentId,
+              client_secret: intentClientSecret,
+              customer_id: customerId,
+              next_triggered_by: "customer",
+              payment_method_id: response.id
+            });
+          })
+          .then((response) => {
+            //STEP10: Display payment status
+            console.log("create consent with intent success", response);
+            document.getElementById("error").style.display = "none";
+            document.getElementById("success").style.display = "block";
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("submit").disabled = false;
+          })
+          .catch((response) => {
+            document.getElementById("error").style.display = "block"; // Example: show error block
+            document.getElementById("error").innerHTML = response.message; // Example: set error message
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("submit").disabled = false;
+          });
+      });
+    } catch (error) {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("error").style.display = "block";
+      document.getElementById("error").innerHTML = error.message;
+      console.error("There was an error", error);
+    }
+  </script>
+</body>
+<style>
+  #cardNumber,
+  #expiry,
+  #cvc {
+    border: 1px solid #612fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 400px;
+    box-shadow: #612fff 0px 0px 0px 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+  }
+
+  #success {
+    display: none;
+  }
+</style>
+
+</html>

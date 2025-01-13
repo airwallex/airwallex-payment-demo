@@ -1,118 +1,133 @@
-# Airwallex Payment Elements - Apple Pay Button Integration
+# Components SDK - Apple Pay Button Integration
 
-The Apple Pay Button allows merchants to embed a apple pay checkout option on their website. This element gives merchant control over the overall look and feel of their checkout page, while delegating the responsibility of payment processing to Airwallex.
+The Apple Pay Button allows merchants to seamlessly embed an Apple Pay checkout option on their website. This empowers merchants to control the overall look and feel of their checkout page while offloading payment processing tasks to Airwallex.
 
-\* _An example of a Apple Pay Button element._
+**Example of an Apple Pay Button integration**
 
-## Guide
+## Integration Guide
 
-The following steps demonstrates the best practices to integrating with our payment platform. Code is in Javascript.
+Follow these steps to integrate the Apple Pay Button using our SDK. The code samples are provided in JavaScript.
 
-### 1. At the start of your file, import `airwallex-payment-elements`.
+### 1. Initialize Payment Object
 
-```js
-import Airwallex from 'airwallex-payment-elements';
-```
+At the start of your file, initialize the Airwallex SDK. You can do this either by importing the SDK or adding it as a script in your HTML.
 
-or add the bundle as a script in your HTML head
-
-```html
-<script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
-```
-
-### 2. Initialize the Airwallex package with the appropriate environment
+#### Importing the SDK
 
 ```js
-Airwallex.init({
-  env: 'demo', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-  origin: window.location.origin, // Setup your event target to receive the browser events message
+import { init } from '@airwallex/components-sdk';
+
+await init({
+  env: 'demo', // Choose the Airwallex environment ( 'demo', or 'prod')
+  enabledElements: ['payments'],
 });
 ```
 
-`init` takes in options to set up the payment environment. See docs for further customizations [here](/docs#init).
+#### Adding the SDK as a Script
 
-The Airwallex package only needs to be mounted once in an application (and everytime the application reloads).
+Add the following script in your HTML `<head>`:
 
-### 3. Add an empty container for the card element to be injected into and a submit button to trigger the payment request
+```html
+<script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+```
+
+Then, initialize the SDK using the global `AirwallexComponentsSDK` object:
+
+```js
+ await window.AirwallexComponentsSDK.init({
+  env: 'demo', // Choose the Airwallex environment ( 'demo', or 'prod')
+});
+```
+
+### 2. Create a Container for the Apple Pay Button
+
+Add an empty container in your HTML where the Apple Pay Button will be injected:
 
 ```html
 <div id="applePayButton"></div>
 ```
 
-We will mount the card element into the empty div in step 5.
+This container will be used to mount the Apple Pay Button element in a later step.
 
-### 4. Create the applePayButton element
+### 3. Create the Apple Pay Button Element
 
-This creates the specified [Element](/docs#Element) object. We specify the type as **`applePayButton`**.
+Create the `applePayButton` element using payment object. This element is created with intent details, which are required for preparing the checkout.
 
 ```js
-const element = Airwallex.createElement('applePayButton', {
-  // Required, apple pay button uses intent_id and client_secret to prepare checkout
-  intent_id: 'replace-with-your-intent-id',
-  client_secret: 'replace-with-your-client-secret',
+
+import { createElement } from '@airwallex/components-sdk';
+const element = await createElement('applePayButton', {
+  intent_id: 'replace-with-your-intent-id', // Replace with your intent ID
+  client_secret: 'replace-with-your-client-secret', // Replace with your client secret
 });
 ```
 
-You **must provide intent details** to create the applePayButton element.
+Additional options can be provided as a second parameter to the `createElement` function for overwriting styles and other functionalities. Refer to the [SDK documentation](https://docs.airwallex.com/components-sdk#createElement) for more details.
 
-There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs#createElement) for more details.
+### 4. Mount the Apple Pay Button Element
 
-### 5. Mount the card element
-
-Next, we need to mount the card element to the DOM.
+Mount the Apple Pay Button element to the DOM by appending it to your designated container:
 
 ```js
 const domElement = element.mount('applePayButton');
 ```
 
-This function will append the card element to your div with an id `applePayButton` as created in step 3. **Ensure that there are no other elements in the document with the same id**.
+**Note:** Ensure that there are no other elements with the same ID in the document. An element should only be mounted once within a single payment flow.
 
-The **element should only be mounted once** in a single payment flow.
+### 5. Handle the `ready` Event
 
-### 6. Add an `onReady` event listener to handle events when the element is mounted
+Add an `ready` event listener to manage events when the element is successfully mounted:
 
 ```js
-domElement.addEventListener('onReady', (event) => {
-  /*
-    ... Handle event
-  */
-  window.alert(event.detail);
+element.on('ready', (event) => {
+  // Handle the onReady event
+  console.log('Apple Pay Button is ready:', event.detail);
 });
 ```
 
-This can be used to set a loading state as the checkout screen is being prepared.
+This event can be used to set a loading state while the checkout screen is being prepared.
 
-### 7. Add an `onSuccess` event listener to handle events when the payment is successful.
+### 6. Handle the `onSuccess` Event
+
+Add an `success` event listener to manage events when the payment is successful:
 
 ```js
-domElement.addEventListener('onSuccess', (event) => {
-  /*
-    ... Handle event on success
-  */
-  window.alert(event.detail);
+element.on('success', (event) => {
+  // Handle the onSuccess event
+  console.log('Payment successful:', event.detail);
 });
 ```
 
-### 8. Add an `onError` event listener to handle events when the payment has failed.
+### 7. Handle the `error` Event
+
+Add an `error` event listener to manage events when the payment fails:
 
 ```js
-domElement.addEventListener('onError', (event) => {
-  /*
-    ... Handle event on error
-  */
-  window.alert(event.detail);
+element.on('error', (event) => {
+  // Handle the onError event
+  console.log('Payment failed:', event.detail);
 });
 ```
 
-### 9. Beautify and deploy!
+### 8. Beautify and Deploy
+
+Ensure that your integration is visually appealing and thoroughly tested. Once satisfied, deploy your changes to your production environment.
+
+By following these steps, you can successfully integrate the Apple Pay Button on your website and provide a smooth checkout experience for your customers. For comprehensive details, refer to the [Airwallex Components SDK documentation](https://docs.airwallex.com/components-sdk).
+
+Happy coding!
+
+---
+
+This concludes the enhanced readme for integrating the Apple Pay Button using the Airwallex Components SDK. If you have any questions or need further assistance, please refer to our support resources.
 
 ## Documentation
 
-See the full documentation for `airwallex-payment-elements` [here](/docs).
+See the full documentation for `@airwallex/components-sdk` [here](/docs-components-sdk).
 
 ## Integration Examples
 
-Check out [airwallex-payment-demo](/../../tree/master) for integration examples with different web frameworks!
+Check out [airwallex-payment-demo](../integrations/) for integration examples with different web frameworks!
 
 ## Full Code Example
 
@@ -123,8 +138,8 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Airwallex Checkout Playground</title>
-    <!-- STEP #1: Import airwallex-payment-elements bundle -->
-    <script src="https://checkout.airwallex.com/assets/elements.bundle.min.js"></script>
+    <!-- STEP #1: Import @airwallex/components-sdk bundle -->
+    <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
   </head>
   <body>
     <h1>ApplePayButton integration</h1>
@@ -132,12 +147,12 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <div id="applePayButton"></div>
     <script>
       // STEP #2: Initialize the Airwallex global context for event communication
-      Airwallex.init({
-        env: 'staging', // Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with
-        origin: window.location.origin, // Setup your event target to receive the browser events message
+      await window.AirwallexComponentsSDK.init({
+        env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
+        enabledElements: ['payments'],
       });
       // STEP #4: Create 'fullFeaturedCard' element
-      const element = Airwallex.createElement('applePayButton', {
+      const element = await window.AirwallexComponentsSDK.createElement('applePayButton', {
         // Required, fullFeaturedCard use intent Id and client_secret to prepare checkout
         intent_id: 'replace-with-your-intent-id',
         client_secret: 'replace-with-your-client-secret',
@@ -145,14 +160,13 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           value: 'replace-with-your-intent-amount',
           currency: 'replace-with-your-intent-currency',
         },
-        origin: window.location.origin,
         countryCode: 'replace-with-your-country-code', // merchant country code
       });
       // STEP #5: Mount 'fullFeaturedCard' element
       const domElement = element.mount('applePayButton');
 
       // STEP #6: Add an event listener to handle events when the element is mounted
-      domElement.addEventListener('onReady', (event) => {
+      element.on('ready', (event) => {
         /*
           ... Handle event
         */
@@ -160,7 +174,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #7: Add an event listener to handle events when the payment is successful.
-      domElement.addEventListener('onSuccess', (event) => {
+      element.on('success', (event) => {
         /*
           ... Handle event on success
         */
@@ -168,7 +182,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
       });
 
       // STEP #8: Add an event listener to handle events when the payment has failed.
-      domElement.addEventListener('onError', (event) => {
+      element.on('error', (event) => {
         /*
           ... Handle event on error
         */
