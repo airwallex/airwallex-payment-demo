@@ -9,10 +9,10 @@
   dependencies:
     web-vitals "^3.5.1"
 
-"@airwallex/components-sdk@^1.17.0":
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/@airwallex/components-sdk/-/components-sdk-1.17.0.tgz#075f372551c099174c7a199cb452fcfd7ddfbd74"
-  integrity sha512-ze5ESUZi182d96ldgrzRilcl6YTipl2CS9jWgdtT4KXeqeu/xoLZOF3degQLLub2zbPVrF9TOQGG6ISjSTcghQ==
+"@airwallex/components-sdk@^1.17.2":
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/@airwallex/components-sdk/-/components-sdk-1.17.2.tgz#aab48472ebc5e4a53d69248e74c3273174a1ab42"
+  integrity sha512-ffenLfU6SkIfBVf+dnl+uR7IjPCuBS084Mfo4PhcspGjs4On7T1v/heuBIRWOH56kbNNnyOEtlvt2v7pYPvTWA==
   dependencies:
     "@airwallex/airtracker" "1.2.0"
 
