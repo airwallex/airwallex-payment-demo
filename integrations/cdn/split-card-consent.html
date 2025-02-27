@@ -89,7 +89,6 @@
           type: 'cardNumber',
           client_secret: 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTEwMDAyNDksImV4cCI6MTcxMTAwMzg0OSwidHlwZSI6ImNsaWVudC1zZWNyZXQiLCJwYWRjIjoiSEsiLCJhY2NvdW50X2lkIjoiMmRlNDY5MTYtYWZhZC00NmUwLTg4MDgtZDYyYjBiOTY5OTlkIiwiaW50ZW50X2lkIjoiaW50X2hrZG05Z2tjbWd1aHludnNrenoiLCJjdXN0b21lcl9pZCI6ImN1c19oa2RtOWdrY21ndWh4ZWdod2xnIiwiYnVzaW5lc3NfbmFtZSI6IkRlbW8gWUxYIn0.e8I8hPTgA1c1o0qHAxwnzUWXt71QHSuoHXIjklV4QHc', // client secret
           currency: 'CNY', // currency
-          element: Airwallex.getElement('cardNumber'), // either the card element or card number element depends on the element you integrate,
           next_triggered_by: 'merchant' // 'merchant' for MIT and 'customer' for CIT
         }).then((response) => {
           // STEP #6b: Listen to the request response
