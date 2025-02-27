@@ -94,6 +94,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <!-- STEP #3: Add a checkout button -->
     <button id="hpp">Redirect to HPP for checkout</button>
     <script>
+      (async () => {
       // STEP #2: Initialize the Airwallex package with the appropriate environment
       const { payments } = await window.AirwallexComponentsSDK.init({
         env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
@@ -104,12 +105,13 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
         payments.redirectToCheckout({
           env: 'demo', // Which env( 'demo' | 'prod') you would like to integrate with
           mode: 'payment',
-          intent_id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret',
-          currency: 'replace-with-your-currency',
-          country_code: 'replace-with-your-country-code'
+            intent_id: 'replace-with-your-intent-id',
+            client_secret: 'replace-with-your-client-secret',
+            currency: 'replace-with-your-currency',
+            country_code: 'replace-with-your-country-code'
+          });
         });
-      });
+      })();
     </script>
   </body>
 </html>
