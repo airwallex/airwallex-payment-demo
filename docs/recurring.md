@@ -95,52 +95,54 @@ More details about the `createPaymentConsent` function can be found [here](/docs
     <button id="submit">Submit</button>
 
     <script>
-      // STEP #2: Initialize the Airwallex global context for event communication
-      await window.AirwallexComponentsSDK.init({
-        env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
-        enabledElements: ['payments'],
-      });
-      // STEP #4: Create split card elements
-      const cardNumber = await window.AirwallexComponentsSDK.createElement('cardNumber');
-      const expiry = await window.AirwallexComponentsSDK.createElement('expiry');
-      const cvc = await window.AirwallexComponentsSDK.createElement('cvc');
-
-      // STEP #5: Mount split card elements
-      const domElement = cardNumber.mount('cardNumber');
-      expiry.mount('expiry');
-      cvc.mount('cvc');
-
-      // STEP #6a: Add a button handler to trigger the payment request
-      document.getElementById('submit').addEventListener('click', () => {
-       cardNumber.createPaymentConsent({
-          intent_id: 'replace-with-your-intent-id', // intent id(Optional)
-          customer_id: 'replace-with-your-customer-id', // customer id
-          client_secret: 'replace-with-your-client-secret', // client secret
-          currency: 'replace-with-your-currency', // currency
-          element: cardElement, // either the card element or card number element depends on the element you integrate,
-          next_triggered_by: 'customer' // 'merchant' for MIT and 'customer' for CIT
-        }).then((response) => {
-          // STEP #6b: Listen to the request response
-          /* handle create consent response in your business flow */
-          window.alert(JSON.stringify(response));
+      (async () => {
+        // STEP #2: Initialize the Airwallex global context for event communication
+        await window.AirwallexComponentsSDK.init({
+          env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
+          enabledElements: ['payments'],
         });
-      });
+        // STEP #4: Create split card elements
+        const cardNumber = await window.AirwallexComponentsSDK.createElement('cardNumber');
+        const expiry = await window.AirwallexComponentsSDK.createElement('expiry');
+        const cvc = await window.AirwallexComponentsSDK.createElement('cvc');
 
-      // STEP #7: Add an event listener to ensure the element is mounted
-      cardNumber.on('ready', (event) => {
-        /*
-        ... Handle event
-         */
-        window.alert(event.detail);
-      });
+        // STEP #5: Mount split card elements
+        const domElement = cardNumber.mount('cardNumber');
+        expiry.mount('expiry');
+        cvc.mount('cvc');
 
-      // STEP #8: Add an event listener to listen to the changes in each of the input fields
-      cardNumber.on('change', (event) => {
-        /*
-        ... Handle event
-         */
-        window.alert(event.detail);
-      });
+        // STEP #6a: Add a button handler to trigger the payment request
+        document.getElementById('submit').addEventListener('click', () => {
+        cardNumber.createPaymentConsent({
+            intent_id: 'replace-with-your-intent-id', // intent id(Optional)
+            customer_id: 'replace-with-your-customer-id', // customer id
+            client_secret: 'replace-with-your-client-secret', // client secret
+            currency: 'replace-with-your-currency', // currency
+            element: cardElement, // either the card element or card number element depends on the element you integrate,
+            next_triggered_by: 'customer' // 'merchant' for MIT and 'customer' for CIT
+          }).then((response) => {
+            // STEP #6b: Listen to the request response
+            /* handle create consent response in your business flow */
+            window.alert(JSON.stringify(response));
+          });
+        });
+
+        // STEP #7: Add an event listener to ensure the element is mounted
+        cardNumber.on('ready', (event) => {
+          /*
+          ... Handle event
+          */
+          window.alert(event.detail);
+        });
+
+        // STEP #8: Add an event listener to listen to the changes in each of the input fields
+        cardNumber.on('change', (event) => {
+          /*
+          ... Handle event
+          */
+          window.alert(event.detail);
+        });
+      })();
     </script>
   </body>
 </html>

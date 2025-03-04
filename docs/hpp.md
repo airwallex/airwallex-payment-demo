@@ -95,16 +95,17 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <button id="hpp">Redirect to HPP for checkout</button>
     <script>
       (async () => {
-      // STEP #2: Initialize the Airwallex package with the appropriate environment
-      const { payments } = await window.AirwallexComponentsSDK.init({
-        env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
-        enabledElements: ['payments'],
-      });
-      document.getElementById('hpp').addEventListener('click', () => {
-        // STEP #4: Add a button handler to trigger the redirect to HPP
-        payments.redirectToCheckout({
-          env: 'demo', // Which env( 'demo' | 'prod') you would like to integrate with
-          mode: 'payment',
+        // STEP #2: Initialize the Airwallex package with the appropriate environment
+        const { payments } = await window.AirwallexComponentsSDK.init({
+          env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
+          enabledElements: ['payments'],
+        });
+
+        document.getElementById('hpp').addEventListener('click', () => {
+          // STEP #4: Add a button handler to trigger the redirect to HPP
+          payments.redirectToCheckout({
+            env: 'demo', // Which env( 'demo' | 'prod') you would like to integrate with
+            mode: 'payment',
             intent_id: 'replace-with-your-intent-id',
             client_secret: 'replace-with-your-client-secret',
             currency: 'replace-with-your-currency',

@@ -54,11 +54,11 @@ This container will be used to mount the Apple Pay Button element in a later ste
 Create the `applePayButton` element using payment object. This element is created with intent details, which are required for preparing the checkout.
 
 ```js
-
 import { createElement } from '@airwallex/components-sdk';
+
 const element = await createElement('applePayButton', {
-  intent_id: 'replace-with-your-intent-id', // Replace with your intent ID
-  client_secret: 'replace-with-your-client-secret', // Replace with your client secret
+  intent_id: 'replace-with-your-intent-id',
+  client_secret: 'replace-with-your-client-secret',
 });
 ```
 
@@ -134,24 +134,27 @@ Check out [airwallex-payment-demo](../integrations/) for integration examples wi
 ```html
 <!DOCTYPE html>
 <html>
-  <head lang="en">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Airwallex Checkout Playground</title>
-    <!-- STEP #1: Import @airwallex/components-sdk bundle -->
-    <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
-  </head>
-  <body>
-    <h1>ApplePayButton integration</h1>
-    <!-- STEP #3: Add an empty container for the fullFeaturedCard element to be injected into -->
-    <div id="applePayButton"></div>
-    <script>
-      // STEP #2: Initialize the Airwallex global context for event communication
+<head lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Airwallex Checkout Playground</title>
+  <!-- STEP #1: Import @airwallex/components-sdk bundle -->
+  <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+</head>
+<body>
+  <h1>ApplePayButton integration</h1>
+  <!-- STEP #3: Add an empty container for the Apple Pay Button -->
+  <div id="applePayButton"></div>
+  
+  <script>
+    (async () => {
+      // STEP #2: Initialize the Airwallex global context
       await window.AirwallexComponentsSDK.init({
-        env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
+        env: 'demo',
         enabledElements: ['payments'],
       });
-      // STEP #4: Create 'fullFeaturedCard' element
+
+      // STEP #4: Create Apple Pay Button element
       const element = await window.AirwallexComponentsSDK.createElement('applePayButton', {
         // Required, fullFeaturedCard use intent Id and client_secret to prepare checkout
         intent_id: 'replace-with-your-intent-id',
@@ -162,33 +165,26 @@ Check out [airwallex-payment-demo](../integrations/) for integration examples wi
         },
         countryCode: 'replace-with-your-country-code', // merchant country code
       });
-      // STEP #5: Mount 'fullFeaturedCard' element
+
+      // STEP #5: Mount the element
       const domElement = element.mount('applePayButton');
 
-      // STEP #6: Add an event listener to handle events when the element is mounted
+      // STEP #6: Handle ready event
       element.on('ready', (event) => {
-        /*
-          ... Handle event
-        */
         window.alert(event.detail);
       });
 
-      // STEP #7: Add an event listener to handle events when the payment is successful.
+      // STEP #7: Handle success event
       element.on('success', (event) => {
-        /*
-          ... Handle event on success
-        */
         window.alert(event.detail);
       });
 
-      // STEP #8: Add an event listener to handle events when the payment has failed.
+      // STEP #8: Handle error event
       element.on('error', (event) => {
-        /*
-          ... Handle event on error
-        */
         console.log(event.detail);
       });
-    </script>
-  </body>
+    })();
+  </script>
+</body>
 </html>
 ```

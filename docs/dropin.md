@@ -171,52 +171,56 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <!-- STEP #3: Add an empty container for the dropIn element to be injected into -->
     <div id="dropIn"></div>
     <script>
-      // STEP #2: Initialize the Airwallex global context for event communication
-      await window.AirwallexComponentsSDK.init({
-        env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
-        enabledElements: ['payments'],
-      });
-      // STEP #4: Create 'dropIn' element
-    await window.AirwallexComponentsSDK.createElement('dropIn', {
-        // Required, dropIn use intent Id and client_secret to prepare checkout
-        intent_id: 'replace-with-your-intent-id',
-        client_secret: 'replace-with-your-client-secret',
-        currency: 'replace-with-your-intent-currency',
-        // if you want to use apple pay, please pass merchant country code in applePayRequestOptions
-        applePayRequestOptions: {
-          countryCode: 'replace-with-your-country-code',
-        },
-        // if you want to use google pay, please pass merchant country code in googlePayRequestOptions
-        googlePayRequestOptions: {
-          countryCode: 'replace-with-your-country-code',
-        },
-      });
-      // STEP #5: Mount 'dropIn' element
-      const domElement = dropIn.mount('dropIn');
+      (async () => {
+        // STEP #2: Initialize the Airwallex global context for event communication
+        await window.AirwallexComponentsSDK.init({
+          env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
+          enabledElements: ['payments'],
+        });
 
-      // STEP #6: Add an event listener to handle events when the element is mounted
-      dropIn.on('ready', (event) => {
-        /*
-          ... Handle event
-        */
-        window.alert(event.detail);
-      });
+        // STEP #4: Create 'dropIn' element
+        const dropIn = await window.AirwallexComponentsSDK.createElement('dropIn', {
+          // Required, dropIn use intent Id and client_secret to prepare checkout
+          intent_id: 'replace-with-your-intent-id',
+          client_secret: 'replace-with-your-client-secret',
+          currency: 'replace-with-your-intent-currency',
+          // if you want to use apple pay, please pass merchant country code in applePayRequestOptions
+          applePayRequestOptions: {
+            countryCode: 'replace-with-your-country-code',
+          },
+          // if you want to use google pay, please pass merchant country code in googlePayRequestOptions
+          googlePayRequestOptions: {
+            countryCode: 'replace-with-your-country-code',
+          },
+        });
 
-      // STEP #7: Add an event listener to handle events when the payment is successful.
-      dropIn.on('success', (event) => {
-        /*
-          ... Handle event on success
-        */
-        window.alert(event.detail);
-      });
+        // STEP #5: Mount 'dropIn' element
+        const domElement = dropIn.mount('dropIn');
 
-      // STEP #8: Add an event listener to handle events when the payment has failed.
-      dropIn.on('error', (event) => {
-        /*
-          ... Handle event on error
-        */
-        console.log(event.detail);
-      });
+        // STEP #6: Add an event listener to handle events when the element is mounted
+        dropIn.on('ready', (event) => {
+          /*
+            ... Handle event
+          */
+          window.alert(event.detail);
+        });
+
+        // STEP #7: Add an event listener to handle events when the payment is successful.
+        dropIn.on('success', (event) => {
+          /*
+            ... Handle event on success
+          */
+          window.alert(event.detail);
+        });
+
+        // STEP #8: Add an event listener to handle events when the payment has failed.
+        dropIn.on('error', (event) => {
+          /*
+            ... Handle event on error
+          */
+          console.log(event.detail);
+        });
+      })();
     </script>
   </body>
 </html>
