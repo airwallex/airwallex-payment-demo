@@ -108,7 +108,7 @@ card.on('ready', (event) => {
 
 This can be used to set a loading state as the checkout screen is being prepared.
 
-### 8. Beautify and deploy!
+### 7. Beautify and deploy!
 
 ## Documentation
 
@@ -143,43 +143,45 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     <button id="submit">Submit</button>
 
     <script>
-      // STEP #2: Initialize the Airwallex global context for event communication
-      await window.AirwallexComponentsSDK.init({
-        env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
-        enabledElements: ['payments'],
-      });
-      // STEP #4: Create 'card' element
-      const card = await window.AirwallexComponentsSDK.createElement('card');
+      (async () => {
+        // STEP #2: Initialize the Airwallex global context for event communication
+        await window.AirwallexComponentsSDK.init({
+          env: 'demo', // Setup which Airwallex env('demo' | 'prod') to integrate with
+          enabledElements: ['payments'],
+        });
+        // STEP #4: Create 'card' element
+        const card = await window.AirwallexComponentsSDK.createElement('card');
 
-      // STEP #5: Mount card element
-      const domElement = card.mount('card');
+        // STEP #5: Mount card element
+        const domElement = card.mount('card');
 
-      // STEP #6a: Add a button handler to trigger the payment request
-      document.getElementById('submit').addEventListener('click', () => {
-        card.confirm({
-          element: card,
-          intent_id: 'replace-with-your-intent-id',
-          client_secret: 'replace-with-your-client-secret',
-        })
-          .then((response) => {
-            // STEP #6b: Listen to the request response
-            /* handle confirm response*/
-            window.alert(JSON.stringify(response));
+        // STEP #6a: Add a button handler to trigger the payment request
+        document.getElementById('submit').addEventListener('click', () => {
+          card.confirm({
+            element: card,
+            intent_id: 'replace-with-your-intent-id',
+            client_secret: 'replace-with-your-client-secret',
           })
-          .catch((response) => {
-            // STEP #6c: Listen to the error response
-            /* handle error response*/
-            console.log('There was an error', response);
-          });
-      });
+            .then((response) => {
+              // STEP #6b: Listen to the request response
+              /* handle confirm response*/
+              window.alert(JSON.stringify(response));
+            })
+            .catch((response) => {
+              // STEP #6c: Listen to the error response
+              /* handle error response*/
+              console.log('There was an error', response);
+            });
+        });
 
-      // STEP #7: Add an event listener to ensure the element is mounted
-      card.on('ready', (event) => {
-        /*
-        ... Handle event
-         */
-        window.alert(event.detail);
-      });
+        // STEP #7: Add an event listener to ensure the element is mounted
+        card.on('ready', (event) => {
+          /*
+          ... Handle event
+          */
+            window.alert(event.detail);
+          });
+      })();
     </script>
   </body>
 </html>

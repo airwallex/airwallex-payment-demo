@@ -154,44 +154,46 @@ cvc.on('change', (event) => {
     <button id="submit">Submit</button>
 
     <script>
-      // STEP #2: Initialize the Airwallex global context for event communication
-      await window.AirwallexComponentsSDK.init({
-        env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
-        enabledElements: ['payments'],
-      });
-      // STEP #4: Create cvc element
-      const cvcElement = await window.AirwallexComponentsSDK.createElement('cvc');
-
-      // STEP #5: Mount cvc element
-      const domElement = cvcElement.mount('cvc');
-
-      // STEP #6a: Add a button handler to trigger the payment request
-      document.getElementById('submit').addEventListener('click', () => {
-        const confirmRes = await cvcElement.confirm({
-          id: intent.id,
-          customerId: 'replace-with-your-customer-id', // customer id
-          client_secret: 'replace-with-your-client-secret', // client secret
-          element: cvcElement,
-          payment_consent_id: 'replace-with-your-payment-consent-id', // payment consent id,
+      (async () => {
+        // STEP #2: Initialize the Airwallex global context for event communication
+        await window.AirwallexComponentsSDK.init({
+          env: 'demo', // Setup which Airwallex env( 'demo' | 'prod') to integrate with
+          enabledElements: ['payments'],
         });
-        window.alert(JSON.stringify(confirmRes));
-      });
+        // STEP #4: Create cvc element
+        const cvcElement = await window.AirwallexComponentsSDK.createElement('cvc');
 
-      // STEP #7: Add an event listener to ensure the element is mounted
-      cvcElement.on('ready', (event) => {
-        /*
-        ... Handle event
-         */
-        window.alert(event.detail);
-      });
+        // STEP #5: Mount cvc element
+        const domElement = cvcElement.mount('cvc');
 
-      // STEP #8: Add an event listener to listen to the changes in each of the input fields
-      cvcElement.on('change', (event) => {
-        /*
-        ... Handle event
-         */
-        window.alert(event.detail);
-      });
+        // STEP #6a: Add a button handler to trigger the payment request
+        document.getElementById('submit').addEventListener('click', () => {
+          const confirmRes = await cvcElement.confirm({
+            id: intent.id,
+            customerId: 'replace-with-your-customer-id', // customer id
+            client_secret: 'replace-with-your-client-secret', // client secret
+            element: cvcElement,
+            payment_consent_id: 'replace-with-your-payment-consent-id', // payment consent id,
+          });
+          window.alert(JSON.stringify(confirmRes));
+        });
+
+        // STEP #7: Add an event listener to ensure the element is mounted
+        cvcElement.on('ready', (event) => {
+          /*
+          ... Handle event
+          */
+          window.alert(event.detail);
+        });
+
+        // STEP #8: Add an event listener to listen to the changes in each of the input fields
+        cvcElement.on('change', (event) => {
+          /*
+          ... Handle event
+          */
+            window.alert(event.detail);
+        });
+      })();
     </script>
   </body>
 </html>
