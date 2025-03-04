@@ -150,15 +150,15 @@ Check out [airwallex-payment-demo](../integrations/) for integration examples wi
     (async () => {
       // STEP #2: Initialize the Airwallex global context
       await window.AirwallexComponentsSDK.init({
-        env: 'demo',
+        env: 'demo',  // Setup which Airwallex env('demo' | 'prod') to integrate with
         enabledElements: ['payments'],
       });
 
       // STEP #4: Create Apple Pay Button element
       const element = await window.AirwallexComponentsSDK.createElement('applePayButton', {
         // Required, fullFeaturedCard use intent Id and client_secret to prepare checkout
-        intent_id: 'replace-with-your-intent-id',
-        client_secret: 'replace-with-your-client-secret',
+        intent_id: 'replace-with-your-intent-id', // Replace with your intent ID
+        client_secret: 'replace-with-your-client-secret', // Replace with your client secret
         amount: {
           value: 'replace-with-your-intent-amount',
           currency: 'replace-with-your-intent-currency',
