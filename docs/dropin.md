@@ -82,7 +82,7 @@ const element = await createElement('dropIn', {
 
 You **must provide intent details** to create the dropIn element.
 
-There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](/docs-components-sdk#createElement) for more details.
+There are also additional options as a second parameter to the `createElement` function that can overwrite styles and other functions. [See docs](https://www.airwallex.com/docs/js/payments/dropin/#createElement) for more details.
 
 ### 4. Mount the card element
 
