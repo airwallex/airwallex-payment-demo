@@ -112,7 +112,7 @@ This can be used to set a loading state as the checkout screen is being prepared
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here]([/docs](https://airwallex.com/docs/js/payments/card/)).
+See the full documentation for `@airwallex/components-sdk` [here](https://www.airwallex.com/docs/js/payments/card/).
 
 ## Integration Examples
 

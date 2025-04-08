@@ -123,7 +123,7 @@ This concludes the enhanced readme for integrating the Apple Pay Button using th
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here](/docs-components-sdk).
+See the full documentation for `@airwallex/components-sdk` [here](https://www.airwallex.com/docs/js/payments/applepaybutton/).
 
 ## Integration Examples
 

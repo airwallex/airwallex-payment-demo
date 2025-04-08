@@ -142,7 +142,7 @@ cardNumber.on('change', (event) => {
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here](/docs).
+See the full documentation for `@airwallex/components-sdk` [here](https://www.airwallex.com/docs/js/payments/card-number/).
 
 ## Integration Examples
 
