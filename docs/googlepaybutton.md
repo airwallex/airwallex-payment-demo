@@ -118,7 +118,7 @@ element.on('error', (event) => {
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here](https://airwallex.com/docs/js/payments/googlepaybutton/).
+See the full documentation for `@airwallex/components-sdk` [here](https://www.airwallex.com/docs/js/payments/googlepaybutton/).
 
 ## Integration Examples
 

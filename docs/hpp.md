@@ -69,7 +69,7 @@ Merchants can add more features to the checkout including the success or failure
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here]([/docs](https://airwallex.com/docs/js/payments/host-payment-page/)).
+See the full documentation for `@airwallex/components-sdk` [here](https://www.airwallex.com/docs/js/payments/hosted-payment-page/).
 
 ## Integration Examples
 

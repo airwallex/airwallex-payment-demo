@@ -148,7 +148,7 @@ element.on('pendingVerifyAccount', (event) => {
 
 ## Documentation
 
-See the full documentation for `@airwallex/components-sdk` [here]([/docs](https://airwallex.com/docs/js/payments/dropin/)).
+See the full documentation for `@airwallex/components-sdk` [here](https://airwallex.com/docs/js/payments/dropin/).
 
 ## Integration Examples
 
