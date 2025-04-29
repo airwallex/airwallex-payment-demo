@@ -10,7 +10,7 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-// STEP #1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import @airwallex/components-sdk package
 import { createElement, init } from '@airwallex/components-sdk';
 import { v4 as uuid } from 'uuid';
 import { createPaymentIntent } from '../util';
