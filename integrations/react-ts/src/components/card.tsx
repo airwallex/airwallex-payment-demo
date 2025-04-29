@@ -2,7 +2,7 @@
  * card.tsx
  * Airwallex Payment Demo - React Typescript.  Created by Olivia Wei and Josie Ku.
  *
- * airwallex-payment-elements Card element integration in React Typescript
+ * @airwallex/components-sdk Card element integration in React Typescript
  * Comments with "Example" demonstrate how states can be integrated
  * with the element, they can be removed.
  *
