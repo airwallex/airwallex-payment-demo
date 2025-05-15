@@ -53,10 +53,12 @@ const Index: React.FC = () => {
           intent_id: id,
           client_secret,
           currency,
-          style: {
-            // the 3ds popup window dimension
-            popupWidth: 400,
-            popupHeight: 549,
+          // customize the visual appearance of the dropIn element, more information can be found: https://www.airwallex.com/docs/js/payments/hosted-payment-page/#properties-appearance
+          appearance: {
+            mode: 'light',
+            variables: {
+              colorBrand: '#612FFF',
+            },
           },
         });
         // STEP #5: Mount the drop-in element to the empty container created previously

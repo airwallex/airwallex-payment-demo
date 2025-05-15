@@ -31,12 +31,7 @@ const Index: React.FC = () => {
       enabledElements: ['payments'],
     });
     // STEP #4, 5: Create and mount the card element
-    const element = await createElement('card', {
-      style: {
-        popupWidth: 400,
-        popupHeight: 549,
-      },
-    });
+    const element = await createElement('card', {});
     elementRef.current = element;
     element?.mount('card');
     // STEP ##7: Add an event listener to ensure the element is mounted

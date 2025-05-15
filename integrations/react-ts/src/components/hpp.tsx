@@ -28,16 +28,16 @@ export const Index: React.FC = () => {
       currency,
       intent_id: intentId, // Required, must provide intent details
       client_secret: clientSecret, // Required
+      // Customize the visual appearance of the HPP, more information can be found: https://www.airwallex.com/docs/js/payments/hosted-payment-page/#properties-appearance
+      appearance: {
+        mode: 'light', // choose between 'dark' and 'light'
+      },
       recurringOptions: {
         card: {
           next_triggered_by: 'customer',
           merchant_trigger_reason: 'scheduled',
           currency,
         },
-      },
-      theme: {
-        popupWidth: 418,
-        popupHeight: 549,
       },
       successUrl: `${window.location.origin}/checkout-success`,
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
@@ -60,10 +60,6 @@ export const Index: React.FC = () => {
           merchant_trigger_reason: 'scheduled',
           currency,
         },
-      },
-      theme: {
-        popupWidth: 418,
-        popupHeight: 549,
       },
       // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
     });
