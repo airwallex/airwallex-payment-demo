@@ -184,6 +184,13 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
           currency: 'replace-with-your-intent-currency',
+          // customize the look and feel of the dropin components, more information can be found: https://www.airwallex.com/docs/js/payments/hosted-payment-page/#properties-appearance
+          appearance: {
+            mode: 'light',
+            variables: {
+              colorBrand: '#612FFF',
+            },
+          },
           // if you want to use apple pay, please pass merchant country code in applePayRequestOptions
           applePayRequestOptions: {
             countryCode: 'replace-with-your-country-code',

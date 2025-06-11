@@ -54,7 +54,13 @@
           client_secret, // Required
           successUrl: 'https://www.google.com', // Must be HTTPS sites
           failUrl: 'https://www.google.com', // Must be HTTPS sites
-          // For more detailed documentation at https://github.com/airwallex/airwallex-payment-demo/tree/master/docs#redirectToCheckout
+          // optional: customize the visual appearance of the HPP
+          appearance: {
+            mode: 'light', // choose between 'dark' and 'light'
+            variables: {
+              colorBrand: '#612FFF',
+            },
+          },
         });
       }
 
