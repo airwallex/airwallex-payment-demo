@@ -52,6 +52,13 @@
           intent_id: 'replace-with-your-intent-id',
           client_secret: 'replace-with-your-client-secret',
           currency: 'replace-with-your-intent-currency',
+          // optional: customize the visual appearance of the dropIn element
+          appearance: {
+            mode: 'light',
+            variables: {
+              colorBrand: '#612FFF',
+            },
+          },
         });
         // STEP #5: Mount 'dropIn' element
         const domElement = dropIn.mount('dropIn'); // This 'dropIn' id MUST MATCH the id on your empty container created in Step 3

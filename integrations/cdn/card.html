@@ -52,7 +52,35 @@
         // STEP #5: Mount card element
         const domElement = card.mount('card');
 
+        // STEP #6a: Add a button handler to trigger the payment request
+        document.getElementById('submit').addEventListener('click', () => {
+          document.getElementById('error').style.display = 'none'; // Example: hide error
+          document.getElementById('submit').innerHTML = 'Processing...'; // Example: set submitting state
+          document.getElementById('submit').disabled = true; // Example: disable button to prevent double submission
 
+          card.confirm({
+            id: 'replace-with-your-intent-id',
+            client_secret: 'replace-with-your-client-secret',
+          })
+            .then((response) => {
+              // STEP #6b: Listen to the request response
+              /* Handle confirm response */
+              document.getElementById('success').style.display = 'block'; // Example: show success message
+              document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
+              document.getElementById('submit').disabled = false; // Example: reset button state
+              window.alert(JSON.stringify(response));
+            })
+            .catch((response) => {
+              // STEP #6c: Listen to the error response
+              /* Handle error response */
+              document.getElementById('error').style.display = 'block'; // Example: show error message
+              document.getElementById('error').innerHTML = response.message; // Example: fill in error message
+              document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
+              document.getElementById('submit').disabled = false; // Example: reset button state
+              console.error(`There was an error, ${JSON.stringify(response)}`);
+            });
+        });
+        
         // STEP #7: Add an event listener to ensure the element is mounted
         card.on('ready', (event) => {
           /*
@@ -94,34 +122,6 @@
           document.getElementById('error').innerHTML = error.message; // Example: set error message
           console.error('There was an error', error);
 
-          // STEP #6a: Add a button handler to trigger the payment request
-          document.getElementById('submit').addEventListener('click', () => {
-            document.getElementById('error').style.display = 'none'; // Example: hide error
-            document.getElementById('submit').innerHTML = 'Processing...'; // Example: set submitting state
-            document.getElementById('submit').disabled = true; // Example: disable button to prevent double submission
-
-            card.confirm({
-              id: 'replace-with-your-intent-id',
-              client_secret: 'replace-with-your-client-secret',
-            })
-              .then((response) => {
-                // STEP #6b: Listen to the request response
-                /* Handle confirm response */
-                document.getElementById('success').style.display = 'block'; // Example: show success message
-                document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
-                document.getElementById('submit').disabled = false; // Example: reset button state
-                window.alert(JSON.stringify(response));
-              })
-              .catch((response) => {
-                // STEP #6c: Listen to the error response
-                /* Handle error response */
-                document.getElementById('error').style.display = 'block'; // Example: show error message
-                document.getElementById('error').innerHTML = response.message; // Example: fill in error message
-                document.getElementById('submit').innerHTML = 'Submit'; // Example: reset button state
-                document.getElementById('submit').disabled = false; // Example: reset button state
-                console.error(`There was an error, ${JSON.stringify(response)}`);
-              });
-          });
         });
       } catch (error) {
         document.getElementById('error').style.display = 'block'; // Example: show error

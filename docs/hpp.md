@@ -149,6 +149,10 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           customer_id: 'replace-with-your-customer-id',
           currency: 'replace-with-your-currency',
           country_code: 'replace-with-your-country-code',
+          // customize the look and feel of the dropin components, more information can be found:  https://www.airwallex.com/docs/js/payments/hosted-payment-page/#properties-appearance
+          appearance: {
+            mode:"light",
+          }
           recurringOptions: {
             /**
              * The subsequent transactions are triggered by `merchant` or `customer`
