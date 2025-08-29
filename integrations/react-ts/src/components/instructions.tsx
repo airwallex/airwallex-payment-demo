@@ -16,7 +16,7 @@ const Instructions: React.FC = () => {
       <div className="instruction-container">
         <p id="bullet">1. Feeling confused about these Airwallex functions?</p>
         <p>
-          Here is the documentation to all our airwallex-payment-elements functions. You will find detailed guides to
+          Here is the documentation to all our @airwallex/components-sdk functions. You will find detailed guides to
           implementing each payment method with different web frameworks as well as common errors.
         </p>
         <a href="https://airwallex.com/docs/js/" target="_blank" rel="noreferrer">
@@ -30,7 +30,7 @@ const Instructions: React.FC = () => {
         </p>
         <p id="bullet">3. Send us your suggestions!</p>
         <p>
-          Have some ideas on other ways to integrate airwallex-payment-elements?&nbsp;
+          Have some ideas on other ways to integrate @airwallex/components-sdk?&nbsp;
           <a href="https://www.airwallex.com/contact-sales">Let us know!</a> We want to build the best product for you.
         </p>
       </div>
