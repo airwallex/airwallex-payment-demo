@@ -1,0 +1,315 @@
+<!-- 
+  kr-split-card.html
+  Airwallex Payment Demo - Static HTML.  Created by Yushi Wang.
+
+  @airwallex/components-sdk Korean CardSplit element integration in Static HTML
+  Comments with "Example" demonstrate how states can be integrated
+  with the element, they can be removed.
+ -->
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Airwallex Checkout Playground - Korean Card Split Element</title>
+    <!-- 
+           STEP #1: Import @airwallex/components-sdk bundle 
+                     - You MUST replace the bundle version to the latest NPM version
+                       in order to import the package properly!
+         -->
+    <script src="https://static.airwallex.com/components/sdk/v1/index.js"></script>
+  </head>
+
+  <body>
+    <h1>Korean Card Split Element integration</h1>
+    <!-- Example: loading state when element is not yet mounted -->
+    <p id="loading">Loading...</p>
+    <!-- Example: Hide all elements before they are all mounted -->
+    <div id="element" class="hidden">
+      <!-- 
+             STEP #2a: Add empty containers for the korean card split elements to be placed into
+             - Ensure these are the only elements in your document with these id, otherwise 
+               the elements may fail to mount.  
+           -->
+      <div class="field-container">
+        <div class="field-label">Card number</div>
+        <div id="krCardNumber"></div>
+      </div>
+      <div class="field-container">
+        <div class="field-label">Card type</div>
+        <div id="cardTypeRadio-group" class="cardTypeRadio-group">
+          <label class="radio-label">
+            <input type="radio" name="cardTypeRadio" value="personal" checked class="radio-input" />
+            <span>Personal</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="cardTypeRadio" value="company" class="radio-input" />
+            <span>Company</span>
+          </label>
+        </div>
+      </div>
+      <div class="field-container">
+        <div id="krCardDob" class="field-label">Date of Birth</div>
+        <div id="krCardBusinessNo" class="field-label" style="display: none">Business number</div>
+        <div id="krCardIdentifier"></div>
+      </div>
+      <div class="field-container">
+        <div class="field-label">Expriy Date</div>
+        <div id="krCardExpiry"></div>
+      </div>
+      <div class="field-container">
+        <div class="field-label">First two digits of password</div>
+        <div id="krCardPswFirst2"></div>
+      </div>
+      <!-- STEP #2b: Add a submit button to trigger the payment request -->
+      <button id="submit">Submit</button>
+    </div>
+    <!-- Example: Response message containers -->
+    <p id="error"></p>
+    <p id="success">Payment Successful!</p>
+    <script>
+      (async () => {
+        try {
+          // STEP #1: Initialize the Airwallex global context for event communication
+          await window.AirwallexComponentsSDK.init({
+            /* Setup which Airwallex env('staging' | 'demo' | 'prod') to integrate with */
+            env: 'demo',
+            enabledElements: ['payments'],
+          });
+
+          // STEP #3: Create all elements in parallel using Promise.all for better performance
+          const [krCardNumber, krCardIdentifier, krCardExpiry, krCardPswFirst2] = await Promise.all([
+            window.AirwallexComponentsSDK.createElement('krCardNumber'),
+            window.AirwallexComponentsSDK.createElement('krCardIdentifier', {
+              /* should match the default active radio button */
+              cardType: 'personal',
+            }),
+            window.AirwallexComponentsSDK.createElement('krCardExpiry'),
+            window.AirwallexComponentsSDK.createElement('krCardPswFirst2'),
+          ]);
+
+          // STEP #4: Mount all elements in parallel for better performance
+          await Promise.all([
+            /* This 'krCardNumber' id MUST MATCH the id on your cardNumber empty container created in Step 2 */
+            krCardNumber.mount('krCardNumber'),
+            /* Same as above */
+            krCardIdentifier.mount('krCardIdentifier'),
+            /* Same as above */
+            krCardExpiry.mount('krCardExpiry'),
+            /* Same as above */
+            krCardPswFirst2.mount('krCardPswFirst2'),
+          ]);
+
+          // STEP #5a: Add a button handler to trigger the payment request
+          document.getElementById('submit').addEventListener('click', () => {
+            krCardNumber
+              .confirm({
+                client_secret: 'replace-with-your-client-secret',
+              })
+              .then((response) => {
+                // STEP #6b: Listen to the request response
+                /* handle confirm response */
+                document.getElementById('success').style.display = 'block'; // Example: show success block
+                window.alert(JSON.stringify(response));
+              })
+              .catch((response) => {
+                // STEP #6c: Listen to the error response
+                /* handle error response */
+                document.getElementById('error').style.display = 'block'; // Example: show error block
+                document.getElementById('error').innerHTML = response.message; // Example: set error message
+                console.error('There was an error', response);
+              });
+          });
+
+          // STEP #5b: Add handler for 'cardType' radio button group
+
+          /* query form labels for identifier */
+          const dobFieldLabel = document.getElementById('krCardDob');
+          const businessNumberFieldLabel = document.getElementById('krCardBusinessNo');
+
+          const setupRadioGroupListener = () => {
+            /* query all the radio buttons */
+            const radioButtons = document.querySelectorAll('input[name="cardTypeRadio"]');
+
+            const updateIdentifierCardType = (cardType) => {
+              /* check if identifier is ready */
+              if (krCardIdentifier) {
+                try {
+                  /* calling krCardIdentifier.update() to change the cardType option for krCardIdentifier */
+                  krCardIdentifier.update({ cardType });
+                } catch (error) {
+                  /* Handle error */
+                  console.error('Error updating krCardIdentifier cardType:', error);
+                }
+              } else {
+                /* krCardIdentifier is not ready */
+                console.warn('krCardIdentifier element is not ready yet');
+              }
+            };
+
+            /* set handlers for radio button */
+            radioButtons.forEach((radio) => {
+              radio.addEventListener('change', (event) => {
+                if (event.target.checked) {
+                  const cardType = event.target.value;
+                  /* display correct form label */
+                  if (cardType === 'personal') {
+                    dobFieldLabel.style.display = 'block';
+                    businessNumberFieldLabel.style.display = 'none';
+                  } else {
+                    dobFieldLabel.style.display = 'none';
+                    businessNumberFieldLabel.style.display = 'block';
+                  }
+
+                  /* update cardType for element krCardIdentifier */
+                  updateIdentifierCardType(cardType);
+                }
+              });
+            });
+
+            /* set initial value based on checked radio button */
+            const checkedRadio = document.querySelector('input[name="cardTypeRadio"]:checked');
+            if (checkedRadio) {
+              updateIdentifierCardType(checkedRadio.value);
+            }
+          };
+          /* calling the handler */
+          setupRadioGroupListener();
+
+          // STEP #6: Add ready event listener to ensure the element is mounted
+          /* set up local variable to check whether all elements are mounted */
+          const elementsReady = {
+            krCardNumber: false,
+            krCardExpiry: false,
+            krCardPswFirst2: false,
+            krCardIdentifier: false,
+          };
+          const cardNumberElement = document.getElementById('krCardNumber');
+          const identifierElement = document.getElementById('krCardIdentifier');
+          const expiryElement = document.getElementById('krCardExpiry');
+          const pswElement = document.getElementById('krCardPswFirst2');
+
+          const elementArray = [krCardNumber, krCardExpiry, krCardIdentifier, krCardPswFirst2];
+          elementArray.forEach((element) => {
+            element.on('ready', (event) => {
+              /* Handle ready event */
+              const { type } = event.detail;
+              if (elementsReady.hasOwnProperty(type)) {
+                /* Set element ready state */
+                elementsReady[type] = true;
+              }
+
+              if (!Object.values(elementsReady).includes(false)) {
+                /* hide loading state when element is mounted */
+                document.getElementById('loading').style.display = 'none';
+                /* show element when mounted */
+                document.getElementById('element').style.display = 'block';
+              }
+            });
+          });
+
+          // STEP #7: Add change event listener to validate element inputs
+          /* set up local variable to validate whether element inputs are completed */
+          const elementsCompleted = {
+            krCardNumber: false,
+            krCardExpiry: false,
+            krCardPswFirst2: false,
+            krCardIdentifier: false,
+          };
+
+          elementArray.forEach((element) => {
+            element.on('change', (event) => {
+              /* Handle change event */
+              const { type, complete } = event.detail;
+              if (elementsCompleted.hasOwnProperty(type)) {
+                /* Set element completion state */
+                elementsCompleted[type] = complete;
+              }
+
+              /* check if all elements are completed, and set submit button disabled state */
+              const allElementsCompleted = !Object.values(elementsCompleted).includes(false);
+              document.getElementById('submit').disabled = !allElementsCompleted;
+            });
+          });
+
+          elementArray.forEach((element) => {
+            element.on('focus', (event) => {
+              /* Customize focus event */
+            });
+          });
+
+          elementArray.forEach((element) => {
+            element.on('blur', (event) => {
+              /* Customize blur event*/
+            });
+          });
+          elementArray.forEach((element) => {
+            element.on('error', (event) => {
+              /*  Customize error event */
+            });
+          });
+        } catch (error) {
+          /* hide loading state */
+          document.getElementById('loading').style.display = 'none';
+          /* show error */
+          document.getElementById('error').style.display = 'block';
+          /* set error message */
+          document.getElementById('error').innerHTML = error.message;
+          /* log error */
+          console.error('There was an error', error);
+        }
+      })();
+    </script>
+  </body>
+  <style>
+    .field-container {
+      margin-bottom: 24px;
+    }
+
+    .field-label {
+      font-weight: bold;
+    }
+
+    #krCardNumber,
+    #krCardIdentifier,
+    #krCardExpiry,
+    #krCardPswFirst2 {
+      border: 1px solid #612fff;
+      border-radius: 5px;
+      padding: 5px 10px;
+      width: 400px;
+      box-shadow: #612fff 0px 0px 0px 1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .error-message {
+      color: red;
+    }
+
+    .cardTypeRadio-group {
+      margin-top: 5px;
+    }
+
+    .radio-label {
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .radio-label:first-of-type {
+      margin-right: 20px;
+    }
+
+    .radio-input {
+      margin-right: 8px;
+    }
+  </style>
+</html>

@@ -23,6 +23,7 @@ const App: React.FC = () => (
             <Route path="/card" Component={lazy(() => import('./components/card'))} />
             <Route path="/checkout-success" Component={lazy(() => import('./components/checkoutSuccess.tsx'))} />
             <Route path="/instructions" Component={lazy(() => import('./components/instructions'))} />
+            <Route path="/kr-split-card" Component={lazy(() => import('./components/krSplitCard'))} />
           </Routes>
         </Suspense>
       </div>
