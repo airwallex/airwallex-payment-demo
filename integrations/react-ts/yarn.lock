@@ -7,19 +7,17 @@
   resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.4.1.tgz#2447a230bfe072c1659e6815129c03cf170710e3"
   integrity sha512-12WGKBQzjUAI4ayyF4IAtfw2QR/IDoqk6jTddXDhtYTJF9ASmoE1zst7cVtP0aL/F1jUJL5r+JxKXKEgHNbEUQ==
 
-"@airwallex/airtracker@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@airwallex/airtracker/-/airtracker-1.2.0.tgz#5ba62b2eabc76088564bfbc9e217f52dcd4f3b1a"
-  integrity sha512-T6u4QnWEhT9jomVwo6FCVK63AOxRVjonUOn1mj16L/xbqhNCnl/kTBP2khFjFJBJ7wKcb7Yb2KrUg803Uu5zcw==
-  dependencies:
-    web-vitals "^3.5.1"
+"@airwallex/airtracker@^3.0.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@airwallex/airtracker/-/airtracker-3.1.0.tgz#8027374f8d79e054a2d4655f66786414265b1a8f"
+  integrity sha512-p5jKvt/ptGTBq4J0+kY85pM0JCu0oYR7Jc4e6t56w7FO64XbooN97LaP2C00BT6xOlEVsYtTwgZqi6BUBiutbg==
 
-"@airwallex/components-sdk@^1.20.0":
-  version "1.20.0"
-  resolved "https://registry.yarnpkg.com/@airwallex/components-sdk/-/components-sdk-1.20.0.tgz#14a2ac886445c9753a679c7479191b03adf8623e"
-  integrity sha512-aDJDYx4/6+bwZOdw2+1ZG4Ti6RfP1Z6rk25NUixUaU264yKMg6bVLNqFxmfllL/qKHHHt0wN/+vtrm7OFRHalQ==
+"@airwallex/components-sdk@^1.27.0":
+  version "1.27.0"
+  resolved "https://registry.yarnpkg.com/@airwallex/components-sdk/-/components-sdk-1.27.0.tgz#e7111547a2411d816908eaaf90f3e05b5c3f9a27"
+  integrity sha512-hvUb2CUae2lKSX9DZiCpn6fNRXCwoLptUcOPQbhV+BzddROc17HPpK/i0WYNbInF1FcsrJ+Irj97crDV3Jregw==
   dependencies:
-    "@airwallex/airtracker" "1.2.0"
+    "@airwallex/airtracker" "^3.0.0"
 
 "@alloc/quick-lru@^5.2.0":
   version "5.2.0"
@@ -9535,11 +9533,6 @@ web-vitals@^2.1.0:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-2.1.4.tgz#76563175a475a5e835264d373704f9dde718290c"
   integrity sha512-sVWcwhU5mX6crfI5Vd2dC4qchyTqxV8URinzt25XqVh+bHEPGH4C3NPrNionCP7Obx59wrYEbNlw4Z8sjALzZg==
-
-web-vitals@^3.5.1:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-3.5.2.tgz#5bb58461bbc173c3f00c2ddff8bfe6e680999ca9"
-  integrity sha512-c0rhqNcHXRkY/ogGDJQxZ9Im9D19hDihbzSQJrsioex+KnFgmMzBiy57Z1EjkhX/+OjyBpclDCzz2ITtjokFmg==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"

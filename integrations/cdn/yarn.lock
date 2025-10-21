@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@airwallex/airtracker/-/airtracker-3.1.0.tgz#8027374f8d79e054a2d4655f66786414265b1a8f"
   integrity sha512-p5jKvt/ptGTBq4J0+kY85pM0JCu0oYR7Jc4e6t56w7FO64XbooN97LaP2C00BT6xOlEVsYtTwgZqi6BUBiutbg==
 
-"@airwallex/components-sdk@^1.26.0":
-  version "1.26.0"
-  resolved "https://registry.yarnpkg.com/@airwallex/components-sdk/-/components-sdk-1.26.0.tgz#2e7baa666b813e3d3193f81d4dadc7def02c7e56"
-  integrity sha512-iDzillujEswgrpnJrPlhYt2ZR7hKjAxJhwiYIDFXYVYQysThlYi7M/LYItc2rVn6OAvUmnXRH6Xk7EVGPfVq+g==
+"@airwallex/components-sdk@^1.27.0":
+  version "1.27.0"
+  resolved "https://registry.yarnpkg.com/@airwallex/components-sdk/-/components-sdk-1.27.0.tgz#e7111547a2411d816908eaaf90f3e05b5c3f9a27"
+  integrity sha512-hvUb2CUae2lKSX9DZiCpn6fNRXCwoLptUcOPQbhV+BzddROc17HPpK/i0WYNbInF1FcsrJ+Irj97crDV3Jregw==
   dependencies:
     "@airwallex/airtracker" "^3.0.0"
 

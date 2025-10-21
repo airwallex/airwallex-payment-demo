@@ -21,13 +21,13 @@ const Index: React.FC = () => {
   const [cardNumberReady, setCardNumberReady] = useState<boolean>(false);
   const [identifierReady, setIdentifierReady] = useState<boolean>(false);
   const [expiryReady, setExpiryReady] = useState<boolean>(false);
-  const [pswFirst2Ready, setPswFirst2Ready] = useState<boolean>(false);
+  const [pswFirstTwoReady, setPswFirstTwoReady] = useState<boolean>(false);
 
   // Example: element validation state, checks if each field is completed by the shopper
   const [cardNumberComplete, setCardNumberComplete] = useState<undefined | boolean>(false);
   const [identifierComplete, setIdentifierComplete] = useState<undefined | boolean>(false);
   const [expiryComplete, setExpiryComplete] = useState<undefined | boolean>(false);
-  const [pswFirst2Complete, setPswFirst2Complete] = useState<undefined | boolean>(false);
+  const [pswFirstTwoComplete, setPswFirstTwoComplete] = useState<undefined | boolean>(false);
 
   // Card type state management
   const [cardType, setCardType] = useState<'personal' | 'company'>('personal');
@@ -36,7 +36,7 @@ const Index: React.FC = () => {
     krCardNumber: '',
     krCardIdentifier: '',
     krCardExpiry: '',
-    krCardPswFirst2: '',
+    krCardPswFirstTwo: '',
   });
   // Example: controls submission state
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,7 +46,7 @@ const Index: React.FC = () => {
   const krCardNumberRef = useRef<any>(null);
   const krCardIdentifierRef = useRef<any>(null);
   const krCardExpiryRef = useRef<any>(null);
-  const krCardPswFirst2Ref = useRef<any>(null);
+  const krCardPswFirstTwoRef = useRef<any>(null);
 
   const initAirwallex = useCallback(async () => {
     // STEP #2: Initialize Airwallex on mount with the appropriate production environment and other configurations
@@ -56,11 +56,11 @@ const Index: React.FC = () => {
     });
 
     // STEP #4: Create all elements in parallel using Promise.all for better performance
-    const [krCardNumber, krCardIdentifier, krCardExpiry, krCardPswFirst2] = await Promise.all([
+    const [krCardNumber, krCardIdentifier, krCardExpiry, krCardPswFirstTwo] = await Promise.all([
       createElement('krCardNumber'),
       createElement('krCardIdentifier', { cardType: 'personal' }),
       createElement('krCardExpiry'),
-      createElement('krCardPswFirst2'),
+      createElement('krCardPswFirstTwo'),
     ]);
 
     // STEP #5: Mount all elements in parallel for better performance
@@ -68,13 +68,13 @@ const Index: React.FC = () => {
       krCardNumber?.mount('krCardNumber'),
       krCardIdentifier?.mount('krCardIdentifier'),
       krCardExpiry?.mount('krCardExpiry'),
-      krCardPswFirst2?.mount('krCardPswFirst2'),
+      krCardPswFirstTwo?.mount('krCardPswFirstTwo'),
     ]);
 
     krCardNumberRef.current = krCardNumber;
     krCardIdentifierRef.current = krCardIdentifier;
     krCardExpiryRef.current = krCardExpiry;
-    krCardPswFirst2Ref.current = krCardPswFirst2;
+    krCardPswFirstTwoRef.current = krCardPswFirstTwo;
 
     // STEP #7: Add an event handler to ensure the element is mounted
     const onReady = (event: CustomEvent): void => {
@@ -88,8 +88,8 @@ const Index: React.FC = () => {
       if (type === 'krCardExpiry') {
         setExpiryReady(true);
       }
-      if (type === 'krCardPswFirst2') {
-        setPswFirst2Ready(true);
+      if (type === 'krCardPswFirstTwo') {
+        setPswFirstTwoReady(true);
       }
     };
 
@@ -105,8 +105,8 @@ const Index: React.FC = () => {
       if (type === 'krCardExpiry') {
         setExpiryComplete(complete);
       }
-      if (type === 'krCardPswFirst2') {
-        setPswFirst2Complete(complete);
+      if (type === 'krCardPswFirstTwo') {
+        setPswFirstTwoComplete(complete);
       }
       console.log(`Elements changed with ${JSON.stringify(event.detail)}`);
     };
@@ -128,7 +128,7 @@ const Index: React.FC = () => {
       }));
     };
     // Optimized event listener setup using batch processing
-    const elementIds = ['krCardNumber', 'krCardIdentifier', 'krCardExpiry', 'krCardPswFirst2'];
+    const elementIds = ['krCardNumber', 'krCardIdentifier', 'krCardExpiry', 'krCardPswFirstTwo'];
     const eventTypes = [
       { type: 'onReady', handler: onReady },
       { type: 'onChange', handler: onChange },
@@ -222,16 +222,10 @@ const Index: React.FC = () => {
   };
 
   // Example: combine all element ready states
-  const allElementsReady = cardNumberReady && identifierReady && expiryReady && pswFirst2Ready;
+  const allElementsReady = cardNumberReady && identifierReady && expiryReady && pswFirstTwoReady;
   // Example: combine all element complete states
-  const allElementsComplete = cardNumberComplete && identifierComplete && expiryComplete && pswFirst2Complete;
+  const allElementsComplete = cardNumberComplete && identifierComplete && expiryComplete && pswFirstTwoComplete;
 
-  console.log('allElementsComplete', allElementsComplete);
-  console.log('cardNumberComplete', cardNumberComplete);
-  console.log('identifierComplete', identifierComplete);
-  console.log('expiryComplete', expiryComplete);
-  console.log('pswFirst2Complete', pswFirst2Complete);
-  console.log('isSubmitting', isSubmitting);
   const submitDisabled = !allElementsComplete || isSubmitting;
 
   // Example: Custom styling for the inputs, can be placed in css
@@ -318,10 +312,10 @@ const Index: React.FC = () => {
         <div className="field-container">
           <div className="field-label">First two digits of password</div>
           <div
-            id="krCardPswFirst2"
+            id="krCardPswFirstTwo"
             style={inputStyle} // Example: input styling can be moved to css
           />
-          <p style={{ color: 'red' }}>{inputErrorMessage.krCardPswFirst2}</p>
+          <p style={{ color: 'red' }}>{inputErrorMessage.krCardPswFirstTwo}</p>
         </div>
         {/* STEP #3b: Add a submit button to trigger the payment request */}
         <button

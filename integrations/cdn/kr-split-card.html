@@ -60,7 +60,7 @@
       </div>
       <div class="field-container">
         <div class="field-label">First two digits of password</div>
-        <div id="krCardPswFirst2"></div>
+        <div id="krCardPswFirstTwo"></div>
       </div>
       <!-- STEP #2b: Add a submit button to trigger the payment request -->
       <button id="submit">Submit</button>
@@ -79,14 +79,14 @@
           });
 
           // STEP #3: Create all elements in parallel using Promise.all for better performance
-          const [krCardNumber, krCardIdentifier, krCardExpiry, krCardPswFirst2] = await Promise.all([
+          const [krCardNumber, krCardIdentifier, krCardExpiry, krCardPswFirstTwo] = await Promise.all([
             window.AirwallexComponentsSDK.createElement('krCardNumber'),
             window.AirwallexComponentsSDK.createElement('krCardIdentifier', {
               /* should match the default active radio button */
               cardType: 'personal',
             }),
             window.AirwallexComponentsSDK.createElement('krCardExpiry'),
-            window.AirwallexComponentsSDK.createElement('krCardPswFirst2'),
+            window.AirwallexComponentsSDK.createElement('krCardPswFirstTwo'),
           ]);
 
           // STEP #4: Mount all elements in parallel for better performance
@@ -98,7 +98,7 @@
             /* Same as above */
             krCardExpiry.mount('krCardExpiry'),
             /* Same as above */
-            krCardPswFirst2.mount('krCardPswFirst2'),
+            krCardPswFirstTwo.mount('krCardPswFirstTwo'),
           ]);
 
           // STEP #5a: Add a button handler to trigger the payment request
@@ -182,15 +182,15 @@
           const elementsReady = {
             krCardNumber: false,
             krCardExpiry: false,
-            krCardPswFirst2: false,
+            krCardPswFirstTwo: false,
             krCardIdentifier: false,
           };
           const cardNumberElement = document.getElementById('krCardNumber');
           const identifierElement = document.getElementById('krCardIdentifier');
           const expiryElement = document.getElementById('krCardExpiry');
-          const pswElement = document.getElementById('krCardPswFirst2');
+          const pswElement = document.getElementById('krCardPswFirstTwo');
 
-          const elementArray = [krCardNumber, krCardExpiry, krCardIdentifier, krCardPswFirst2];
+          const elementArray = [krCardNumber, krCardExpiry, krCardIdentifier, krCardPswFirstTwo];
           elementArray.forEach((element) => {
             element.on('ready', (event) => {
               /* Handle ready event */
@@ -214,7 +214,7 @@
           const elementsCompleted = {
             krCardNumber: false,
             krCardExpiry: false,
-            krCardPswFirst2: false,
+            krCardPswFirstTwo: false,
             krCardIdentifier: false,
           };
 
@@ -274,7 +274,7 @@
     #krCardNumber,
     #krCardIdentifier,
     #krCardExpiry,
-    #krCardPswFirst2 {
+    #krCardPswFirstTwo {
       border: 1px solid #612fff;
       border-radius: 5px;
       padding: 5px 10px;

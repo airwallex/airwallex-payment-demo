@@ -24,7 +24,7 @@ const Index: React.FC = () => {
             <button>Split Card Element</button>
           </Link>
           <Link to="/kr-split-card">
-            <button>KR Card Split Element</button>
+            <button>KR Local Card Split Element</button>
           </Link>
         </nav>
         <Instructions />

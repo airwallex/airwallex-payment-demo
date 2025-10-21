@@ -86,7 +86,7 @@ await window.AirwallexComponentsSDK.init({
 </div>
 <div>
   <div>First two digits of password</div>
-  <div id="krCardPswFirst2"></div>
+  <div id="krCardPswFirstTwo"></div>
 </div>
 <br />
 <button id="submit">Submit</button>
@@ -98,17 +98,17 @@ In step 5, we will create corresponding handler for the `cardType` radio and the
 
 ### 3. Create korean card split elements
 
-This creates the specified [Element](/docs-components-sdk#Element) objects. We specify the types as `krCardNumber`, `krCardIdentifier`, `krCardExpiry` and `krCardPswFirst2` respectively.
+This creates the specified [Element](/docs-components-sdk#Element) objects. We specify the types as `krCardNumber`, `krCardIdentifier`, `krCardExpiry` and `krCardPswFirstTwo` respectively.
 
 ```js
-const [krCardNumber, krCardIdentifier, krCardExpiry, krCardPswFirst2] = await Promise.all([
+const [krCardNumber, krCardIdentifier, krCardExpiry, krCardPswFirstTwo] = await Promise.all([
   window.AirwallexComponentsSDK.createElement('krCardNumber'),
   window.AirwallexComponentsSDK.createElement('krCardIdentifier', {
     /* should match the default active radio button */
     cardType: 'personal',
   }),
   window.AirwallexComponentsSDK.createElement('krCardExpiry'),
-  window.AirwallexComponentsSDK.createElement('krCardPswFirst2'),
+  window.AirwallexComponentsSDK.createElement('krCardPswFirstTwo'),
 ]);
 ```
 
@@ -127,11 +127,11 @@ await Promise.all([
   /* Same as above */
   krCardExpiry.mount('krCardExpiry'),
   /* Same as above */
-  krCardPswFirst2.mount('krCardPswFirst2'),
+  krCardPswFirst.mount('krCardPswFirstTwo'),
 ]);
 ```
 
-This function will append the card element to your divs with ids `krCardNumber`, `krCardIdentifier`, `krCardExpiry`and `krCardPswFirst2` respectively. **Ensure that there are no other elements in the document with the same ids**.
+This function will append the card element to your divs with ids `krCardNumber`, `krCardIdentifier`, `krCardExpiry`and `krCardPswFirstTwo` respectively. **Ensure that there are no other elements in the document with the same ids**.
 
 Each **element should only be mounted once** in a single payment flow.
 
@@ -311,7 +311,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
     </div>
     <div>
       <div>First two digits of password</div>
-      <div id="krCardPswFirst2"></div>
+      <div id="krCardPswFirstTwo"></div>
     </div>
     <br />
     <button id="submit">Submit</button>
@@ -324,14 +324,14 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           enabledElements: ['payments'],
         });
         // STEP #3: Create korean card split elements
-        const [krCardNumber, krCardIdentifier, krCardExpiry, krCardPswFirst2] = await Promise.all([
+        const [krCardNumber, krCardIdentifier, krCardExpiry, krCardPswFirstTwo] = await Promise.all([
           window.AirwallexComponentsSDK.createElement('krCardNumber'),
           window.AirwallexComponentsSDK.createElement('krCardIdentifier', {
             /* should match the default active radio button */
             cardType: 'personal',
           }),
           window.AirwallexComponentsSDK.createElement('krCardExpiry'),
-          window.AirwallexComponentsSDK.createElement('krCardPswFirst2'),
+          window.AirwallexComponentsSDK.createElement('krCardPswFirstTwo'),
         ]);
 
         // STEP #4: Mount split card elements
@@ -343,7 +343,7 @@ Check out [airwallex-payment-demo](/../../tree/master) for integration examples 
           /* Same as above */
           krCardExpiry.mount('krCardExpiry'),
           /* Same as above */
-          krCardPswFirst2.mount('krCardPswFirst2'),
+          krCardPswFirstTwo.mount('krCardPswFirstTwo'),
         ]);
 
         // STEP #5a: Add handler for submit button
