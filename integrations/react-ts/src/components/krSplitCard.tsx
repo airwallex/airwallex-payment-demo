@@ -1,12 +1,12 @@
 /**
  * splitCard.tsx
- * Airwallex Payment Demo - React Typescript.  Created by Olivia Wei and Josie Ku.
+ * Airwallex Payment Demo - React Typescript.  Created by Yushi Wang.
  *
- * airwallex-payment-elements Split Card element integration in React Typescript
+ * airwallex-payment-elements Korean Local Card - Split Card element integration in React Typescript
  * Comments with "Example" demonstrate how states can be integrated
  * with the element, they can be removed.
  *
- * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/splitcard.md
+ * Detailed guidance here: https://github.com/airwallex/airwallex-payment-demo/blob/master/docs/koreanLocalCardSplitElement.md
  */
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
@@ -108,7 +108,6 @@ const Index: React.FC = () => {
       if (type === 'krCardPswFirstTwo') {
         setPswFirstTwoComplete(complete);
       }
-      console.log(`Elements changed with ${JSON.stringify(event.detail)}`);
     };
     // STEP #9: Add an event listener to get input focus status
     const onFocus = (event: CustomEvent) => {
@@ -198,7 +197,7 @@ const Index: React.FC = () => {
         const response = await krCardNumberRef.current?.confirmPaymentIntent({
           id,
           client_secret,
-          // Add other payment confirmation details, see docs here: https://github.com/airwallex/airwallex-payment-demo/tree/master/docs
+          // Add other payment confirmation details, see docs here: https://github.com/airwallex/airwallex-payment-demo/tree/master/docs/koreanLocalCardSplitElement.md
           payment_method_options: {
             card: {
               auto_capture: true,
