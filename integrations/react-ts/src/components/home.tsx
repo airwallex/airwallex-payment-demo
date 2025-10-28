@@ -12,16 +12,19 @@ const Index: React.FC = () => {
         <nav>
           <h2>All Demos</h2>
           <Link to="/card">
-            <button>Card element</button>
+            <button>Card Element</button>
           </Link>
           <Link to="/hpp">
             <button>Hosted payment page (HPP)</button>
           </Link>
           <Link to="/drop-in">
-            <button>DropIn</button>
+            <button>DropIn Element</button>
           </Link>
           <Link to="/split-card">
-            <button>Split Card element</button>
+            <button>Split Card Element</button>
+          </Link>
+          <Link to="/kr-split-card">
+            <button>KR Local Card Split Element</button>
           </Link>
         </nav>
         <Instructions />
