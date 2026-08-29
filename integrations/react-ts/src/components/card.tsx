@@ -2,7 +2,7 @@
  * card.tsx
  * Airwallex Payment Demo - React Typescript.  Created by Olivia Wei and Josie Ku.
  *
- * airwallex-payment-elements Card element integration in React Typescript
+ * @airwallex/components-sdk Card element integration in React Typescript
  * Comments with "Example" demonstrate how states can be integrated
  * with the element, they can be removed.
  *
@@ -10,7 +10,7 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-// STEP #1: At the start of your file, import airwallex-payment-elements package
+// STEP #1: At the start of your file, import @airwallex/components-sdk package
 import { createElement, init } from '@airwallex/components-sdk';
 import { v4 as uuid } from 'uuid';
 import { createPaymentIntent } from '../util';
